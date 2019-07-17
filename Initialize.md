@@ -62,10 +62,11 @@ npm i @auth0/angular-jwt
 ionic cordova plugin add cordova-sqlite-storage
 
 
+<br><br>
 ## Install the Lab Package
 npm i @ionic/lab
 
 
-
+<br><br>
 ## Run your app with device preview and platform styles
 ionic lab
