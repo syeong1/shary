@@ -1,10 +1,7 @@
 ## Initialize
 
 
-
-
-
-ionic start shary tabs —type=angular 
+ionic start shary tabs —type=angular
 
 cd shary
 
@@ -65,9 +62,10 @@ npm i @auth0/angular-jwt
 ionic cordova plugin add cordova-sqlite-storage
 
 
-
-# Install the Lab Package
+## Install the Lab Package
 npm i @ionic/lab
 
-# Run your app with device preview and platform styles
+
+
+## Run your app with device preview and platform styles
 ionic lab
