@@ -1,9 +1,21 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
+  <ion-toolbar text-center>
+    <ion-title>로그인</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
+
+<ion-item>
+  <ion-label position="floating">E-mail</ion-label>
+  <ion-input inputmode="email" required="true" type="email"></ion-input>
+</ion-item>
+<ion-item>
+    <ion-label position="floating">Password</ion-label>
+    <ion-input inputmode="password" type="password"></ion-input>
+</ion-item>
+
+<ion-button expand="block" class="login-page-btn">로그인</ion-button>
+<ion-button expand="block" class="login-page-btn">회원가입</ion-button>
 
 </ion-content>
