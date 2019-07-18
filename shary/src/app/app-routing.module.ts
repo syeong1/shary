@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', loadChildren: './tabs/tabs.module#TabsPageModule' },
+
+  { path: '', redirectTo: 'main-tabs', pathMatch: 'full' },
+  { path: '', loadChildren: './pages/main-tabs/main-tabs.module#MainTabsPageModule' },
   { path: 'sign-up', loadChildren: './member/sign-up/sign-up.module#SignUpPageModule' },
   { path: 'login', loadChildren: './member/login/login.module#LoginPageModule' },
   { path: 'mypage', loadChildren: './member/mypage/mypage.module#MypagePageModule' },

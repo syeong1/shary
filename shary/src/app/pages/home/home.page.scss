@@ -1,13 +1,20 @@
 ion-grid {
-    display:flex; align-items: center;
+    display:flex; 
+    align-items: center;
 }
 
-ion-icon {
-    width:80px;
-    height: 60px;
+img {
+    width: 13vw;
+    margin: 2vh;
 }
 
 ion-col{
     cursor: pointer;
 }
 
+@import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Jua&display=swap&subset=korean');
+
+* {
+    font-family: 'Jua', 'Do Hyeon';
+    font-size: 20px;
+}

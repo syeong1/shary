@@ -9,8 +9,47 @@ import { MainTabsPage } from './main-tabs.page';
 
 const routes: Routes = [
   {
+    path: 'main-tabs',
+    component: MainTabsPage,
+    children: [
+      {
+        path: 'home',
+        children: [
+          {
+            path: '',
+            loadChildren: '../home/home.module#HomePageModule'
+          }
+        ]
+      },
+      {
+        path: 'search',
+        children: [
+          {
+            path: '',
+            loadChildren: '../search/search.module#SearchPageModule'
+          }
+        ]
+      },
+      {
+        path: 'settings',
+        children: [
+          {
+            path: '',
+            loadChildren: '../settings/settings.module#SettingsPageModule'
+          }
+        ]
+      },
+      {
+        path: '',
+        redirectTo: '/main-tabs/home',
+        pathMatch: 'full'
+      }
+    ]
+  },
+  {
     path: '',
-    component: MainTabsPage
+    redirectTo: '/main-tabs/home',
+    pathMatch: 'full'
   }
 ];
 

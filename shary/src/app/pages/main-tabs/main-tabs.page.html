@@ -1,9 +1,18 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>main-tabs</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="search">
+      <ion-icon name="search"></ion-icon>
+      <ion-label>검색</ion-label>
+    </ion-tab-button>
 
-<ion-content>
+    <ion-tab-button tab="home">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>홈</ion-label>
+    </ion-tab-button>
 
-</ion-content>
+    <ion-tab-button tab="settings">
+      <ion-icon name="settings"></ion-icon>
+      <ion-label>설정</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
