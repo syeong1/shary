@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', loadChildren: './tabs/tabs.module#TabsPageModule' },
-  { path: 'sign-up', loadChildren: './member/sign-up/sign-up.module#SignUpPageModule' },
-  { path: 'login', loadChildren: './member/login/login.module#LoginPageModule' },
+  // { path: '', loadChildren: './tabs/tabs.module#TabsPageModule' },
+  { path: '', loadChildren: './member/sign-up/sign-up.module#SignUpPageModule' },
+  // { path: '', loadChildren: './member/login/login.module#LoginPageModule' },
   { path: 'mypage', loadChildren: './member/mypage/mypage.module#MypagePageModule' },
   { path: 'app-password', loadChildren: './member/app-password/app-password.module#AppPasswordPageModule' },
   { path: 'main-tabs', loadChildren: './pages/main-tabs/main-tabs.module#MainTabsPageModule' },
