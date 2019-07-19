@@ -21,7 +21,8 @@ const routes: Routes = [
   { path: 'share-photo', loadChildren: './review/share-photo/share-photo.module#SharePhotoPageModule' },
   { path: 'list', loadChildren: './review/list/list.module#ListPageModule' },
   { path: 'create', loadChildren: './reviewbook/create/create.module#CreatePageModule' },
-  { path: 'list', loadChildren: './reviewbook/list/list.module#ListPageModule' }
+  { path: 'list', loadChildren: './reviewbook/list/list.module#ListPageModule' },
+  { path: 'write', loadChildren: './review/write/write.module#WritePageModule' }
 ];
 @NgModule({
   imports: [

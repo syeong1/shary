@@ -62,4 +62,4 @@ const routes: Routes = [
   ],
   declarations: [MainTabsPage]
 })
-export class MainTabsPageModule {}
+export class MainTabsPageModule { }
