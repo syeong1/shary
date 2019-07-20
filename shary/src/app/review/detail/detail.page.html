@@ -1,9 +1,109 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>detail</ion-title>
+<ion-header translucent>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-button>
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        <ion-text>나의 리뷰북</ion-text>
+      </ion-button>
+
+    </ion-buttons>
+
+
+    <ion-title>리뷰</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        편집
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
+<!-- <ion-toolbar>
+      <ion-item lines="none" >
+          <rating size="default" style="margin: 0 auto;" >
+          </rating>
+          <ion-icon name="search" slot="end"></ion-icon>
+        </ion-item>
+    
+  </ion-toolbar> -->
+<ion-content padding>
 
-<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size='4'>
+        <ion-img src="https://file2.nocutnews.co.kr/newsroom/image/2019/05/22/20190522222255192726_0_777_1111.jpg">
+        </ion-img>
+      </ion-col>
+      <ion-col size='8'>
+
+        <ion-text>
+          <h3>알라딘</h3>
+        </ion-text>
+        <ion-text>
+          <p>사공정훈</p>
+        </ion-text>
+        <ion-text>
+          <p>2019-07-20</p>
+        </ion-text>
+
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size='12'>
+
+
+        <ion-item>
+          <ion-label>장르</ion-label>
+          <ion-note slot="end" color="success">액션</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>관람일</ion-label>
+          <ion-note slot="end" color="success">2019-07-20</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">줄거리</ion-label>
+          <ion-text disabled rows="3">머나먼 사막 속 신비의 아그라바 왕국의 시대, 좀도둑 알라딘은 마법사 자파의 의뢰로 마법 램프를 찾아나섰다가 주인에게 세 가지 소원을 들어주니
+            지니를 만나게 되고, 자스민 공주의 마음을 </ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">명대사</ion-label>
+          <ion-text disabled rows="3">나의 사전에는 불가능이란 없다. </ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">감상평</ion-label>
+          <ion-text disabled rows="3">뮤지컬 느낌에 재밌었다. 강력추천함 </ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">태그</ion-label>
+          <p>
+            <ion-chip color={{colors[i%6]}} *ngFor="let tag of tags;let i=index;">
+              <ion-label>{{tag}}</ion-label>
+            </ion-chip>
+          </p>
+        </ion-item>
+      </ion-col>
+
+    </ion-row>
+
+  </ion-grid>
 
 </ion-content>
+
+<ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button (click)="openDeleteAlert()">
+        <ion-icon name="trash" color="danger" ></ion-icon>
+        <ion-label>삭제</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button (click)="openShareAlert()" >
+        <ion-icon name="share-alt"></ion-icon>
+        <ion-label>공유</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button >
+        <ion-icon name="share"></ion-icon>
+        <ion-label>카드공유</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
