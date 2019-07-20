@@ -1,9 +1,37 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>movie</ion-title>
+  <ion-toolbar text-center>
+    <ion-title>영화 검색</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+    <ion-searchbar></ion-searchbar>
+
+    <ion-item>
+      <ion-label>Select Searchtype</ion-label>
+      <ion-select>
+        <ion-select-option value="">All</ion-select-option>
+        <ion-select-option value="movie">Movie</ion-select-option>
+        <ion-select-option value="series">Series</ion-select-option>
+        <ion-select-option value="episode">Episode</ion-select-option>
+      </ion-select>
+    </ion-item>
+  
+
+    <ion-list fullscreen *ngFor="let movie of titles">
+  
+      <ion-item button>
+        <ion-avatar slot="start">
+          <img src="assets/img/movie_poster.jpg">
+        </ion-avatar>
+  
+        <ion-label text-wrap>
+          <h3>{{movie}}</h3>
+          {{year}}
+        </ion-label>
+  
+      </ion-item>
+      
+    </ion-list>
 </ion-content>
