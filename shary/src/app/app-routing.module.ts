@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'settings', loadChildren: './pages/settings/settings.module#SettingsPageModule' },
   { path: 'home', loadChildren: './pages/home/home.module#HomePageModule' },
   { path: 'search', loadChildren: './pages/search/search.module#SearchPageModule' },
-  { path: 'movie', loadChildren: './search/api/movie/movie.module#MoviePageModule' },
+  { path: 'api-movie', loadChildren: './search/api/movie/movie.module#MoviePageModule' },
   { path: 'movie', loadChildren: './search/review/movie/movie.module#MoviePageModule' },
   { path: 'detail', loadChildren: './review/detail/detail.module#DetailPageModule' },
   { path: 'create', loadChildren: './review/create/create.module#CreatePageModule' },
