@@ -1,7 +1,26 @@
-ion-select{
-    width: 22%
+ion-select {
+    width: auto;
+
 }
-.searchbar-input, .sc-ion-searchbar-md{
-    box-shadow: none;
-    border: none;
+
+ion-item:not(.item-label) .sc-ion-input-md-h {
+    --padding-start: 10px
 }
+
+ion-input{
+    --padding-bottom: 15px;
+}
+
+ion-grid{
+    border-bottom: solid 1px #e8e8e8;
+    outline: none;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+
+}
+ion-row, ion-col{
+    padding-bottom: 0px;
+}
+  //  border-bottom: 3px solid #c6a477;
+   // color: #c6a477;
