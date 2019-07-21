@@ -1,9 +1,17 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar text-center>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
     <ion-title>share-photo</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+    <rating [rate]="rate"
+    readonly="false" 
+    size="default" 
+    (rateChange)="onRateChange($event)">
+    </rating>
 
 </ion-content>

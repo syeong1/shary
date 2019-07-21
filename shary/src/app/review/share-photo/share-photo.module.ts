@@ -7,6 +7,9 @@ import { IonicModule } from '@ionic/angular';
 
 import { SharePhotoPage } from './share-photo.page';
 
+// Import ionic-rating module
+import { IonicRatingModule } from 'ionic4-rating';
+
 const routes: Routes = [
   {
     path: '',
@@ -19,6 +22,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    IonicRatingModule,
     RouterModule.forChild(routes)
   ],
   declarations: [SharePhotoPage]
