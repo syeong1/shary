@@ -1,9 +1,37 @@
-<ion-header>
+<ion-header translucent>
   <ion-toolbar>
-    <ion-title>list</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>리뷰북 리스트</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>편집</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
 
+<ion-content>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['/create']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-card>
+    <div class="card-top-wrap">
+      <ion-item>
+        <ion-avatar>
+          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+        </ion-avatar>
+        <ion-card-title>나의 리뷰북1</ion-card-title>
+      </ion-item>
+    </div>
+    <div class="card-bottom-wrap">
+      <span class="last-date">마지막 리뷰 2019.07.21</span>
+      <ion-chip color="danger">
+        <ion-label class="review-cnt">100개</ion-label>
+      </ion-chip>
+    </div>
+  </ion-card>
 </ion-content>

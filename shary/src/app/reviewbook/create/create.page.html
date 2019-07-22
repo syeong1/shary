@@ -1,9 +1,30 @@
-<ion-header>
+<ion-header translucent>
   <ion-toolbar>
-    <ion-title>create</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>새로운 리뷰북 추가</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>저장</ion-button>
+    </ion-buttons>
   </ion-toolbar>
+  <ion-avatar>
+    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+  </ion-avatar>
+
 </ion-header>
 
 <ion-content>
 
+  <ion-item>
+    <ion-label position="fixed">이름</ion-label>
+    <ion-input slot="end"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="fixed">유형</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">아이콘리스트</ion-label>
+  </ion-item>
 </ion-content>

@@ -1,8 +1,26 @@
 ion-select {
     width: auto;
 
+ }
+ion-tab-bar{
+    overflow-x: scroll;
+    justify-content: left;
+    border-bottom: solid 1px #e8e8e8;
+    outline: none;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+   .tab-category{ 
+        min-width: 70px;
+        font-size: 13px;
+        color: #444;
+        box-sizing: border-box;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
-
+ 
 ion-item:not(.item-label) .sc-ion-input-md-h {
     --padding-start: 10px
 }
@@ -10,17 +28,3 @@ ion-item:not(.item-label) .sc-ion-input-md-h {
 ion-input{
     --padding-bottom: 15px;
 }
-
-ion-grid{
-    border-bottom: solid 1px #e8e8e8;
-    outline: none;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-
-}
-ion-row, ion-col{
-    padding-bottom: 0px;
-}
-  //  border-bottom: 3px solid #c6a477;
-   // color: #c6a477;

@@ -9,7 +9,19 @@
     --ion-color-primary: #c6a477;
     --border-color:#c6a477;
 }
-
+ion-toolbar{
+    background-color: #fff;
+    --ion-color-primary: #333;
+    
+}
 ion-title{
     text-align: center;
+}
+
+
+ion-fab-button {
+    --background-activated: #b8986f;
+    --background-hover: #d8b485;
+    margin-right: 4px;
+    margin-bottom: 20px;
 }
