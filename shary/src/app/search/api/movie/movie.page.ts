@@ -15,6 +15,4 @@ export class MoviePage implements OnInit {
   titles = ['영화제목1', '영화제목2', '영화제목3', '영화제목4', '영화제목5', '영화제목6'];
   year = '2019-03-07';
 
-
-
 }

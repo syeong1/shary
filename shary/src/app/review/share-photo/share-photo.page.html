@@ -1,9 +1,29 @@
-<ion-header>
+<ion-header text-area>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
     <ion-title>share-photo</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding text-center>
+    
+
+    <ion-card *ngif="let choice of choices">
+        <rating [rate]="rate"
+        readonly="false" 
+        size="default" 
+        (rateChange)="onRateChange($event)">
+        </rating>
+        <img src="assets/img/movie_poster.jpg" style="margin: 0 auto"/>
+        <ion-card-header>
+            <ion-card-title>영화제목</ion-card-title>
+          <ion-card-subtitle>2019. 05. 05</ion-card-subtitle>
+        </ion-card-header>
+    </ion-card>
+  
+
+
 
 </ion-content>
