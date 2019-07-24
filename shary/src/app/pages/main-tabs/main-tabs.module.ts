@@ -60,6 +60,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [MainTabsPage]
+  declarations: [MainTabsPage],
+  exports: [RouterModule]
 })
 export class MainTabsPageModule { }

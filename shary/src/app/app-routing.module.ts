@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
 
   { path: '', loadChildren: './pages/main-tabs/main-tabs.module#MainTabsPageModule' },
   { path: 'sign-up', loadChildren: './member/sign-up/sign-up.module#SignUpPageModule' },
   { path: 'login', loadChildren: './member/login/login.module#LoginPageModule' },
-  { path: 'mypage', loadChildren: './member/mypage/mypage.module#MypagePageModule' },
+  {
+    path: 'mypage', loadChildren: './member/mypage/mypage.module#MypagePageModule',
+    canActivate: [AuthGuardService]
+  },
   { path: 'app-password', loadChildren: './member/app-password/app-password.module#AppPasswordPageModule' },
   { path: 'settings', loadChildren: './pages/settings/settings.module#SettingsPageModule' },
   { path: 'home', loadChildren: './pages/home/home.module#HomePageModule' },

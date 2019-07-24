@@ -9,8 +9,19 @@ import { SearchPage } from './search.page';
 
 const routes: Routes = [
   {
+    path: 'search',
+    component: SearchPage,
+    children: [
+      {
+        path: 'movie',
+        loadChildren: '../../search/review/movie/movie.module#MoviePageModule'
+      }
+    ]
+  },
+  {
     path: '',
-    component: SearchPage
+    redirectTo: 'search',
+    pathMatch: 'full'
   }
 ];
 
@@ -19,8 +30,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild([{ path: '', component: SearchPage }])
   ],
   declarations: [SearchPage]
 })
-export class SearchPageModule {}
+export class SearchPageModule { }

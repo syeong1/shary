@@ -5,17 +5,21 @@
 </ion-header>
 
 <ion-content fullscreen>
+  <form [formGroup]="credentialsForm" (ngSubmit)="onSubmit()">
 
-<ion-item>
-  <ion-label position="floating">E-mail</ion-label>
-  <ion-input inputmode="email" required="true" type="email"></ion-input>
-</ion-item>
-<ion-item>
-    <ion-label position="floating">Password</ion-label>
-    <ion-input inputmode="password" type="password"></ion-input>
-</ion-item>
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+    </ion-item>
 
-<ion-button expand="block" class="login-page-btn">로그인</ion-button>
-<ion-button expand="block" class="login-page-btn">회원가입</ion-button>
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
 
+    <ion-button expand="full" type="submit" class="login-page-btn" [disabled]="!credentialsForm.valid">로그인</ion-button>
+    <ion-button expand="full" type="button" class="login-page-btn" (click)="register()" [disabled]="!credentialsForm.valid">회원가입
+    </ion-button>
+
+  </form>
 </ion-content>
