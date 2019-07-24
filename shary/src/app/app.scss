@@ -5,16 +5,22 @@
 // file can hold Sass mixins, functions, and placeholder classes to be imported 
 // and used throughout the application.
 
-:root{
+:root {
     --ion-color-primary: #c6a477;
-    --border-color:#c6a477;
+    --border-color: #c6a477;
 }
-ion-toolbar{
+
+ion-header {
+    background-color: #fff;
+}
+
+ion-toolbar {
     background-color: #fff;
     --ion-color-primary: #333;
-    
+
 }
-ion-title{
+
+ion-title {
     text-align: center;
 }
 

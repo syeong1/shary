@@ -1,8 +1,8 @@
 .info-stats {
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
     margin-right: 12px;
-    margin-bottom: 4px;
+    vertical-align: middle;
 }
 
 ion-card {
@@ -39,4 +39,7 @@ ion-card-content {
         height: 40px;
         overflow: hidden;
     }
+}
+ion-grid{
+    padding: 5px 10px;
 }
