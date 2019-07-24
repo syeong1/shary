@@ -27,13 +27,13 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      // this.auth.authenticationState.subscribe(state => {
-      //   if (state) {
-      //     this.router.navigate(['mypage']);
-      //   } else {
-      //     this.router.navigate(['login']);
-      //   }
-      // });
+      this.auth.authenticationState.subscribe(state => {
+        if (state) {
+          this.router.navigate(['']);
+        } else {
+          this.router.navigate(['login']);
+        }
+      });
  
     });
   }
