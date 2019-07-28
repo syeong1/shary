@@ -1,3 +1,38 @@
-.login-page-btn {
-    margin: 20vh
+form {
+    margin-top: 30px;
+}
+
+ion-item{
+    --padding-start:0px;
+    --inner-padding-start: 16px;
+    --inner-padding-end: 16px;
+    --min-height: 60px;
+}
+
+ion-input{
+    font-size: 15px;
+}
+.label-fixed {
+    color: #333;
+    font-size: 15px;
+}
+ion-button {
+    font-size: 15px;
+    height: 55px;
+    text-align: center;
+}
+
+.btn-register {
+    margin: 50px 0 20px;
+    --background: #c6a477;
+    --background-activated: #c6a477;
+    --background-hover: #c6a477;
+    --border-color: #fff;
+    border: 1px solid;
+    --border-width: 10px;
+    --box-shadow: none;
+    --color: #fff;
+    --color-activated: #fff;
+    --color-focused: #fff;
+    --color-hover: #fff;
 }

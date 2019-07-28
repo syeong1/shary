@@ -1,22 +1,31 @@
-<ion-header>
-    <ion-toolbar text-center color="primary">
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="/"></ion-back-button>
+    </ion-buttons>
     <ion-title>회원가입</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <ion-item>
-        <ion-label position="floating"><ion-icon name="mail"></ion-icon>&nbsp;E-mail</ion-label>
-        <ion-input inputmode="email" required="true" type="email"></ion-input>
-      </ion-item>
-      <ion-item>
-          <ion-label position="floating"><ion-icon name="key"></ion-icon>&nbsp;password</ion-label>
-          <ion-input inputmode="password" required="true" type="password"></ion-input>
-        </ion-item>
-      <ion-item>
-          <ion-label position="floating"><ion-icon name="key"></ion-icon>&nbsp;confirm password</ion-label>
-          <ion-input required inputmode="password" type="password"></ion-input>
-      </ion-item>
-
-      <ion-button expand="block" class="login-page-btn">가입하기</ion-button>
+      <ion-label position="fixed">이메일</ion-label>
+      <ion-input type="email" formControlName="email" text-right></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">비밀번호</ion-label>
+      <ion-input type="password" formControlName="password" text-right></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">비밀번호 확인</ion-label>
+      <ion-input type="password" formControlName="confirmPassword" text-right></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">닉네임</ion-label>
+      <ion-input type="text" formControlName="nickname" text-right></ion-input>
+    </ion-item>
+    <ion-button expand="full" size="large" class="btn-register" type="submit" [disabled]="!registerForm.valid">가입하기
+    </ion-button>
+  </form>
 </ion-content>

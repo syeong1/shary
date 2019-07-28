@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './../../services/auth.service';
+
 
 @Component({
   selector: 'app-mypage',
@@ -8,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class MypagePage implements OnInit {
   nickname = '사공';
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }

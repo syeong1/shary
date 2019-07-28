@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Storage, IonicStorageModule } from '@ionic/storage';
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 export function jwtOptionsFactory(storage) {
   return {
@@ -34,7 +34,8 @@ export function jwtOptionsFactory(storage) {
         useFactory: jwtOptionsFactory,
         deps: [Storage]
       }
-    })
+    }),FormsModule,   
+    ReactiveFormsModule 
   ],
 
   providers: [
