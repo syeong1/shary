@@ -17,7 +17,7 @@ export class AppComponent {
     private statusBar: StatusBar,
     private auth: AuthService,
     private router: Router
-    
+
   ) {
     this.initializeApp();
   }
@@ -28,13 +28,13 @@ export class AppComponent {
       this.splashScreen.hide();
 
       this.auth.authenticationState.subscribe(state => {
-        if (state) {
-          this.router.navigate(['']);
-        } else {
-          this.router.navigate(['login']);
-        }
+        //   if (state) {
+        //     this.router.navigate(['']);
+        //   } else {
+        //     this.router.navigate(['login']);
+        //   }
       });
- 
+
     });
   }
 }
