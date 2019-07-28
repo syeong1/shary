@@ -1,55 +1,46 @@
 <ion-grid>
   <div>
-    <ion-row class="ion-align-items-center ">
-      <ion-col class="ion-padding" size="6" (click)="openMovie()">
-        <div>
-          <img src="assets/img/icon_books.png">
+    <ion-row>
+      <ion-col class="ion-padding" size="6">
+        <div [routerLink]="['/reviewbook/list']">
+          <img src="assets/img/home/icon_books.png">
+          <ion-label>책</ion-label>
         </div>
-        <ion-text style="text-align: center">
-          <div>책</div>
-        </ion-text>
       </ion-col>
       <ion-col class="ion-padding" size="6">
         <div [routerLink]="['/reviewbook/list']">
-          <img src="assets/img/icon_movie.png">
+          <img src="assets/img/home/icon_movie.png">
+          <ion-label>영화</ion-label>
         </div>
-        <ion-text style="text-align: center">
-          <div>영화</div>
-        </ion-text>
       </ion-col>
     </ion-row>
 
-    <ion-row class="ion-align-items-center">
+    <ion-row>
       <ion-col class="ion-padding" size="6">
         <div>
-          <img src="assets/img/icon_tv.png">
+          <img src="assets/img/home/icon_tv.png">
+          <ion-label>TV프로그램</ion-label>
         </div>
-        <ion-text style="text-align: center">
-          <div>TV프로그램</div>
-        </ion-text>
       </ion-col>
       <ion-col class="ion-padding" size="6">
         <div>
-          <img src="assets/img/icon_restaurant.png"> </div>
-        <ion-text style="text-align: center">
-          <div>맛집</div>
-        </ion-text>
+          <img src="assets/img/home/icon_restaurant.png">
+          <ion-label>맛집</ion-label>
+        </div>
       </ion-col>
     </ion-row>
-    <ion-row class="ion-align-items-center ">
+    <ion-row>
       <ion-col class="ion-padding" size="6">
         <div>
-          <img src="assets/img/icon_music.png"> </div>
-        <ion-text style="text-align: center">
-          <div>MUSIC</div>
-        </ion-text>
+          <img src="assets/img/home/icon_music.png">
+          <ion-label>음악</ion-label>
+        </div>
       </ion-col>
       <ion-col class="ion-padding" size="6">
         <div>
-          <img src="assets/img/icon_movie.png"> </div>
-        <ion-text style="text-align: center">
-          <div>SEARCH</div>
-        </ion-text>
+          <img src="assets/img/home/icon_like.png">
+          <ion-label>즐겨찾기</ion-label>
+        </div>
       </ion-col>
     </ion-row>
   </div>

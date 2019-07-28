@@ -1,20 +1,35 @@
 ion-grid {
-    display:flex; 
+    display: flex;
     align-items: center;
+    padding: 5%;
+    background: #fff;
 }
 
 img {
-    width: 13vw;
-    margin: 2vh;
+    margin: 15px;
+    width: 15vw;
+    max-width: 80px;
 }
 
-ion-col{
-    cursor: pointer;
+ion-col {
+    padding: 0px;
+
+    div {
+        padding: 3vh 6vw;
+        min-width: 120px;
+        text-align: center
+    }
+
+    ;
+}
+
+
+ion-label {
+    display: block;
+    text-align: center;
+    font-size: 17px;
+    font-family: 'Jua', 'Do Hyeon'
+
 }
 
 @import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Jua&display=swap&subset=korean');
-
-* {
-    font-family: 'Jua', 'Do Hyeon';
-    font-size: 20px;
-}

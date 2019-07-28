@@ -12,7 +12,10 @@ const routes: Routes = [
     canActivate: [AuthGuardService]
   },
   { path: 'app-password', loadChildren: './member/app-password/app-password.module#AppPasswordPageModule' },
-  { path: 'settings', loadChildren: './pages/settings/settings.module#SettingsPageModule' },
+  {
+    path: 'settings', loadChildren: './pages/settings/settings.module#SettingsPageModule',
+    canActivate: [AuthGuardService], runGuardsAndResolvers: 'always'
+  },
   { path: 'home', loadChildren: './pages/home/home.module#HomePageModule' },
   { path: 'search', loadChildren: './pages/search/search.module#SearchPageModule' },
   { path: 'api/movie', loadChildren: './search/api/movie/movie.module#MoviePageModule' },
