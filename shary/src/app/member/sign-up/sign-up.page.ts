@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators,FormControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -16,15 +16,24 @@ export class SignUpPage implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(6)]], 
-      nickname: ['', [Validators.required, Validators.composeAsync]]
-    });
+
+
+    this.registerForm = new FormGroup({
+      email: new FormControl(),
+      password: new FormControl(),
+      confirmPassword: new FormControl(),
+      nickname: new FormControl()
+   });
+
+
+    // this.registerForm = this.formBuilder.group({
+    //   email: ['', [Validators.required, Validators.email]],
+    //   password: ['', [Validators.required, Validators.minLength(6)]],
+    //   confirmPassword: ['', [Validators.required, Validators.minLength(6)]], 
+    //   nickname: ['', [Validators.required, Validators.composeAsync]]
+    // });
   }
 
-  get email(): any { return this.registerForm.get('password'); }
   get password(): any { return this.registerForm.get('password'); }
   get confirmPassword(): any { return this.registerForm.get('confirmPassword'); }
 
