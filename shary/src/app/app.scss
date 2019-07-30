@@ -10,18 +10,8 @@
     --border-color: #c6a477;
 }
 
-ion-header {
-    background-color: #fff;
-}
-
 ion-toolbar {
-    background-color: #fff;
     --ion-color-primary: #333;
-
-}
-
-ion-content{
-    background-color: #fff;
 }
 
 ion-title {
@@ -34,18 +24,4 @@ ion-fab-button {
     --background-hover: #d8b485;
     margin-right: 4px;
     margin-bottom: 20px;
-}
-
-ion-button{
-    --background: #c6a477;
-    --background-activated: #c6a477;
-    --background-hover: #c6a477;
-    --border-color: #fff;
-    border: 1px solid;
-    --border-width: 10px;
-    --box-shadow: none;
-    --color: #fff;
-    --color-activated: #fff;
-    --color-focused: #fff;
-    --color-hover: #fff;
 }
