@@ -15,11 +15,12 @@
     </ion-item>
     <ion-item>
       <ion-label position="fixed">비밀번호</ion-label>
-      <ion-input type="password" formControlName="password" text-right></ion-input>
+      <ion-input type="password" formControlName="password" [(ngModel)]="password" text-right></ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item class="confirm-wrap">
       <ion-label position="fixed">비밀번호 확인</ion-label>
-      <ion-input type="password" formControlName="confirmPassword" text-right></ion-input>
+      <ion-input type="password" formControlName="confirmPassword" [(ngModel)]="confirmPassword" text-right></ion-input>
+      <ion-icon name="ios-checkmark" *ngIf="(password==confirmPassword)&&(password!=null)" color="primary"></ion-icon>
     </ion-item>
     <ion-item>
       <ion-label position="fixed">닉네임</ion-label>

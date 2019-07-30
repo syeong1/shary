@@ -8,14 +8,18 @@ ion-item{
     --inner-padding-end: 16px;
     --min-height: 60px;
 }
-
+ion-item.confirm-wrap{
+    --inner-padding-end: 0px;
+}
 ion-input{
     font-size: 15px;
 }
+
 .label-fixed {
     color: #333;
     font-size: 15px;
 }
+
 ion-button {
     font-size: 15px;
     height: 55px;
