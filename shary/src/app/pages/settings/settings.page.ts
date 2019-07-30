@@ -33,7 +33,6 @@ export class SettingsPage implements OnInit {
           text: '취소',
           handler: () => {
             console.log('취소');
-
           }
         }, {
           text: '확인',

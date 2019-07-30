@@ -13,8 +13,8 @@
     <ion-item button [routerLink]="['/app-password']">
       <ion-label>앱 비밀번호 설정</ion-label>
     </ion-item>
-    <ion-item button>
-      <ion-label *ngIf="loginState" (click)="logout()">로그아웃</ion-label>
+    <ion-item button (click)="logout()" *ngIf="loginState">
+      <ion-label>로그아웃</ion-label>
     </ion-item>
   </ion-list>
 </ion-content>
