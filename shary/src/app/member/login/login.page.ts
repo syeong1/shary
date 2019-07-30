@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { NavController} from '@ionic/angular';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 export class LoginPage implements OnInit {
   loginForm: FormGroup
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private nav:NavController) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -22,7 +23,9 @@ export class LoginPage implements OnInit {
   onSubmit() {
     this.authService.login(this.loginForm.value).subscribe(state => {
       if (state !== null) {
-        this.router.navigate(['/main-tabs/settings']);
+        // this.nav.navigateBack(['/main-tabs/settings']);
+        this.nav.navigateBack(['/']).then(()=>
+        this.router.navigate(['/main-tabs/settings']));
       }
     });
   }

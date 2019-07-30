@@ -6,7 +6,7 @@
 
 <ion-content fullscreen>
   <ion-list>
-    <ion-button expand="full" *ngIf="!loginState" [routerLink]="['/login']">로그인</ion-button>
+    <ion-button expand="full" *ngIf="!loginState" class="btn" [routerLink]="['/login']">로그인</ion-button>
     <ion-item button *ngIf="loginState" [routerLink]="['/mypage']">
       <ion-label>마이페이지</ion-label>
     </ion-item>

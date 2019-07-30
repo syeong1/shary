@@ -17,8 +17,8 @@
       <ion-label position="fixed">비밀번호</ion-label>
       <ion-input type="password" formControlName="password" text-right></ion-input>
     </ion-item>
-    <ion-button expand="full" size="large" class="btn-login" type="submit" [disabled]="!loginForm.valid">로그인
+    <ion-button expand="full" size="large" class="btn-login btn" type="submit" [disabled]="!loginForm.valid">로그인
     </ion-button>
   </form>
-  <ion-button expand="full" size="large" class="btn-sign-up" [routerLink]="['/sign-up']">회원가입</ion-button>
+  <ion-button class="btn" expand="full" size="large" class="btn-sign-up btn" [routerLink]="['/sign-up']">회원가입</ion-button>
 </ion-content>

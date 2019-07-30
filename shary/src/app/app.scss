@@ -10,6 +10,15 @@
     --border-color: #c6a477;
 }
 
+.header-translucent-ios ion-toolbar {
+    --opacity: 100;
+    // --backdrop-filter: none;
+
+}
+
+ion-header, ion-content, ion-grid, ion-col, ion-row{
+  //  background-color: #fff;
+}
 ion-toolbar {
     --ion-color-primary: #333;
 }
@@ -24,4 +33,22 @@ ion-fab-button {
     --background-hover: #d8b485;
     margin-right: 4px;
     margin-bottom: 20px;
+}
+
+
+ion-button.btn{
+    font-size: 15px;
+    height: 55px;
+    text-align: center;
+    --background: #c6a477;
+    --background-activated: #c6a477;
+    --background-hover: #c6a477;
+    --border-color: #fff;
+    border: 1px solid;
+    --border-width: 10px;
+    --box-shadow: none;
+    --color: #fff;
+    --color-activated: #fff;
+    --color-focused: #fff;
+    --color-hover: #fff;
 }
