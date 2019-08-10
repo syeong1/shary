@@ -1,37 +1,37 @@
 <ion-header>
-  <ion-toolbar text-center>
-    <ion-title>영화 검색</ion-title>
+  <ion-toolbar color="danger">
+      <ion-buttons slot="start">
+          <ion-button (click)="back()">뒤로</ion-button>
+        </ion-buttons>
+    <ion-title>movies</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"></ion-searchbar>
 
-    <ion-searchbar></ion-searchbar>
 
-    <ion-item>
-      <ion-label>Select Searchtype</ion-label>
-      <ion-select>
-        <ion-select-option value="">All</ion-select-option>
-        <ion-select-option value="movie">Movie</ion-select-option>
-        <ion-select-option value="series">Series</ion-select-option>
-        <ion-select-option value="episode">Episode</ion-select-option>
-      </ion-select>
-    </ion-item>
+  <ion-list>
+      <ion-item button *ngFor="let item of (results | async)" (click)="backtoWritepage(item)">
+      <!-- <ion-item button *ngFor="let item of (results | async)" (click)="back(item.title,item.release_date,item.overview)"> -->
+          
+        <ion-thumbnail  slot="start">
+          <img src="https://image.tmdb.org/t/p/w500{{item.poster_path}}" *ngIf="item.poster_path != 'N/A'">
+        </ion-thumbnail>
   
-
-    <ion-list fullscreen *ngFor="let movie of titles">
-  
-      <ion-item button>
-        <ion-avatar slot="start">
-          <img src="assets/img/movie_poster.jpg">
-        </ion-avatar>
-  
-        <ion-label text-wrap>
-          <h3>{{movie}}</h3>
-          {{year}}
+        <ion-label text-wrap >
+          <h3>{{item.title}}</h3>
+          <h5>{{item.release_date}}</h5>
+          <!-- <h5 #story>{{item.overview}}</h5> -->
+          <ion-text class="overview">{{item.overview}}</ion-text>
+         
         </ion-label>
+        
+  
+        <ion-icon slot="end" *ngIf="item.Type == 'movie'" name="videocam"></ion-icon>
   
       </ion-item>
-      
-    </ion-list>
+
+  </ion-list>
+
 </ion-content>
