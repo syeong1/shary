@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { MovieService } from 'src/app/services/movie.service';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-movie',
@@ -6,13 +9,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./movie.page.scss'],
 })
 export class MoviePage implements OnInit {
+  results: Observable<any>;
+  searchTerm: string='';
+  type='movie';
+  selectmovie = null;
 
-  constructor() { }
+
+  constructor(private movieService: MovieService,private modalController: ModalController) { }
 
   ngOnInit() {
   }
 
-  titles = ['영화제목1', '영화제목2', '영화제목3', '영화제목4', '영화제목5', '영화제목6'];
-  year = '2019-03-07';
+  searchChanged(){
+    this.results =this.movieService.searchData(this.searchTerm,this.type);
+  };
+
+  backtoWritepage(movie){
+    this.selectmovie= movie;
+    this.modalController.dismiss(this.selectmovie);
+  }
+  back(){
+    this.modalController.dismiss();
+  }
+
+  
+  
+  
+
 
 }
