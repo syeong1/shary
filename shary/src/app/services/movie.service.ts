@@ -25,7 +25,7 @@ export class MovieService {
         })
       );
   };
-  //director 검색(예시 변경해야함)
+  //director 검색(변수랑 수정해야됨.)
   searchDirector(): Observable<any> {
     return this.http.get('https://api.themoviedb.org/3/movie/17159/credits?api_key=e02050f991ddedb779571b20eb62034b')
       .pipe(
