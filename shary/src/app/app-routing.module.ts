@@ -26,7 +26,14 @@ const routes: Routes = [
   { path: 'review/list', loadChildren: './review/list/list.module#ListPageModule' },
   { path: 'create', loadChildren: './reviewbook/create/create.module#CreatePageModule' },
   { path: 'reviewbook/list', loadChildren: './reviewbook/list/list.module#ListPageModule' },
-  { path: 'write', loadChildren: './review/write/write.module#WritePageModule' }
+  { path: 'write', loadChildren: './review/write/write.module#WritePageModule' },
+  { path: 'movie', loadChildren: './review/write/movie/movie.module#MoviePageModule' },
+  { path: 'food', loadChildren: './review/write/food/food.module#FoodPageModule' },
+  { path: 'music', loadChildren: './review/write/music/music.module#MusicPageModule' },
+  { path: 'book', loadChildren: './review/write/book/book.module#BookPageModule' },
+  { path: 'food', loadChildren: './search/api/food/food.module#FoodPageModule' },
+  { path: 'book', loadChildren: './search/api/book/book.module#BookPageModule' },
+  { path: 'music', loadChildren: './search/api/music/music.module#MusicPageModule' }
 ];
 @NgModule({
   imports: [

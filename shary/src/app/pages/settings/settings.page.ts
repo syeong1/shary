@@ -15,13 +15,12 @@ export class SettingsPage implements OnInit {
   constructor(private authService: AuthService, private alertController: AlertController) { }
 
   ngOnInit() {
-    console.log("ngOnInit!!!");
     this.loginState = this.authService.isAuthenticated();
   }
-  ionViewWillEnter() {
-    console.log("ionViewWillEnter!!!");
+  ngDoCheck() {
     this.loginState = this.authService.isAuthenticated();
   }
+
 
   logout() {
 
