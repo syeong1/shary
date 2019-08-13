@@ -51,11 +51,8 @@
           <ion-item>
             <ion-label>장르</ion-label>
             <ion-select interface="popover" formControlName="genre">
-              <ion-select-option value="SF">SF</ion-select-option>
-              <ion-select-option value="family">가족</ion-select-option>
-              <ion-select-option value="horror">공포</ion-select-option>
-              <ion-select-option value="noir">느와르</ion-select-option>
-              <ion-select-option value="documentary">다큐멘터리</ion-select-option>
+              <ion-select-option *ngFor='let genre of movieService.genres'value="{{genre.id}}">{{genre.name}}
+              </ion-select-option>
               <ion-select-option value="history">역사</ion-select-option>
             </ion-select>
           </ion-item>
