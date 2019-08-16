@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from 'src/app/services/movie.service';
 import { ModalController } from '@ionic/angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MoviePage } from 'src/app/search/api/movie/movie.page';
+import { MovieApiPage } from 'src/app/search/movie-api/movie-api.page';
 
 @Component({
   selector: 'app-write',
@@ -36,7 +36,7 @@ export class WritePage implements OnInit {
   }
   async openSearchMovieModal(){
     const modal = await this.modalController.create({
-      component: MoviePage,
+      component: MovieApiPage,
     });
     modal.onDidDismiss()
     .then((data) => {
