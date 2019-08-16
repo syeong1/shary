@@ -1,0 +1,53 @@
+ion-input,
+ion-textarea {
+    font-size: 14px;
+}
+
+ion-item {
+    --min-height: 30px;
+}
+
+ion-textarea {
+    --padding-bottom: 5px;
+}
+
+ion-label.stacked {
+    font-size: 14px !important;
+    padding-bottom: 10px;
+}
+
+
+ion-item>ion-label,
+ion-datetime {
+    font-size: 14px;
+}
+
+
+
+div.image-wrap {
+    height: 205px;
+    align-items: center;
+    justify-content: center;
+    display: contents;
+
+    img {
+        padding-left: 16px;
+        padding-top: 10px;
+    }
+}
+
+.artist {
+    font-size: 13px;
+    color: #333;
+}
+
+.collection {
+    font-size: 12px;
+    color: #444;
+}
+
+.tag-notice {
+    font-size: 11px;
+    color: #555;
+    padding-left: 16px;
+}

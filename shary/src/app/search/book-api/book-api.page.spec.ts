@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BookPage } from './book.page';
+import { BookApiPage } from './book-api.page';
 
-describe('BookPage', () => {
-  let component: BookPage;
-  let fixture: ComponentFixture<BookPage>;
+describe('BookApiPage', () => {
+  let component: BookApiPage;
+  let fixture: ComponentFixture<BookApiPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BookPage ],
+      declarations: [ BookApiPage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BookPage);
+    fixture = TestBed.createComponent(BookApiPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

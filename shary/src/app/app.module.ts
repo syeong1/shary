@@ -14,6 +14,10 @@ import { Storage, IonicStorageModule } from '@ionic/storage';
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MoviePageModule } from './search/api/movie/movie.module';
+import { MusicApiPageModule } from './search/music-api/music-api.module';
+import { BookApiPageModule } from './search/book-api/book-api.module';
+
+
 
 export function jwtOptionsFactory(storage) {
   return {
@@ -28,7 +32,7 @@ export function jwtOptionsFactory(storage) {
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,
-    MoviePageModule,
+    MoviePageModule,MusicApiPageModule,BookApiPageModule,
     IonicStorageModule.forRoot(),
     JwtModule.forRoot({
       jwtOptionsProvider: {

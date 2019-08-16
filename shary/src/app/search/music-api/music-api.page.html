@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>음악 검색</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"></ion-searchbar>
+  <ion-list>
+    <ion-item button *ngFor="let item of results" (click)="backtoWritepage(item)">
+      <img [src]="item.artworkUrl100" class="artwork" *ngIf="item.artworkUrl100 != 'N/A'">
+      <ion-label text-wrap>
+        <h3 class="track-name">{{ item.trackName }}</h3>
+        <p class="artist-name">{{item.artistName}}</p>
+       </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -32,8 +32,12 @@ const routes: Routes = [
   { path: 'music', loadChildren: './review/write/music/music.module#MusicPageModule' },
   { path: 'book', loadChildren: './review/write/book/book.module#BookPageModule' },
   { path: 'food', loadChildren: './search/api/food/food.module#FoodPageModule' },
-  { path: 'book', loadChildren: './search/api/book/book.module#BookPageModule' },
-  { path: 'music', loadChildren: './search/api/music/music.module#MusicPageModule' }
+  { path: 'search/api/book', loadChildren: './search/api/book/book.module#BookPageModule' },
+  { path: 'music-api', loadChildren: './search/music-api/music-api.module#MusicApiPageModule' },
+  { path: 'book-api', loadChildren: './search/book-api/book-api.module#BookApiPageModule' },
+  { path: 'movie-api', loadChildren: './search/movie-api/movie-api.module#MovieApiPageModule' },
+  { path: 'food-api', loadChildren: './search/food-api/food-api.module#FoodApiPageModule' },
+  { path: 'tv-api', loadChildren: './search/tv-api/tv-api.module#TvApiPageModule' }
 ];
 @NgModule({
   imports: [

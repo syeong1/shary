@@ -23,9 +23,7 @@ export class LoginPage implements OnInit {
   onSubmit() {
     this.authService.login(this.loginForm.value).subscribe(state => {
       if (state !== null) {
-        // this.nav.navigateBack(['/main-tabs/settings']);
-        this.nav.navigateBack(['/']).then(()=>
-        this.router.navigate(['/main-tabs/settings']));
+        this.router.navigate(['/main-tabs/settings']);
       }
     });
   }

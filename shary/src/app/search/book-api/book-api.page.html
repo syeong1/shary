@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="back()">뒤로</ion-button>
+    </ion-buttons>
+    <ion-title>책 검색</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"></ion-searchbar>
+  <ion-list>
+    <ion-item button *ngFor="let item of results" (click)="backtoWritepage(item)">
+      <div class="image-wrap"><img [src]="item.image" *ngIf="item.image != 'N/A'"></div>
+      <ion-label text-wrap>
+        <h3 class="book-title" [innerHTML]="item.title"></h3>
+        <p class="book-author" [innerHTML]="item.author"></p>
+        <p class="book-description" [innerHTML]="item.description"></p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

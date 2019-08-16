@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MusicApiPage } from 'src/app/search/music-api/music-api.page'
 
 @Component({
   selector: 'app-music',
@@ -7,9 +10,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MusicPage implements OnInit {
 
-  constructor() { }
+  reviewForm: FormGroup;
+  music: null;
+
+  constructor(private modalController: ModalController) { }
 
   ngOnInit() {
+    this.reviewForm = new FormGroup({
+      trackName: new FormControl('', [Validators.required]),
+      writer: new FormControl(''),
+      reviewlist_id: new FormControl(''),
+      artistName: new FormControl(''),
+      collectionName: new FormControl(''),
+      primaryGenreName: new FormControl(''),
+      releaseDate: new FormControl(''),
+      listeningDate: new FormControl(''),
+      rating: new FormControl(''),
+      image: new FormControl(''),
+      review: new FormControl(''),
+      tags: new FormControl(''),
+
+    })
   }
+
+  async openSearchMusicModal() {
+    const modal = await this.modalController.create({
+      component: MusicApiPage
+    })
+
+    modal.onDidDismiss()
+      .then((data) => {
+        console.log(data['data']);
+        console.log(typeof data['data']);
+
+        this.music = data['data'];
+      })
+    return await modal.present();
+  };
 
 }

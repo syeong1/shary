@@ -1,9 +1,102 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>book</ion-title>
+  <ion-toolbar translucent>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>새로운 리뷰</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button type="submit" (click)="onSubmit()" [disabled]="!reviewForm.valid">
+        저장
+      </ion-button>
+    </ion-buttons>
+
   </ion-toolbar>
+  <div>
+    <ion-item lines="none">
+      <ion-icon name="search" slot="end" (click)="openSearchBookModal()"></ion-icon>
+    </ion-item>
+  </div>
+
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
+
+  <form [formGroup]="reviewForm">
+    <ion-grid *ngIf="book">
+      <!-- <ion-input hidden value="{{rating}}" formControlName="review_score"></ion-input> -->
+      <ion-row>
+        <ion-col size='4'>
+          <div class="image-wrap">
+            <img [src]="book.image" *ngIf="book.image; else defaultImage">
+          </div>
+          <ng-template #defaultImage>
+            <div class="default-image">
+              <p>No</p>
+              <p>Image</p>
+            </div>
+          </ng-template>
+          <ion-input hidden value="{{book.image}}" formControlName="image"></ion-input>
+        </ion-col>
+        <ion-col size='8'>
+          <ion-item>
+            <ion-input placeholder="제목" value="{{book.title}}" formControlName="title"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input placeholder="저자" class="author" value="{{book.author}}" formControlName="author"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input placeholder="출판사" class="pub" value="{{book.publisher}}" formControlName="publisher">
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-datetime class="pub" [doneText]="'저장'" [cancelText]="'취소'" [pickerOptions]="dateOptions"
+              displayFormat="YYYY-MM-DD" placeholder="출판일" value="{{book.pubdate}}" formControlName="pubdate">
+            </ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size='12'>
+          <ion-item>
+            <ion-label class="stacked" position="stacked">줄거리</ion-label>
+            <ion-textarea rows="6" cols="20" class="book-description" placeholder="줄거리..." value="{{book.description}}"
+              formControlName="description"></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-label>독서 시작일</ion-label>
+            <ion-datetime [doneText]="'저장'" [cancelText]="'취소'" [pickerOptions]="dateOptions" displayFormat="YYYY-MM-DD"
+              placeholder="YYYY-MM-DD" formControlName="readingStartDate">
+            </ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label>독서 종료일</ion-label>
+            <ion-datetime [doneText]="'저장'" [cancelText]="'취소'" [pickerOptions]="dateOptions" displayFormat="YYYY-MM-DD"
+              placeholder="YYYY-MM-DD" formControlName="readingEndDate"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label position="fixed">금액</ion-label>
+            <ion-input type="text" value="{{book.price}}" text-right></ion-input><span>원</span>
+          </ion-item>
+          <ion-item>
+            <ion-label class="stacked" position="stacked">인상 깊은 구절</ion-label>
+            <ion-input type="text" formControlName="impressivePassage"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label class="stacked" position="stacked">감상평</ion-label>
+            <ion-textarea rows="4" cols="20" type="text" formControlName="review">
+            </ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">태그</ion-label>
+            <ion-input type="text" formControlName="tags"></ion-input>
+          </ion-item>
+          <p class="tag-notice"> 태그는 쉼표(,) 를 통해 구분되며 쉼표의 앞뒤에 있는 빈칸은 무시됩니다.</p>
+        </ion-col>
+      </ion-row>
+      <ion-label>사진</ion-label>
+    </ion-grid>
+  </form>
 
 </ion-content>
