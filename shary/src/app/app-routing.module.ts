@@ -18,7 +18,6 @@ const routes: Routes = [
   },
   { path: 'home', loadChildren: './pages/home/home.module#HomePageModule' },
   { path: 'search', loadChildren: './pages/search/search.module#SearchPageModule' },
-  { path: 'api/movie', loadChildren: './search/api/movie/movie.module#MoviePageModule' },
   { path: 'review/movie', loadChildren: './search/review/movie/movie.module#MoviePageModule' },
   { path: 'detail', loadChildren: './review/detail/detail.module#DetailPageModule' },
   { path: 'edit', loadChildren: './review/edit/edit.module#EditPageModule' },
