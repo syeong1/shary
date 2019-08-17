@@ -16,6 +16,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MovieApiPageModule } from './search/movie-api/movie-api.module';
 import { MusicApiPageModule } from './search/music-api/music-api.module';
 import { BookApiPageModule } from './search/book-api/book-api.module';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { FoodApiPageModule } from './search/food-api/food-api.module';
 
 
 
@@ -32,7 +34,7 @@ export function jwtOptionsFactory(storage) {
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,
-    MovieApiPageModule,MusicApiPageModule,BookApiPageModule,
+    MovieApiPageModule,MusicApiPageModule,BookApiPageModule, FoodApiPageModule,
     IonicStorageModule.forRoot(),
     JwtModule.forRoot({
       jwtOptionsProvider: {
@@ -47,7 +49,8 @@ export function jwtOptionsFactory(storage) {
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    Geolocation
   ],
   bootstrap: [AppComponent]
 })
