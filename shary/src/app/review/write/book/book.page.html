@@ -22,7 +22,7 @@
 </ion-header>
 
 <ion-content fullscreen>
-
+    
   <form [formGroup]="reviewForm">
     <ion-grid *ngIf="book">
       <!-- <ion-input hidden value="{{rating}}" formControlName="review_score"></ion-input> -->
@@ -52,7 +52,7 @@
           </ion-item>
           <ion-item>
             <ion-datetime class="pub" [doneText]="'저장'" [cancelText]="'취소'" [pickerOptions]="dateOptions"
-              displayFormat="YYYY-MM-DD" placeholder="출판일" value="{{book.pubdate}}" formControlName="pubdate">
+              displayFormat="YYYY-MM-DD" placeholder="출판일" value="{{book.pubdate | date : 'yyyy-MM-dd'}}" formControlName="pubdate">
             </ion-datetime>
           </ion-item>
         </ion-col>
@@ -67,17 +67,17 @@
           <ion-item>
             <ion-label>독서 시작일</ion-label>
             <ion-datetime [doneText]="'저장'" [cancelText]="'취소'" [pickerOptions]="dateOptions" displayFormat="YYYY-MM-DD"
-              placeholder="YYYY-MM-DD" formControlName="readingStartDate">
+              placeholder="YYYY-MM-DD"  value="{{nowDate}}" formControlName="readingStartDate">
             </ion-datetime>
           </ion-item>
           <ion-item>
             <ion-label>독서 종료일</ion-label>
             <ion-datetime [doneText]="'저장'" [cancelText]="'취소'" [pickerOptions]="dateOptions" displayFormat="YYYY-MM-DD"
-              placeholder="YYYY-MM-DD" formControlName="readingEndDate"></ion-datetime>
+              placeholder="YYYY-MM-DD"  value="{{nowDate}}" formControlName="readingEndDate"></ion-datetime>
           </ion-item>
           <ion-item>
             <ion-label position="fixed">금액</ion-label>
-            <ion-input type="text" value="{{book.price}}" text-right></ion-input><span>원</span>
+            <ion-input type="text" value="{{book.price | number:'2.'}}"  formControlName="price" text-right></ion-input><span>원</span>
           </ion-item>
           <ion-item>
             <ion-label class="stacked" position="stacked">인상 깊은 구절</ion-label>
