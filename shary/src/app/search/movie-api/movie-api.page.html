@@ -1,9 +1,39 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>movie-api</ion-title>
+  <ion-toolbar class="grad">
+    <ion-buttons slot="start">
+      <ion-button (click)="back()">뒤로</ion-button>
+    </ion-buttons>
+    <ion-title>movies</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)" (keypress)="onKeyPressed($event)">
+  </ion-searchbar>
+  <ion-list>
+    <ion-item button *ngFor="let item of (results | async)" (click)="backtoWritepage(item)">
+        <div class="image-wrap">
+          <img src="https://image.tmdb.org/t/p/w500{{item.poster_path}}" *ngIf="item.image != 'N/A'">
+        </div>
+
+      <ion-label text-wrap>
+        <h3 class="movie-title">{{item.title}}</h3>
+        <p class="movie-date">{{item.release_date}}</p>
+        <ion-text style="overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            word-wrap:break-word; 
+            line-height: 1.2em;
+            height: 3.6em;">{{item.overview}}</ion-text>
+
+      </ion-label>
+
+      <ion-icon slot="end" *ngIf="item.Type == 'movie'" name="videocam"></ion-icon>
+
+    </ion-item>
+
+  </ion-list>
 
 </ion-content>
