@@ -30,8 +30,6 @@ const routes: Routes = [
   { path: 'food', loadChildren: './review/write/food/food.module#FoodPageModule' },
   { path: 'music', loadChildren: './review/write/music/music.module#MusicPageModule' },
   { path: 'book', loadChildren: './review/write/book/book.module#BookPageModule' },
-  { path: 'food', loadChildren: './search/api/food/food.module#FoodPageModule' },
-  { path: 'search/api/book', loadChildren: './search/api/book/book.module#BookPageModule' },
   { path: 'music-api', loadChildren: './search/music-api/music-api.module#MusicApiPageModule' },
   { path: 'book-api', loadChildren: './search/book-api/book-api.module#BookApiPageModule' },
   { path: 'movie-api', loadChildren: './search/movie-api/movie-api.module#MovieApiPageModule' },
