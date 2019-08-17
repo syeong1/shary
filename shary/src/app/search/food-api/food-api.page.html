@@ -1,9 +1,24 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>foodApi</ion-title>
+      <ion-buttons slot="start">
+          <ion-back-button>뒤로</ion-back-button>
+      </ion-buttons>
+    <ion-title>맛집검색</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"></ion-searchbar>
+
+  <ion-list> 
+    <ion-item button *ngFor="let item of (results | async)" (click)="backtoWritepage(item)">
+      <ion-label> 
+        <h3>{{item.name}}</h3>
+        <h5>{{item.road_address}}</h5>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  
 
 </ion-content>
