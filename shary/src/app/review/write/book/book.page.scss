@@ -6,8 +6,14 @@ span {
 
 ion-item {
     --min-height: 30px;
+    --padding-start: 10px;
+    --padding-end: 10px;
+
 }
 
+ion-label {
+    margin-left: 3px;
+}
 
 ion-label.stacked {
     font-size: 14px !important;
@@ -23,6 +29,7 @@ ion-datetime {
     padding-left: 0px;
 }
 
+
 div.image-wrap {
     height: 145px;
     align-items: center;
@@ -32,9 +39,25 @@ div.image-wrap {
     img {
         padding-left: 16px;
         padding-top: 10px;
-        width: 100%;
+        width: 120px;
         height: 145px;
-        margin-right: 10px;
+    }
+}
+
+.default-image {
+    border: 1px solid #eee;
+    display: block;
+    padding-top: 25px;
+    margin-left: 8px;
+    height: 100%;
+
+    p {
+        width: 100%;
+        vertical-align: middle;
+        text-align: center;
+        font-size: 16px;
+        height: 20px;
+        color: #666;
     }
 }
 
@@ -55,20 +78,4 @@ div.image-wrap {
     font-size: 11px;
     color: #555;
     padding-left: 16px;
-}
-
-.default-image {
-    border: 1px solid #eee;
-    display: block;
-    padding-top:25px;
-    height: 100%;
-
-    p {
-        width: 100%;
-        vertical-align: middle;
-        text-align: center;
-        font-size: 16px;
-        height:20px;
-        color: #666;
-    }
 }
