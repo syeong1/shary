@@ -1,9 +1,90 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>food</ion-title>
+<ion-header >
+  <ion-toolbar translucent>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>새로운 리뷰</ion-title>
+    <ion-buttons slot="end">
+      <ion-button type="submit" (click)="onSubmit()"[disabled]="!reviewForm.valid">
+        저장
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
+  <div>
+      <ion-item lines="none">
+          <ion-icon name="search" slot="end" (click)="openSearchFoodModal()"></ion-icon>
+        </ion-item>
+  </div>
+  
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+  <form [formGroup]="reviewForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col size='4'>
+            <div class="image-wrap">
+              <img [src]="food?.image" *ngIf="food?.image; else defaultImage">
+            </div>
+            <ng-template #defaultImage>
+              <div class="default-image">
+                <p>No</p>
+                <p>Image</p>
+              </div>
+            </ng-template>
+          <ion-input hidden value="{{food?.food_picture}}" formControlName="food_picture"></ion-input>
+        </ion-col>
+        <ion-col size='8'>
+          <ion-item>
+            <ion-label class="stacked" position="stacked"> 음식점명 </ion-label>
+            <ion-input placeholder="음식점명" value="{{food?.name}}" formControlName="name"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label class="stacked" position="stacked"> 전화번호 </ion-label>
+            <ion-input placeholder="전화번호" value="{{food?.phone_number}}" formControlName="phoneNumber"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size='12'>
+          <ion-item>
+            <ion-label position="stacked"> 종류 </ion-label>
+            <ion-select interface="popover" formControlName="typeOfFood">
+              <ion-select-option value="한식">한식</ion-select-option>
+              <ion-select-option value="중식">중식</ion-select-option>
+              <ion-select-option value="양식">양식</ion-select-option>
+              <ion-select-option value="일식">일식</ion-select-option>
+              <ion-select-option value="카페">카페</ion-select-option>
+              <ion-select-option value="제과제빵">제과제빵</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label class="stacked" position="stacked"> 위치 </ion-label>
+            <ion-input placeholder="위치" value="{{food?.road_address}}" formControlName="roadAddress"></ion-input>
+          </ion-item>
+            <div id="Map" style="width: 100%; height: 30vh"></div>
+
+
+          <ion-item>
+            <ion-label>식사일</ion-label>
+            <ion-datetime [doneText]="'저장'" [cancelText]="'취소'" [pickerOptions]="dateOptions" displayFormat="YYYY-MM-DD"
+              value="2019-07-19" placeholder="관람일" formControlName="eatDate"></ion-datetime>
+          </ion-item>
+
+          <ion-item> 
+            <ion-label class="stacked" position="stacked"> 평가 </ion-label>  
+            <ion-input type="text" formControlName="review">  </ion-input>
+          </ion-item>
+
+          <ion-item> 
+            <ion-label class="stacked" position="stacked"> 태그 </ion-label>  
+            <ion-input type="text" formControlName="tags" placeholder=",를 통해 구분합니다.">  </ion-input>
+          </ion-item>
+
+        </ion-col>
+      </ion-row>
+      <ion-label position="stacked">사진</ion-label>
+    </ion-grid>
+  </form>
 
 </ion-content>
