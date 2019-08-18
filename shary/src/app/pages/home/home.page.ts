@@ -12,7 +12,7 @@ export class HomePage implements OnInit {
 
   constructor(private router: Router) { }
 
-  
+
   /**
    * type에 맞는 reviewBook List 페이지로 이동
    * @param {string} type
@@ -26,15 +26,28 @@ export class HomePage implements OnInit {
   openBookList() {
     let navigationExtras: NavigationExtras = {
       state: {
-        category: '책'
+        category: 'book',
+        text: '책'
       }
     };
     this.router.navigate(['/reviewbook/list'], navigationExtras);
   }
+
+  openMusicList() {
+    let navigationExtras: NavigationExtras = {
+      state: {
+        category: 'music',
+        text: '음악'
+      }
+    };
+    this.router.navigate(['/reviewbook/list'], navigationExtras);
+  }
+
   openMovieList() {
     let navigationExtras: NavigationExtras = {
       state: {
-        category: '영화'
+        category: 'movie',
+        text: '영화'
       }
     };
     this.router.navigate(['/reviewbook/list'], navigationExtras);
@@ -45,7 +58,8 @@ export class HomePage implements OnInit {
   openFoodList() {
     let navigationExtras: NavigationExtras = {
       state: {
-        category: 'food'
+        category: 'food',
+        text: '맛집'
       }
     };
     this.router.navigate(['/reviewbook/list'], navigationExtras);
@@ -53,7 +67,8 @@ export class HomePage implements OnInit {
   openTVList() {
     let navigationExtras: NavigationExtras = {
       state: {
-        category: 'TV'
+        category: 'TV',
+        text: 'TV'
       }
     };
     this.router.navigate(['/reviewbook/list'], navigationExtras);

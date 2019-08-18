@@ -5,12 +5,19 @@
     </ion-buttons>
     <ion-title>새로운 리뷰북 추가</ion-title>
     <ion-buttons slot="end">
+<<<<<<< HEAD
       <ion-button (click)="onSubmit()">저장</ion-button>
+=======
+      <ion-button type="submit" (click)="onSubmit()" [disabled]="!reviewbookForm.valid">
+        저장
+      </ion-button>
+>>>>>>> 0fdb8bd05d4d4c9a6d9c833c6f81a45c8ee33c90
     </ion-buttons>
   </ion-toolbar>
- 
+
 </ion-header>
 
+<<<<<<< HEAD
 <ion-content>
     <form [formGroup]="reviewForm">
     <ion-avatar>
@@ -27,5 +34,36 @@
   <ion-item>
     <ion-label position="stacked">아이콘리스트</ion-label>
   </ion-item>
+=======
+<ion-content fullscreen>
+
+  <form [formGroup]="reviewForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-avatar large>
+            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+          </ion-avatar>
+          <ion-item>
+            <ion-label position="fixed">이름</ion-label>
+            <ion-input type="text" formControlName="title" text-right></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>카테고리</ion-label>
+            <ion-select [(ngModel)]="category" interface="popover" formControlName="category">
+              <ion-select-option value="book">책</ion-select-option>
+              <ion-select-option value="movie">영화</ion-select-option>
+              <ion-select-option value="food">맛집</ion-select-option>
+              <ion-select-option value="music">음악</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item class="icon-list">
+            <ion-label position="fixed">아이콘 리스트</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+>>>>>>> 0fdb8bd05d4d4c9a6d9c833c6f81a45c8ee33c90
   </form>
 </ion-content>

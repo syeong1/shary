@@ -3,22 +3,18 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-
     <ion-title>새로운 리뷰</ion-title>
-
     <ion-buttons slot="end">
       <ion-button type="submit" (click)="onSubmit()" [disabled]="!reviewForm.valid">
         저장
       </ion-button>
     </ion-buttons>
-
   </ion-toolbar>
   <div>
     <ion-item lines="none">
       <ion-icon name="search" slot="end" (click)="openSearchBookModal()"></ion-icon>
     </ion-item>
   </div>
-
 </ion-header>
 
 <ion-content fullscreen>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { FoodService } from 'src/app/services/food.service';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -10,31 +9,22 @@ import { FoodService } from 'src/app/services/food.service';
 })
 export class CreatePage implements OnInit {
 
-  category: any;
-  reviewForm: FormGroup;
+  category: string;
+  reviewbookForm: FormGroup;
 
-  constructor(private route: ActivatedRoute, private router: Router, private foodService: FoodService) {
+
+  constructor(private route: ActivatedRoute, private router: Router) {
     this.route.queryParams.subscribe(params => {
-      // console.log(this.router.getCurrentNavigation().extras.state);
       if (this.router.getCurrentNavigation().extras.state) {
         this.category = this.router.getCurrentNavigation().extras.state.category;
-        console.log('넘어온 카테고리 : ' + this.category);
       }
     })
   }
 
   ngOnInit() {
-    this.reviewForm = new FormGroup({
-      title: new FormControl('',[Validators.required]),
-      type: new FormControl('', [Validators.required])
+    this.reviewbookForm = new FormGroup({
+      category: new FormControl(''),
+      title: new FormControl('')
     })
   }
-
-  onSubmit() {
-    this.foodService.writeReviewBook(this.reviewForm.value).subscribe((res) => {
-      console.log(this.reviewForm);
-      this.router.navigate(['reviewbook/list'], this.category);
-    })
-  }
-
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
-import { FoodService } from 'src/app/services/food.service';
+import { ReviewbookService } from 'src/app/services/reviewbook.service';
+
 
 @Component({
   selector: 'app-list',
@@ -9,32 +10,34 @@ import { FoodService } from 'src/app/services/food.service';
 })
 export class ListPage implements OnInit {
 
-  
-  category: any;
+  category: string;
+  titleText: string;
 
-  constructor(private route: ActivatedRoute, private router: Router, private foodService: FoodService) { 
+  constructor(private route: ActivatedRoute, private router: Router, private reviewbookService: ReviewbookService) {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.category = this.router.getCurrentNavigation().extras.state.category;
+        this.titleText = this.router.getCurrentNavigation().extras.state.text;
+
         console.log('넘어온 카테고리 : ' + this.category);
-        this.foodService.getReviewBookList(this.category).subscribe((results) =>{
-          console.log(results);
+        this.reviewbookService.getReviewBookList(this.category).subscribe(data => {
+          console.log('Service 요청할 때 카테고리 : ', this.category);
+          console.log('받아온 data', data);
         })
       }
     })
-   }
+  }
 
-   openCreatePage() {
+  openCreatePage() {
     let navigationExtras: NavigationExtras = {
       state: {
         category: this.category
       }
     };
     this.router.navigate(['/create'], navigationExtras);
-   }
+  }
 
   ngOnInit() {
     
   }
-
 }
