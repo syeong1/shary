@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { map, tap, catchError } from 'rxjs/operators';
+import { AlertController } from '@ionic/angular';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
+  url = 'http://localhost:5000';
 
-  constructor(private http: HttpClient) { }
+
+  constructor(private http: HttpClient, private alertController: AlertController) { }
 
   getBookData(title: string): Observable<any> {
-    let url = 'http://localhost:5000';
 
-    return this.http.get(`${url}/api/search/book/${title}`).pipe(
+    return this.http.get(`${this.url}/api/search/book/${title}`).pipe(
       map(results => {
         console.log(results);
         return results['items'];
@@ -29,4 +31,25 @@ export class BookService {
     );
   }
 
+  writeReview(data) {
+    return this.http
+      .post(`${this.url}/api/review/write`, data).pipe(
+        tap(res => {
+          this.showAlert('정상적으로 저장되었습니다.', '성공');
+        }),
+        catchError(e => {
+          this.showAlert(e.error.msg, '오류');
+          throw new Error(e);
+        })
+      );
+  }
+
+  showAlert(msg, title) {
+    let alert = this.alertController.create({
+      message: msg,
+      header: title,
+      buttons: ['확인']
+    });
+    alert.then(alert => alert.present());
+  };
 }

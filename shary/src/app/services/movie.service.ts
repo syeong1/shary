@@ -12,6 +12,7 @@ export class MovieService {
 
   serverurl = environment.url;
   baseurl = "https://api.themoviedb.org/3/search";
+  detailurl ="https://api.themoviedb.org/3"
   apiKey = "e02050f991ddedb779571b20eb62034b";
   genres=[{"id": 28,"name": "액션"},{"id": 12,"name": "모험"},{"id": 16,"name": "애니메이션"},{"id": 35,"name": "코미디"},
   {"id": 80,"name": "범죄"},{"id": 99,"name": "다큐멘터리"},{"id": 18,"name": "드라마"},{"id": 10751,"name": "가족"},{"id": 14,
@@ -29,23 +30,23 @@ export class MovieService {
       );
   };
   //director 검색(변수랑 수정해야됨.)
-  searchDirector(): Observable<any> {
-    return this.http.get('https://api.themoviedb.org/3/movie/17159/credits?api_key=e02050f991ddedb779571b20eb62034b')
-      .pipe(
-        map(results => {
-          let a = results['crew'];
+  searchDirector(id:any): Observable<any>{
+    return this.http.get(`${this.detailurl}/movie/${id}/credits?api_key=${this.apiKey}`)
+    .pipe(
+      map(results=>{
+        let a = results['crew'];
 
-          results['test'] = a.filter(res1 => {
-            return (res1.job == 'Director')
-          }).filter(res2 => {
-            console.log('res2', res2.department);
-            return (res2.department == 'Directing')
-          })
-          return results['test'];
+        results['director']= a.filter(res1=>{
+          return (res1.job=='Director')
+        }).filter(res2=>{
+          console.log('res2',res2.department);
+          return (res2.department=='Directing')
         })
-
-
-      )
+        return results['director'];
+      })
+      
+      
+    )
   }
 
   //리뷰리스트 가져오기
