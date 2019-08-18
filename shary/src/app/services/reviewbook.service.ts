@@ -32,7 +32,7 @@ export class ReviewbookService {
       })
     )
   }
-  
+
   showAlert(msg, title) {
     let alert = this.alertController.create({
       message: msg,
