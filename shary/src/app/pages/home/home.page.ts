@@ -46,7 +46,8 @@ export class HomePage implements OnInit {
   openMovieList() {
     let navigationExtras: NavigationExtras = {
       state: {
-        category: '영화'
+        category: 'movie',
+        text: '영화'
       }
     };
     this.router.navigate(['/reviewbook/list'], navigationExtras);
@@ -57,7 +58,8 @@ export class HomePage implements OnInit {
   openFoodList() {
     let navigationExtras: NavigationExtras = {
       state: {
-        category: 'food'
+        category: 'food',
+        text: '맛집'
       }
     };
     this.router.navigate(['/reviewbook/list'], navigationExtras);
@@ -65,7 +67,8 @@ export class HomePage implements OnInit {
   openTVList() {
     let navigationExtras: NavigationExtras = {
       state: {
-        category: 'TV'
+        category: 'TV',
+        text: 'TV'
       }
     };
     this.router.navigate(['/reviewbook/list'], navigationExtras);
