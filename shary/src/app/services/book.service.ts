@@ -9,7 +9,8 @@ import { AlertController } from '@ionic/angular';
   providedIn: 'root'
 })
 export class BookService {
-  url = 'http://localhost:5000';
+  // url = 'http://localhost:5000';
+  url = 'http://172.30.1.34:5000';
 
 
   constructor(private http: HttpClient, private alertController: AlertController) { }
