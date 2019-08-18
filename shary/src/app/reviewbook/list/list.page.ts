@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
+import { ReviewbookService } from 'src/app/services/reviewbook.service';
+
 
 @Component({
   selector: 'app-list',
@@ -8,28 +10,31 @@ import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 })
 export class ListPage implements OnInit {
 
-  
-  category: any;
 
-  constructor(private route: ActivatedRoute, private router: Router) { 
+  category: string;
+
+  constructor(private route: ActivatedRoute, private router: Router, private reviewbookService: ReviewbookService) {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.category = this.router.getCurrentNavigation().extras.state.category;
         console.log('넘어온 카테고리 : ' + this.category);
+        this.reviewbookService.getReviewBookList(this.category).subscribe(data => {
+          console.log('Service 요청할 때 카테고리 : ', this.category);
+          console.log('받아온 data', data);
+        })
       }
     })
-   }
+  }
 
-   openCreatePage() {
+  openCreatePage() {
     let navigationExtras: NavigationExtras = {
       state: {
         category: this.category
       }
     };
     this.router.navigate(['/create'], navigationExtras);
-   }
+  }
 
   ngOnInit() {
   }
-
 }
