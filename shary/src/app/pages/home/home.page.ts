@@ -26,16 +26,18 @@ export class HomePage implements OnInit {
   openBookList() {
     let navigationExtras: NavigationExtras = {
       state: {
-        category: 'book'
+        category: 'book',
+        text: '책'
       }
     };
     this.router.navigate(['/reviewbook/list'], navigationExtras);
   }
-  
+
   openMusicList() {
     let navigationExtras: NavigationExtras = {
       state: {
-        category: 'music'
+        category: 'music',
+        text: '음악'
       }
     };
     this.router.navigate(['/reviewbook/list'], navigationExtras);

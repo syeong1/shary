@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreatePage implements OnInit {
 
-  constructor() { }
+  category: string;
+  reviewbookForm: FormGroup;
 
-  ngOnInit() {
+
+  constructor(private route: ActivatedRoute, private router: Router) {
+    this.route.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        this.category = this.router.getCurrentNavigation().extras.state.category;
+      }
+    })
   }
 
+  ngOnInit() {
+    this.reviewbookForm = new FormGroup({
+      category: new FormControl(''),
+      title: new FormControl('')
+    })
+  }
 }

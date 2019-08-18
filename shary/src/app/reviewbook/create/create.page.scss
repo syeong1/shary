@@ -1,0 +1,22 @@
+ion-avatar{
+    margin: 35px auto;
+}
+
+
+ion-item {
+    --min-height: 30px;
+    --padding-start: 5px;
+    --padding-end: 5px;
+}
+
+ion-item.icon-list {
+    --inner-padding-end: 0px;
+    --border-style: none;
+}
+
+ion-item>ion-label {
+    font-size: 14px;
+    margin: 13px 3px;
+    font-weight: 550;
+    --color: rgb(65, 65, 65);
+}

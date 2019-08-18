@@ -10,13 +10,15 @@ import { ReviewbookService } from 'src/app/services/reviewbook.service';
 })
 export class ListPage implements OnInit {
 
-
   category: string;
+  titleText: string;
 
   constructor(private route: ActivatedRoute, private router: Router, private reviewbookService: ReviewbookService) {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.category = this.router.getCurrentNavigation().extras.state.category;
+        this.titleText = this.router.getCurrentNavigation().extras.state.text;
+
         console.log('넘어온 카테고리 : ' + this.category);
         this.reviewbookService.getReviewBookList(this.category).subscribe(data => {
           console.log('Service 요청할 때 카테고리 : ', this.category);

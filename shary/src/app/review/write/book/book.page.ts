@@ -35,6 +35,7 @@ export class BookPage implements OnInit {
       impressivePassage: new FormControl(''),
       review: new FormControl(''),
       tags: new FormControl(''),
+      rating: new FormControl('')
     })
   }
 

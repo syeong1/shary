@@ -17,19 +17,18 @@ export class MusicPage implements OnInit {
 
   ngOnInit() {
     this.reviewForm = new FormGroup({
-      trackName: new FormControl('', [Validators.required]),
       writer: new FormControl(''),
       reviewlist_id: new FormControl(''),
+      trackName: new FormControl('', [Validators.required]),
       artistName: new FormControl(''),
       collectionName: new FormControl(''),
       primaryGenreName: new FormControl(''),
       releaseDate: new FormControl(''),
       listeningDate: new FormControl(''),
-      rating: new FormControl(''),
       image: new FormControl(''),
       review: new FormControl(''),
       tags: new FormControl(''),
-
+      rating: new FormControl('')
     })
   }
 
