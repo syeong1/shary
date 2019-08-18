@@ -2,13 +2,13 @@
   <div class="wrap">
     <ion-row>
       <ion-col class="ion-padding" size="6">
-        <div [routerLink]="['/book']">
+        <div (click)="openBookList()" [routerLink]="['/book']">
           <img src="assets/img/home/icon_books.png">
           <ion-label>책</ion-label>
         </div>
       </ion-col>
       <ion-col class="ion-padding" size="6">
-        <div [routerLink]="['/reviewbook/list']">
+        <div (click)="openMovieList()" [routerLink]="['/reviewbook/list']">
           <img src="assets/img/home/icon_movie.png">
           <ion-label>영화</ion-label>
         </div>
@@ -16,13 +16,13 @@
     </ion-row>
     <ion-row>
       <ion-col class="ion-padding" size="6">
-        <div>
+        <div (click)="openTVList()">
           <img src="assets/img/home/icon_tv.png">
           <ion-label>TV프로그램</ion-label>
         </div>
       </ion-col>
       <ion-col class="ion-padding" size="6">
-        <div [routerLink]="['/food']">
+        <div (click)="openFoodList()" [routerLink]="['/food']">
           <img src="assets/img/home/icon_restaurant.png">
           <ion-label>맛집</ion-label>
         </div>
@@ -30,7 +30,7 @@
     </ion-row>
     <ion-row>
       <ion-col class="ion-padding" size="6">
-        <div [routerLink]="['/music']">
+        <div (click)="setMusic()" [routerLink]="['/music']">
           <img src="assets/img/home/icon_music.png">
           <ion-label>음악</ion-label>
         </div>
