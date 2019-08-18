@@ -12,7 +12,7 @@ export class HomePage implements OnInit {
 
   constructor(private router: Router) { }
 
-  
+
   /**
    * type에 맞는 reviewBook List 페이지로 이동
    * @param {string} type
@@ -26,11 +26,21 @@ export class HomePage implements OnInit {
   openBookList() {
     let navigationExtras: NavigationExtras = {
       state: {
-        category: '책'
+        category: 'book'
       }
     };
     this.router.navigate(['/reviewbook/list'], navigationExtras);
   }
+  
+  openMusicList() {
+    let navigationExtras: NavigationExtras = {
+      state: {
+        category: 'music'
+      }
+    };
+    this.router.navigate(['/reviewbook/list'], navigationExtras);
+  }
+
   openMovieList() {
     let navigationExtras: NavigationExtras = {
       state: {
