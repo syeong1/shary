@@ -54,6 +54,12 @@ routes.get('/reviewbook/:category', passport.authenticate('jwt', {
 }), reviewbookController.getReviewBookList);
 
 
+// 리뷰북 리스트 생성
+routes.post('/reviewbook/write', passport.authenticate('jwt', {
+     session: false
+     }), reviewbookController.writeReviewBook);
+
+
 
 /**
  * 책 book
