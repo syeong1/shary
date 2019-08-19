@@ -15,6 +15,12 @@ export class ReviewbookService {
   // url = 'http://172.30.1.34:5000';
 
 
+
+  /**
+   * get reviewBooks list
+   * @param category 
+   * @return {Observable} results with information about reviewbook
+   */
   getReviewBookList(category: string) {
     return this.http.get(`${this.url}/api/reviewbook/${category}`).pipe(
       catchError(e => {

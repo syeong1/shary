@@ -10,7 +10,7 @@ import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 export class CreatePage implements OnInit {
 
   category: string;
-  reviewbookForm: FormGroup;
+  reviewForm: FormGroup;
 
 
   constructor(private route: ActivatedRoute, private router: Router) {
@@ -22,9 +22,9 @@ export class CreatePage implements OnInit {
   }
 
   ngOnInit() {
-    this.reviewbookForm = new FormGroup({
+    this.reviewForm = new FormGroup({
       category: new FormControl(''),
-      title: new FormControl('')
+      title: new FormControl('', [Validators.required])
     })
   }
 }

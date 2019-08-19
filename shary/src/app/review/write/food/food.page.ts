@@ -41,8 +41,6 @@ export class FoodPage implements OnInit, AfterViewInit {
       tags: new FormControl('')
     })
     
-    
-
   }
 
   ngAfterViewInit() {
