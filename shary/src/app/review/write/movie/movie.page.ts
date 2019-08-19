@@ -25,16 +25,16 @@ export class MoviePage implements OnInit {
     // this.imageService.STORAGE_KEY= this.createImagesfolder();
     this.reviewForm = new FormGroup({
       writer: new FormControl(''),
-      reviewlist_id: new FormControl(''),
+      reviewList: new FormControl(''),
       title: new FormControl('',[Validators.required]),
-      release_date: new FormControl(''),
+      releaseDate: new FormControl(''),
       director: new FormControl(''),
       overview: new FormControl(''),
       genre: new FormControl(''),
-      watch_date: new FormControl(''),
-      poster_path: new FormControl(''),
+      watchDate: new FormControl(''),
+      posterPath: new FormControl(''),
       rating: new FormControl(''),
-      famouse_line: new FormControl(''),
+      famouseLine: new FormControl(''),
       review: new FormControl(''),
       tags: new FormControl(''),
 
