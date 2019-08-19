@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MusicApiPage } from 'src/app/search/music-api/music-api.page'
+import { MusicApiPage } from './../../../search/music-api/music-api.page';
 
 @Component({
   selector: 'app-music',
