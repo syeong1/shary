@@ -22,9 +22,7 @@
 
 </ion-header>
 
-<ion-content padding>
-
-
+<ion-content fullscreen>
 
   <form [formGroup]="reviewForm">
     <ion-grid>
@@ -64,9 +62,11 @@
 
             </ion-select>
           </ion-item>
-          <ion-item>
-            <ion-label position="floating">줄거리</ion-label>
-            <ion-textarea rows="6" cols="20" placeholder="줄거리..." value="{{movie?.overview}}"
+          <ion-item class="textarea">
+            <ion-label position="fixed">줄거리</ion-label>
+          </ion-item>
+          <ion-item class="textarea">
+            <ion-textarea rows="6" cols="20"class="movie-despription" placeholder="줄거리..." value="{{movie.overview}}"
               formControlName="overview"></ion-textarea>
           </ion-item>
 
@@ -76,20 +76,25 @@
               value="{{nowdate}}" placeholder="관람일" formControlName="watch_date"></ion-datetime>
           </ion-item>
 
-          <ion-item>
-            <ion-label class="stacked" position="stacked">명대사</ion-label>
-            <ion-input type="text" formControlName="famouse_line"></ion-input>
+          <ion-item class='textarea'>
+            <ion-label  position="fixed">명대사</ion-label>
           </ion-item>
-          <ion-item>
-            <ion-label class="stacked" position="stacked">감상평</ion-label>
-            <ion-input type="text" formControlName="review"></ion-input>
+          <ion-item class="textarea">
+            <ion-textarea rows="2" cols="20" placeholder="..." formControlName="famouse_line"></ion-textarea>
+          </ion-item>
+          <ion-item class="textarea">
+            <ion-label position="fixed">감상평</ion-label>
+          </ion-item>
+          <ion-item class="textarea">
+            <ion-textarea rows="4" cols="20" placeholder="..." formControlName="review">
+            </ion-textarea>
           </ion-item>
           <ion-item>
             <ion-label position="stacked">태그</ion-label>
             <ion-input type="text" formControlName="tags"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-note>태그는 쉼표(,) 를 통해 구분되며 쉼표의 앞뒤에 있는 빈칸은 무시됩니다.</ion-note>
+            <p class="tag-notice">태그는 쉼표(,) 를 통해 구분되며 쉼표의 앞뒤에 있는 빈칸은 무시됩니다.</p>
           </ion-item>
         </ion-col>
       </ion-row>
