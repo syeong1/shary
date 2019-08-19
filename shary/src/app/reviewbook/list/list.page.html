@@ -18,6 +18,28 @@
     </ion-fab-button>
   </ion-fab>
 
+  <ion-list> 
+    <ion-item *ngFor="let item of (results | async)"> 
+        <ion-card [routerLink]="['/review/list']">
+          <div class="card-top-wrap">
+            <ion-item >
+              <ion-avatar>
+                <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+              </ion-avatar>
+              <ion-card-title>나의 리뷰북1</ion-card-title>
+            </ion-item>
+          </div>
+          <div class="card-bottom-wrap">
+            <span class="last-date">마지막 리뷰 2019.07.21</span>
+            <ion-chip color="danger">
+              <ion-label class="review-cnt">100개</ion-label>
+            </ion-chip>
+          </div>
+        </ion-card>
+    </ion-item>
+  </ion-list>
+  
+
   <ion-card [routerLink]="['/review/list']" *ngFor="let reviewbook of reviewbooks">
     <div class="card-top-wrap">
       <ion-item>
