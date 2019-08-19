@@ -30,7 +30,7 @@ export class CreatePage implements OnInit {
   }
 
   onSubmit() {
-    this.reviewbookService.writeReview(this.reviewbookForm.value).subscribe((res) => {
+    this.reviewbookService.createReviewBook(this.reviewbookForm.value).subscribe((res) => {
       console.log(this.reviewbookForm);
       this.router.navigate(['']);
     })
