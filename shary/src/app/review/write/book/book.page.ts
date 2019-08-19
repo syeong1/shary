@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { BookApiPage } from 'src/app/search/book-api/book-api.page'
-import { BookService } from './../../../services/book.service'
+import { BookApiPage } from './../../../search/book-api/book-api.page';
+import { BookService } from './../../../services/book.service';
 
 @Component({
   selector: 'app-book',
