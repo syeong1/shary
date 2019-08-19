@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
+import { ReviewbookService } from 'src/app/services/reviewbook.service';
 
 @Component({
   selector: 'app-create',
@@ -13,7 +14,7 @@ export class CreatePage implements OnInit {
   reviewbookForm: FormGroup;
 
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(private route: ActivatedRoute, private router: Router, private reviewbookService: ReviewbookService) {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.category = this.router.getCurrentNavigation().extras.state.category;
@@ -25,6 +26,13 @@ export class CreatePage implements OnInit {
     this.reviewbookForm = new FormGroup({
       title: new FormControl('', [Validators.required]),
       category: new FormControl('')
+    })
+  }
+
+  onSubmit() {
+    this.reviewbookService.writeReview(this.reviewbookForm.value).subscribe((res) => {
+      console.log(this.reviewbookForm);
+      this.router.navigate(['']);
     })
   }
 }

@@ -33,6 +33,19 @@ export class ReviewbookService {
     )
   }
 
+  createReviewBook(data) {
+    return this.http.post(`${this.url}/api/reviewbook/write`, data)
+      .pipe(
+        tap(res => {
+          this.showAlert('정상적으로 저장되었습니다.', '성공');
+        })
+        // catchError(e => {
+        //   this.showAlert(e.error.msg, '오류');
+        //   throw new Error(e);
+        // })
+      )
+  };
+
   showAlert(msg, title) {
     let alert = this.alertController.create({
       message: msg,
