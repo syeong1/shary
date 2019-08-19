@@ -38,7 +38,7 @@
                     <p>Image</p>
                   </div>
                 </ng-template>
-          <ion-input hidden value="{{movie.poster_path}}" formControlName="poster_path"></ion-input>
+          <ion-input hidden value="{{movie.poster_path}}" formControlName="posterPath"></ion-input>
         </ion-col>
         <ion-col size='8'>
           <ion-item>
@@ -48,7 +48,7 @@
             <ion-input placeholder="감독"value="{{movie.director?.name}}"formControlName="director"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input placeholder="개봉일" value="{{movie.release_date}}" formControlName="release_date"></ion-input>
+            <ion-input placeholder="개봉일" value="{{movie.release_date}}" formControlName="releaseDate"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -66,21 +66,21 @@
             <ion-label position="fixed">줄거리</ion-label>
           </ion-item>
           <ion-item class="textarea">
-            <ion-textarea rows="6" cols="20"class="movie-despription" placeholder="줄거리..." value="{{movie.overview}}"
+            <ion-textarea rows="6" cols="20"class="movie-description" placeholder="줄거리..." value="{{movie.overview}}"
               formControlName="overview"></ion-textarea>
           </ion-item>
 
           <ion-item>
             <ion-label>관람일</ion-label>
             <ion-datetime [doneText]="'저장'" [cancelText]="'취소'" [pickerOptions]="dateOptions" displayFormat="YYYY-MM-DD"
-              value="{{nowdate}}" placeholder="관람일" formControlName="watch_date"></ion-datetime>
+              value="{{nowdate}}" placeholder="관람일" formControlName="watchDate"></ion-datetime>
           </ion-item>
 
           <ion-item class='textarea'>
             <ion-label  position="fixed">명대사</ion-label>
           </ion-item>
           <ion-item class="textarea">
-            <ion-textarea rows="2" cols="20" placeholder="..." formControlName="famouse_line"></ion-textarea>
+            <ion-textarea rows="2" cols="20" placeholder="..." formControlName="famouseLine"></ion-textarea>
           </ion-item>
           <ion-item class="textarea">
             <ion-label position="fixed">감상평</ion-label>
