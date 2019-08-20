@@ -33,6 +33,7 @@ export class ReviewbookService {
     )
   }
 
+  //새 리뷰북 작성
   createReviewBook(data) {
     return this.http.post(`${this.url}/api/reviewbook/write`, data)
       .pipe(

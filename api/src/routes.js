@@ -3,7 +3,9 @@ var express = require('express'),
 var userController = require('./controller/user-controller');
 var reviewbookController = require('./controller/reviewbook-controller');
 var bookController = require('./controller/book-controller');
+var foodController = require('./controller/food-controller')
 var passport = require('passport');
+var map = require('./controller/map-controller');
 
 routes.get('/', (req, res) => {
     return res.send('Hello, this is the API!');
@@ -75,4 +77,22 @@ routes.post('/review/write', passport.authenticate('jwt', {
 }), bookController.writeReview);
 
 
+
+
+/**
+ * 맛집 food
+ */
+
+ //새 맛집 리뷰 등록
+ routes.post('/review/food/write', passport.authenticate('jwt', { session: false }), foodController.writeFoodReview);
+
+
 module.exports = routes;
+
+
+/**
+ * 지도 API
+ */
+
+ //장소 검색
+ routes.get('/map', map.getMap);

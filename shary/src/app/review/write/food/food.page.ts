@@ -37,7 +37,7 @@ export class FoodPage implements OnInit, AfterViewInit {
       roadAddress: new FormControl(''),
       eatDate: new FormControl(''),
       food_picture: new FormControl(''),
-      review: new FormControl(''),
+      evaluation: new FormControl(''),
       tags: new FormControl('')
     })
     

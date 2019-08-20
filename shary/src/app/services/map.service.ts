@@ -19,7 +19,7 @@ export class MapService {
    * @returns Observable with results
    */
   searchPlace(name: string): Observable<any>{
-    return this.http.get(`http://172.30.1.28:5000/api/map?name=${name}&coordinate=127.1054328,37.3595963`)
+    return this.http.get(`http://localhost:5000/api/map?name=${name}&coordinate=127.1054328,37.3595963`)
     .pipe(
       pluck('places')
     );
