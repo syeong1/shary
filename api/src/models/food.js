@@ -16,15 +16,18 @@ var FoodReviewSchema = new Schema({
     phoneNumber: String,
     roadAddress: String,
     typeOfFood: String,
-    review: String,
+    evaluation: String,
     foodPicture: [Image.schema],
-    tags: String,
+    tag: [{
+        type: String,
+        trim: true
+    }],
     viewCnt: Number,   // 조회수
     like: Number,      // 좋아요 
-    liker: {           // 좋아요 누른 사람
+    liker: [{           // 좋아요 누른 사람
         type: Schema.Types.ObjectId,
         ref: 'User'
-    }
+    }]
 });
 
 
