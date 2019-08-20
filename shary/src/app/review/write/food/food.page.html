@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title>새로운 리뷰</ion-title>
     <ion-buttons slot="end">
-      <ion-button type="submit" (click)="onSubmit()"[disabled]="!reviewForm.valid">
+      <ion-button (click)="onSubmit()"[disabled]="!reviewForm.valid">
         저장
       </ion-button>
     </ion-buttons>
@@ -73,7 +73,7 @@
 
           <ion-item> 
             <ion-label class="stacked" position="stacked"> 평가 </ion-label>  
-            <ion-input type="text" formControlName="review">  </ion-input>
+            <ion-input type="text" formControlName="evaluation">  </ion-input>
           </ion-item>
 
           <ion-item> 
