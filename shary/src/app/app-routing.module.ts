@@ -38,7 +38,8 @@ const routes: Routes = [
   { path: 'movie-api', loadChildren: './search/movie-api/movie-api.module#MovieApiPageModule' },
   { path: 'food-api', loadChildren: './search/food-api/food-api.module#FoodApiPageModule' },
   { path: 'tv-api', loadChildren: './search/tv-api/tv-api.module#TvApiPageModule' },
-  { path: 'food-list/:id', loadChildren: './review/list/food-list/food-list.module#FoodListPageModule' }
+  { path: 'food-list/:id', loadChildren: './review/list/food-list/food-list.module#FoodListPageModule' },  { path: 'food-detail', loadChildren: './review/detail/food-detail/food-detail.module#FoodDetailPageModule' }
+
 
 ];
 @NgModule({
