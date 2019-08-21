@@ -22,19 +22,21 @@ const routes: Routes = [
   { path: 'detail', loadChildren: './review/detail/detail.module#DetailPageModule' },
   { path: 'edit', loadChildren: './review/edit/edit.module#EditPageModule' },
   { path: 'share-photo', loadChildren: './review/share-photo/share-photo.module#SharePhotoPageModule' },
-  { path: 'review/list', loadChildren: './review/list/list.module#ListPageModule' },
+  { path: 'review/list/:id', loadChildren: './review/list/list.module#ListPageModule' },
   { path: 'create', loadChildren: './reviewbook/create/create.module#CreatePageModule' },
   { path: 'reviewbook/list', loadChildren: './reviewbook/list/list.module#ListPageModule' },
   { path: 'write', loadChildren: './review/write/write.module#WritePageModule' },
   { path: 'movie', loadChildren: './review/write/movie/movie.module#MoviePageModule' },
-  { path: 'food', loadChildren: './review/write/food/food.module#FoodPageModule' },
+  { path: 'food/:id', loadChildren: './review/write/food/food.module#FoodPageModule' },
   { path: 'music', loadChildren: './review/write/music/music.module#MusicPageModule' },
   { path: 'book', loadChildren: './review/write/book/book.module#BookPageModule' },
   { path: 'music-api', loadChildren: './search/music-api/music-api.module#MusicApiPageModule' },
   { path: 'book-api', loadChildren: './search/book-api/book-api.module#BookApiPageModule' },
   { path: 'movie-api', loadChildren: './search/movie-api/movie-api.module#MovieApiPageModule' },
   { path: 'food-api', loadChildren: './search/food-api/food-api.module#FoodApiPageModule' },
-  { path: 'tv-api', loadChildren: './search/tv-api/tv-api.module#TvApiPageModule' }
+  { path: 'tv-api', loadChildren: './search/tv-api/tv-api.module#TvApiPageModule' },
+  { path: 'food-list/:id', loadChildren: './review/list/food-list/food-list.module#FoodListPageModule' }
+
 ];
 @NgModule({
   imports: [
