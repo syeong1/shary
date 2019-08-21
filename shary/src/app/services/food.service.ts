@@ -38,16 +38,16 @@ export class FoodService {
    * @return {Observable} results
    * 
    */
-  getreviewBook() {
-    return this.http.get(`http://172.30.1.28:5000/api/review/food`).pipe(
-      catchError(e => {
-        let status = e.status;
-        if (status === 401) {
-          this.showAlert('오류', '리스트 불러오기 실패');
-        }
-        throw new Error(e);
-      })
-    );
+  getFoodReviewList(reviewbook_id) {
+    return this.http.get(`${this.url}/review/food/${reviewbook_id}`).pipe(
+    catchError(e => {
+      let status = e.status;
+      if(status === 404) {
+        this.showAlert('리스트 불러오기 실패', '오류');
+      }
+      throw new Error(e);
+    })
+  )
   }
 
   /**

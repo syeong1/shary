@@ -38,6 +38,15 @@ export class ListPage implements OnInit {
     this.router.navigate(['/create'], navigationExtras);
   }
 
+  goToReviewPage(reviewbook){
+
+    if(this.category == 'food'){
+      console.log(this.category);
+      this.router.navigate(['/food-list', reviewbook._id]);
+    }
+
+  }
+
   ngOnInit() {
     
   }
