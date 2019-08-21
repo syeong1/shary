@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { ReviewbookService } from 'src/app/services/reviewbook.service';
+import { ModalController, NavParams } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-create',
@@ -10,16 +12,11 @@ import { ReviewbookService } from 'src/app/services/reviewbook.service';
 })
 export class CreatePage implements OnInit {
 
-  category: string;
+  @Input("category") category;
   reviewbookForm: FormGroup;
 
 
-  constructor(private route: ActivatedRoute, private router: Router, private reviewbookService: ReviewbookService) {
-    this.route.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation().extras.state) {
-        this.category = this.router.getCurrentNavigation().extras.state.category;
-      }
-    })
+  constructor(public navParams: NavParams, private route: ActivatedRoute, private router: Router, private reviewbookService: ReviewbookService, private modalController: ModalController) {
   }
 
   ngOnInit() {
@@ -30,9 +27,15 @@ export class CreatePage implements OnInit {
   }
 
   onSubmit() {
-    this.reviewbookService.createReviewBook(this.reviewbookForm.value).subscribe((res) => {
+    this.reviewbookService.createReviewBook(this.reviewbookForm.value).subscribe(res => {
       console.log(this.reviewbookForm);
-      this.router.navigate(['']);
+      console.log(res);
+      console.log('sub 닫기');
+      this.back();
     })
+  }
+
+  back() {
+    this.modalController.dismiss();
   }
 }

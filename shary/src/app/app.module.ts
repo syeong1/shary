@@ -18,6 +18,7 @@ import { MusicApiPageModule } from './search/music-api/music-api.module';
 import { BookApiPageModule } from './search/book-api/book-api.module';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { FoodApiPageModule } from './search/food-api/food-api.module';
+import { CreatePageModule } from './reviewbook/create/create.module';
 
 
 
@@ -34,7 +35,7 @@ export function jwtOptionsFactory(storage) {
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,
-    MovieApiPageModule,MusicApiPageModule,BookApiPageModule, FoodApiPageModule,
+    MovieApiPageModule,MusicApiPageModule,BookApiPageModule, FoodApiPageModule,CreatePageModule,
     IonicStorageModule.forRoot(),
     JwtModule.forRoot({
       jwtOptionsProvider: {
