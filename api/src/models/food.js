@@ -9,7 +9,8 @@ var FoodReviewSchema = new Schema({
     },
     reviewList: {
         type: Schema.Types.ObjectId,
-        ref: 'Reviewbook'
+        ref: 'Reviewbook',
+        required: true
     },
     name: String,
     eatDate: Date,
