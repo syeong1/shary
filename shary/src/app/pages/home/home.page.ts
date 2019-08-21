@@ -8,8 +8,14 @@ import { Router, NavigationExtras } from '@angular/router';
 })
 export class HomePage implements OnInit {
 
-  category: string = '';
-
+  categories = [
+    { "category": 'book', "text": "책" },
+    { "category": 'movie', "text": "영화" },
+    { "category": 'tv', "text": "TV프로그램" },
+    { "category": 'food', "text": "맛집" },
+    { "category": 'music', "text": "음악" },
+    { "category": 'like', "text": "즐겨찾기" }
+  ];
   constructor(private router: Router) { }
 
 
@@ -18,63 +24,25 @@ export class HomePage implements OnInit {
    * @param {string} type
    * use 'Router.navigate' with navigationExtras
    */
+
   openMyListByType(type) {
     let navigationExtras: NavigationExtras = type;
     this.router.navigate(['/list'], navigationExtras);
   }
 
-  openBookList() {
+  openReviewbookList(item) {
+    console.log(item);
     let navigationExtras: NavigationExtras = {
       state: {
-        category: 'book',
-        text: '책'
+        category: item.category,
+        text: item.text
       }
     };
-    this.router.navigate(['/reviewbook/list'], navigationExtras);
-  }
-
-  openMusicList() {
-    let navigationExtras: NavigationExtras = {
-      state: {
-        category: 'music',
-        text: '음악'
-      }
-    };
-    this.router.navigate(['/reviewbook/list'], navigationExtras);
-  }
-
-  openMovieList() {
-    let navigationExtras: NavigationExtras = {
-      state: {
-        category: 'movie',
-        text: '영화'
-      }
-    };
-    this.router.navigate(['/reviewbook/list'], navigationExtras);
-  }
-  /**
-   * food 타입을 list페이지에 전달
-   */
-  openFoodList() {
-    let navigationExtras: NavigationExtras = {
-      state: {
-        category: 'food',
-        text: '맛집'
-      }
-    };
-    this.router.navigate(['/reviewbook/list'], navigationExtras);
-  }
-  openTVList() {
-    let navigationExtras: NavigationExtras = {
-      state: {
-        category: 'TV',
-        text: 'TV'
-      }
-    };
-    this.router.navigate(['/reviewbook/list'], navigationExtras);
+    this.router.navigate(['/reviewbook/list', item.category], navigationExtras);
   }
 
   ngOnInit() {
+
   }
 
 }

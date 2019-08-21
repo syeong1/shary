@@ -18,13 +18,16 @@ const routes: Routes = [
   },
   { path: 'home', loadChildren: './pages/home/home.module#HomePageModule' },
   { path: 'search', loadChildren: './pages/search/search.module#SearchPageModule' },
+  
+  // 리뷰북리스트 
+  { path: 'reviewbook/list', loadChildren: './reviewbook/list/list.module#ListPageModule' },
+  { path: 'reviewbook/list/:category', loadChildren: './reviewbook/list/list.module#ListPageModule' },
   { path: 'review/movie', loadChildren: './search/review/movie/movie.module#MoviePageModule' },
   { path: 'detail', loadChildren: './review/detail/detail.module#DetailPageModule' },
   { path: 'edit', loadChildren: './review/edit/edit.module#EditPageModule' },
   { path: 'share-photo', loadChildren: './review/share-photo/share-photo.module#SharePhotoPageModule' },
   { path: 'review/list', loadChildren: './review/list/list.module#ListPageModule' },
   { path: 'create', loadChildren: './reviewbook/create/create.module#CreatePageModule' },
-  { path: 'reviewbook/list', loadChildren: './reviewbook/list/list.module#ListPageModule' },
   { path: 'write', loadChildren: './review/write/write.module#WritePageModule' },
   { path: 'movie', loadChildren: './review/write/movie/movie.module#MoviePageModule' },
   { path: 'food', loadChildren: './review/write/food/food.module#FoodPageModule' },
