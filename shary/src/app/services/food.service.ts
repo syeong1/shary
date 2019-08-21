@@ -34,7 +34,7 @@ export class FoodService {
   };
 
   /**
-   * 맛집 리뷰 가져오기
+   * 맛집 리뷰북에 있는 리뷰 가져오기
    * @return {Observable} results
    * 
    */
@@ -48,6 +48,23 @@ export class FoodService {
         throw new Error(e);
       })
     );
+  }
+
+  /**
+   * 맛집 리뷰 디테일 가져오기
+   * @param review_id 
+   */
+  
+  getReviewDetail(review_id) {
+    return this.http.get(`${this.url}/review/food/detail/${review_id}`).pipe(
+      catchError(e => {
+        let status = e.status;
+        if(status === 404) {
+          this.showAlert('리스트 불러오기 실패', '오류');
+        }
+        throw new Error(e);
+      })
+    )
   }
 
   /**

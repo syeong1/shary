@@ -1,0 +1,82 @@
+<ion-header translucent>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/reviewbook/list"></ion-back-button>
+      </ion-buttons>
+      <ion-title>리뷰 리스트</ion-title>
+      <ion-buttons slot="end">
+        <ion-icon class="info-stats" name="information-circle-outline" size="large"></ion-icon>
+      </ion-buttons>
+  </ion-toolbar>
+    <div>
+    <ion-searchbar></ion-searchbar>
+    </div>
+  </ion-header>
+  
+  
+  <ion-content fullscreen>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="openWritePage()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-card (click)="openDetailPage(item)" *ngFor="let item of reviews ">
+            <img src="https://movie-phinf.pstatic.net/20190625_168/1561426986010A3uBi_JPEG/movie_image.jpg" />
+            <ion-card-header>
+              <ion-card-subtitle>{{item.evaluation}}</ion-card-subtitle>
+              <ion-card-title>{{item.name}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <p class="stars">★★★★★</p>
+              <p class="preview">{{item.roadAddress}}</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <!-- <ion-col>
+          <ion-card>
+            <img src="https://movie-phinf.pstatic.net/20190524_104/1558663170174Q2mmw_JPEG/movie_image.jpg" />
+            <ion-card-header>
+              <ion-card-subtitle>Aladdin, 2019</ion-card-subtitle>
+              <ion-card-title>알라딘</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <p class="stars">★★★☆☆</p>
+              <p class="preview">Founded in 1829 on an isthmus between Lake Monona and Lake Mendota</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col> -->
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <img src="https://movie-phinf.pstatic.net/20190718_5/156341294592540aB6_JPEG/movie_image.jpg" />
+            <ion-card-header>
+              <ion-card-subtitle>The Lion King, 2019</ion-card-subtitle>
+              <ion-card-title>라이온 킹</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <p class="stars">★★★★☆</p>
+              <p class="preview"> Founded in 1829 on an isthmus between Lake Monona and Lake Mendota</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card>
+            <img src="https://movie-phinf.pstatic.net/20190528_36/1559024198386YVTEw_JPEG/movie_image.jpg" />
+            <ion-card-header>
+              <ion-card-subtitle>PARASITE, 2019</ion-card-subtitle>
+              <ion-card-title>기생충</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <p class="stars">★★☆☆☆</p>
+              <p class="preview"> Founded in 1829 on an isthmus between Lake Monona and Lake Mendota</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
