@@ -3,7 +3,7 @@ var express = require('express'),
 var userController = require('./controller/user-controller');
 var reviewbookController = require('./controller/reviewbook-controller');
 var bookController = require('./controller/book-controller');
-var foodController = require('./controller/food-controller')
+var food = require('./controller/food-controller')
 var passport = require('passport');
 var map = require('./controller/map-controller');
 
@@ -84,10 +84,11 @@ routes.post('/review/write', passport.authenticate('jwt', {
  */
 
  //새 맛집 리뷰 등록
- routes.post('/review/food/write', passport.authenticate('jwt', { session: false }), foodController.writeFoodReview);
+ routes.post('/review/food/write', passport.authenticate('jwt', { session: false }), food.writeFoodReview);
+//리뷰 리스트 불러오기
+routes.get('/review/food/:id', passport.authenticate('jwt', { session: false }), food.getFoodReviewList);
 
 
-module.exports = routes;
 
 
 /**
@@ -96,3 +97,8 @@ module.exports = routes;
 
  //장소 검색
  routes.get('/map', map.getMap);
+
+
+
+ 
+ module.exports = routes;
