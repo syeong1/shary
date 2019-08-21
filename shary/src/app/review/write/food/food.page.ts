@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { GeolocationOptions, Geoposition, Geolocation } from '@ionic-native/geolocation/ngx';
 import { FoodApiPage } from '../../../search/food-api/food-api.page';
@@ -21,23 +21,15 @@ export class FoodPage implements OnInit, AfterViewInit {
   place : Geoposition;
   food = null;
   searchPlace: Geoposition;
-  reviewId: string
   
-  map
+  map;
   marker
 
 
   constructor(private modalController: ModalController,private router: Router, private geolocation: Geolocation,
-    private foodService: FoodService, private activatedRoute: ActivatedRoute) {
-      
-     }
+    private foodService: FoodService) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
-      this.reviewId = params['id'];
-      console.log('food write page로 넘어온 리뷰북 아이디 : ' + this.reviewId);
-      this.reviewForm.controls['reviewList'].setValue(this.reviewId, {onlyself: true});
-    });
     this.reviewForm = new FormGroup({
       name: new FormControl('',[Validators.required]),
       phoneNumber: new FormControl(''),
@@ -46,8 +38,7 @@ export class FoodPage implements OnInit, AfterViewInit {
       eatDate: new FormControl(''),
       food_picture: new FormControl(''),
       evaluation: new FormControl(''),
-      tags: new FormControl(''),
-      reviewList: new FormControl('')
+      tags: new FormControl('')
     })
     
   }
