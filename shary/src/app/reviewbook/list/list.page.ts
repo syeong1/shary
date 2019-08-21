@@ -31,6 +31,7 @@ export class ListPage implements OnInit {
   ngOnInit() {
   }
 
+
   getReviewbooks() {
     this.reviewbookService.getReviewBookList(this.category).subscribe(data => {
       console.log('Service 요청할 때 카테고리 : ', this.category);
@@ -38,7 +39,15 @@ export class ListPage implements OnInit {
       this.reviewbooks = data;
     })
   }
-  
+  goToReviewPage(reviewbook) {
+
+    if (this.category == 'food') {
+      console.log(this.category);
+      this.router.navigate(['/food-list', reviewbook._id]);
+    }
+  }
+
+
   async openCreatePageModal() {
     const modal = await this.modalController.create({
       component: CreatePage,
@@ -47,8 +56,8 @@ export class ListPage implements OnInit {
 
     modal.onDidDismiss().then(() => {
       this.getReviewbooks();
-   });
-   
+    });
+
     return await modal.present();
   };
 
