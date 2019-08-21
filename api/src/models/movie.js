@@ -22,7 +22,7 @@ var MovieReviewSchema = new Schema({
     rating: Number,
     famousLine: String,
     review: String,
-    tags: String,
+    tags: {type:[],'default': ''},
     images: [Image.schema],
     viewCnt: Number,   // 조회수
     like: Number,      // 좋아요 

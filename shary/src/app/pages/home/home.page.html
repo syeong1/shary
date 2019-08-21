@@ -1,44 +1,10 @@
 <ion-content>
   <div class="wrap">
     <ion-row>
-      <ion-col class="ion-padding" size="6">
-        <div (click)="openBookList()">
-          <img src="assets/img/home/icon_books.png">
-          <ion-label>책</ion-label>
-        </div>
-      </ion-col>
-      <ion-col class="ion-padding" size="6">
-        <div (click)="openMovieList()" [routerLink]="['/reviewbook/list']">
-          <img src="assets/img/home/icon_movie.png">
-          <ion-label>영화</ion-label>
-        </div>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="ion-padding" size="6">
-        <div (click)="openTVList()">
-          <img src="assets/img/home/icon_tv.png">
-          <ion-label>TV프로그램</ion-label>
-        </div>
-      </ion-col>
-      <ion-col class="ion-padding" size="6">
-        <div (click)="openFoodList()" [routerLink]="['/food']">
-          <img src="assets/img/home/icon_restaurant.png">
-          <ion-label>맛집</ion-label>
-        </div>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="ion-padding" size="6">
-        <div (click)="openMusicList()">
-          <img src="assets/img/home/icon_music.png">
-          <ion-label>음악</ion-label>
-        </div>
-      </ion-col>
-      <ion-col class="ion-padding" size="6">
-        <div>
-          <img src="assets/img/home/icon_like.png">
-          <ion-label>즐겨찾기</ion-label>
+      <ion-col class="ion-padding" size="6" *ngFor="let item of categories">
+        <div (click)="openReviewbookList(item)">
+          <img src="assets/img/home/{{item.category}}.png">
+          <ion-label>{{item.text}}</ion-label>
         </div>
       </ion-col>
     </ion-row>
