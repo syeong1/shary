@@ -1,9 +1,48 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>mypage</ion-title>
+<ion-header >
+  <ion-toolbar color="primary">
+    <ion-title >Mypage</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+
+  <ion-avatar style="margin: 10pt auto;">
+    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+  </ion-avatar>
+
+
+  <ion-item>
+    <ion-label position="fixed">닉네임</ion-label>
+    <ion-input type="text" name="nickname" [(ngModel)]="nickname"></ion-input>
+    <ion-icon  name="checkmark" [style.color]="exist ? 'red': 'black'" ></ion-icon>
+  </ion-item>
+  <ion-item>
+    <ion-label position="fixed" >아이디</ion-label>
+    <ion-input type="text" value="sgjh4040" readonly></ion-input>
+    
+  </ion-item>
+  <ion-item button>
+      <ion-icon name="person"></ion-icon>
+      <ion-label>
+        <h3>프로필 수정</h3>
+      </ion-label>
+      <ion-icon slot="end"></ion-icon>
+    </ion-item>
+
+  <ion-item button>
+    <ion-icon name="key" ></ion-icon>
+    <ion-label>
+      <h3>어플 비밀번호</h3>
+    </ion-label>
+    <ion-icon slot="end"></ion-icon>
+  </ion-item>
+
+  <ion-item button>
+      <ion-icon name="sad" ></ion-icon>
+      <ion-label>
+        <h3>탈 퇴</h3>
+      </ion-label>
+      <ion-icon slot="end"></ion-icon>
+    </ion-item>
 
 </ion-content>

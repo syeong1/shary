@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mypage.page.scss'],
 })
 export class MypagePage implements OnInit {
+  nickname = '사공';
 
   constructor() { }
 
