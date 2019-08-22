@@ -13,7 +13,7 @@ import { BookService } from './../../../services/book.service';
 export class BookPage implements OnInit {
 
   reviewForm: FormGroup;
-  book = {};
+  book: Object;
   nowDate: String = new Date().toISOString();
   reviewbookId: string;
 
@@ -60,12 +60,14 @@ export class BookPage implements OnInit {
 
         this.book = data['data'];
         console.log('origin', this.book);
-
+        
         // html 태그 삭제 및 날짜 처리
-        this.book['title'] = this.book['title'].replace(/<[^>]*>/g, '');
-        this.book['author'] = this.book['author'].replace(/<[^>]*>/g, '');
-        this.book['description'] = this.book['description'].replace(/<[^>]*>/g, '').replace(/&#x0D;/g, '\n').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
-        this.book['pubdate'] = this.book['pubdate'].replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3');
+        if (data['data'] !== undefined) {
+          this.book['title'] = this.book['title'].replace(/<[^>]*>/g, '');
+          this.book['author'] = this.book['author'].replace(/<[^>]*>/g, '');
+          this.book['description'] = this.book['description'].replace(/<[^>]*>/g, '').replace(/&#x0D;/g, '\n').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+          this.book['pubdate'] = this.book['pubdate'].replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3');
+        }
 
         console.log('new', this.book);
 

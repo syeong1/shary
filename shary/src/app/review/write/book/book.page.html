@@ -20,12 +20,12 @@
 <ion-content fullscreen>
 
   <form [formGroup]="reviewForm">
-    <ion-grid *ngIf="book">
+    <ion-grid>
       <!-- <ion-input hidden value="{{rating}}" formControlName="review_score"></ion-input> -->
       <ion-row>
         <ion-col size='4'>
           <div class="image-wrap">
-            <img [src]="book.image" *ngIf="book.image; else defaultImage">
+            <img [src]="book?.image" *ngIf="book?.image; else defaultImage">
           </div>
           <ng-template #defaultImage>
             <div class="default-image">
@@ -33,22 +33,22 @@
               <p>Image</p>
             </div>
           </ng-template>
-          <ion-input hidden value="{{book.image}}" formControlName="image"></ion-input>
+          <ion-input hidden value="{{book?.image}}" formControlName="image"></ion-input>
         </ion-col>
         <ion-col size='8'>
           <ion-item>
-            <ion-input placeholder="제목" value="{{book.title}}" formControlName="title"></ion-input>
+            <ion-input placeholder="제목" value="{{book?.title}}" formControlName="title"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input placeholder="저자" class="author" value="{{book.author}}" formControlName="author"></ion-input>
+            <ion-input placeholder="저자" class="author" value="{{book?.author}}" formControlName="author"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input placeholder="출판사" class="pub" value="{{book.publisher}}" formControlName="publisher">
+            <ion-input placeholder="출판사" class="pub" value="{{book?.publisher}}" formControlName="publisher">
             </ion-input>
           </ion-item>
           <ion-item>
             <ion-datetime class="pub" [doneText]="'저장'" [cancelText]="'취소'" [pickerOptions]="dateOptions"
-              displayFormat="YYYY-MM-DD" placeholder="출판일" value="{{book.pubdate | date : 'yyyy-MM-dd'}}"
+              displayFormat="YYYY-MM-DD" placeholder="출판일" value="{{book?.pubdate | date : 'yyyy-MM-dd'}}"
               formControlName="pubdate">
             </ion-datetime>
           </ion-item>
@@ -60,7 +60,7 @@
             <ion-label position="fixed">줄거리</ion-label>
           </ion-item>
           <ion-item class="textarea">
-            <ion-textarea rows="6" cols="20" class="book-description" placeholder="줄거리..." value="{{book.description}}"
+            <ion-textarea rows="6" cols="20" class="book?-description" placeholder="줄거리..." value="{{book?.description}}"
               formControlName="description"></ion-textarea>
           </ion-item>
           <ion-item>
@@ -76,7 +76,7 @@
           </ion-item>
           <ion-item>
             <ion-label position="fixed">금액</ion-label>
-            <ion-input type="text" value="{{book.price | number:'2.'}}" formControlName="price" text-right></ion-input>
+            <ion-input type="text" value="{{book?.price | number:'2.'}}" formControlName="price" text-right></ion-input>
             <span>원</span>
           </ion-item>
           <ion-item class="textarea">
