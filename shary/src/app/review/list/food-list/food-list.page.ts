@@ -29,7 +29,7 @@ export class FoodListPage implements OnInit {
   }
 
   openWritePage(){
-    this.router.navigate(['/food', this.reviewId]);
+    this.router.navigate(['/food/write', this.reviewId]);
   }
 
   openDetailPage(review) {

@@ -22,29 +22,33 @@ const routes: Routes = [
   // 리뷰북리스트 
   { path: 'reviewbook/list', loadChildren: './reviewbook/list/list.module#ListPageModule' },
   { path: 'reviewbook/list/:category', loadChildren: './reviewbook/list/list.module#ListPageModule' },
+ 
+   // 새 리뷰 작성 페이지
+  { path: 'book/write/:id', loadChildren: './review/write/book/book.module#BookPageModule' },
+  { path: 'food/write/:id', loadChildren: './review/write/food/food.module#FoodPageModule' },
+  { path: 'music/write/:id', loadChildren: './review/write/music/music.module#MusicPageModule' },  
+  { path: 'movie/write/:id', loadChildren: './review/write/movie/movie.module#MoviePageModule' },
+
+  // 리뷰 리스트 페이지
+  { path: 'book/list/:id', loadChildren: './review/list/book-list/book-list.module#BookListPageModule' },  
+  { path: 'food/list/:id', loadChildren: './review/list/food-list/food-list.module#FoodListPageModule' },
+  { path: 'music/list/:id', loadChildren: './review/list/music-list/music-list.module#MusicListPageModule' },
+  { path: 'movie/list/:id', loadChildren: './review/list/movie-list/movie-list.module#MovieListPageModule' },
+  { path: 'tv/list/:id', loadChildren: './review/list/tv-list/tv-list.module#TvListPageModule' },
+
+  // 리뷰 디테일 페이지
+  { path: 'book/detail/:id', loadChildren: './review/detail/book-detail/book-detail.module#BookDetailPageModule' },
+  { path: 'food/detail/:id', loadChildren: './review/detail/food-detail/food-detail.module#FoodDetailPageModule' },
+  { path: 'movie/detail/:id', loadChildren: './review/detail/movie-detail/movie-detail.module#MovieDetailPageModule' },
+  { path: 'music/detail/:id', loadChildren: './review/detail/music-detail/music-detail.module#MusicDetailPageModule' },
+  { path: 'tv/detail/:id', loadChildren: './review/detail/tv-detail/tv-detail.module#TvDetailPageModule' },
+
+  // 구현 예정 
+  { path: 'tv-api', loadChildren: './search/tv-api/tv-api.module#TvApiPageModule' },
   { path: 'review/movie', loadChildren: './search/review/movie/movie.module#MoviePageModule' },
   { path: 'detail', loadChildren: './review/detail/detail.module#DetailPageModule' },
   { path: 'edit', loadChildren: './review/edit/edit.module#EditPageModule' },
   { path: 'share-photo', loadChildren: './review/share-photo/share-photo.module#SharePhotoPageModule' },
-
-  { path: 'review/list/:id', loadChildren: './review/list/list.module#ListPageModule' },
-  { path: 'create', loadChildren: './reviewbook/create/create.module#CreatePageModule' },
-  { path: 'write', loadChildren: './review/write/write.module#WritePageModule' },
-  { path: 'movie', loadChildren: './review/write/movie/movie.module#MoviePageModule' },
-  { path: 'food/:id', loadChildren: './review/write/food/food.module#FoodPageModule' },
-
-  { path: 'music', loadChildren: './review/write/music/music.module#MusicPageModule' },
-  { path: 'book/:id', loadChildren: './review/write/book/book.module#BookPageModule' },
-  { path: 'music-api', loadChildren: './search/music-api/music-api.module#MusicApiPageModule' },
-  { path: 'book-api', loadChildren: './search/book-api/book-api.module#BookApiPageModule' },
-  { path: 'movie-api', loadChildren: './search/movie-api/movie-api.module#MovieApiPageModule' },
-  { path: 'food-api', loadChildren: './search/food-api/food-api.module#FoodApiPageModule' },
-
-  { path: 'tv-api', loadChildren: './search/tv-api/tv-api.module#TvApiPageModule' },
-  { path: 'food/list/:id', loadChildren: './review/list/food-list/food-list.module#FoodListPageModule' },
-  { path: 'book/list/:id', loadChildren: './review/list/book-list/book-list.module#BookListPageModule' },
-  { path: 'food/detail/:id', loadChildren: './review/detail/food-detail/food-detail.module#FoodDetailPageModule' }
-
 
 ];
 @NgModule({
