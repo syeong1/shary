@@ -58,8 +58,8 @@ routes.get('/reviewbook/:category', passport.authenticate('jwt', {
 
 // 리뷰북 리스트 생성
 routes.post('/reviewbook/write', passport.authenticate('jwt', {
-    session: false
-}), reviewbookController.writeReviewBook);
+     session: false
+     }), reviewbookController.writeReviewBook);
 
 
 
@@ -67,7 +67,7 @@ routes.post('/reviewbook/write', passport.authenticate('jwt', {
  * 책 book
  */
 
-
+ 
 // 네이버 검색 Open API 책
 routes.get('/search/book/:title', bookController.getBookData);
 
@@ -107,15 +107,12 @@ routes.get('/review/food/detail/:id', food.getFoodReviewDetail);
 
 
 
-
 /**
  * 지도 API
  */
 
 //장소 검색
 routes.get('/map', map.getMap);
-
-
 
 
 module.exports = routes;
