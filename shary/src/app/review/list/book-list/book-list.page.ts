@@ -34,6 +34,6 @@ export class BookListPage implements OnInit {
   }
 
   openWritePage() {
-    this.router.navigate(['/book', this.reviewbookId]);
+    this.router.navigate(['/book/write', this.reviewbookId]);
   }
 }
