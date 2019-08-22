@@ -6,4 +6,5 @@ module.exports = {
     client_id = '4BAZEL9fhMV7MnBiJx1T',
     client_secret = 'BWYeR798st'
 
+
 };
