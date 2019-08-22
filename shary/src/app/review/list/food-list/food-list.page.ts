@@ -32,4 +32,8 @@ export class FoodListPage implements OnInit {
     this.router.navigate(['/food', this.reviewId]);
   }
 
+  openDetailPage(review) {
+    this.router.navigate(['/food/detail', review._id]);
+  }
+
 }
