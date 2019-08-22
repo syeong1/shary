@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var Image = require('../models/image');
 
-
 var BookReviewSchema = new Schema({
     writer: {
         type: Schema.Types.ObjectId,
@@ -10,13 +9,15 @@ var BookReviewSchema = new Schema({
     },
     reviewList: {
         type: Schema.Types.ObjectId,
-        ref: 'Reviewbook'
+        ref: 'Reviewbook',
+        required: true
     },
     title: String,
     author: String,
     publisher: Date,
     publisher: String,
     pubdate: Date,
+    description:String,
     image: String,
     price: String,
     readingStartDate: Date,

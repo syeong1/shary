@@ -17,7 +17,7 @@ routes.get('/', (req, res) => {
  */
 
 
- // 회원가입 
+// 회원가입 
 routes.post('/register', userController.registerUser);
 
 //로그인
@@ -76,6 +76,11 @@ routes.post('/review/write', passport.authenticate('jwt', {
     session: false
 }), bookController.writeReview);
 
+// 책 리뷰리스트 가져오기
+routes.get('/review/book/:id', passport.authenticate('jwt', {
+    session: false
+}), bookController.getBookReviewList);
+
 
 
 
@@ -83,10 +88,21 @@ routes.post('/review/write', passport.authenticate('jwt', {
  * 맛집 food
  */
 
- //새 맛집 리뷰 등록
+
+//새 맛집 리뷰 등록
+routes.post('/review/food/write', passport.authenticate('jwt', {
+    session: false
+}), food.writeFoodReview);
+//리뷰 리스트 불러오기
+routes.get('/review/food/:id', passport.authenticate('jwt', {
+    session: false
+}), food.getFoodReviewList);
+
  routes.post('/review/food/write', passport.authenticate('jwt', { session: false }), food.writeFoodReview);
 //리뷰 리스트 불러오기
 routes.get('/review/food/:id', passport.authenticate('jwt', { session: false }), food.getFoodReviewList);
+//리뷰 디테일 가져오기
+routes.get('/review/food/detail/:id', food.getFoodReviewDetail);
 
 
 
@@ -95,10 +111,8 @@ routes.get('/review/food/:id', passport.authenticate('jwt', { session: false }),
  * 지도 API
  */
 
- //장소 검색
- routes.get('/map', map.getMap);
+//장소 검색
+routes.get('/map', map.getMap);
 
 
-
- 
- module.exports = routes;
+module.exports = routes;

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 import { BookApiPage } from './../../../search/book-api/book-api.page';
 import { BookService } from './../../../services/book.service';
 
@@ -14,15 +15,14 @@ export class BookPage implements OnInit {
   reviewForm: FormGroup;
   book = {};
   nowDate: String = new Date().toISOString();
+  reviewbookId: string;
 
-  constructor(private modalController: ModalController, private bookService: BookService) {
-  }
+  constructor(private modalController: ModalController, private bookService: BookService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-
     this.reviewForm = new FormGroup({
       writer: new FormControl(''),
-      reviewlist_id: new FormControl(''),
+      reviewList: new FormControl(''),
       title: new FormControl('', [Validators.required]),
       author: new FormControl(''),
       publisher: new FormControl(''),
@@ -37,11 +37,16 @@ export class BookPage implements OnInit {
       tags: new FormControl(''),
       rating: new FormControl('')
     })
+    this.reviewbookId = this.activatedRoute.snapshot.paramMap.get('id');
+    console.log('book write page로 넘어온 리뷰북 아이디 : ' + this.reviewbookId);
+    this.reviewForm.controls['reviewList'].setValue(this.reviewbookId, { onlyself: true });
   }
 
   onSubmit() {
     this.bookService.writeReview(this.reviewForm.value).subscribe(res => {
+      console.log(this.reviewForm);
       console.log(res);
+      this.router.navigate(['book/list', this.reviewbookId]);
     })
   }
 

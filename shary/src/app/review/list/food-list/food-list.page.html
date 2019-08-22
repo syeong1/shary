@@ -24,7 +24,11 @@
     <ion-grid>
       <ion-row>
         <ion-col>
+<<<<<<< HEAD
           <ion-card *ngFor="let item of reviews ">
+=======
+          <ion-card (click)="openDetailPage(item)" *ngFor="let item of reviews ">
+>>>>>>> ec14f4ec8a8f25f59c8ad524b081abf2ce5d5c34
             <img src="https://movie-phinf.pstatic.net/20190625_168/1561426986010A3uBi_JPEG/movie_image.jpg" />
             <ion-card-header>
               <ion-card-subtitle>{{item.evaluation}}</ion-card-subtitle>

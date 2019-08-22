@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
 import { AlertController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReviewbookService {
 
-  constructor(private http: HttpClient, private alertController: AlertController) { }
+  constructor(private http: HttpClient, private alertController: AlertController, public toastController: ToastController) { }
 
   url = 'http://localhost:5000';
   // url = 'http://172.30.1.34:5000';
@@ -33,12 +34,13 @@ export class ReviewbookService {
     )
   }
 
+
   //새 리뷰북 작성
   createReviewBook(data) {
     return this.http.post(`${this.url}/api/reviewbook/write`, data)
       .pipe(
         tap(res => {
-          this.showAlert('정상적으로 저장되었습니다.', '성공');
+          this.presentToast();
         })
         // catchError(e => {
         //   this.showAlert(e.error.msg, '오류');
@@ -47,6 +49,8 @@ export class ReviewbookService {
       )
   };
 
+
+  //Alert창 생성 메소드
   showAlert(msg, title) {
     let alert = this.alertController.create({
       message: msg,
@@ -54,5 +58,13 @@ export class ReviewbookService {
       buttons: ['확인']
     });
     alert.then(alert => alert.present());
-  };
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: '새로운 리뷰북이 추가되었습니다.',
+      duration: 2000
+    });
+    toast.present();
+  }
 }
