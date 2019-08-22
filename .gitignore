@@ -60,9 +60,9 @@ typings/
 # next.js build output
 .next
 
-node_modules/
+api/node_modules/
 dist/*
 *.log
 
-src/config/
+api/src/config/
 
