@@ -1,8 +1,6 @@
 var Book = require('../models/Book');
 var request = require('request');
-
-var client_id = '4BAZEL9fhMV7MnBiJx1T';
-var client_secret = 'BWYeR798st';
+var config = require('../config/config');
 
 
 // 책 데이터 가져오기
@@ -12,8 +10,8 @@ exports.getBookData = (req, res) => {
     var options = {
         url: api_url,
         headers: {
-            'X-Naver-Client-Id': client_id,
-            'X-Naver-Client-Secret': client_secret
+            'X-Naver-Client-Id': config.client_id,
+            'X-Naver-Client-Secret': config.client_secret
         }
     };
     request.get(options, function (error, response, body) {
