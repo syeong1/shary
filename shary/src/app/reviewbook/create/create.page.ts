@@ -30,7 +30,6 @@ export class CreatePage implements OnInit {
     this.reviewbookService.createReviewBook(this.reviewbookForm.value).subscribe(res => {
       console.log(this.reviewbookForm);
       console.log(res);
-      console.log('sub 닫기');
       this.back();
     })
   }

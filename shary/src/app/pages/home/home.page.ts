@@ -16,20 +16,10 @@ export class HomePage implements OnInit {
     { "category": 'music', "text": "음악" },
     { "category": 'like', "text": "즐겨찾기" }
   ];
+
   constructor(private router: Router) { }
 
-
-  /**
-   * type에 맞는 reviewBook List 페이지로 이동
-   * @param {string} type
-   * use 'Router.navigate' with navigationExtras
-   */
-
-  openMyListByType(type) {
-    let navigationExtras: NavigationExtras = type;
-    this.router.navigate(['/list'], navigationExtras);
-  }
-
+  
   openReviewbookList(item) {
     console.log(item);
     let navigationExtras: NavigationExtras = {

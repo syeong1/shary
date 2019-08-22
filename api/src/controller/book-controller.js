@@ -45,3 +45,30 @@ exports.writeReview = (req, res) => {
         });
     });
 }
+
+
+// 책 리뷰리스트 가져오기
+exports.getBookReviewList = (req, res) => {
+    
+    console.log(req);
+        console.log('요청한 리뷰리스트 id', req.params._id);
+        // let reviewbook_id = req.params.id;
+        // 책 리뷰북 가져오기
+        let reviewbook_id = req.params.id;
+            Book.find({reviewList: reviewbook_id}, function (err, reviews) {
+            console.log(reviews);
+            if (err) {
+                return res.status(500).json({
+                    error: err
+                });
+            }
+            if (!reviews) {
+                return res.status(404).json({
+                    error: 'reviewbook not found'
+                });
+            }
+            if (reviews) {
+                return res.status(200).json(reviews);
+            }
+        });
+}

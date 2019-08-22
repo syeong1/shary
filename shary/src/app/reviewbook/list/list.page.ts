@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ReviewbookService } from 'src/app/services/reviewbook.service';
 import { CreatePage } from './../create/create.page';
 import { ModalController } from '@ionic/angular';
@@ -22,7 +22,7 @@ export class ListPage implements OnInit {
       if (this.router.getCurrentNavigation().extras.state) {
         this.category = this.router.getCurrentNavigation().extras.state.category;
         this.titleText = this.router.getCurrentNavigation().extras.state.text;
-        console.log('넘어온 카테고리 : ' + this.category);
+        console.log('extras.state.category : ' + this.category);
         this.getReviewbooks();
       }
     })
@@ -39,12 +39,13 @@ export class ListPage implements OnInit {
       this.reviewbooks = data;
     })
   }
-  goToReviewPage(reviewbook) {
 
-    if (this.category == 'food') {
-      console.log(this.category);
-      this.router.navigate(['/food-list', reviewbook._id]);
-    }
+  goToReviewPage(reviewbook) {
+    this.router.navigate([reviewbook.category,'list', reviewbook._id]);
+    // if (this.category == 'food') {
+    //   console.log(this.category);
+    //   this.router.navigate(['/food-list', reviewbook._id]);
+    // }
   }
 
 
@@ -54,6 +55,7 @@ export class ListPage implements OnInit {
       componentProps: { category: this.category }
     })
 
+    // 모달창 닫힐 때 리뷰북리스트 다시 가져옴
     modal.onDidDismiss().then(() => {
       this.getReviewbooks();
     });

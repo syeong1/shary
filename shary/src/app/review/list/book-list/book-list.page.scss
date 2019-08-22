@@ -1,0 +1,50 @@
+.info-stats {
+    width: 26px;
+    height: 26px;
+    margin-right: 12px;
+    vertical-align: middle;
+}
+
+ion-card {
+    -webkit-margin-start: 5px;
+    margin-inline-start: 5px;
+    -webkit-margin-end: 5px;
+    margin-inline-end: 5px;
+    margin-top: 24px;
+    margin-bottom: 12px;
+}
+
+ion-card-header {
+    padding: 17px 12px 5px;
+}
+
+ion-card-title {
+    font-size: 13px;
+    font-weight: 650;
+    height: 30px;
+    overflow: hidden;
+}
+
+ion-card-subtitle {
+    font-size: 8px;
+    font-weight: 550;
+}
+
+ion-card-content {
+    padding: 5px 12px 17px;
+
+    .stars {
+        font-size: 16px;
+        color: #ffbf00;
+        margin-bottom: 4px;
+    }
+
+    .preview {
+        height: 35px;
+        font-size:12px;
+        overflow: hidden;
+    }
+}
+ion-grid{
+    padding: 5px 10px;
+}

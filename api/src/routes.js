@@ -3,7 +3,7 @@ var express = require('express'),
 var userController = require('./controller/user-controller');
 var reviewbookController = require('./controller/reviewbook-controller');
 var bookController = require('./controller/book-controller');
-var foodController = require('./controller/food-controller')
+var food = require('./controller/food-controller')
 var passport = require('passport');
 var map = require('./controller/map-controller');
 
@@ -17,7 +17,7 @@ routes.get('/', (req, res) => {
  */
 
 
- // 회원가입 
+// 회원가입 
 routes.post('/register', userController.registerUser);
 
 //로그인
@@ -58,8 +58,8 @@ routes.get('/reviewbook/:category', passport.authenticate('jwt', {
 
 // 리뷰북 리스트 생성
 routes.post('/reviewbook/write', passport.authenticate('jwt', {
-     session: false
-     }), reviewbookController.writeReviewBook);
+    session: false
+}), reviewbookController.writeReviewBook);
 
 
 
@@ -67,7 +67,7 @@ routes.post('/reviewbook/write', passport.authenticate('jwt', {
  * 책 book
  */
 
- 
+
 // 네이버 검색 Open API 책
 routes.get('/search/book/:title', bookController.getBookData);
 
@@ -76,6 +76,11 @@ routes.post('/review/write', passport.authenticate('jwt', {
     session: false
 }), bookController.writeReview);
 
+// 책 리뷰리스트 가져오기
+routes.get('/review/book/:id', passport.authenticate('jwt', {
+    session: false
+}), bookController.getBookReviewList);
+
 
 
 
@@ -83,16 +88,26 @@ routes.post('/review/write', passport.authenticate('jwt', {
  * 맛집 food
  */
 
- //새 맛집 리뷰 등록
- routes.post('/review/food/write', passport.authenticate('jwt', { session: false }), foodController.writeFoodReview);
+//새 맛집 리뷰 등록
+routes.post('/review/food/write', passport.authenticate('jwt', {
+    session: false
+}), food.writeFoodReview);
+//리뷰 리스트 불러오기
+routes.get('/review/food/:id', passport.authenticate('jwt', {
+    session: false
+}), food.getFoodReviewList);
 
 
-module.exports = routes;
 
 
 /**
  * 지도 API
  */
 
- //장소 검색
- routes.get('/map', map.getMap);
+//장소 검색
+routes.get('/map', map.getMap);
+
+
+
+
+module.exports = routes;

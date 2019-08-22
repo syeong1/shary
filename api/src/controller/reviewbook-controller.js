@@ -25,7 +25,7 @@ exports.writeReviewBook = function(req, res) {
 
 exports.getReviewBookList = (req, res) => {
 
-    console.log('요청한 카테고리', req.params.category);
+    console.log('요청한 카테고리 리뷰북리스트 : ', req.params.category);
 
     // 책 리뷰북 가져오기
     Reviewbook.find({category: req.params.category, writer: req.user._id}, function (err, reviewbooks) {
