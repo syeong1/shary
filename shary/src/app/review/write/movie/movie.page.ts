@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from 'src/app/services/movie.service';
 import { ModalController } from '@ionic/angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -12,17 +12,14 @@ import { MovieApiPage } from 'src/app/search/movie-api/movie-api.page';
   styleUrls: ['./movie.page.scss'],
 })
 export class MoviePage implements OnInit {
-  list_id: string;
+  reviewbookId: string;
   reviewForm: FormGroup;
   movie={};
   nowdate:String =new Date().toISOString();
 
-  constructor(private activateRoute: ActivatedRoute,private movieService: MovieService, private modalController:ModalController) { }
+  constructor(private activateRoute: ActivatedRoute,private movieService: MovieService, private modalController:ModalController,private router:Router) { }
 
   ngOnInit() {
-    this.list_id=this.activateRoute.snapshot.paramMap.get('id');
-    // this.imageService.images=[];
-    // this.imageService.STORAGE_KEY= this.createImagesfolder();
     this.reviewForm = new FormGroup({
       writer: new FormControl(''),
       reviewList: new FormControl(''),
@@ -39,7 +36,17 @@ export class MoviePage implements OnInit {
       tags: new FormControl(''),
 
     })
+    this.reviewbookId=this.activateRoute.snapshot.paramMap.get('id');
+    console.log('book write page로 넘어온 리뷰북 아이디 : ' + this.reviewbookId);
+    this.reviewForm.controls['reviewList'].setValue(this.reviewbookId, { onlyself: true });
     
+  }
+  onSubmit() {
+    this.movieService.writeReview(this.reviewForm.value).subscribe(res => {
+      console.log(this.reviewForm);
+      console.log(res);
+      this.router.navigate(['movie/list', this.reviewbookId]);
+    })
   }
   async openSearchMovieModal(){
     const modal = await this.modalController.create({

@@ -16,64 +16,23 @@
 
 <ion-content fullscreen>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button >
+    <ion-fab-button (click)="openWritePage()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
   <ion-grid>
     <ion-row>
-      <ion-col>
-        <ion-card>
-          <img src="https://movie-phinf.pstatic.net/20190625_168/1561426986010A3uBi_JPEG/movie_image.jpg" />
+      <ion-col size='6' *ngFor="let review of reviews">
+        <ion-card >
+          <img src="https://image.tmdb.org/t/p/w500{{review.posterPath}}" />
           <ion-card-header>
-            <ion-card-subtitle>The Divine Fury, 2019</ion-card-subtitle>
-            <ion-card-title>사자</ion-card-title>
+            <ion-card-subtitle> {{review.releaseDate|date:'y-MM'}}</ion-card-subtitle>
+            <ion-card-title>{{review.title}}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
             <p class="stars">★★★★★</p>
-            <p class="preview"> Founded in 1829 on an isthmus between Lake Monona and Lake Mendota</p>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-      <ion-col>
-        <ion-card>
-          <img src="https://movie-phinf.pstatic.net/20190524_104/1558663170174Q2mmw_JPEG/movie_image.jpg" />
-          <ion-card-header>
-            <ion-card-subtitle>Aladdin, 2019</ion-card-subtitle>
-            <ion-card-title>알라딘</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <p class="stars">★★★☆☆</p>
-            <p class="preview">Founded in 1829 on an isthmus between Lake Monona and Lake Mendota</p>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-card>
-          <img src="https://movie-phinf.pstatic.net/20190718_5/156341294592540aB6_JPEG/movie_image.jpg" />
-          <ion-card-header>
-            <ion-card-subtitle>The Lion King, 2019</ion-card-subtitle>
-            <ion-card-title>라이온 킹</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <p class="stars">★★★★☆</p>
-            <p class="preview"> Founded in 1829 on an isthmus between Lake Monona and Lake Mendota</p>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-      <ion-col>
-        <ion-card>
-          <img src="https://movie-phinf.pstatic.net/20190528_36/1559024198386YVTEw_JPEG/movie_image.jpg" />
-          <ion-card-header>
-            <ion-card-subtitle>PARASITE, 2019</ion-card-subtitle>
-            <ion-card-title>기생충</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <p class="stars">★★☆☆☆</p>
-            <p class="preview"> Founded in 1829 on an isthmus between Lake Monona and Lake Mendota</p>
+            <p class="preview"> {{review.overview}}</p>
           </ion-card-content>
         </ion-card>
       </ion-col>

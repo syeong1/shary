@@ -112,7 +112,10 @@ routes.get('/review/food/detail/:id', food.getFoodReviewDetail);
 routes.get('/review/movie/:id', passport.authenticate('jwt', {
     session: false
 }), movieController.getBookReviewList);
-
+// 새 리뷰 등록
+routes.post('/review/movie/write', passport.authenticate('jwt', {
+    session: false
+}), movieController.writeReview);
 /**
  * 지도 API
  */

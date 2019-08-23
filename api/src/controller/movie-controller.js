@@ -27,3 +27,22 @@ exports.getBookReviewList = (req, res) => {
             }
         });
 }
+
+// 영화 리뷰 작성
+exports.writeReview = (req, res) => {
+    let newReview = Movie(req.body);
+    let writer = req.user._id;
+    newReview.writer = writer;
+
+    newReview.save((err, result) => {
+        if (err) {
+            return res.status(400).json({
+                'msg': err
+            });
+        }
+        console.log(result);
+        return res.status(201).json({
+            'msg': '등록되었습니다'
+        });
+    });
+}
