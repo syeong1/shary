@@ -3,6 +3,7 @@ var express = require('express'),
 var userController = require('./controller/user-controller');
 var reviewbookController = require('./controller/reviewbook-controller');
 var bookController = require('./controller/book-controller');
+var movieController = require('./controller/movie-controller')
 var food = require('./controller/food-controller')
 var passport = require('passport');
 var map = require('./controller/map-controller');
@@ -104,8 +105,13 @@ routes.get('/review/food/:id', passport.authenticate('jwt', { session: false }),
 //리뷰 디테일 가져오기
 routes.get('/review/food/detail/:id', food.getFoodReviewDetail);
 
-
-
+/**
+ * 영화 movie
+ */
+// 영화 리뷰리스트 가져오기
+routes.get('/review/movie/:id', passport.authenticate('jwt', {
+    session: false
+}), movieController.getBookReviewList);
 
 /**
  * 지도 API

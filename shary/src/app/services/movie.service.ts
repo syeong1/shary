@@ -9,7 +9,7 @@ import { map, catchError, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class MovieService {
-
+  url = 'http://localhost:5000';
   serverurl = environment.url;
   baseurl = "https://api.themoviedb.org/3/search";
   detailurl ="https://api.themoviedb.org/3"
@@ -49,18 +49,17 @@ export class MovieService {
     )
   }
 
-  //리뷰리스트 가져오기
-  getreviewBook() {
-    return this.http.get(`${this.serverurl}/api/reviewbook`).pipe(
-
+  // 영화 리뷰 리스트 가져오기
+  getBookReviewList(reviewbook_id: string) {
+    return this.http.get(`${this.url}/api/review/movie/${reviewbook_id}`).pipe(
       catchError(e => {
         let status = e.status;
-        if (status === 401) {
-          this.showAlert('오류', '리스트 불러오기 실패');
+        if (status === 404) {
+          // this.showAlert('리뷰가 없습니다.', '오류');
         }
         throw new Error(e);
       })
-    );
+    )
   }
   //리뷰 리스트 작성
   writeReviewBook(data) {
