@@ -46,3 +46,21 @@ exports.writeReview = (req, res) => {
         });
     });
 }
+exports.getdetailReview= (req,res)=>{
+    let review_id = req.params.id;
+        Movie.findById(review_id, (err, review) => {
+            if (err) {
+                return res.status(500).json({
+                    error: err
+                });
+            }
+            if (!review) {
+                return res.status(404).json({
+                    error: 'reviewMovie not found'
+                });
+            }
+            if (review) {
+                return res.status(200).json(review);
+            }
+        })
+}

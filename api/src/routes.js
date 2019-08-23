@@ -116,6 +116,11 @@ routes.get('/review/movie/:id', passport.authenticate('jwt', {
 routes.post('/review/movie/write', passport.authenticate('jwt', {
     session: false
 }), movieController.writeReview);
+//리뷰 디테일 가져오기
+routes.get('/review/movie/detail/:id',movieController.getdetailReview);
+
+
+
 /**
  * 지도 API
  */

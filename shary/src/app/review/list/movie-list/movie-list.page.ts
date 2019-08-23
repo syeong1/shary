@@ -35,5 +35,8 @@ export class MovieListPage implements OnInit {
   openWritePage() {
     this.router.navigate(['/movie/write', this.reviewbookId]);
   }
+  godetailreview(id){
+    this.router.navigate(['movie/detail',id]);
+  }
 
 }

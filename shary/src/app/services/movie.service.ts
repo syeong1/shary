@@ -90,13 +90,22 @@ export class MovieService {
   };
   //리뷰 detail 불러오기
   getDetailReview(id) {
-    return this.http.get(`${this.serverurl}/api/review/${id}`);
+    return this.http.get(`${this.serverurl}/api/review/movie/detail/${id}`);
   };
 
   //리뷰 삭제
   deleteReview(id) {
     return this.http.delete(`${this.serverurl}/api/review/${id}`);
   };
+
+   //Genre id => 장르
+   getGenre(id){
+    for(let i of this.genres){
+      if(i.id==id){
+        return i.name
+      }
+    }return '';
+  }
 
   // Toast 창
 async presentToast(msg) {

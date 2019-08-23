@@ -23,7 +23,7 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col size='6' *ngFor="let review of reviews">
+      <ion-col size='6' *ngFor="let review of reviews"(click)="godetailreview(review._id)">
         <ion-card >
           <img src="https://image.tmdb.org/t/p/w500{{review.posterPath}}" />
           <ion-card-header>
