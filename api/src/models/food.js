@@ -3,6 +3,10 @@ var Schema = mongoose.Schema;
 var Image = require('../models/image');
 
 var FoodReviewSchema = new Schema({
+    country: {
+        type: String,
+        required: true
+    },
     writer: {
         type: Schema.Types.ObjectId,
         ref: 'User'
