@@ -119,7 +119,8 @@ routes.get('/search/tv/:title', tvController.getTvData);
 
  //Themoviedb Api search movie
  routes.get('/search/movie/:title', movieController.getMovieData);
-
+ //Themoviedb Api searh Credits
+ routes.get('/movie/:id', movieController.getCredits);
  
 // 영화 리뷰리스트 가져오기
 routes.get('/review/movie/:id', passport.authenticate('jwt', {

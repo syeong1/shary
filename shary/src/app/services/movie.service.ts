@@ -20,18 +20,37 @@ export class MovieService {
 
   constructor(private http: HttpClient, private alertController: AlertController,private toastController: ToastController) { }
   //The movie api 검색
-  searchData(title: string, type: string): Observable<any> {
-    return this.http.get(`${this.baseurl}/${type}?language=ko-kr&api_key=${this.apiKey}&query=${encodeURI(title)}`)
-      .pipe(
-        map(results => {
-          console.log("영화검색결과", results['results']);
-          return results['results']
-        })
-      );
-  };
-  //director 검색(변수랑 수정해야됨.)
-  searchDirector(id:any): Observable<any>{
-    return this.http.get(`${this.detailurl}/movie/${id}/credits?api_key=${this.apiKey}`)
+  // searchData(title: string, type: string): Observable<any> {
+  //   return this.http.get(`${this.baseurl}/${type}?language=ko-kr&api_key=${this.apiKey}&query=${encodeURI(title)}`)
+  //     .pipe(
+  //       map(results => {
+  //         console.log("영화검색결과", results['results']);
+  //         return results['results']
+  //       })
+  //     );
+  // };
+  //director 검색
+  // searchDirector(id:any): Observable<any>{
+  //   return this.http.get(`${this.detailurl}/movie/${id}/credits?api_key=${this.apiKey}`)
+  //   .pipe(
+  //     map(results=>{
+  //       let a = results['crew'];
+
+  //       results['director']= a.filter(res1=>{
+  //         return (res1.job=='Director')
+  //       }).filter(res2=>{
+  //         console.log('res2',res2.department);
+  //         return (res2.department=='Directing')
+  //       })
+  //       return results['director'];
+  //     })
+      
+      
+  //   )
+  // }
+  //director 검색
+  searchDirector(id:any):Observable<any>{
+    return this.http.get(`${this.url}/api/movie/${id}`)
     .pipe(
       map(results=>{
         let a = results['crew'];
@@ -48,6 +67,8 @@ export class MovieService {
       
     )
   }
+
+  //The movie api 검색
   getMovieData(title: string): Observable<any> {
 
     return this.http.get(`${this.url}/api/search/movie/${encodeURI(title)}`).pipe(

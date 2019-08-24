@@ -3,7 +3,7 @@ var Reviewbook = require('../models/reviewbook');
 var config = require('../config/config')
 var request = require("request");
 
-
+//movie api 검색 내용 불러오기
 exports.getMovieData = (req, res) => {
 
     var options = {
@@ -20,6 +20,26 @@ exports.getMovieData = (req, res) => {
 
     request(options, function (error, response, body) {
         if (error) throw new Error(error);
+        return res.status(200).send(body);
+    });
+
+}
+//movie api 출현진 불러오기 
+exports.getCredits = (req, res) => {
+    console.log('영화id',req.params.id)
+    var options = {
+        method: 'GET',
+        url: 'https://api.themoviedb.org/3/movie/' + req.params.id+'/credits',
+        qs:
+        {
+            api_key: 'e02050f991ddedb779571b20eb62034b',
+            language: 'ko-kr'
+        }
+    };
+
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+        console.log(body);
         return res.status(200).send(body);
     });
 
