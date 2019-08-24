@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class ReviewbookService {
 
   constructor(private http: HttpClient, private alertController: AlertController, public toastController: ToastController) { }
 
-  url = 'http://localhost:5000';
+  url = environment.url;
   // url = 'http://172.30.1.34:5000';
 
 
