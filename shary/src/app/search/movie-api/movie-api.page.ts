@@ -21,7 +21,7 @@ export class MovieApiPage implements OnInit {
   ngOnInit() {
   }
   searchChanged(){
-    this.results =this.movieService.searchData(this.searchTerm,this.type)
+    this.results =this.movieService.getMovieData(this.searchTerm)
   };
   backtoWritepage(movie){
     this.selectmovie= movie;

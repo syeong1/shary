@@ -48,6 +48,22 @@ export class MovieService {
       
     )
   }
+  getMovieData(title: string): Observable<any> {
+
+    return this.http.get(`${this.url}/api/search/movie/${encodeURI(title)}`).pipe(
+      map(results => {
+        console.log(results);
+        return results['results'];
+      }),
+      catchError(e => {
+        let status = e.status;
+        if (status === 401) {
+          console.log("401 err")
+        }
+        throw new Error(e);
+      })
+    );
+  }
 
   // 영화 리뷰 리스트 가져오기
   getBookReviewList(reviewbook_id: string) {

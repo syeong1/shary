@@ -8,6 +8,9 @@ module.exports = {
 
     //네이버 지도 api
     NAVER_CLIENT_ID     : 'yce4qlo07o',
-    NAVER_CLIENT_SECRET : 'NhCdEtu13Zfr2MB9UreEnhRhPEWjEvFKMk4s5ull'
+    NAVER_CLIENT_SECRET : 'NhCdEtu13Zfr2MB9UreEnhRhPEWjEvFKMk4s5ull',
+
+    //Themoviedb api
+    apikey: 'e02050f991ddedb779571b20eb62034b'
 
 };

@@ -1,31 +1,57 @@
 var Movie = require('../models/movie');
 var Reviewbook = require('../models/reviewbook');
+var config = require('../config/config')
+var request = require("request");
+
+
+exports.getMovieData = (req, res) => {
+
+    var options = {
+        method: 'GET',
+        url: 'https://api.themoviedb.org/3/search/movie',
+        qs:
+        {
+            language: 'ko-kr',
+            api_key: config.apikey,
+            query: req.params.title
+        }
+    };
+    console.log(options)
+
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+        return res.status(200).send(body);
+    });
+
+}
+
+
 
 
 //영화 리뷰리스트 가져오기
 exports.getBookReviewList = (req, res) => {
-    
+
     console.log(req);
-        console.log('요청한 리뷰리스트 id', req.params._id);
-        // let reviewbook_id = req.params.id;
-        // 책 리뷰북 가져오기
-        let reviewbook_id = req.params.id;
-            Movie.find({reviewList: reviewbook_id},(err, reviews)=> {
-            console.log(reviews);
-            if (err) {
-                return res.status(500).json({
-                    error: err
-                });
-            }
-            if (!reviews) {
-                return res.status(404).json({
-                    error: 'reviewMovie not found'
-                });
-            }
-            if (reviews) {
-                return res.status(200).json(reviews);
-            }
-        });
+    console.log('요청한 리뷰리스트 id', req.params._id);
+    // let reviewbook_id = req.params.id;
+    // 책 리뷰북 가져오기
+    let reviewbook_id = req.params.id;
+    Movie.find({ reviewList: reviewbook_id }, (err, reviews) => {
+        console.log(reviews);
+        if (err) {
+            return res.status(500).json({
+                error: err
+            });
+        }
+        if (!reviews) {
+            return res.status(404).json({
+                error: 'reviewMovie not found'
+            });
+        }
+        if (reviews) {
+            return res.status(200).json(reviews);
+        }
+    });
 }
 
 // 영화 리뷰 작성
@@ -46,21 +72,21 @@ exports.writeReview = (req, res) => {
         });
     });
 }
-exports.getdetailReview= (req,res)=>{
+exports.getdetailReview = (req, res) => {
     let review_id = req.params.id;
-        Movie.findById(review_id, (err, review) => {
-            if (err) {
-                return res.status(500).json({
-                    error: err
-                });
-            }
-            if (!review) {
-                return res.status(404).json({
-                    error: 'reviewMovie not found'
-                });
-            }
-            if (review) {
-                return res.status(200).json(review);
-            }
-        })
+    Movie.findById(review_id, (err, review) => {
+        if (err) {
+            return res.status(500).json({
+                error: err
+            });
+        }
+        if (!review) {
+            return res.status(404).json({
+                error: 'reviewMovie not found'
+            });
+        }
+        if (review) {
+            return res.status(200).json(review);
+        }
+    })
 }
