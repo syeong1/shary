@@ -57,7 +57,7 @@ routes.get('/reviewbook/:category', passport.authenticate('jwt', {
 
 
 // 리뷰북 리스트 생성
-routes.post('/reviewbook/write', passport.authenticate('jwt', {
+routes.post('/reviewbook', passport.authenticate('jwt', {
      session: false
      }), reviewbookController.writeReviewBook);
 
@@ -90,17 +90,12 @@ routes.get('/review/book/:id', passport.authenticate('jwt', {
 
 
 //새 맛집 리뷰 등록
-routes.post('/review/food/write', passport.authenticate('jwt', {
+routes.post('/review/food', passport.authenticate('jwt', {
     session: false
 }), food.writeFoodReview);
-//리뷰 리스트 불러오기
-routes.get('/review/food/:id', passport.authenticate('jwt', {
-    session: false
-}), food.getFoodReviewList);
 
- routes.post('/review/food/write', passport.authenticate('jwt', { session: false }), food.writeFoodReview);
 //리뷰 리스트 불러오기
-routes.get('/review/food/:id', passport.authenticate('jwt', { session: false }), food.getFoodReviewList);
+routes.get('/review/food/:id', food.getFoodReviewList);
 //리뷰 디테일 가져오기
 routes.get('/review/food/detail/:id', food.getFoodReviewDetail);
 

@@ -22,6 +22,7 @@ var food = {
     },
 
     getFoodReviewList: (req, res) => {
+        console.log('reviewlist에 받아온 reviewbook id : ' + req.params.id);
         if(!req.params.id){
             return res.status(400).json({'msg': '리스트 아이디가 없습니다.'});
         }
@@ -43,7 +44,7 @@ var food = {
             return res.status(400).json({'msg': '리스트 아이디가 없습니다.'});
         }
         let review_id = req.params.id;
-        Food.findone({ _id: review_id}, (err, result) => {
+        Food.findOne({ _id: review_id}, (err, result) => {
             if(!result){
                 return res.status(404).json({'msg': '등록 리뷰를 찾을 수 없습니다.'})
             }
