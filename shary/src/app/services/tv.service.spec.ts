@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TvServiceService } from './tv-service.service';
+import { TvService } from './tv.service';
 
-describe('TvServiceService', () => {
+describe('TvService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: TvServiceService = TestBed.get(TvServiceService);
+    const service: TvService = TestBed.get(TvService);
     expect(service).toBeTruthy();
   });
 });
