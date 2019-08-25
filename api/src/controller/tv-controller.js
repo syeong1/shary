@@ -43,7 +43,7 @@ exports.writeReview = (req, res) => {
     });
 }
 
-// 책 리뷰리스트 가져오기
+// 티비 리뷰리스트 가져오기
 exports.getBookReviewList = (req, res) => {
     
     console.log(req);
@@ -67,4 +67,22 @@ exports.getBookReviewList = (req, res) => {
                 return res.status(200).json(reviews);
             }
         });
+}
+exports.getdetailReview = (req, res) => {
+    let review_id = req.params.id;
+    Tv.findById(review_id, (err, review) => {
+        if (err) {
+            return res.status(500).json({
+                error: err
+            });
+        }
+        if (!review) {
+            return res.status(404).json({
+                error: 'reviewMovie not found'
+            });
+        }
+        if (review) {
+            return res.status(200).json(review);
+        }
+    })
 }
