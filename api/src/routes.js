@@ -112,6 +112,16 @@ routes.get('/review/food/detail/:id', food.getFoodReviewDetail);
  */
 //Themoviedb Api search tv
 routes.get('/search/tv/:title', tvController.getTvData);
+// 티비 리뷰리스트 가져오기
+routes.get('/review/tv/:id', passport.authenticate('jwt', {
+    session: false
+}), tvController.getBookReviewList);
+// 새 리뷰 등록
+routes.post('/review/tv', passport.authenticate('jwt', {
+    session: false
+}), tvController.writeReview);
+//리뷰 디테일 가져오기
+routes.get('/review/tv/detail/:id',tvController.getdetailReview);
 
 /**
  * 영화 movie
