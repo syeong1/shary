@@ -5,13 +5,20 @@
     </ion-buttons>
     <ion-title>{{data?.title}}</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="editReview()">편집</ion-button>
+      <ion-button (click)="deleteReview()">
+        <ion-icon name="md-trash"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon name="md-share"></ion-icon>
+      </ion-button>
+      <ion-button (click)="editReview()">
+        <ion-icon name="md-create"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-button expand=full (click)="deleteReview()">리뷰 삭제</ion-button>
   <ion-grid *ngIf="data">
     <!-- <ion-input hidden value="{{rating}}" formControlName="review_score"></ion-input> -->
     <ion-row>
