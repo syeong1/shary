@@ -17,8 +17,19 @@ export class FoodDetailPage implements OnInit {
 
   ngOnInit() {
     this.reviewId = this.activatedRoute.snapshot.params['id'];
+    this.getReviewDetail(this.reviewId);
   }
 
-  
+
+  /**
+   * 리뷰 정보 가져오기
+   * @param reviewId 
+   */
+  getReviewDetail(reviewId) {
+    this.foodService.getReviewDetail(reviewId).subscribe(data => {
+      console.log(data);
+      this.details = data;
+    })
+  }
 
 }

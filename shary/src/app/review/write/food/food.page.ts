@@ -44,7 +44,7 @@ export class FoodPage implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.reviewId = params['id'];
       console.log('food write page로 넘어온 리뷰북 아이디 : ' + this.reviewId);
-      this.reviewForm.controls['reviewList'].setValue(this.reviewId, {onlyself: true});
+      this.reviewForm.controls['reviewbook'].setValue(this.reviewId, {onlyself: true});
     });
     this.reviewForm = new FormGroup({
       name: new FormControl('',[Validators.required]),
@@ -55,7 +55,7 @@ export class FoodPage implements OnInit {
       food_picture: new FormControl(''),
       evaluation: new FormControl(''),
       tags: new FormControl(''),
-      reviewList: new FormControl(''),
+      reviewbook: new FormControl(''),
       country: new FormControl('')
     })
 

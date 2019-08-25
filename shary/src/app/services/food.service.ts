@@ -21,7 +21,7 @@ export class FoodService {
    * @return response with message about success or fail
    */
   writeReview(data) {
-    return this.http.post(`${this.url}/api/review/food/write`, data)
+    return this.http.post(`${this.url}/api/review/food`, data)
       .pipe(
         tap(res => {
           this.showAlert('정상적으로 저장되었습니다.', '성공');
@@ -39,7 +39,7 @@ export class FoodService {
    * 
    */
   getFoodReviewList(reviewbook_id) {
-    return this.http.get(`${this.url}/review/food/${reviewbook_id}`).pipe(
+    return this.http.get(`${this.url}/api/review/food/${reviewbook_id}`).pipe(
     catchError(e => {
       let status = e.status;
       if(status === 404) {
@@ -56,7 +56,7 @@ export class FoodService {
    */
   
   getReviewDetail(review_id) {
-    return this.http.get(`${this.url}/review/food/detail/${review_id}`).pipe(
+    return this.http.get(`${this.url}/api/review/food/detail/${review_id}`).pipe(
       catchError(e => {
         let status = e.status;
         if(status === 404) {

@@ -29,6 +29,8 @@ export class ReviewbookService {
         let status = e.status;
         if (status === 400) {
           this.showAlert('리뷰북이 없습니다. 생성하시겠습니까?', '오류');
+        }if(status === 401){
+          console.log(e);
         }
         throw new Error(e);
       })
@@ -38,7 +40,7 @@ export class ReviewbookService {
 
   //새 리뷰북 작성
   createReviewBook(data) {
-    return this.http.post(`${this.url}/api/reviewbook/write`, data)
+    return this.http.post(`${this.url}/api/reviewbook`, data)
       .pipe(
         tap(res => {
           this.presentToast();
