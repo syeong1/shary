@@ -27,7 +27,7 @@ export class CreatePage implements OnInit {
   }
 
   onSubmit() {
-    this.reviewbookService.createReviewBook(this.reviewbookForm.value).subscribe(res => {
+    this.reviewbookService.createReviewbook(this.reviewbookForm.value).subscribe(res => {
       console.log(this.reviewbookForm);
       console.log(res);
       this.back();
