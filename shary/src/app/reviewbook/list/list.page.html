@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{titleText}} 리뷰북 리스트</ion-title>
+    <ion-title>{{category_kr}} 리뷰북 리스트</ion-title>
     <ion-buttons slot="end">
       <ion-button>편집</ion-button>
     </ion-buttons>
@@ -18,10 +18,7 @@
     </ion-fab-button>
   </ion-fab>
 
-  <ion-card (click)="goToReviewPage(reviewbook)" *ngFor="let reviewbook of reviewbooks">
-  <!-- <ion-card [routerLink]="['/',reviewbook.category ,'list',reviewbook._id]" routerDirection="forward"
-    *ngFor="let reviewbook of reviewbooks"> -->
-
+  <ion-card (click)="goToReviewbookPage(reviewbook)" *ngFor="let reviewbook of reviewbooks">
     <div class="card-top-wrap">
       <ion-item>
         <ion-avatar>
