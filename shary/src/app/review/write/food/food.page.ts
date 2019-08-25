@@ -1,12 +1,14 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { GeolocationOptions, Geoposition, Geolocation } from '@ionic-native/geolocation/ngx';
 import { FoodApiPage } from '../../../search/food-api/food-api.page';
 import { FoodService } from 'src/app/services/food.service';
+// import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 
 declare const naver;
+declare const google;
 
 
 @Component({
@@ -14,22 +16,28 @@ declare const naver;
   templateUrl: './food.page.html',
   styleUrls: ['./food.page.scss'],
 })
-export class FoodPage implements OnInit, AfterViewInit {
+export class FoodPage implements OnInit {
+
+  @ViewChild('map') mapElement: ElementRef;
+  map: any;
+  address:string;
+
 
   reviewForm: FormGroup;
   options : GeolocationOptions;
   place : Geoposition;
   food = null;
-  searchPlace: Geoposition;
-  reviewId: string
+  searchPlace
+  reviewId: string;
+  country: string;
   
-  map
+  nMap
   marker
 
 
   constructor(private modalController: ModalController,private router: Router, private geolocation: Geolocation,
     private foodService: FoodService, private activatedRoute: ActivatedRoute) {
-      
+
      }
 
   ngOnInit() {
@@ -47,15 +55,65 @@ export class FoodPage implements OnInit, AfterViewInit {
       food_picture: new FormControl(''),
       evaluation: new FormControl(''),
       tags: new FormControl(''),
-      reviewList: new FormControl('')
+      reviewList: new FormControl(''),
+      country: new FormControl('')
     })
+
+    this.loadMap();
     
   }
 
-  ngAfterViewInit() {
-    this.map = new naver.maps.Map('Map')
-    this.getCurrentPlace();
+  loadMap() {
+    this.geolocation.getCurrentPosition().then((resp) => {
+      if(this.country === 'oversea'){
+        let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+        let mapOptions = {
+          center: latLng,
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+        this.marker = new google.maps.Marker({
+          map: this.map,
+          position: latLng
+        })
+        this.map.setCenter(latLng);
+      }else{
+        let latLng = new naver.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+        let mapOptions = {
+          center: latLng,
+          zoom: 10
+        }
+        this.map = new naver.maps.Map(this.mapElement.nativeElement, mapOptions);
+        this.marker = new naver.maps.Marker({
+                map: this.map,
+                position: latLng
+              })
+              this.map.setCenter(latLng);
+      }
+
+      // let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+      // let current = new naver.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+      // let mapOptions = {
+      //   center: latLng,
+      //   zoom: 15,
+      //   mapTypeId: google.maps.MapTypeId.ROADMAP
+      // }
+
+      // this.getAddressFromCoords(resp.coords.latitude, resp.coords.longitude);
+
+      // this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
   }
+
+
+  // ngAfterViewInit() {
+  //   this.nMap = new naver.maps.Map('naverMap');
+  //   this.mapInit();
+  // }
 
   onSubmit() {
     this.foodService.writeReview(this.reviewForm.value).subscribe((res) => {
@@ -71,41 +129,73 @@ export class FoodPage implements OnInit, AfterViewInit {
     });
     modal.onDidDismiss()
     .then((data) => {
-      
-      console.log(data['data']);
-      console.log(typeof data['data']);
-
       this.food = data['data'];
-
-      console.log(this.food.x);
-      console.log(this.food.y);
+      if(this.country === 'oversea'){
+        this.searchPlace = new google.maps.LatLng(this.food.y, this.food.x);
+      }else {
+        this.searchPlace = new naver.maps.LatLng(this.food.y, this.food.x);
+      }
       
-      var searchP = new naver.maps.LatLng(this.food.y, this.food.x);
-      this.marker.setPosition(searchP);
-      this.map.setCenter(searchP);
+      this.marker.setPosition(this.searchPlace);
+      this.map.setCenter(this.searchPlace);
       
     })
     return await modal.present(); 
   };
 
-  // ngAfterViewInit(){
-  //   // this.makeMap(this.place);
+  // naverMap(place: Geoposition) {
+  //   let current = new naver.maps.LatLng(place.coords.latitude, place.coords.longitude);
+  //   this.nMarker = new naver.maps.Marker({
+  //     map: this.nMap,
+  //     position: current
+  //   });
+  //   this.nMap.setCenter(current);
   // }
 
+  // googleMap(place: Geoposition){
+  //   let current = {
+  //     lat: place.coords.latitude, lng: place.coords.longitude
+  //   }
+  //   this.gMap = new google.maps.Map(document.getElementById('googleMap'), {
+  //     center: current,
+  //     zoom: 15
+  //   });
+  //   this.gMarker = new google.maps.Marker({position: current, map: this.gMap});
+  // }
 
-  getCurrentPlace(){
-    this.options = {
-      enableHighAccuracy : true
-    };
-    this.geolocation.getCurrentPosition(this.options).then((resp) => {
-      this.place = resp;
-      var current = new naver.maps.LatLng(resp.coords.latitude, resp.coords.longitude)
-      this.marker = new naver.maps.Marker({
-        map: this.map,
-        position: current
-      })
-      this.map.setCenter(current);
-      console.log(this.marker);
-    })
+  // getCurrentPlace() {
+  //   let options = {
+  //     enableHighAccuracy : true
+  //   }
+  //   return this.geolocation.getCurrentPosition(options);
+  // }
+
+  // mapInit(){
+  //   this.getCurrentPlace().then((resp) => {
+  //     this.naverMap(resp);
+  //     // this.googleMap(resp);
+  //   }).catch((err) => {
+  //     console.log(err);
+  //   })
+  //   // this.options = {
+  //   //   enableHighAccuracy : true
+  //   // };
+  //   // this.geolocation.getCurrentPosition(this.options).then((resp) => {
+  //   //   this.place = resp;
+  //   //   var current = new naver.maps.LatLng(resp.coords.latitude, resp.coords.longitude)
+  //   //   this.marker = new naver.maps.Marker({
+  //   //     map: this.Nmap,
+  //   //     position: current
+  //   //   })
+  //   //   this.Nmap.setCenter(current);
+  //   //   console.log(this.marker);
+  //   // })
+  // }
+
+  segmentChanged(ev: any){
+    console.log('Segment button clicked', ev);
+    this.country = ev.detail.value;
+    this.reviewForm.controls['country'].setValue(ev.detail.value, {onlyself: true});
+    this.loadMap();
   }
 }

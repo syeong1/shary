@@ -13,7 +13,7 @@ export class FoodService {
 
   constructor(private http: HttpClient, private alertController: AlertController) { }
 
-  url = 'http://localhost:5000/api'
+  url = environment.url;
 
   /**
    * write a review about food
@@ -21,7 +21,7 @@ export class FoodService {
    * @return response with message about success or fail
    */
   writeReview(data) {
-    return this.http.post(`http://localhost:5000/api/review/food/write`, data)
+    return this.http.post(`${this.url}/api/review/food/write`, data)
       .pipe(
         tap(res => {
           this.showAlert('정상적으로 저장되었습니다.', '성공');
