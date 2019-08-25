@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
         <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>새로운 리뷰</ion-title>
+    <ion-title>{{titleText}}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="onSubmit()" [disabled]="!reviewForm.valid">
         저장
@@ -60,7 +60,7 @@
             <ion-label position="fixed">줄거리</ion-label>
           </ion-item>
           <ion-item class="textarea">
-            <ion-textarea rows="6" cols="20" class="book?-description" placeholder="줄거리..." value="{{book?.description}}"
+            <ion-textarea rows="6" cols="20" class="book-description" placeholder="줄거리..." value="{{book?.description}}"
               formControlName="description"></ion-textarea>
           </ion-item>
           <ion-item>
@@ -76,21 +76,21 @@
           </ion-item>
           <ion-item>
             <ion-label position="fixed">금액</ion-label>
-            <ion-input type="text" value="{{book?.price | number:'2.'}}" formControlName="price" text-right></ion-input>
+            <ion-input type="text" value="{{book?.price}}" formControlName="price" text-right></ion-input>
             <span>원</span>
           </ion-item>
           <ion-item class="textarea">
             <ion-label position="fixed">인상 깊은 구절</ion-label>
           </ion-item>
           <ion-item class="textarea">
-            <ion-textarea rows="2" cols="20" placeholder="..." formControlName="impressivePassage">
+            <ion-textarea rows="2" cols="20" placeholder="..."  value="{{book?.impressivePassage}}"  formControlName="impressivePassage">
             </ion-textarea>
           </ion-item>
           <ion-item class="textarea">
             <ion-label position="fixed">감상평</ion-label>
           </ion-item>
           <ion-item class="textarea">
-            <ion-textarea rows="4" cols="20" placeholder="..." formControlName="review">
+            <ion-textarea rows="4" cols="20" placeholder="..." value="{{book?.review}}" formControlName="review">
             </ion-textarea>
           </ion-item>
           <ion-item>
