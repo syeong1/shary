@@ -47,7 +47,7 @@ export class ReviewbookService {
     return this.http.post(`${this.url}/api/reviewbook`, data)
       .pipe(
         tap(res => {
-          this.presentToast();
+          this.presentToast('새로운 리뷰북이 추가되었습니다.');
         })
         // catchError(e => {
         //   this.showAlert(e.error.msg, '오류');
@@ -57,6 +57,19 @@ export class ReviewbookService {
   };
 
 
+  // 리뷰북 삭제
+  deleteReviewBook(id) {
+    return this.http.delete(`${this.url}/api/reviewbook/${id}`)
+      .pipe(
+        tap(res => {
+          this.presentToast('리뷰북이 삭제되었습니다.');
+        }),
+        catchError(e => {
+          this.showAlert(e.error.msg, '오류');
+          throw new Error(e);
+        })
+      )
+  }
   //Alert창 생성 메소드
   showAlert(msg, title) {
     let alert = this.alertController.create({
@@ -67,9 +80,9 @@ export class ReviewbookService {
     alert.then(alert => alert.present());
   }
 
-  async presentToast() {
+  async presentToast(msg) {
     const toast = await this.toastController.create({
-      message: '새로운 리뷰북이 추가되었습니다.',
+      message: msg,
       duration: 2000
     });
     toast.present();

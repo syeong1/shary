@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { ReviewbookService } from 'src/app/services/reviewbook.service';
 import { CreatePage } from './../create/create.page';
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 
 
 
@@ -17,7 +17,7 @@ export class ListPage implements OnInit {
   category_kr: string;
   reviewbooks;
 
-  constructor(private route: ActivatedRoute, private router: Router, private reviewbookService: ReviewbookService, private modalController: ModalController) {
+  constructor(private route: ActivatedRoute, private router: Router, private reviewbookService: ReviewbookService, private modalController: ModalController, public alertController: AlertController) {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.category = this.router.getCurrentNavigation().extras.state.category;
@@ -32,6 +32,7 @@ export class ListPage implements OnInit {
   }
 
 
+  // 리뷰북 전체 리스트 가져오기
   getReviewbooks() {
     this.reviewbookService.getReviewBookList(this.category).subscribe(data => {
       console.log('*** reviewbookService.getReviewBookList 요청할 때 category : ', this.category);
@@ -39,6 +40,7 @@ export class ListPage implements OnInit {
       this.reviewbooks = data;
     })
   }
+
 
   goToReviewbookPage(reviewbook) {
     let navigationExtras: NavigationExtras = {
@@ -50,6 +52,36 @@ export class ListPage implements OnInit {
   }
 
 
+
+  // 리뷰북 삭제
+  async deleteReviewbook(id) {
+    const alert = await this.alertController.create({
+      header: '리뷰북 삭제',
+      message: '삭제하시겠습니까?',
+      buttons: [
+        {
+          text: '취소',
+          role: 'cancel',
+          handler: () => {
+            console.log('삭제 취소');
+          }
+        }, {
+          text: '확인',
+          handler: () => {
+            console.log('삭제 확인');
+            this.reviewbookService.deleteReviewBook(id).subscribe(data => {
+              console.log('*** reviewbookService.deleteReviewBook 요청할 때 id : ', id);
+              console.log('삭제된 리뷰북', data);
+              this.getReviewbooks();
+            })
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  // 리뷰북 생성 모달 
   async openCreatePageModal() {
     const modal = await this.modalController.create({
       component: CreatePage,

@@ -1,23 +1,23 @@
-<ion-header>
-  <ion-toolbar translucent>
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
     <ion-buttons slot="start">
-        <ion-back-button></ion-back-button>
+      <ion-back-button text="" mode="md"></ion-back-button>
     </ion-buttons>
     <ion-title>{{titleText}}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="onSubmit()" [disabled]="!reviewForm.valid">
-        저장
+        <ion-icon name="md-checkmark"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  <div>
+  <ion-toolbar>
     <ion-item lines="none">
       <ion-icon name="search" slot="end" (click)="openSearchBookModal()"></ion-icon>
     </ion-item>
-  </div>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen>
+<ion-content>
 
   <form [formGroup]="reviewForm">
     <ion-grid>
@@ -83,7 +83,8 @@
             <ion-label position="fixed">인상 깊은 구절</ion-label>
           </ion-item>
           <ion-item class="textarea">
-            <ion-textarea rows="2" cols="20" placeholder="..."  value="{{book?.impressivePassage}}"  formControlName="impressivePassage">
+            <ion-textarea rows="2" cols="20" placeholder="..." value="{{book?.impressivePassage}}"
+              formControlName="impressivePassage">
             </ion-textarea>
           </ion-item>
           <ion-item class="textarea">
