@@ -13,7 +13,6 @@ export class MovieApiPage implements OnInit {
   title: String;
   results: Observable<any>;
   searchTerm: string='';
-  type= 'movie';
   selectmovie = null;
 
   constructor(private movieService: MovieService, private modalController: ModalController) { }
