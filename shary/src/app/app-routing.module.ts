@@ -28,6 +28,7 @@ const routes: Routes = [
   { path: 'food/write/:id', loadChildren: './review/write/food/food.module#FoodPageModule' },
   { path: 'music/write/:id', loadChildren: './review/write/music/music.module#MusicPageModule' },  
   { path: 'movie/write/:id', loadChildren: './review/write/movie/movie.module#MoviePageModule' },
+  { path: 'tv/write/:id', loadChildren: './review/write/tv/tv.module#TvPageModule' },
 
   // 리뷰 리스트 페이지
   { path: 'book/list/:id', loadChildren: './review/list/book-list/book-list.module#BookListPageModule' },  
@@ -49,6 +50,8 @@ const routes: Routes = [
   { path: 'detail', loadChildren: './review/detail/detail.module#DetailPageModule' },
   { path: 'edit', loadChildren: './review/edit/edit.module#EditPageModule' },
   { path: 'share-photo', loadChildren: './review/share-photo/share-photo.module#SharePhotoPageModule' },
+  
+
 
 ];
 @NgModule({
