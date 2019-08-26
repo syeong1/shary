@@ -1,5 +1,14 @@
 var express = require('express'),
     routes = express.Router();
+<<<<<<< HEAD
+=======
+var userController = require('./controller/user-controller');
+var reviewbookController = require('./controller/reviewbook-controller');
+var bookController = require('./controller/book-controller');
+var movieController = require('./controller/movie-controller');
+var tvController = require('./controller/tv-controller');
+var food = require('./controller/food-controller')
+>>>>>>> bcd399bbefb982a9c146e01e2b5d7176ce177659
 var passport = require('passport');
 
 
@@ -128,6 +137,42 @@ routes.get('/review/food/:id', passport.authenticate('jwt', {
 //리뷰 디테일 가져오기
 routes.get('/review/food/detail/:id', food.getFoodReviewDetail);
 
+
+/**
+ * 티비 tv
+ */
+//Themoviedb Api search tv
+routes.get('/search/tv/:title', tvController.getTvData);
+// 티비 리뷰리스트 가져오기
+routes.get('/review/tv/:id', passport.authenticate('jwt', {
+    session: false
+}), tvController.getBookReviewList);
+// 새 리뷰 등록
+routes.post('/review/tv', passport.authenticate('jwt', {
+    session: false
+}), tvController.writeReview);
+//리뷰 디테일 가져오기
+routes.get('/review/tv/detail/:id',tvController.getdetailReview);
+
+/**
+ * 영화 movie
+ */
+
+ //Themoviedb Api search movie
+ routes.get('/search/movie/:title', movieController.getMovieData);
+ //Themoviedb Api searh Credits
+ routes.get('/movie/:id', movieController.getCredits);
+ 
+// 영화 리뷰리스트 가져오기
+routes.get('/review/movie/:id', passport.authenticate('jwt', {
+    session: false
+}), movieController.getBookReviewList);
+// 새 리뷰 등록
+routes.post('/review/movie/write', passport.authenticate('jwt', {
+    session: false
+}), movieController.writeReview);
+//리뷰 디테일 가져오기
+routes.get('/review/movie/detail/:id',movieController.getdetailReview);
 
 
 
