@@ -1,11 +1,8 @@
 var express = require('express'),
     routes = express.Router();
-var userController = require('./controller/user-controller');
-var reviewbookController = require('./controller/reviewbook-controller');
-var bookController = require('./controller/book-controller');
-var food = require('./controller/food-controller')
 var passport = require('passport');
-var map = require('./controller/map-controller');
+
+
 
 routes.get('/', (req, res) => {
     return res.send('Hello, this is the API!');

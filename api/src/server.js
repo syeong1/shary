@@ -6,6 +6,15 @@ var config      = require('./config/config');
 var port        = process.env.PORT || 5000; 
 var cors        = require('cors');
  
+var userRouter = require('./routes/user');
+var reviewRouter = require('./routes/review');
+var reviewbookRouter = require('./routes/reviewbook');
+var bookRouter = require('./routes/book');
+var foodRouter = require('./routes/food');
+var movieRouter = require('./routes/movie');
+var musicRouter = require('./routes/music');
+
+
 var app = express();
 app.use(cors());
  
@@ -23,8 +32,15 @@ app.get('/', function(req, res) {
   return res.send('Hello! The API is at http://localhost:' + port + '/api');
 });
  
-var routes = require('./routes');
-app.use('/api', routes);
+app.use('/api', userRouter);
+app.use('/api/review', reviewRouter);
+app.use('/api/reviewbook', reviewbookRouter);
+app.use('/api/book', bookRouter);
+app.use('/api/food', foodRouter);
+app.use('/api/movie', movieRouter);
+app.use('/api/music', musicRouter);
+
+
  
 mongoose.connect(config.db, { useNewUrlParser: true , useCreateIndex: true});
  
