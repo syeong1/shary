@@ -11,7 +11,7 @@ var FoodReviewSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    reviewList: {
+    reviewbook: {
         type: Schema.Types.ObjectId,
         ref: 'Reviewbook',
         required: true

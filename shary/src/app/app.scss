@@ -16,17 +16,14 @@
 
 }
 
-ion-header, ion-content, ion-grid, ion-col, ion-row{
-  //  background-color: #fff;
-}
 ion-toolbar {
     --ion-color-primary: #333;
+
 }
 
-ion-title {
-    text-align: center;
+.header-ios ion-toolbar:last-child {
+    --border-width: 0 0 0;
 }
-
 
 ion-fab-button {
     --background-activated: #b8986f;
@@ -36,7 +33,7 @@ ion-fab-button {
 }
 
 
-ion-button.btn{
+ion-button.btn {
     font-size: 15px;
     height: 55px;
     text-align: center;

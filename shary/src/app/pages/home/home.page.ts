@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -17,18 +18,25 @@ export class HomePage implements OnInit {
     { "category": 'like', "text": "즐겨찾기" }
   ];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
-  
+
   openReviewbookList(item) {
-    console.log(item);
-    let navigationExtras: NavigationExtras = {
-      state: {
-        category: item.category,
-        text: item.text
+
+    console.log('클릭한 아이콘 : ', item);
+    this.authService.authenticationState.subscribe(state => {
+      if (state) {
+        let navigationExtras: NavigationExtras = {
+          state: {
+            category: item.category,
+            text: item.text
+          }
+        };
+        this.router.navigate(['/reviewbook/list', item.category], navigationExtras);
+      } else {
+        this.router.navigate(['/login']);
       }
-    };
-    this.router.navigate(['/reviewbook/list', item.category], navigationExtras);
+    });
   }
 
   ngOnInit() {

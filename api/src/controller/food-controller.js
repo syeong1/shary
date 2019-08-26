@@ -9,7 +9,7 @@ var food = {
         let writer = req.user._id;
         let tag = (req.body.tags).split(',');
         let newFoodReview = Food(req.body);
-        console.log(req.body.reviewList);
+        console.log(req.body.reviewbook);
         newFoodReview.tag = tag;
         newFoodReview.writer = writer;
     
@@ -19,6 +19,7 @@ var food = {
             }
             return res.status(201).json(review);
         })
+
     },
 
     getFoodReviewList: (req, res) => {

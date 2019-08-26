@@ -1,20 +1,20 @@
-<ion-header translucent>
-  <ion-toolbar>
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/reviewbook/list"></ion-back-button>
+      <ion-back-button text="" mode="md"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{title}}</ion-title>
+    <ion-title>{{reviewbookTitle}}</ion-title>
     <ion-buttons slot="end">
       <ion-icon class="info-stats" name="information-circle-outline" size="large"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
-  <div>
-    <ion-searchbar></ion-searchbar>
-  </div>
+  <ion-toolbar>
+    <ion-searchbar mode="ios"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 
-<ion-content fullscreen>
+<ion-content>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="openWritePage()">
       <ion-icon name="add"></ion-icon>
@@ -24,7 +24,7 @@
   <ion-grid *ngIf="reviews">
     <ion-row>
       <ion-col size="4" *ngFor="let review of reviews">
-        <ion-card>
+        <ion-card (click)="openReivewDetailPage(review)">
           <img [src]=review.image />
           <ion-card-header>
             <ion-card-subtitle>{{review.author}}</ion-card-subtitle>

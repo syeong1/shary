@@ -64,5 +64,4 @@ api/node_modules/
 dist/*
 *.log
 
-api/src/config/
-
+api/src/config/*
