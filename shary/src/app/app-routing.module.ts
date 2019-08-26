@@ -25,12 +25,15 @@ const routes: Routes = [
 
   // 새 리뷰 작성 페이지
   { path: 'book/write/:reviewbook_id', loadChildren: './review/write/book/book.module#BookPageModule' },
-  { path: 'food/write/:id', loadChildren: './review/write/food/food.module#FoodPageModule' },
-  { path: 'music/write/:id', loadChildren: './review/write/music/music.module#MusicPageModule' },
-  { path: 'movie/write/:id', loadChildren: './review/write/movie/movie.module#MoviePageModule' },
+  { path: 'food/write/:reviewbook_id', loadChildren: './review/write/food/food.module#FoodPageModule' },
+  { path: 'music/write/:reviewbook_id', loadChildren: './review/write/music/music.module#MusicPageModule' },
+  { path: 'movie/write/:reviewbook_id', loadChildren: './review/write/movie/movie.module#MoviePageModule' },
 
   // 리뷰 수정
   { path: 'book/edit/:review_id', loadChildren: './review/write/book/book.module#BookPageModule' },
+  { path: 'food/write/:review_id', loadChildren: './review/write/food/food.module#FoodPageModule' },
+  { path: 'music/write/:review_id', loadChildren: './review/write/music/music.module#MusicPageModule' },
+  { path: 'movie/write/:review_id', loadChildren: './review/write/movie/movie.module#MoviePageModule' },
 
   // 리뷰 리스트 페이지
   { path: 'book/list/:id', loadChildren: './review/list/book-list/book-list.module#BookListPageModule' },

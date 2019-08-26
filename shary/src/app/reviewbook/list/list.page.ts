@@ -34,7 +34,7 @@ export class ListPage implements OnInit {
 
   // 리뷰북 전체 리스트 가져오기
   getReviewbooks() {
-    this.reviewbookService.getReviewBookList(this.category).subscribe(data => {
+    this.reviewbookService.getReviewbookList(this.category).subscribe(data => {
       console.log('*** reviewbookService.getReviewBookList 요청할 때 category : ', this.category);
       console.log('받아온 리뷰북리스트 data', data);
       this.reviewbooks = data;

@@ -23,7 +23,8 @@ export class ReviewbookService {
    * @return {Observable} results with information about reviewbook
    */
 
-  getReviewBookList(category: string) {
+   // 리뷰북 리스트 가져오기
+  getReviewbookList(category: string) {
     return this.http.get(`${this.url}/api/reviewbook/${category}`).pipe(
       map(results => {
         console.log(results);
@@ -70,6 +71,7 @@ export class ReviewbookService {
         })
       )
   }
+  
   //Alert창 생성 메소드
   showAlert(msg, title) {
     let alert = this.alertController.create({
