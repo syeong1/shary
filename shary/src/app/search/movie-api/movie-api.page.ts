@@ -13,7 +13,6 @@ export class MovieApiPage implements OnInit {
   title: String;
   results: Observable<any>;
   searchTerm: string='';
-  type= 'movie';
   selectmovie = null;
 
   constructor(private movieService: MovieService, private modalController: ModalController) { }
@@ -21,7 +20,7 @@ export class MovieApiPage implements OnInit {
   ngOnInit() {
   }
   searchChanged(){
-    this.results =this.movieService.searchData(this.searchTerm,this.type)
+    this.results =this.movieService.getMovieData(this.searchTerm)
   };
   backtoWritepage(movie){
     this.selectmovie= movie;

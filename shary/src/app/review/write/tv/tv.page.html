@@ -1,0 +1,121 @@
+<ion-header>
+  <ion-toolbar translucent>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>새로운 리뷰</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button type="submit" (click)="onSubmit()" [disabled]="!reviewForm.valid">
+        저장
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+  <div>
+    <ion-item lines="none" class="wrap">
+      <!-- <rating [(rating)]="rating" ></rating> -->
+      <ion-icon name="search" (click)="openSearchTvModal()"></ion-icon>
+    </ion-item>
+  </div>
+
+</ion-header>
+
+<ion-content fullscreen>
+
+  <form [formGroup]="reviewForm">
+    <ion-grid>
+      <!-- <ion-input hidden value="{{rating}}" formControlName="rating"></ion-input> -->
+      <ion-row *ngIf="tv">
+        <ion-col size='4'>
+          <div class="image-wrap">
+            <img src="https://image.tmdb.org/t/p/w500{{tv.poster_path}}" *ngIf="tv.poster_path; else defaultImage">
+          </div>
+          <ng-template #defaultImage>
+            <div class="default-image">
+              <p>No</p>
+              <p>Image</p>
+            </div>
+          </ng-template>
+          <ion-input hidden value="{{tv.poster_path}}" formControlName="posterPath"></ion-input>
+        </ion-col>
+        <ion-col size='8'>
+          <ion-item>
+            <ion-input placeholder="제목" value="{{tv.name}}" formControlName="title"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input placeholder="방송사" value="{{tv.director?.braodcaster}}" formControlName="braodcaster"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input placeholder="방영일" value="{{tv.first_air_date}}" formControlName="releaseDate"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size='12'>
+          <ion-item>
+            <ion-label>장르</ion-label>
+            <ion-select interface="popover" formControlName="genre" value="{{tv.genre_ids}}">
+              <ion-select-option *ngFor='let genre of tvService.genres' value="{{tv.id}}">{{genre.name}}
+              </ion-select-option>
+
+            </ion-select>
+          </ion-item>
+          <ion-item class="textarea">
+            <ion-label position="fixed">줄거리</ion-label>
+          </ion-item>
+          <ion-item class="textarea">
+            <ion-textarea rows="6" cols="20" class="movie-description" placeholder="줄거리..." value="{{tv.overview}}"
+              formControlName="overview"></ion-textarea>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>시청시작일</ion-label>
+            <ion-datetime [doneText]="'저장'" [cancelText]="'취소'" [pickerOptions]="dateOptions" displayFormat="YYYY-MM-DD"
+              value="{{nowdate}}" placeholder="시청시작일" formControlName="watchStartDate"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label>시청종료일</ion-label>
+            <ion-datetime [doneText]="'저장'" [cancelText]="'취소'" [pickerOptions]="dateOptions" displayFormat="YYYY-MM-DD"
+              value="{{nowdate}}" placeholder="시청종료일" formControlName="watchEndDate"></ion-datetime>
+          </ion-item>
+
+          <ion-item class="textarea">
+            <ion-label position="fixed">감상평</ion-label>
+          </ion-item>
+          <ion-item class="textarea">
+            <ion-textarea rows="4" cols="20" placeholder="..." formControlName="review">
+            </ion-textarea>
+          </ion-item>
+          <ion-item class="textarea">
+            <ion-label position="fixed">인상깊은 에피소드</ion-label>
+          </ion-item>
+          <ion-grid formArrayName="episodes">
+            <ion-row [formGroupName]="i" *ngFor="let tech of reviewForm.controls.episodes.controls; let i = index"
+              style="border: 1px solid black">
+              <ion-input formControlName="content"></ion-input>
+              <span *ngIf="i > 0" (click)="removeInputField(i)">
+                <ion-icon name="close" style="font-size: 40px"></ion-icon>
+              </span>
+            </ion-row>
+            <span ion-button float-left icon-left clear (click)="addNewInputField()">
+              <ion-icon name="add"></ion-icon>
+            </span>
+          </ion-grid>
+
+
+          <ion-item>
+            <ion-label position="stacked">태그</ion-label>
+            <ion-input type="text" formControlName="tags"></ion-input>
+          </ion-item>
+          <ion-item>
+            <p class="tag-notice">태그는 쉼표(,) 를 통해 구분되며 쉼표의 앞뒤에 있는 빈칸은 무시됩니다.</p>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </form>
+
+</ion-content>
