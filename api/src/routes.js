@@ -46,22 +46,27 @@ routes.get('/special', passport.authenticate('jwt', {
 });
 
 
-
 /**
  * 리뷰북 리스트 
  */
 
 
-// 리뷰북 리스트 가져오기
+// 카테고리 전체 리뷰북 가져오기
 routes.get('/reviewbook/:category', passport.authenticate('jwt', {
     session: false
-}), reviewbookController.getReviewBookList);
+}), reviewbookController.getReviewbookList);
 
 
-// 리뷰북 리스트 생성
-routes.post('/reviewbook/write', passport.authenticate('jwt', {
-     session: false
-     }), reviewbookController.writeReviewBook);
+// 새 리뷰북 생성
+routes.post('/reviewbook', passport.authenticate('jwt', {
+    session: false
+}), reviewbookController.writeReviewbook);
+
+
+// 리뷰북 삭제
+routes.delete('/reviewbook/:id', passport.authenticate('jwt', {
+    session: false
+}), reviewbookController.deleteReviewbook);
 
 
 
@@ -69,19 +74,37 @@ routes.post('/reviewbook/write', passport.authenticate('jwt', {
  * 책 book
  */
 
- 
+
 // 네이버 검색 Open API 책
 routes.get('/search/book/:title', bookController.getBookData);
 
 // 새 리뷰 등록
-routes.post('/review/write', passport.authenticate('jwt', {
+routes.post('/review/book', passport.authenticate('jwt', {
     session: false
 }), bookController.writeReview);
 
-// 책 리뷰리스트 가져오기
+// 리뷰 수정
+routes.patch('/review/book/:id', passport.authenticate('jwt', {
+    session: false
+}), bookController.editReview);
+
+// 책 리뷰 삭제
+routes.delete('/review/book/:id', passport.authenticate('jwt', {
+    session: false
+}), bookController.deleteReview);
+
+// 책 리뷰 리스트 가져오기
 routes.get('/review/book/:id', passport.authenticate('jwt', {
     session: false
 }), bookController.getBookReviewList);
+
+
+// 책 리뷰 디테일 가져오기
+routes.get('/review/book/detail/:id', passport.authenticate('jwt', {
+    session: false
+}), bookController.getBookReviewDetail);
+
+
 
 
 
@@ -100,9 +123,13 @@ routes.get('/review/food/:id', passport.authenticate('jwt', {
     session: false
 }), food.getFoodReviewList);
 
- routes.post('/review/food/write', passport.authenticate('jwt', { session: false }), food.writeFoodReview);
+routes.post('/review/food/write', passport.authenticate('jwt', {
+    session: false
+}), food.writeFoodReview);
 //리뷰 리스트 불러오기
-routes.get('/review/food/:id', passport.authenticate('jwt', { session: false }), food.getFoodReviewList);
+routes.get('/review/food/:id', passport.authenticate('jwt', {
+    session: false
+}), food.getFoodReviewList);
 //리뷰 디테일 가져오기
 routes.get('/review/food/detail/:id', food.getFoodReviewDetail);
 

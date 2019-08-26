@@ -13,13 +13,12 @@ const routes: Routes = [
   },
   { path: 'app-password', loadChildren: './member/app-password/app-password.module#AppPasswordPageModule' },
   {
-    path: 'settings', loadChildren: './pages/settings/settings.module#SettingsPageModule',
-    canActivate: [AuthGuardService], runGuardsAndResolvers: 'always'
-  },
+    path: 'settings', loadChildren: './pages/settings/settings.module#SettingsPageModule' },
   { path: 'home', loadChildren: './pages/home/home.module#HomePageModule' },
   { path: 'search', loadChildren: './pages/search/search.module#SearchPageModule' },
 
   // 리뷰북리스트 
+<<<<<<< HEAD
   { path: 'reviewbook/list', loadChildren: './reviewbook/list/list.module#ListPageModule' },
   { path: 'reviewbook/list/:category', loadChildren: './reviewbook/list/list.module#ListPageModule' },
  
@@ -29,9 +28,27 @@ const routes: Routes = [
   { path: 'music/write/:id', loadChildren: './review/write/music/music.module#MusicPageModule' },  
   { path: 'movie/write/:id', loadChildren: './review/write/movie/movie.module#MoviePageModule' },
   { path: 'tv/write/:id', loadChildren: './review/write/tv/tv.module#TvPageModule' },
+=======
+  {
+    path: 'reviewbook/list/:category', loadChildren: './reviewbook/list/list.module#ListPageModule',
+    canActivate: [AuthGuardService]
+  },
+
+  // 새 리뷰 작성 페이지
+  { path: 'book/write/:reviewbook_id', loadChildren: './review/write/book/book.module#BookPageModule' },
+  { path: 'food/write/:reviewbook_id', loadChildren: './review/write/food/food.module#FoodPageModule' },
+  { path: 'music/write/:reviewbook_id', loadChildren: './review/write/music/music.module#MusicPageModule' },
+  { path: 'movie/write/:reviewbook_id', loadChildren: './review/write/movie/movie.module#MoviePageModule' },
+
+  // 리뷰 수정
+  { path: 'book/edit/:review_id', loadChildren: './review/write/book/book.module#BookPageModule' },
+  { path: 'food/write/:review_id', loadChildren: './review/write/food/food.module#FoodPageModule' },
+  { path: 'music/write/:review_id', loadChildren: './review/write/music/music.module#MusicPageModule' },
+  { path: 'movie/write/:review_id', loadChildren: './review/write/movie/movie.module#MoviePageModule' },
+>>>>>>> 0d1f194c41e9128ce294d9c73996cc760dad4aaf
 
   // 리뷰 리스트 페이지
-  { path: 'book/list/:id', loadChildren: './review/list/book-list/book-list.module#BookListPageModule' },  
+  { path: 'book/list/:id', loadChildren: './review/list/book-list/book-list.module#BookListPageModule' },
   { path: 'food/list/:id', loadChildren: './review/list/food-list/food-list.module#FoodListPageModule' },
   { path: 'music/list/:id', loadChildren: './review/list/music-list/music-list.module#MusicListPageModule' },
   { path: 'movie/list/:id', loadChildren: './review/list/movie-list/movie-list.module#MovieListPageModule' },

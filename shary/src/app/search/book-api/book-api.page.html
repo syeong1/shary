@@ -1,11 +1,13 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button (click)="back()">뒤로</ion-button>
-    </ion-buttons>
-    <ion-title>책 검색</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-header mode="ios">
+    <ion-toolbar mode="ios">
+      <ion-buttons slot="start" class="btn-back">
+        <ion-button (click)="back()">
+          <ion-icon name="arrow-back"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>책 검색</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
 <ion-content>
   <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"></ion-searchbar>

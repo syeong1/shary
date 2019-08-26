@@ -7,14 +7,13 @@ var BookReviewSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    reviewList: {
+    reviewbook: {
         type: Schema.Types.ObjectId,
         ref: 'Reviewbook',
         required: true
     },
     title: String,
     author: String,
-    publisher: Date,
     publisher: String,
     pubdate: Date,
     description:String,

@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BookApiPage } from './../../../search/book-api/book-api.page';
 import { BookService } from './../../../services/book.service';
+import { ReviewService } from 'src/app/services/review.service';
 
 @Component({
   selector: 'app-book',
@@ -15,14 +16,15 @@ export class BookPage implements OnInit {
   reviewForm: FormGroup;
   book: Object;
   nowDate: String = new Date().toISOString();
-  reviewbookId: string;
+  reviewbookId: string = null;
+  reviewId: string = null;
+  titleText: string = '새 리뷰 작성';
 
-  constructor(private modalController: ModalController, private bookService: BookService, private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(private modalController: ModalController, private bookService: BookService, private reviewService: ReviewService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.reviewForm = new FormGroup({
-      writer: new FormControl(''),
-      reviewList: new FormControl(''),
+      reviewbook: new FormControl(''),
       title: new FormControl('', [Validators.required]),
       author: new FormControl(''),
       publisher: new FormControl(''),
@@ -37,19 +39,58 @@ export class BookPage implements OnInit {
       tags: new FormControl(''),
       rating: new FormControl('')
     })
-    this.reviewbookId = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log('book write page로 넘어온 리뷰북 아이디 : ' + this.reviewbookId);
-    this.reviewForm.controls['reviewList'].setValue(this.reviewbookId, { onlyself: true });
+    this.reviewbookId = this.activatedRoute.snapshot.paramMap.get('reviewbook_id');
+    this.reviewId = this.activatedRoute.snapshot.paramMap.get('review_id');
+
+    // 새 리뷰 작성 시 필요한 reviewbook_id
+    console.log('book write page로 넘어온 reviewbook_id : ' + this.reviewbookId);
+
+    // 리뷰 수정 시 detail 로딩 및 title 설정
+    if (this.reviewId !== null) {
+      this.loadDetail();
+      this.titleText = "리뷰 수정";
+    }
   }
 
   onSubmit() {
-    this.bookService.writeReview(this.reviewForm.value).subscribe(res => {
-      console.log(this.reviewForm);
-      console.log(res);
-      this.router.navigate(['book/list', this.reviewbookId]);
+
+    // reviewbook Formcontrol value 설정
+    this.reviewForm.controls['reviewbook'].setValue(this.reviewbookId, { onlyself: true });
+
+    // 새 리뷰 작성 시
+    if (this.reviewId === null) {
+      this.reviewService.writeReview('book', this.reviewForm.value).subscribe(res => {
+        console.log("입력한 reviewForm : ", this.reviewForm);
+        console.log("새 리뷰 등록 결과 : ", res);
+        // 리뷰북 페이지로 이동
+        this.router.navigate(['book/list', this.reviewbookId]);
+      })
+    }
+
+    //리뷰 수정 시
+    else {
+      this.reviewService.editReview('book', this.reviewId, this.reviewForm.value).subscribe(res => {
+        console.log("입력한 reviewForm : ", this.reviewForm);
+        console.log("리뷰 수정 등록 결과 : ", res);
+        // 리뷰 디테일 페이지로 이동
+        this.router.navigate(['book/detail', this.reviewId]);
+      })
+    }
+  }
+  
+  // 리뷰 수정 시 디테일 가져오기
+  loadDetail() {
+    this.reviewService.getReviewDetail('book', this.reviewId).subscribe(data => {
+      console.log('reviewService 요청할 때 reivew_id : ', this.reviewId);
+      console.log('받아온 Review data', data);
+      this.book = data;
+      this.reviewbookId = data['reviewbook'];
+      console.log("!!! loadDetail !!!");
+      console.log(this.reviewbookId);
     })
   }
 
+  // 네이버 책 검색 API Modal Page
   async openSearchBookModal() {
     const modal = await this.modalController.create({
       component: BookApiPage
@@ -60,7 +101,7 @@ export class BookPage implements OnInit {
 
         this.book = data['data'];
         console.log('origin', this.book);
-        
+
         // html 태그 삭제 및 날짜 처리
         if (data['data'] !== undefined) {
           this.book['title'] = this.book['title'].replace(/<[^>]*>/g, '');
