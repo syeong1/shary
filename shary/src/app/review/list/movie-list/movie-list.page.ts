@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from 'src/app/services/movie.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ReviewService } from 'src/app/services/review.service';
 
 @Component({
   selector: 'app-movie-list',
@@ -10,28 +11,38 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class MovieListPage implements OnInit {
 
   reviewbookId: string;
+  reviewbookTitle: string = null;
   reviews: any;
 
-  constructor(private movieService: MovieService, private activatedRoute:ActivatedRoute, private router: Router) { }
+  constructor(private movieService: MovieService, private route:ActivatedRoute, private router: Router,private reviewService: ReviewService) {
+    this.route.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        this.reviewbookTitle = this.router.getCurrentNavigation().extras.state.title;
+        console.log('extras.state.title : ' + this.reviewbookTitle);
+      }
+    })
+
+   }
 
   ngOnInit() {
-    this.reviewbookId = this.activatedRoute.snapshot.paramMap.get('id');
+    this.reviewbookId = this.route.snapshot.paramMap.get('id');
     console.log('영화 리뷰북 id: ',this.reviewbookId);
-    this.getReviews();
     
   }
   ionViewWillEnter(){
     console.log("ionViewWillEnter");
-    this.getReviews();
+    this.getReviewList();
   }
-  getReviews(){
-    this.movieService.getBookReviewList(this.reviewbookId)
-    .subscribe(data => {
-      console.log('리뷰 리스트 Service 요청할 때 id : ', this.reviewbookId);
+  getReviewList(){
+    this.reviewService.getReviewList('movie', this.reviewbookId).subscribe(data => {
+      console.log('*** reviewService.getReviewList 요청할 때 reviewbookId : ', this.reviewbookId);
       console.log('받아온 Reviews data', data);
       this.reviews = data;
     })
   }
+
+
+  
   openWritePage() {
     this.router.navigate(['/movie/write', this.reviewbookId]);
   }
