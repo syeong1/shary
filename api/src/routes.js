@@ -1,14 +1,11 @@
 var express = require('express'),
     routes = express.Router();
-<<<<<<< HEAD
-=======
 var userController = require('./controller/user-controller');
 var reviewbookController = require('./controller/reviewbook-controller');
 var bookController = require('./controller/book-controller');
 var movieController = require('./controller/movie-controller');
 var tvController = require('./controller/tv-controller');
 var food = require('./controller/food-controller')
->>>>>>> bcd399bbefb982a9c146e01e2b5d7176ce177659
 var passport = require('passport');
 
 

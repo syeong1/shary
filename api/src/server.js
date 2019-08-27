@@ -5,6 +5,7 @@ var mongoose    = require('mongoose');
 var config      = require('./config/config');
 var port        = process.env.PORT || 5000; 
 var cors        = require('cors');
+var morgan = require('morgan');
  
 var userRouter = require('./routes/user');
 var reviewRouter = require('./routes/review');
@@ -16,6 +17,7 @@ var musicRouter = require('./routes/music');
 
 
 var app = express();
+app.use(morgan('dev'));
 app.use(cors());
  
 // get our request parameters
@@ -33,12 +35,13 @@ app.get('/', function(req, res) {
 });
  
 app.use('/api', userRouter);
+app.use('/api/review/book', bookRouter);
+app.use('/api/review/food', foodRouter);
+app.use('/api/review/movie', movieRouter);
+app.use('/api/review/music', musicRouter);
 app.use('/api/review', reviewRouter);
 app.use('/api/reviewbook', reviewbookRouter);
-app.use('/api/book', bookRouter);
-app.use('/api/food', foodRouter);
-app.use('/api/movie', movieRouter);
-app.use('/api/music', musicRouter);
+
 
 
  
