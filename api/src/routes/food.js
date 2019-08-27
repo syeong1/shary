@@ -2,7 +2,7 @@ var express = require('express'),
     routes = express.Router();
 var passport = require('passport');
 var foodController = require('./../controller/food-controller');
-var map = require('./controller/map-controller');
+var map = require('../controller/map-controller');
 
 
 

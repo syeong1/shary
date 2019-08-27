@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, Platform } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { GeolocationOptions, Geoposition, Geolocation } from '@ionic-native/geolocation/ngx';
@@ -36,7 +36,7 @@ export class FoodPage implements OnInit {
 
 
   constructor(private modalController: ModalController,private router: Router, private geolocation: Geolocation,
-    private foodService: FoodService, private activatedRoute: ActivatedRoute) {
+    private foodService: FoodService, private activatedRoute: ActivatedRoute, private plt: Platform) {
 
      }
 
@@ -59,15 +59,23 @@ export class FoodPage implements OnInit {
       country: new FormControl('')
     })
 
-    this.loadMap();
+    this.plt.ready().then(() => {
+      this.loadMap();
+    })
+    
+    
     
   }
 
   loadMap() {
-    this.geolocation.getCurrentPosition().then((resp) => {
+    let geolocationOptions = {
+      enableHighAccuracy: true
+    }
+    this.geolocation.getCurrentPosition(geolocationOptions).then((resp) => {
       if(this.country === 'oversea'){
         let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
         let mapOptions = {
+    
           center: latLng,
           zoom: 15,
           mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -81,6 +89,7 @@ export class FoodPage implements OnInit {
       }else{
         let latLng = new naver.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
         let mapOptions = {
+          
           center: latLng,
           zoom: 10
         }
