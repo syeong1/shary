@@ -135,7 +135,7 @@ exports.editReview = (req, res) => {
 // 리뷰 삭제
 exports.deleteReview = (req, res) => {
     let review_id = req.params.id;
-    Movie.findByIdAndDelete(review_id, (err, book) => {
+    Movie.findByIdAndDelete(review_id, (err, movie) => {
         if (err) {
             return res.status(400).json({
                 'msg': err
