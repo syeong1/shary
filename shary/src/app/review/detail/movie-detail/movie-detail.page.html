@@ -1,65 +1,77 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
+      <ion-back-button text="" mode="md"></ion-back-button>
     </ion-buttons>
-    <ion-title>나의 리뷰</ion-title>
-
+    <ion-title>{{review?.title}}</ion-title>
     <ion-buttons slot="end">
+      <ion-button (click)="deleteReview()">
+        <ion-icon name="md-trash"></ion-icon>
+      </ion-button>
       <ion-button>
-        편집
+        <ion-icon name="md-share"></ion-icon>
+      </ion-button>
+      <ion-button (click)="editReview()">
+        <ion-icon name="md-create"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content>
   <ion-grid *ngIf="review">
+    <!-- <ion-input hidden value="{{rating}}" formControlName="review_score"></ion-input> -->
     <ion-row>
       <ion-col size='4'>
-        <ion-img src="https://image.tmdb.org/t/p/w500{{review.posterPath}}" *ngIf="review.posterPath">
-        </ion-img>
+        <div class="image-wrap">
+          <img src="https://image.tmdb.org/t/p/w500{{review.posterPath}}" *ngIf="review?.image; else defaultImage">
+        </div>
+        <ng-template #defaultImage>
+          <div class="default-image">
+            <p>No</p>
+            <p>Image</p>
+          </div>
+        </ng-template>
       </ion-col>
       <ion-col size='8'>
-
-        <ion-text>
-          <h3>{{review.title}}</h3>
-        </ion-text>
-        <ion-text>
-          <p>{{review.director}}</p>
-        </ion-text>
-        <ion-text>
-          <p>{{review.releaseDate|date:'yyyy-MM'}}</p>
-        </ion-text>
-
+        <ion-item>
+          <ion-label text-wrap> {{review.title}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label text-wrap>{{review.director}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label text-wrap>{{review.releaseDate|date:'yyyy-MM'}}</ion-label>
+        </ion-item>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col size='12'>
-
-
+      <ion-col>
         <ion-item>
           <ion-label>장르</ion-label>
-          <ion-note slot="end" color="success">{{movieService.getGenre(review.genre)}}</ion-note>
+          <ion-label text-wrap>{{movieService.getGenre(review.genre)}}</ion-label>
         </ion-item>
         <ion-item>
           <ion-label>관람일</ion-label>
-          <ion-note slot="end" color="success">{{review.watchDate|date:'yyyy-MM-dd'}}</ion-note>
+          <ion-label text-wrap>{{review.watchDate|date:'yyyy-MM-dd'}}</ion-label>
         </ion-item>
-        <ion-item>
-          <ion-label position="stacked">줄거리</ion-label>
-          <ion-text disabled rows="3">
-            {{review.overview}}
-          </ion-text>
+        <ion-item class="textarea">
+          <ion-label position="fixed">줄거리</ion-label>
         </ion-item>
-        <ion-item>
-          <ion-label position="stacked">명대사</ion-label>
-          <ion-text disabled rows="3">{{review.famouseLine}}</ion-text>
+        <ion-item class="textarea">
+          <ion-label text-wrap> {{review.overview}}</ion-label>
         </ion-item>
+
         <ion-item>
-          <ion-label position="stacked">감상평</ion-label>
-          <ion-text disabled rows="3">{{review.review}}</ion-text>
+          <ion-label>명대사</ion-label>
+          <ion-label text-wrap> {{review.famouseLine}}</ion-label>
+        </ion-item>
+
+        <ion-item class="textarea">
+          <ion-label position="fixed">감상평</ion-label>
+        </ion-item>
+        <ion-item class="textarea">
+          <ion-label text-wrap> {{review.review}}</ion-label>
         </ion-item>
         <ion-item>
           <ion-label position="stacked">태그</ion-label>
@@ -69,32 +81,10 @@
             </ion-chip>
           </p>
         </ion-item>
+        <p class="tag-notice"> 태그는 쉼표(,) 를 통해 구분되며 쉼표의 앞뒤에 있는 빈칸은 무시됩니다.</p>
       </ion-col>
-
     </ion-row>
-
+    <ion-label>사진</ion-label>
   </ion-grid>
 
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button (click)="openDeleteAlert()">
-        <ion-icon name="trash" color="danger" size="large"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>
-      <ion-buttons style="display: block">
-        <ion-button (click)="openShareAlert()">
-          <ion-icon name="share-alt" size="large"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-title>
-    <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon name="share" size="large"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-footer>

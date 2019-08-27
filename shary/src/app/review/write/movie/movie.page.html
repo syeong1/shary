@@ -4,7 +4,7 @@
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
 
-    <ion-title>새로운 리뷰</ion-title>
+    <ion-title>{{titleText}}</ion-title>
 
     <ion-buttons slot="end">
       <ion-button type="submit" (click)="onSubmit()" [disabled]="!reviewForm.valid">
@@ -26,7 +26,7 @@
 
   <form [formGroup]="reviewForm">
     <ion-grid>
-      <!-- <ion-input hidden value="{{rating}}" formControlName="rating"></ion-input> -->
+      <ion-input hidden value="{{rating}}" formControlName="rating"></ion-input>
       <ion-row *ngIf="movie">
         <ion-col size='4'>
             <div class="image-wrap">
@@ -73,7 +73,7 @@
           <ion-item>
             <ion-label>관람일</ion-label>
             <ion-datetime [doneText]="'저장'" [cancelText]="'취소'" [pickerOptions]="dateOptions" displayFormat="YYYY-MM-DD"
-              value="{{nowdate}}" placeholder="관람일" formControlName="watchDate"></ion-datetime>
+              value="{{nowDate}}" placeholder="관람일" formControlName="watchDate"></ion-datetime>
           </ion-item>
 
           <ion-item class='textarea'>
