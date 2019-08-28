@@ -23,26 +23,20 @@ import { TvApiPageModule } from './search/tv-api/tv-api.module';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 
-
 export function jwtOptionsFactory(storage) {
   return {
     tokenGetter: () => {
       return storage.get('access_token');
     },
-<<<<<<< HEAD
-    whitelistedDomains: ['172.16.26.207:5000']
-=======
-    whitelistedDomains: ['172.30.1.6:5000']
->>>>>>> 영화페이지_수정
+    whitelistedDomains: ['localhost:5000']
   }
 }
-
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,
-    MovieApiPageModule,MusicApiPageModule,BookApiPageModule, FoodApiPageModule,
-    TvApiPageModule,CreatePageModule,
+    MovieApiPageModule, MusicApiPageModule, BookApiPageModule, FoodApiPageModule,
+    TvApiPageModule, CreatePageModule,
     IonicStorageModule.forRoot(),
     JwtModule.forRoot({
       jwtOptionsProvider: {
@@ -50,8 +44,8 @@ export function jwtOptionsFactory(storage) {
         useFactory: jwtOptionsFactory,
         deps: [Storage]
       }
-    }),FormsModule,   
-    ReactiveFormsModule 
+    }), FormsModule,
+    ReactiveFormsModule
   ],
 
   providers: [
