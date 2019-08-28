@@ -3,6 +3,7 @@ import { AlertController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from 'src/app/services/movie.service';
 import { ReviewService } from 'src/app/services/review.service';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 const colors = ["primary", "secondary", "tertiary", "success", "warning", "danger"];
 
@@ -16,7 +17,7 @@ export class MovieDetailPage implements OnInit {
   reviewId: string;
   review= null;
 
-  constructor(private alertController: AlertController,private activatedRoute: ActivatedRoute,private movieService: MovieService,private reviewService: ReviewService,private router: Router) { }
+  constructor(private alertController: AlertController,private activatedRoute: ActivatedRoute,private movieService: MovieService,private reviewService: ReviewService,private router: Router,private socialSharing: SocialSharing) { }
 
   ngOnInit() {
     this.reviewId = this.activatedRoute.snapshot.paramMap.get('id');
@@ -73,7 +74,7 @@ export class MovieDetailPage implements OnInit {
         {
           text:'포함하기',
           handler: () =>{
-            console.log('포함하기')
+            this.socialShare(`${this.review.title}\r\n\r\n\r\n${this.review.overview}`, `https://image.tmdb.org/t/p/w500${this.review.poster_path}`);
           }
         },
         {
@@ -94,6 +95,14 @@ export class MovieDetailPage implements OnInit {
       ]
     });
     await alert.present();
+  }
+
+  socialShare(message,image){
+    this.socialSharing.share(message,null,[image]).then((res)=>{
+      console.log('res',res);
+    }).catch(e=>{
+      console.log('e',e);
+    })
   }
 
 }
