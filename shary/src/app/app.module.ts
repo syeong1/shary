@@ -20,6 +20,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { FoodApiPageModule } from './search/food-api/food-api.module';
 import { CreatePageModule } from './reviewbook/create/create.module';
 import { TvApiPageModule } from './search/tv-api/tv-api.module';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 
 
@@ -28,7 +29,11 @@ export function jwtOptionsFactory(storage) {
     tokenGetter: () => {
       return storage.get('access_token');
     },
+<<<<<<< HEAD
     whitelistedDomains: ['172.16.26.207:5000']
+=======
+    whitelistedDomains: ['172.30.1.6:5000']
+>>>>>>> 영화페이지_수정
   }
 }
 
@@ -53,7 +58,8 @@ export function jwtOptionsFactory(storage) {
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    Geolocation
+    Geolocation,
+    SocialSharing
   ],
   bootstrap: [AppComponent]
 })
