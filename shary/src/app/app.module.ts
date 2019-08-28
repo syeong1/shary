@@ -20,7 +20,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { FoodApiPageModule } from './search/food-api/food-api.module';
 import { CreatePageModule } from './reviewbook/create/create.module';
 import { TvApiPageModule } from './search/tv-api/tv-api.module';
-
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 
 export function jwtOptionsFactory(storage) {
@@ -28,16 +28,15 @@ export function jwtOptionsFactory(storage) {
     tokenGetter: () => {
       return storage.get('access_token');
     },
-    whitelistedDomains: ['172.16.26.207:5000']
+    whitelistedDomains: ['localhost:5000']
   }
 }
-
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,
-    MovieApiPageModule,MusicApiPageModule,BookApiPageModule, FoodApiPageModule,
-    TvApiPageModule,CreatePageModule,
+    MovieApiPageModule, MusicApiPageModule, BookApiPageModule, FoodApiPageModule,
+    TvApiPageModule, CreatePageModule,
     IonicStorageModule.forRoot(),
     JwtModule.forRoot({
       jwtOptionsProvider: {
@@ -45,15 +44,16 @@ export function jwtOptionsFactory(storage) {
         useFactory: jwtOptionsFactory,
         deps: [Storage]
       }
-    }),FormsModule,   
-    ReactiveFormsModule 
+    }), FormsModule,
+    ReactiveFormsModule
   ],
 
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    Geolocation
+    Geolocation,
+    SocialSharing
   ],
   bootstrap: [AppComponent]
 })

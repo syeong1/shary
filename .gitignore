@@ -65,3 +65,5 @@ dist/*
 *.log
 
 api/src/config/
+
+shary/node_modules/
