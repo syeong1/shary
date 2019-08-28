@@ -14,6 +14,7 @@ var bookRouter = require('./routes/book');
 var foodRouter = require('./routes/food');
 var movieRouter = require('./routes/movie');
 var musicRouter = require('./routes/music');
+var mapRouter = require('./routes/map');
 
 
 var app = express();
@@ -41,6 +42,7 @@ app.use('/api/review/movie', movieRouter);
 app.use('/api/review/music', musicRouter);
 app.use('/api/review', reviewRouter);
 app.use('/api/reviewbook', reviewbookRouter);
+app.use('/api/map', mapRouter)
 
 
 

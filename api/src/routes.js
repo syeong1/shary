@@ -7,7 +7,7 @@ var movieController = require('./controller/movie-controller');
 var tvController = require('./controller/tv-controller');
 var food = require('./controller/food-controller')
 var passport = require('passport');
-
+var map = require('./controller/map-controller');
 
 
 routes.get('/', (req, res) => {
