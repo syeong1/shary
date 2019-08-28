@@ -8,28 +8,28 @@ var bookController = require('./../controller/book-controller');
 routes.get('/search/book/:title', bookController.getBookData);
 
 // 새 리뷰 등록
-routes.post('/review/book', passport.authenticate('jwt', {
+routes.post('/', passport.authenticate('jwt', {
     session: false
 }), bookController.writeReview);
 
 // 리뷰 수정
-routes.patch('/review/book/:id', passport.authenticate('jwt', {
+routes.patch('/:id', passport.authenticate('jwt', {
     session: false
 }), bookController.editReview);
 
 // 책 리뷰 삭제
-routes.delete('/review/book/:id', passport.authenticate('jwt', {
+routes.delete('/:id', passport.authenticate('jwt', {
     session: false
 }), bookController.deleteReview);
 
 // 책 리뷰 리스트 가져오기
-routes.get('/review/book/:id', passport.authenticate('jwt', {
+routes.get('/:id', passport.authenticate('jwt', {
     session: false
 }), bookController.getBookReviewList);
 
 
 // 책 리뷰 디테일 가져오기
-routes.get('/review/book/detail/:id', passport.authenticate('jwt', {
+routes.get('/detail/:id', passport.authenticate('jwt', {
     session: false
 }), bookController.getBookReviewDetail);
 
