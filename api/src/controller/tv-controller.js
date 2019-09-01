@@ -26,6 +26,7 @@ exports.getTvData = (req, res) => {
 
 }
 exports.writeReview = (req, res) => {
+    console.log(req.body);
     let newReview = Tv(req.body);
     let writer = req.user._id;
     newReview.writer = writer;
@@ -51,7 +52,7 @@ exports.getBookReviewList = (req, res) => {
         // let reviewbook_id = req.params.id;
         // 책 리뷰북 가져오기
         let reviewbook_id = req.params.id;
-            Tv.find({reviewList: reviewbook_id}, function (err, reviews) {
+            Tv.find({reviewbook: reviewbook_id}, function (err, reviews) {
             console.log(reviews);
             if (err) {
                 return res.status(500).json({

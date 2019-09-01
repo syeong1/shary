@@ -28,12 +28,15 @@ const routes: Routes = [
 { path: 'food/write/:reviewbook_id', loadChildren: './review/write/food/food.module#FoodPageModule' },
 { path: 'music/write/:reviewbook_id', loadChildren: './review/write/music/music.module#MusicPageModule' },
 { path: 'movie/write/:reviewbook_id', loadChildren: './review/write/movie/movie.module#MoviePageModule' },
+{ path: 'tv/write/:reviewbook_id', loadChildren: './review/write/tv/tv.module#TvPageModule' },
+
 
 // 리뷰 수정
 { path: 'book/edit/:review_id', loadChildren: './review/write/book/book.module#BookPageModule' },
 { path: 'food/edit/:review_id', loadChildren: './review/write/food/food.module#FoodPageModule' },
 { path: 'music/edit/:review_id', loadChildren: './review/write/music/music.module#MusicPageModule' },
 { path: 'movie/edit/:review_id', loadChildren: './review/write/movie/movie.module#MoviePageModule' },
+{ path: 'tv/edit/:review_id', loadChildren: './review/write/tv/tv.module#TvPageModule' },
 
   // 리뷰 리스트 페이지
   { path: 'book/list/:id', loadChildren: './review/list/book-list/book-list.module#BookListPageModule' },
