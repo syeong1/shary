@@ -5,7 +5,6 @@ import { TvService } from 'src/app/services/tv.service';
 import { ReviewService } from 'src/app/services/review.service';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
-const colors = ["primary", "secondary", "tertiary", "success", "warning", "danger"];
 
 @Component({
   selector: 'app-tv-detail',
@@ -17,7 +16,7 @@ export class TvDetailPage implements OnInit {
   reviewId: string;
   review= null;
 
-  constructor(private alertController: AlertController,private activatedRoute: ActivatedRoute,private tvService: TvService,private reviewService: ReviewService,private router: Router,private socialSharing: SocialSharing) { }
+  constructor(private alertController: AlertController,private activatedRoute: ActivatedRoute,private tvService: TvService,private reviewService: ReviewService,private router: Router,private socialSharing: SocialSharing,) { }
 
   ngOnInit() {
     this.reviewId = this.activatedRoute.snapshot.paramMap.get('id');

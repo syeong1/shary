@@ -87,7 +87,7 @@
         <ion-item>
           <ion-label position="stacked">태그</ion-label>
           <p>
-            <ion-chip color={{colors[i%6]}} *ngFor="let tag of review.tags;let i=index;">
+            <ion-chip  *ngFor="let tag of review.tags">
               <ion-label>{{tag}}</ion-label>
             </ion-chip>
           </p>
