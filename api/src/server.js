@@ -17,6 +17,7 @@ var musicRouter = require('./routes/music');
 var mapRouter = require('./routes/map');
 var searchRouter = require('./routes/search');
 var kakaoRouter = require('./routes/auth');
+var tvRouter = require('./routes/tv');
 
 
 
@@ -45,6 +46,7 @@ app.use('/api/review/book', bookRouter);
 app.use('/api/review/food', foodRouter);
 app.use('/api/review/movie', movieRouter);
 app.use('/api/review/music', musicRouter);
+app.use('/api/review/tv',tvRouter);
 app.use('/api/review', reviewRouter);
 app.use('/api/reviewbook', reviewbookRouter);
 app.use('/api/map', mapRouter);

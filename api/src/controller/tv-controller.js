@@ -26,6 +26,7 @@ exports.getTvData = (req, res) => {
 
 }
 exports.writeReview = (req, res) => {
+    console.log(req.body);
     let newReview = Tv(req.body);
     let writer = req.user._id;
     newReview.writer = writer;
@@ -51,7 +52,7 @@ exports.getBookReviewList = (req, res) => {
         // let reviewbook_id = req.params.id;
         // 책 리뷰북 가져오기
         let reviewbook_id = req.params.id;
-            Tv.find({reviewList: reviewbook_id}, function (err, reviews) {
+            Tv.find({reviewbook: reviewbook_id}, function (err, reviews) {
             console.log(reviews);
             if (err) {
                 return res.status(500).json({
@@ -84,5 +85,39 @@ exports.getdetailReview = (req, res) => {
         if (review) {
             return res.status(200).json(review);
         }
+    })
+}
+//리뷰 수정
+exports.editReview = (req, res) => {
+    console.log(req.body);
+    console.log('req.params.id:',req.params.id);
+    let writer = req.user._id;
+    req.body.writer=writer;
+
+    Tv.findByIdAndUpdate(req.params.id, {
+        $set: req.body
+    }, function (err, movie) {
+        if (err) {
+            console.log(err);
+        }
+        return res.status(201).json({
+            'msg': '리뷰 업데이트 성공',
+            'result': movie
+        });
+    });
+}
+
+
+// 리뷰 삭제
+exports.deleteReview = (req, res) => {
+    let review_id = req.params.id;
+    Tv.findByIdAndDelete(review_id, (err, movie) => {
+        if (err) {
+            return res.status(400).json({
+                'msg': err
+            });
+        };
+        console.log('삭제완료 movie:', movie);
+        return res.json(movie);
     })
 }

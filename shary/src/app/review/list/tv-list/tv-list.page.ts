@@ -10,12 +10,20 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class TvListPage implements OnInit {
 
   reviewbookId: string;
+  reviewbookTitle: string = null;
   reviews: any;
-  constructor(private tvService: TvService, private activatedRoute:ActivatedRoute,private router:Router) { }
+  constructor(private tvService: TvService, private activatedRoute:ActivatedRoute,private router:Router,private route:ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        this.reviewbookTitle = this.router.getCurrentNavigation().extras.state.title;
+        console.log('extras.state.title : ' + this.reviewbookTitle);
+      }
+    })
+   }
 
   ngOnInit() {
     this.reviewbookId = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log('영화 리뷰북 id: ',this.reviewbookId);
+    console.log('tv 리뷰북 id: ',this.reviewbookId);
     this.getReviews();
   }
   ionViewWillEnter(){
