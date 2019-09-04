@@ -3,10 +3,6 @@ var express = require('express'),
 var passport = require('passport');
 var bookController = require('./../controller/book-controller');
 
-
-// 네이버 검색 Open API 책
-routes.get('/search/book/:title', bookController.getBookData);
-
 // 새 리뷰 등록
 routes.post('/', passport.authenticate('jwt', {
     session: false
@@ -25,16 +21,12 @@ routes.delete('/:id', passport.authenticate('jwt', {
 // 책 리뷰 리스트 가져오기
 routes.get('/:id', passport.authenticate('jwt', {
     session: false
-}), bookController.getBookReviewList);
-
+}), bookController.getReviewList);
 
 // 책 리뷰 디테일 가져오기
 routes.get('/detail/:id', passport.authenticate('jwt', {
     session: false
-}), bookController.getBookReviewDetail);
-
-
-
+}), bookController.getReviewDetail);
 
 
 module.exports = routes;

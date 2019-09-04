@@ -12,41 +12,29 @@ enum COLORS {
 })
 export class RatingComponent implements OnInit {
 
-  @Input() rating: number;
+  @Input() rating: number = 0;
 
-  @Output() ratingChange: EventEmitter<number>= new EventEmitter();
+  @Output() ratingChange: EventEmitter<number> = new EventEmitter();
 
   constructor() { }
 
-  rate(index:number){
+  rate(index: number) {
     this.rating = index;
     this.ratingChange.emit(this.rating);
-
   }
-  getColor(index:number){
-    if(this.isAboveRating(index)){
+
+  getColor(index: number) {
+    if (this.isAboveRating(index)) {
       return COLORS.GREY;
     }
-    switch (this.rating){
-      case 1:
-      case 2:
-        return COLORS.YELLOW;
-      case 3:
-        return COLORS.YELLOW;
-      case 4:
-      case 5:
-        return COLORS.YELLOW;
-      default:
-        return COLORS.GREY;
-    }
-
-
+    if (this.rating > 0) return COLORS.YELLOW;
+    else return COLORS.GREY;
   }
 
-  isAboveRating(index:number):boolean{
-    return index> this.rating;
+  isAboveRating(index: number): boolean {
+    return index > this.rating;
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }
