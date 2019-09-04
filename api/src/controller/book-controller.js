@@ -1,31 +1,6 @@
 var Book = require('../models/Book');
-var request = require('request');
-var config = require('../config/config');
 
-
-// 책 데이터 가져오기
-exports.getBookData = (req, res) => {
-    console.log(req.params.title);
-    var api_url = 'https://openapi.naver.com/v1/search/book?query=' + encodeURI(req.params.title); // json 결과
-    var options = {
-        url: api_url,
-        headers: {
-            'X-Naver-Client-Id': config.client_id,
-            'X-Naver-Client-Secret': config.client_secret
-        }
-    };
-    request.get(options, function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            return res.status(200).send(body);
-        } else {
-            res.status(response).end();
-            console.log('error = ' + response.statusCode);
-        }
-    });
-}
-
-
-// 책 리뷰 작성
+// 새 리뷰 작성
 exports.writeReview = (req, res) => {
 
     let newReview = Book(req.body);
@@ -46,7 +21,7 @@ exports.writeReview = (req, res) => {
     });
 }
 
-
+// 리뷰 수정
 exports.editReview = (req, res) => {
 
     console.log("@@@ editReview @@@");
@@ -67,7 +42,7 @@ exports.editReview = (req, res) => {
 }
 
 
-// 책 리뷰 삭제
+// 리뷰 삭제
 exports.deleteReview = (req, res) => {
     let review_id = req.params.id;
     Book.findByIdAndDelete(review_id, (err, book) => {
@@ -81,8 +56,8 @@ exports.deleteReview = (req, res) => {
     })
 }
 
-// 책 리뷰 리스트 가져오기
-exports.getBookReviewList = (req, res) => {
+// 리뷰 리스트 가져오기
+exports.getReviewList = (req, res) => {
 
     console.log('### 요청한 리뷰리스트 id : ', req.params.id);
 
@@ -111,8 +86,8 @@ exports.getBookReviewList = (req, res) => {
 
 
 
-// 책 리뷰 디테일 가져오기
-exports.getBookReviewDetail = (req, res) => {
+// 리뷰 디테일 가져오기
+exports.getReviewDetail = (req, res) => {
 
     console.log('#### 요청한 리뷰 id : ', req.params.id);
     let review_id = req.params.id;

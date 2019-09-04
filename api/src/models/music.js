@@ -3,18 +3,20 @@ var Schema = mongoose.Schema;
 var Image = require('../models/image');
 
 
-var BookReviewSchema = new Schema({
+var MusicReviewSchema = new Schema({
     writer: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    reviewList: {
+    reviewbook: {
         type: Schema.Types.ObjectId,
-        ref: 'Reviewbook'
+        ref: 'Reviewbook',
+        required: true
     },
     trackName: String,
     artistName: String,
     collectionName: String,
+    artworkUrl100: String,
     primaryGenreName: String,
     releaseDate: Date,
     listeningDate: Date,
@@ -31,4 +33,4 @@ var BookReviewSchema = new Schema({
 });
 
 
-module.exports = mongoose.model('BookReview', BookReviewSchema);
+module.exports = mongoose.model('MusicReview', MusicReviewSchema);

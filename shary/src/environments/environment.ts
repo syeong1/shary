@@ -5,6 +5,12 @@
 export const environment = {
   production: false,
   url: 'http://localhost:5000'
+<<<<<<< HEAD
+=======
+  // url: 'http://172.30.1.34:5000'
+   //할리스
+  //  url: 'http://192.168.1.104:5000'
+>>>>>>> 7c2eef50995a9c653e1777f0ce1f336900d1dcfa
 };
 
 /*
