@@ -1,11 +1,5 @@
 var express = require('express'),
     routes = express.Router();
-var userController = require('./controller/user-controller');
-var reviewbookController = require('./controller/reviewbook-controller');
-var bookController = require('./controller/book-controller');
-var movieController = require('./controller/movie-controller');
-var tvController = require('./controller/tv-controller');
-var food = require('./controller/food-controller')
 var passport = require('passport');
 
 
@@ -77,7 +71,7 @@ routes.delete('/reviewbook/:id', passport.authenticate('jwt', {
 
 
 // 네이버 검색 Open API 책
-routes.get('/search/book/:title', bookController.getBookData);
+// routes.get('/search/book/:title', bookController.getBookData);
 
 // 새 리뷰 등록
 routes.post('/review/book', passport.authenticate('jwt', {
@@ -116,9 +110,13 @@ routes.get('/review/book/detail/:id', passport.authenticate('jwt', {
 
 
 //새 맛집 리뷰 등록
-routes.post('/review/food', passport.authenticate('jwt', {
+routes.post('/review/food/write', passport.authenticate('jwt', {
     session: false
 }), food.writeFoodReview);
+//리뷰 리스트 불러오기
+routes.get('/review/food/:id', passport.authenticate('jwt', {
+    session: false
+}), food.getFoodReviewList);
 
 routes.post('/review/food/write', passport.authenticate('jwt', {
     session: false
