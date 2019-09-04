@@ -13,7 +13,7 @@ export class BookService {
 
   url = environment.url;
 
-  constructor(private http: HttpClient, private alertController: AlertController, public toastController: ToastController) { }
+  constructor(private http: HttpClient, public alertController: AlertController, public toastController: ToastController) { }
 
   getBookData(title: string): Observable<any> {
 
