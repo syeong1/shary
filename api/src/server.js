@@ -14,13 +14,10 @@ var bookRouter = require('./routes/book');
 var foodRouter = require('./routes/food');
 var movieRouter = require('./routes/movie');
 var musicRouter = require('./routes/music');
-<<<<<<< HEAD
-var tvRouter = require("./routes/tv");
-=======
 var searchRouter = require('./routes/search');
 var kakaoRouter = require('./routes/auth');
+var tvRouter = require('./routes/tv');
 
->>>>>>> 7c2eef50995a9c653e1777f0ce1f336900d1dcfa
 
 
 var app = express();
