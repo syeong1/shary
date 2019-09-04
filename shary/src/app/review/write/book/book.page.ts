@@ -3,7 +3,6 @@ import { ModalController } from '@ionic/angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BookApiPage } from './../../../search/book-api/book-api.page';
-import { BookService } from './../../../services/book.service';
 import { ReviewService } from 'src/app/services/review.service';
 
 @Component({
@@ -20,7 +19,7 @@ export class BookPage implements OnInit {
   reviewId: string = null;
   titleText: string = '새 리뷰 작성';
 
-  constructor(private modalController: ModalController, private bookService: BookService, private reviewService: ReviewService, private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(private modalController: ModalController, private reviewService: ReviewService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.reviewForm = new FormGroup({
@@ -77,7 +76,7 @@ export class BookPage implements OnInit {
       })
     }
   }
-  
+
   // 리뷰 수정 시 디테일 가져오기
   loadDetail() {
     this.reviewService.getReviewDetail('book', this.reviewId).subscribe(data => {

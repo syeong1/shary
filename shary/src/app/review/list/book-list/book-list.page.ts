@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { BookService } from 'src/app/services/book.service';
 import { ReviewService } from 'src/app/services/review.service';
 
 
@@ -15,7 +14,7 @@ export class BookListPage implements OnInit {
   reviewbookTitle: string = null;
   reviews: any;
 
-  constructor(private bookService: BookService, private reviewService: ReviewService, 
+  constructor(private reviewService: ReviewService, 
     private route: ActivatedRoute, private router: Router) {
       this.route.queryParams.subscribe(params => {
         if (this.router.getCurrentNavigation().extras.state) {
