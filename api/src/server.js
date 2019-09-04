@@ -42,7 +42,7 @@ app.use('/api/review/movie', movieRouter);
 app.use('/api/review/music', musicRouter);
 app.use('/api/review', reviewRouter);
 app.use('/api/reviewbook', reviewbookRouter);
-app.use('/api/map', mapRouter)
+app.use('/api/map', mapRouter);
 
 
 
