@@ -5,7 +5,7 @@ var reviewbookController = require('./controller/reviewbook-controller');
 var bookController = require('./controller/book-controller');
 var movieController = require('./controller/movie-controller');
 var tvController = require('./controller/tv-controller');
-var food = require('./controller/food-controller')
+var foodController = require('./controller/food-controller')
 var passport = require('passport');
 var map = require('./controller/map-controller');
 
@@ -115,20 +115,31 @@ routes.get('/review/book/detail/:id', passport.authenticate('jwt', {
  */
 
 
-//새 맛집 리뷰 등록
+// 새 리뷰 등록
 routes.post('/review/food', passport.authenticate('jwt', {
     session: false
-}), food.writeFoodReview);
+}), foodController.writeFoodReview);
 
-routes.post('/review/food/write', passport.authenticate('jwt', {
+// 리뷰 수정
+routes.patch('/review/food/:id', passport.authenticate('jwt', {
     session: false
-}), food.writeFoodReview);
-//리뷰 리스트 불러오기
+}), foodController.editReview);
+
+// 책 리뷰 삭제
+routes.delete('/review/food/:id', passport.authenticate('jwt', {
+    session: false
+}), foodController.deleteReview);
+
+// 책 리뷰 리스트 가져오기
 routes.get('/review/food/:id', passport.authenticate('jwt', {
     session: false
-}), food.getFoodReviewList);
-//리뷰 디테일 가져오기
-routes.get('/review/food/detail/:id', food.getFoodReviewDetail);
+}), foodController.getFoodReviewList);
+
+
+// 책 리뷰 디테일 가져오기
+routes.get('/review/book/detail/:id', passport.authenticate('jwt', {
+    session: false
+}), foodController.getFoodReviewDetail);
 
 
 /**

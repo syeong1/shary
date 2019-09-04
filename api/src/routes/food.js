@@ -6,24 +6,33 @@ var map = require('./../controller/map-controller');
 
 
 
-//새 맛집 리뷰 등록
-routes.post('/review/food/write', passport.authenticate('jwt', {
+
+// 새 리뷰 등록
+routes.post('/', passport.authenticate('jwt', {
     session: false
 }), foodController.writeFoodReview);
-//리뷰 리스트 불러오기
-routes.get('/review/food/:id', passport.authenticate('jwt', {
+
+// 리뷰 수정
+routes.patch('/:id', passport.authenticate('jwt', {
+    session: false
+}), foodController.editReview);
+
+// 책 리뷰 삭제
+routes.delete('/:id', passport.authenticate('jwt', {
+    session: false
+}), foodController.deleteReview);
+
+// 책 리뷰 리스트 가져오기
+routes.get('/:id', passport.authenticate('jwt', {
     session: false
 }), foodController.getFoodReviewList);
 
-routes.post('/review/food/write', passport.authenticate('jwt', {
+
+// 책 리뷰 디테일 가져오기
+routes.get('/detail/:id', passport.authenticate('jwt', {
     session: false
-}), foodController.writeFoodReview);
-//리뷰 리스트 불러오기
-routes.get('/review/food/:id', passport.authenticate('jwt', {
-    session: false
-}), foodController.getFoodReviewList);
-//리뷰 디테일 가져오기
-routes.get('/review/food/detail/:id', foodController.getFoodReviewDetail);
+}), foodController.getFoodReviewDetail);
+
 
 
 

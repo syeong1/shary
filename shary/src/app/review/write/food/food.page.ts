@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { GeolocationOptions, Geoposition, Geolocation } from '@ionic-native/geolocation/ngx';
 import { FoodApiPage } from '../../../search/food-api/food-api.page';
 import { FoodService } from 'src/app/services/food.service';
+import { ReviewService } from 'src/app/services/review.service';
 // import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 
 declare const naver;
@@ -26,26 +27,25 @@ export class FoodPage implements OnInit {
   reviewForm: FormGroup;
   options : GeolocationOptions;
   place : Geoposition;
-  food = null;
+  food: Object;
   searchPlace
-  reviewId: string;
   country: string;
+  searchResult;
+
+  reviewbookId: string = null;
+  reviewId: string = null;
+  titleText: string = '새 리뷰 작성';
   
   nMap
   marker
 
 
   constructor(private modalController: ModalController,private router: Router, private geolocation: Geolocation,
-    private foodService: FoodService, private activatedRoute: ActivatedRoute, private plt: Platform) {
+    private foodService: FoodService, private activatedRoute: ActivatedRoute, private plt: Platform, private reviewService: ReviewService) {
 
      }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
-      this.reviewId = params['id'];
-      console.log('food write page로 넘어온 리뷰북 아이디 : ' + this.reviewId);
-      this.reviewForm.controls['reviewbook'].setValue(this.reviewId, {onlyself: true});
-    });
     this.reviewForm = new FormGroup({
       name: new FormControl('',[Validators.required]),
       phoneNumber: new FormControl(''),
@@ -62,8 +62,18 @@ export class FoodPage implements OnInit {
     this.plt.ready().then(() => {
       this.loadMap();
     })
+
+    this.reviewbookId = this.activatedRoute.snapshot.paramMap.get('reviewbook_id');
+    this.reviewId = this.activatedRoute.snapshot.paramMap.get('review_id');
     
-    
+     // 새 리뷰 작성 시 필요한 reviewbook_id
+     console.log('food write page로 넘어온 reviewbook_id : ' + this.reviewbookId);
+
+     // 리뷰 수정 시 detail 로딩 및 title 설정
+     if (this.reviewId !== null) {
+       this.loadDetail();
+       this.titleText = "리뷰 수정";
+     }
     
   }
 
@@ -125,11 +135,42 @@ export class FoodPage implements OnInit {
   // }
 
   onSubmit() {
-    this.foodService.writeReview(this.reviewForm.value).subscribe((res) => {
-      console.log(this.reviewForm);
-      this.router.navigate(['']);
-    })
+
+    // reviewbook Formcontrol value 설정
+    this.reviewForm.controls['reviewbook'].setValue(this.reviewbookId, { onlyself: true });
+
+    // 새 리뷰 작성 시
+    if (this.reviewId === null) {
+      this.reviewService.writeReview('food', this.reviewForm.value).subscribe(res => {
+        console.log("입력한 reviewForm : ", this.reviewForm);
+        console.log("새 리뷰 등록 결과 : ", res);
+        // 리뷰북 페이지로 이동
+        this.router.navigate(['food/list', this.reviewbookId]);
+      })
+    }
+
+    //리뷰 수정 시
+    else {
+      this.reviewService.editReview('food', this.reviewId, this.reviewForm.value).subscribe(res => {
+        console.log("입력한 reviewForm : ", this.reviewForm);
+        console.log("리뷰 수정 등록 결과 : ", res);
+        // 리뷰 디테일 페이지로 이동
+        this.router.navigate(['food/detail', this.reviewId]);
+      })
+    }
   }
+
+    // 리뷰 수정 시 디테일 가져오기
+    loadDetail() {
+      this.reviewService.getReviewDetail('food', this.reviewId).subscribe(data => {
+        console.log('reviewService 요청할 때 reivew_id : ', this.reviewId);
+        console.log('받아온 Review data', data);
+        this.food = data;
+        this.reviewbookId = data['reviewbook'];
+        console.log("!!! loadDetail !!!");
+        console.log(this.reviewbookId);
+      })
+    }
 
 
   async openSearchFoodModal(){
@@ -138,11 +179,11 @@ export class FoodPage implements OnInit {
     });
     modal.onDidDismiss()
     .then((data) => {
-      this.food = data['data'];
+      this.searchResult = data['data'];
       if(this.country === 'oversea'){
-        this.searchPlace = new google.maps.LatLng(this.food.y, this.food.x);
+        this.searchPlace = new google.maps.LatLng(this.searchResult.y, this.searchResult.x);
       }else {
-        this.searchPlace = new naver.maps.LatLng(this.food.y, this.food.x);
+        this.searchPlace = new naver.maps.LatLng(this.searchResult.y, this.searchResult.x);
       }
       
       this.marker.setPosition(this.searchPlace);
