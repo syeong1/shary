@@ -54,10 +54,20 @@ export class TvPage implements OnInit {
   }
   //에피소드 초기화
   initEpisodesFields(): FormGroup {
-    return this.fb.group({
-      content: ['']
-    })
+    return this.fb.group({content: ['']})
   }
+  //에피소드 불러오기
+  loadEpisodeFields(episode): FormGroup {
+    return this.fb.group({content: [episode]})
+  }
+  //에피소드 array 불러오기
+  setEpisodesFields():void {
+    const control = <FormArray>this.reviewForm.controls.episodes;
+    for(let episode of this.tv['episodes']){
+      control.push(this.loadEpisodeFields(episode));
+    }
+  } 
+
   //에피소드 추가
   addNewInputField(): void {
     const control = <FormArray>this.reviewForm.controls.episodes;
@@ -77,7 +87,6 @@ export class TvPage implements OnInit {
   onSubmit() {
     // reviewbook Formcontrol value 설정
     this.reviewForm.controls['reviewbook'].setValue(this.reviewbookId, { onlyself: true });
-    console.log(this.reviewForm.value);
 
     // 새 리뷰 작성 시
     if (this.reviewId === null) {
@@ -95,7 +104,7 @@ export class TvPage implements OnInit {
         console.log("입력한 reviewForm : ", this.reviewForm);
         console.log("리뷰 수정 등록 결과 : ", res);
         // 리뷰 디테일 페이지로 이동
-        this.router.navigate(['movie/detail', this.reviewId]);
+        this.router.navigate(['tv/detail', this.reviewId]);
       })
     }
   }
@@ -106,8 +115,8 @@ export class TvPage implements OnInit {
       console.log('받아온 Review data', data);
       this.tv = data;
       this.reviewbookId = data['reviewbook'];
-      console.log("!!! loadDetail !!!");
       console.log(this.reviewbookId);
+      this.setEpisodesFields();
     })
   }
   async openSearchTvModal() {
@@ -119,6 +128,8 @@ export class TvPage implements OnInit {
 
         if (data['data'] != undefined) {
           this.tv = data['data'];
+          this.tv['posterPath'] = this.tv['poster_path'];
+          this.tv['title'] = this.tv['name'];
           this.tv['genre_ids'] = this.tv['genre_ids'][0];
         }
 

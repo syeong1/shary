@@ -30,7 +30,7 @@
       <ion-row *ngIf="tv">
         <ion-col size='4'>
           <div class="image-wrap">
-            <img src="https://image.tmdb.org/t/p/w500{{tv.poster_path}}" *ngIf="tv.poster_path; else defaultImage">
+            <img src="https://image.tmdb.org/t/p/w500{{tv.posterPath}}" *ngIf="tv.posterPath; else defaultImage">
           </div>
           <ng-template #defaultImage>
             <div class="default-image">
@@ -38,17 +38,20 @@
               <p>Image</p>
             </div>
           </ng-template>
-          <ion-input hidden value="{{tv.poster_path}}" formControlName="posterPath"></ion-input>
+          <ion-input hidden value="{{tv.posterPath}}" formControlName="posterPath"></ion-input>
         </ion-col>
         <ion-col size='8'>
           <ion-item>
-            <ion-input placeholder="제목" value="{{tv.name}}" formControlName="title"></ion-input>
+            <ion-input placeholder="제목" value="{{tv.title}}" formControlName="title"></ion-input>
           </ion-item>
           <ion-item>
             <ion-input placeholder="방송사" value="{{tv.director?.braodcaster}}" formControlName="broadcaster"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input placeholder="방영일" value="{{tv.first_air_date}}" formControlName="releaseDate"></ion-input>
+            <ion-datetime class="pub" [doneText]="'저장'" [cancelText]="'취소'" [pickerOptions]="dateOptions"
+              displayFormat="YYYY-MM-DD" placeholder="방영일" value="{{tv?.releaseDate | date : 'yyyy-MM-dd'}}"
+              formControlName="releaseDate">
+            </ion-datetime>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -91,7 +94,7 @@
           <ion-item class="textarea">
             <ion-label position="fixed">인상깊은 에피소드</ion-label>
           </ion-item>
-          <ion-grid formArrayName="episodes">
+          <ion-grid formArrayName="episodes" >
             <ion-row [formGroupName]="i" *ngFor="let tech of reviewForm.controls.episodes.controls; let i = index"
               style="border: 1px solid black">
               <ion-input formControlName="content"></ion-input>

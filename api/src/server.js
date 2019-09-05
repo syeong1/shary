@@ -41,7 +41,7 @@ app.get('/', function (req, res) {
   return res.send('Hello! The API is at http://localhost:' + port + '/api');
 });
 
-app.use('/api', userRouter);
+
 app.use('/api/review/book', bookRouter);
 app.use('/api/review/food', foodRouter);
 app.use('/api/review/movie', movieRouter);
@@ -52,6 +52,7 @@ app.use('/api/reviewbook', reviewbookRouter);
 app.use('/api/map', mapRouter);
 app.use('/api/search', searchRouter);
 app.use('/api/auth', kakaoRouter);
+app.use('/api', userRouter);
 
 mongoose.connect(config.db, {
   useNewUrlParser: true,
