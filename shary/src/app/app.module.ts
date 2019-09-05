@@ -21,6 +21,8 @@ import { FoodApiPageModule } from './search/food-api/food-api.module';
 import { CreatePageModule } from './reviewbook/create/create.module';
 import { TvApiPageModule } from './search/tv-api/tv-api.module';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { Camera } from '@ionic-native/Camera/ngx';
+import { File } from '@ionic-native/File/ngx';
 
 
 export function jwtOptionsFactory(storage) {
@@ -53,7 +55,9 @@ export function jwtOptionsFactory(storage) {
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Geolocation,
-    SocialSharing
+    SocialSharing,
+    Camera,
+    File
   ],
   bootstrap: [AppComponent]
 })
