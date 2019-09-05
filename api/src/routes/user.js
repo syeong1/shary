@@ -2,6 +2,7 @@ var express = require('express'),
     routes = express.Router();
 var passport = require('passport');
 var userController = require('./../controller/user-controller');
+const imageController = require('./../controller/image-controller');
 
 
 // 회원가입 
@@ -27,5 +28,8 @@ routes.get('/special', passport.authenticate('jwt', {
         msg: `${req.user._id}`
     });
 });
+
+//프로필 이미지 업로드
+routes.post('/images', passport.authenticate('jwt', { session: false }), imageController.upload.single('file'), imageController.uploadImg)
 
 module.exports = routes;

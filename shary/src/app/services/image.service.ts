@@ -11,6 +11,7 @@ import { AuthService } from './auth.service';
 })
 export class ImageService {
   profile='';
+  images = [];
 
   constructor(private camera: Camera,private actionSheetController: ActionSheetController,private file: File,private loadingController: LoadingController,private http: HttpClient,private toastController:ToastController,private authService:AuthService) { }
 
