@@ -21,7 +21,7 @@ export class ReviewService {
       catchError(e => {
         let status = e.status;
         if (status === 404) {
-          // this.showAlert('리뷰가 없습니다.', '오류');
+          this.showAlert('리뷰가 없습니다.', '오류');
         }
         throw new Error(e);
       })
