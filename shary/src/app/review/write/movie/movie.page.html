@@ -15,7 +15,7 @@
   </ion-toolbar>
   <div>
     <ion-item lines="none" class="wrap">
-        <rating [(rating)]="rating" ></rating>
+      <rating [(rating)]="rating"></rating>
       <ion-icon name="search" (click)="openSearchMovieModal()"></ion-icon>
     </ion-item>
   </div>
@@ -29,15 +29,15 @@
       <ion-input hidden value="{{rating}}" formControlName="rating"></ion-input>
       <ion-row *ngIf="movie">
         <ion-col size='4'>
-            <div class="image-wrap">
-                <img src="https://image.tmdb.org/t/p/w500{{movie.posterPath}}" *ngIf="movie.posterPath; else defaultImage">
-              </div>
-              <ng-template #defaultImage>
-                  <div class="default-image">
-                    <p>No</p>
-                    <p>Image</p>
-                  </div>
-                </ng-template>
+          <div class="image-wrap">
+            <img src="https://image.tmdb.org/t/p/w500{{movie.posterPath}}" *ngIf="movie.posterPath; else defaultImage">
+          </div>
+          <ng-template #defaultImage>
+            <div class="default-image">
+              <p>No</p>
+              <p>Image</p>
+            </div>
+          </ng-template>
           <ion-input hidden value="{{movie.posterPath}}" formControlName="posterPath"></ion-input>
         </ion-col>
         <ion-col size='8'>
@@ -45,14 +45,14 @@
             <ion-input placeholder="제목" value="{{movie.title}}" formControlName="title"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input placeholder="감독"value="{{movie.director?.name}}"formControlName="director"></ion-input>
+            <ion-input placeholder="감독" value="{{movie.director?.name}}" formControlName="director"></ion-input>
           </ion-item>
           <ion-item>
-              <ion-datetime class="pub" [doneText]="'저장'" [cancelText]="'취소'" [pickerOptions]="dateOptions"
-                displayFormat="YYYY-MM-DD" placeholder="개봉일" value="{{movie?.releaseDate | date : 'yyyy-MM-dd'}}"
-                formControlName="releaseDate">
-              </ion-datetime>
-            </ion-item>
+            <ion-datetime class="pub" [doneText]="'저장'" [cancelText]="'취소'" [pickerOptions]="dateOptions"
+              displayFormat="YYYY-MM-DD" placeholder="개봉일" value="{{movie?.releaseDate | date : 'yyyy-MM-dd'}}"
+              formControlName="releaseDate">
+            </ion-datetime>
+          </ion-item>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -60,7 +60,7 @@
           <ion-item>
             <ion-label>장르</ion-label>
             <ion-select interface="popover" formControlName="genre" value="{{movie.genre}}">
-              <ion-select-option *ngFor='let genre of movieService.genres'value="{{genre.id}}">{{genre.name}}
+              <ion-select-option *ngFor='let genre of movieService.genres' value="{{genre.id}}">{{genre.name}}
               </ion-select-option>
 
             </ion-select>
@@ -69,7 +69,7 @@
             <ion-label position="fixed">줄거리</ion-label>
           </ion-item>
           <ion-item class="textarea">
-            <ion-textarea rows="6" cols="20"class="movie-description" placeholder="줄거리..." value="{{movie.overview}}"
+            <ion-textarea rows="6" cols="20" class="movie-description" placeholder="줄거리..." value="{{movie.overview}}"
               formControlName="overview"></ion-textarea>
           </ion-item>
 
@@ -80,7 +80,7 @@
           </ion-item>
 
           <ion-item class='textarea'>
-            <ion-label  position="fixed">명대사</ion-label>
+            <ion-label position="fixed">명대사</ion-label>
           </ion-item>
           <ion-item class="textarea">
             <ion-textarea rows="2" cols="20" placeholder="..." formControlName="famouseLine"></ion-textarea>
