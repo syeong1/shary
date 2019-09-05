@@ -62,24 +62,28 @@ exports.loginUser = (req, res) => {
 };
 
 
-exports.updateUser = (req, res) => {
-    if (!req.body.email || !req.body.password) {
-        return res.status(400).json({ 'msg': 'You need to send email and password' });
-    }
- 
-    User.findOne({ email: req.body.email }, (err, user) => {
+exports.getMyProfile = (req, res) => {
+
+    User.findOne({
+        _id: req.user._id
+    }, function (err, user) {
+        console.log(user);
         if (err) {
-            return res.status(400).json({ 'msg': err });
+            return res.status(500).json({
+                error: err
+            });
         }
- 
+        if (!user) {
+            return res.status(404).json({
+                error: 'user not found'
+            });
+        }
         if (user) {
-        let user = User(req.body);
-        user.save((err, user) => {
-            if (err) {
-                return res.status(400).json({ 'msg': err });
+            let filterUser = {
+                email: user.email,
+                nickname: user.nickname
             }
-            return res.status(201).json(user);
-             });
-         }
+            return res.status(200).json(filterUser);
+        }
     });
-};
+}
