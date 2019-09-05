@@ -1,58 +1,80 @@
 const Food = require('../models/food');
 
-exports.writeFoodReview = (req, res) => {
-    if (!req.body.name) {
-        return res.status(400).json({'msg': 'No request'});
-    }
+// 새 리뷰 작성
+exports.writeReview = (req, res) => {
 
+    let newReview = Food(req.body);
     let writer = req.user._id;
-    let tag = (req.body.tags).split(',');
-    let newFoodReview = Food(req.body);
-    console.log(req.body.reviewbook);
-    newFoodReview.tag = tag;
-    newFoodReview.writer = writer;
+    newReview.writer = writer;
 
-    newFoodReview.save((err, review) => {
-        if(err) {
-            return res.status(400).json({ 'msg': err });
+    newReview.save((err, food) => {
+        if (err) {
+            console.log(err);
+            return res.status(400).json({
+                'msg': err
+            });
         }
-        return res.status(201).json(review);
-    })
-
+        console.log(food);
+        return res.status(201).json({
+            'msg': '등록되었습니다'
+        });
+    });
 }
 
     
-exports.getFoodReviewList = (req, res) => {
-    console.log('reviewlist에 받아온 reviewbook id : ' + req.params.id);
-    if(!req.params.id){
-        return res.status(400).json({'msg': '리스트 아이디가 없습니다.'});
-    }
+exports.getReviewList = (req, res) => {
+
+    console.log('### 요청한 리뷰리스트 id : ', req.params.id);
+
     let reviewbook_id = req.params.id;
-    Food.find({reviewList: reviewbook_id}, (err, result) => {
-        if(!result){
-            return res.status(404).json({'msg': '등록 리뷰를 찾을 수 없습니다.'})
-        }
-        if (result) {
-            return res.status(200).json(result);
-        }
-    })
 
-    
+    Food.find({
+        reviewbook: reviewbook_id, // 리뷰북 id로 검색
+        writer: req.user._id
+    }, function (err, foods) {
+        console.log(foods);
+        if (err) {
+            return res.status(500).json({
+                error: err
+            });
+        }
+        if (!foods) {
+            return res.status(404).json({
+                error: 'reviewbook not found'
+            });
+        }
+        if (foods) {
+            return res.status(200).json(foods);
+        }
+    });
 }
 
-exports.getFoodReviewDetail = (req, res) => {
-    if(!req.params.id){
-        return res.status(400).json({'msg': '리스트 아이디가 없습니다.'});
-    }
+// 리뷰 디테일 가져오기
+exports.getReviewDetail = (req, res) => {
+
+    console.log('#### 요청한 리뷰 id : ', req.params.id);
     let review_id = req.params.id;
-    Food.findOne({ _id: review_id}, (err, result) => {
-        if(!result){
-            return res.status(404).json({'msg': '등록 리뷰를 찾을 수 없습니다.'})
+
+    Food.findOne({
+        _id: review_id, // 리뷰 id로 검색
+        writer: req.user._id
+    }, function (err, food) {
+        console.log(food);
+        if (err) {
+            return res.status(500).json({
+                error: err
+            });
         }
-        if (result) {
-            return res.status(200).json(result);
+        if (!food) {
+            return res.status(404).json({
+                error: 'book detail not found'
+            });
         }
-    })
+        if (food) {
+            console.log('완료');
+            return res.status(200).json(food);
+        }
+    });
 }
 
 // 책 리뷰 삭제

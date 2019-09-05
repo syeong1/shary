@@ -56,7 +56,9 @@ export class FoodPage implements OnInit {
       evaluation: new FormControl(''),
       tags: new FormControl(''),
       reviewbook: new FormControl(''),
-      country: new FormControl('')
+      country: new FormControl(''),
+      x: new FormControl(''),
+      y: new FormControl('')
     })
 
     this.plt.ready().then(() => {
@@ -185,7 +187,8 @@ export class FoodPage implements OnInit {
       }else {
         this.searchPlace = new naver.maps.LatLng(this.searchResult.y, this.searchResult.x);
       }
-      
+      this.reviewForm.controls['x'].setValue(this.searchResult.x, {onlyself: true});
+      this.reviewForm.controls['y'].setValue(this.searchResult.y, {onlyself: true});
       this.marker.setPosition(this.searchPlace);
       this.map.setCenter(this.searchPlace);
       
