@@ -13,17 +13,17 @@
     <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
   </ion-avatar>
 
-
-  <ion-item>
-    <ion-label position="fixed">닉네임</ion-label>
-    <ion-input type="text" name="nickname" [(ngModel)]="nickname"></ion-input>
-    <ion-icon  name="checkmark" [style.color]="exist ? 'red': 'black'" ></ion-icon>
-  </ion-item>
-  <ion-item>
-    <ion-label position="fixed" >아이디</ion-label>
-    <ion-input type="text" value="sgjh4040" readonly></ion-input>
-    
-  </ion-item>
+  <ion-list *ngIf="user"> 
+      <ion-item>
+          <ion-label position="fixed">닉네임</ion-label>
+          <ion-input type="text" name="nickname" [(ngModel)]="nickname" readonly>{{user.nickname}}</ion-input>
+          <!-- <ion-icon  name="checkmark" [style.color]="exist ? 'red': 'black'" ></ion-icon> -->
+        </ion-item>
+        <ion-item>
+          <ion-label position="fixed" >아이디</ion-label>
+          <ion-input type="text" readonly>{{user.email}}</ion-input>
+        </ion-item>
+  </ion-list>
   <ion-item button>
       <ion-icon name="person"></ion-icon>
       <ion-label>
