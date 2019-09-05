@@ -43,7 +43,7 @@ export class MoviePage implements OnInit {
     this.reviewbookId=this.activateRoute.snapshot.paramMap.get('reviewbook_id');
     this.reviewId = this.activateRoute.snapshot.paramMap.get('review_id');
     // 새 리뷰 작성 시 필요한 reviewbook_id
-    console.log('book write page로 넘어온 reviewbook_id : ' + this.reviewbookId);
+    console.log('movie write page로 넘어온 reviewbook_id : ' + this.reviewbookId);
 
     // 리뷰 수정 시 detail 로딩 및 title 설정
     if (this.reviewId !== null) {

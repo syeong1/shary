@@ -65,6 +65,8 @@ export class ImageService {
     })
   }
   readFile(file: any) {
+    console.log("readFile 메소드");
+    console.log(file);
     const reader = new FileReader();
     reader.onloadend = () => {
       const formData = new FormData();
@@ -83,7 +85,7 @@ export class ImageService {
     });
     await loading.present();
 
-    this.http.post("http://172.30.1.52:5000/api/images/", formData)
+    this.http.post("http://172.30.1.15:5000/api/images", formData)
       .pipe(
         finalize(() => {
           loading.dismiss();
@@ -99,7 +101,7 @@ export class ImageService {
         console.log('succes',res['success']);
         if (res['success']) {
           this.presentToast('File upload complete.')
-          this.profile= 'http://172.30.1.15:5000/api/profile/'+this.authService.user.id+'?'+(new Date()).getTime();
+          this.profile= 'http://172.30.1.15:5000/api/images/'+this.authService.user.id+'?'+(new Date()).getTime();
           
         } else {
           this.presentToast('File upload failed.')

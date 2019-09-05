@@ -32,4 +32,7 @@ routes.get('/special', passport.authenticate('jwt', {
 //프로필 이미지 업로드
 routes.post('/images', passport.authenticate('jwt', { session: false }), imageController.upload.single('file'), imageController.uploadImg)
 
+//프로필 이미지 불러오기
+routes.get('/images/:id', userController.getProfile);
+
 module.exports = routes;

@@ -4,7 +4,7 @@ var multer = require('multer');
 
 var storage = multer.diskStorage({
     destination: function(req,file,cb){
-      cb(null,'uploads')
+      cb(null,'uploads/')
     },
     filename: function(req,file,cb){
       cb(null,file.fieldname+'-'+Date.now())
@@ -13,13 +13,14 @@ var storage = multer.diskStorage({
 var upload=  multer({storage:storage})
 
 var uploadImg = (req,res)=>{
+    console.log("업로드 이미지");
     let user_id = req.user._id;
     let newImage = new Image();
     newImage.filename = req.file.filename;
     newImage.originalName = req.file.originalname;
     newImage.desc = req.body.desc
 
-    User.findByIdAndUpdate(user_id,{'$set':{profile_img: newImage}}, { 'upsert': true, 'new': true },(err,result)=>{
+    User.findByIdAndUpdate(user_id,{'$set':{profileImg: newImage}}, { 'upsert': true, 'new': true },(err,result)=>{
       if(err){
         return res.status(400).json({ 'msg': err });
       }
