@@ -32,7 +32,9 @@ var FoodReviewSchema = new Schema({
     liker: [{           // 좋아요 누른 사람
         type: Schema.Types.ObjectId,
         ref: 'User'
-    }]
+    }],
+    x: String,
+    y: String
 });
 
 

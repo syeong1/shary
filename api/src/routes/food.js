@@ -10,7 +10,7 @@ var map = require('./../controller/map-controller');
 // 새 리뷰 등록
 routes.post('/', passport.authenticate('jwt', {
     session: false
-}), foodController.writeFoodReview);
+}), foodController.writeReview);
 
 // 리뷰 수정
 routes.patch('/:id', passport.authenticate('jwt', {
@@ -25,13 +25,13 @@ routes.delete('/:id', passport.authenticate('jwt', {
 // 책 리뷰 리스트 가져오기
 routes.get('/:id', passport.authenticate('jwt', {
     session: false
-}), foodController.getFoodReviewList);
+}), foodController.getReviewList);
 
 
 // 책 리뷰 디테일 가져오기
 routes.get('/detail/:id', passport.authenticate('jwt', {
     session: false
-}), foodController.getFoodReviewDetail);
+}), foodController.getReviewDetail);
 
 
 
