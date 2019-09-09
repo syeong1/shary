@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './../../services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { ImageService } from 'src/app/services/image.service';
+// import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -11,14 +12,16 @@ import { ImageService } from 'src/app/services/image.service';
 })
 export class MypagePage implements OnInit {
 
+
   user: any;
+  
 
   constructor(private userService: UserService,private imageService: ImageService,private authService:AuthService) { }
 
   ngOnInit() {
     this.getUserProfile();
     this.imageService.images=[];
-    this.imageService.profile='http://172.30.1.15:5000/api/images/'+this.authService.user.id;
+    this.imageService.profile='http://172.16.26.207:5000/api/images/'+this.authService.user.id;
 
   }
 
@@ -31,6 +34,11 @@ export class MypagePage implements OnInit {
   uploadprofile(){
     this.imageService.selectProfile().then(()=>{
     });
+  }
+
+  updateNickname(data) {
+    // if()
+    // this.userService.updateNickname()
   }
 
 }
