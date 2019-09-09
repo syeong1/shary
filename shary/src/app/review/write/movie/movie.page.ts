@@ -98,6 +98,7 @@ export class MoviePage implements OnInit {
           this.movie['genre'] = this.movie['genre_ids'][0];
           this.movie['releaseDate'] = this.movie['release_date'];
           this.movie['posterPath'] = this.movie['poster_path'];
+          
 
           this.movieService.searchDirector(this.movie['id']).subscribe(res => {
             this.movie['director'] = res[0];
