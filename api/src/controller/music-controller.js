@@ -1,4 +1,4 @@
-var Music = require('../models/Music');
+var Music = require('../models/music');
 
 // 새 리뷰 작성
 exports.writeReview = (req, res) => {

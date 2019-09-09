@@ -1,4 +1,4 @@
-var Book = require('../models/Book');
+var Book = require('../models/book');
 
 // 새 리뷰 작성
 exports.writeReview = (req, res) => {
