@@ -58,12 +58,8 @@ export function jwtOptionsFactory(storage) {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Geolocation,
     SocialSharing,
-<<<<<<< HEAD
-  
-=======
     Camera,
     File
->>>>>>> ea66d6ded2d2564b2cb1acf5097bfb70d00c6486
   ],
   bootstrap: [AppComponent]
 })
