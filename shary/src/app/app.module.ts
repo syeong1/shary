@@ -22,7 +22,6 @@ import { CreatePageModule } from './reviewbook/create/create.module';
 import { TvApiPageModule } from './search/tv-api/tv-api.module';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
-import { NativeKeyboard } from '@ionic-native/native-keyboard/ngx';
 
 
 
@@ -57,7 +56,7 @@ export function jwtOptionsFactory(storage) {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Geolocation,
     SocialSharing,
-    NativeKeyboard
+  
   ],
   bootstrap: [AppComponent]
 })
