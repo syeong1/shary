@@ -1,7 +1,7 @@
-var Book = require('../models/Book');
-// var Food = require('../models/Food');
-// var Movie = require('../models/Movie');
-var Music = require('../models/Music');
+var Book = require('../models/book');
+var Food = require('../models/food');
+var Movie = require('../models/movie');
+var Music = require('../models/music');
 var Tv = require('../models/tv');
 
 // 책 카테고리 리뷰 검색 (타이틀, 저자)
