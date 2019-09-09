@@ -93,6 +93,8 @@ export class MoviePage implements OnInit {
     modal.onDidDismiss()
     .then((data) => {
 
+      this.movie['releaseDate'] = data['release_date'];
+
       if(data['data']!=undefined){
         this.movie = data['data'];
         this.movie['genre']=this.movie['genre_ids'][0];

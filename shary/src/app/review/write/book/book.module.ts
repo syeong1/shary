@@ -6,6 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { BookPage } from './book.page';
+import { ComponentsModule } from 'src/app/components/component.module';
+
 
 const routes: Routes = [
   {
@@ -20,6 +22,7 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
+    ComponentsModule,
     RouterModule.forChild(routes)
   ],
   declarations: [BookPage]

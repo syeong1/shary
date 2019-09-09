@@ -15,9 +15,9 @@ export class BookService {
 
   constructor(private http: HttpClient, public alertController: AlertController, public toastController: ToastController) { }
 
-  getBookData(title: string): Observable<any> {
+  getBookData(term: string): Observable<any> {
 
-    return this.http.get(`${this.url}/api/search/book/${title}`).pipe(
+    return this.http.get(`${this.url}/api/search/book/${term}`).pipe(
       map(results => {
         console.log(results);
         return results['items'];

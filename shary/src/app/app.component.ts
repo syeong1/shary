@@ -17,7 +17,6 @@ export class AppComponent {
     private statusBar: StatusBar,
     private auth: AuthService,
     private router: Router
-
   ) {
     this.initializeApp();
   }

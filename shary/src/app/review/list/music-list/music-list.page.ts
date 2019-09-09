@@ -12,6 +12,8 @@ export class MusicListPage implements OnInit {
   reviewbookId: string;
   reviewbookTitle: string = null;
   reviews: any;
+  searchTerm: string = '';
+
 
   constructor(private reviewService: ReviewService,
     private route: ActivatedRoute, private router: Router) {
@@ -22,7 +24,7 @@ export class MusicListPage implements OnInit {
       }
     })
   }
-
+  
   ngOnInit() {
     this.reviewbookId = this.route.snapshot.paramMap.get('id');
     console.log('책 리뷰북 id : ', this.reviewbookId);

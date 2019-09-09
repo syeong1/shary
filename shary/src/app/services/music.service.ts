@@ -14,8 +14,8 @@ export class MusicService {
 
   constructor(private http: HttpClient) { }
 
-  getMusicData(title: string): Observable<any> {
-    return this.http.get(`${this.url}/api/search/music/${title}`).pipe(
+  getMusicData(term: string): Observable<any> {
+    return this.http.get(`${this.url}/api/search/music/${term}`).pipe(
       map(results => {
         console.log('service', results);
         return results['results'];
