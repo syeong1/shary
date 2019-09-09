@@ -12,7 +12,7 @@ export class BookDetailPage implements OnInit {
 
   reviewId: string;
   data = null;
-
+  likeState: boolean = false;
   constructor(private reviewService: ReviewService, private activatedRoute: ActivatedRoute, private router: Router, public alertController: AlertController) { }
 
   ngOnInit() {
@@ -22,6 +22,7 @@ export class BookDetailPage implements OnInit {
 
   ionViewWillEnter() {
     this.getReviewDetail();
+    this.getLike();
   }
 
   getReviewDetail() {
@@ -29,6 +30,7 @@ export class BookDetailPage implements OnInit {
       console.log('*** reviewService.getReviewDetail 요청 때 reviewid : ', this.reviewId);
       console.log('받아온 Review data', data);
       this.data = data;
+
     })
   }
 
@@ -63,5 +65,27 @@ export class BookDetailPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+
+  getLike() {
+    this.reviewService.getLike(this.reviewId).subscribe(result => {
+      console.log('좋아요 상태', result);
+      this.likeState = result['like'];
+    })
+  }
+
+  addLike() {
+    this.reviewService.addLike(this.reviewId).subscribe(data => {
+      console.log('좋아요 누른 결과', data);
+      this.likeState = true;
+    })
+  }
+  cancelLike() {
+    this.reviewService.cancelLike(this.reviewId).subscribe(data => {
+      console.log('좋아요 취소 결과', data);
+      this.likeState = false;
+
+    })
   }
 }

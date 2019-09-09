@@ -9,7 +9,7 @@
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-searchbar mode="ios"></ion-searchbar>
+    <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="onInput($event)" mode="ios" placeholder="검색">
   </ion-toolbar>
 </ion-header>
 

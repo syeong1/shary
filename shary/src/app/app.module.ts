@@ -24,6 +24,9 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { Camera } from '@ionic-native/Camera/ngx';
 import { File } from '@ionic-native/File/ngx';
 
+import { NativeKeyboard } from '@ionic-native/native-keyboard/ngx';
+
+
 
 export function jwtOptionsFactory(storage) {
   return {

@@ -29,6 +29,21 @@ routes.get('/special', passport.authenticate('jwt', {
     });
 });
 
+
+// 좋아요 확인
+routes.get('/like/:id', passport.authenticate('jwt', {
+    session: false
+}),userController.getLike);
+
+// 좋아요 추가
+routes.post('/like', passport.authenticate('jwt', {
+    session: false
+}),userController.addLike);
+
+// 좋아요 취소
+routes.delete('/like/:id', passport.authenticate('jwt', {
+    session: false
+}),userController.deleteLike);
 //프로필 이미지 업로드
 routes.post('/images', passport.authenticate('jwt', { session: false }), imageController.upload.single('file'), imageController.uploadImg)
 

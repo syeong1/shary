@@ -1,8 +1,9 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
 var Image = require('../models/image');
 
-var UserSchema = new mongoose.Schema({
+var UserSchema = new Schema({
     email: {
         type: String,
         unique: true,
@@ -15,7 +16,11 @@ var UserSchema = new mongoose.Schema({
         required: true
     },
     nickname: String,
-    profileImg: Image.schema
+    profileImg: Image.schema,
+    like: [{
+        type: Schema.Types.ObjectId,
+        ref: ['Book', 'Food', 'Movie', 'Music', 'Tv']
+    }]
 });
 
 UserSchema.pre('save', function (next) {

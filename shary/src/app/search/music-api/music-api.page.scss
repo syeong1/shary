@@ -1,3 +1,16 @@
+ion-buttons.btn-back{
+    height:48px; 
+}
+
+ion-item {
+    --min-height: 135px;
+    --inner-padding-top:7px;
+    --inner-padding-bottom:7px;
+    vertical-align: middle;
+    align-content: center;
+    align-items: center;
+}
+
 .artwork {
     width: 53px;
     height: 53px;

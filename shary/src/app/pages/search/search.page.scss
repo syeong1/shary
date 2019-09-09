@@ -1,30 +1,111 @@
-ion-select {
-    width: auto;
+::-webkit-scrollbar,
+*::-webkit-scrollbar {
+    display: none;
+}
 
- }
-ion-tab-bar{
-    overflow-x: scroll;
-    justify-content: left;
-    border-bottom: solid 1px #e8e8e8;
-    outline: none;
+.scroll-content {
+    overflow: hidden;
+}
+
+.segment-button-checked {
+    font-weight: 550;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
+
+ion-content {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+ion-grid {
+    padding: 5px 5px;
+    text-align: -webkit-center;
+}
+
+ion-col {
+    align-content: center;
+}
+
+div.msg-wrap {
     width: 100%;
+    margin: 55% 20%;
     padding: 0;
-    margin: 0;
-   .tab-category{ 
-        min-width: 70px;
-        font-size: 13px;
+    height: 100%;
+    text-align: center;
+}
+
+div.music-wrap {
+
+    img {
+        width: 100px;
+        height: 100px;
+    }
+
+    ion-card {
+        -webkit-margin-start: 5px;
+        margin-inline-start: 5px;
+        -webkit-margin-end: 5px;
+        margin-inline-end: 5px;
+        margin-top: 24px;
+        margin-bottom: 12px;
+        width: 100px;
+    }
+
+    ion-card-header {
+        padding: 0px 8px 10px;
+        height: 55px;
+
+    }
+
+    ion-card-title,
+    .track-name {
+        font-size: 12px;
+        font-weight: 500;
+        color: #111;
+        max-height: 30px;
+        overflow: hidden;
+        margin-top: 3px;
+    }
+
+    ion-card-subtitle,
+    .artist-name {
+        font-size: 10px;
+        font-weight: normal;
         color: #444;
-        box-sizing: border-box;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+        margin-top: 4px;
+    }
+
+    ion-card-content {
+        padding: 8px 8px 3px;
     }
 }
- 
-ion-item:not(.item-label) .sc-ion-input-md-h {
-    --padding-start: 10px
-}
 
-ion-input{
-    --padding-bottom: 15px;
+div.book-wrap {
+
+    img {
+        width: 120px;
+        height: 145px;
+    }
+
+    ion-card-title {
+        font-size: 13px;
+        font-weight: 650;
+        height: 30px;
+        overflow: hidden;
+    }
+
+    ion-card-subtitle {
+        font-size: 8px;
+        font-weight: 550;
+    }
+
+    ion-card-content {
+        padding: 5px 12px 17px;
+
+        .preview {
+            height: 35px;
+            font-size: 12px;
+            overflow: hidden;
+        }
+    }
 }

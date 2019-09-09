@@ -1,23 +1,66 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
     <ion-title>검색</ion-title>
   </ion-toolbar>
-  <ion-item>
+  <ion-toolbar>
     <ion-select placeholder="리뷰" interface="popover" slot="start">
       <ion-select-option value="review">리뷰</ion-select-option>
       <ion-select-option value="reviewbook">리뷰북</ion-select-option>
       <ion-select-option value="tag">태그</ion-select-option>
     </ion-select>
-    <ion-input placeholder="검색"></ion-input>
-  </ion-item>
+    <ion-searchbar [(ngModel)]="searchTerm" (ionBlur)="searchReview($event)" (keyup.enter)="searchReview($event)"
+      mode="ios" placeholder="검색">
+    </ion-searchbar>
+  </ion-toolbar>
 </ion-header>
+
 <ion-content>
 
-  <ion-tabs>
-    <ion-tab-bar slot="top">
-      <ion-tab-button *ngFor="let category of categories" tab="movie">
-        <ion-label class="tab-category">{{category}}</ion-label>
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs>
+  <ion-row>
+    <ion-segment mode="md" scrollable (ionChange)="segmentChanged($event)" [(ngModel)]="page">
+      <ion-segment-button mode="md" *ngFor="let category of categories" value="{{category.index}}"
+        (click)="selectedTab(category)">
+        <ion-label class="tab-category">{{category.name}}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-row>
+
+  <ion-slides #slider (ionSlideWillChange)="moveButton()">
+    <ion-slide *ngFor="let category of categories">
+      <div *ngIf="!reviews|| reviews==''" class=" msg-wrap">
+        {{msg}}
+      </div>
+      <ion-grid>
+        <ion-row *ngIf="reviews">
+          <ion-col size="4" *ngFor="let review of reviews">
+            <ion-card (click)="openReivewDetailPage(review)">
+              <div class="music-wrap" *ngIf="category.name=='음악'">
+                <img [src]=review.artworkUrl100 />
+                <ion-card-content>
+                  <ion-icon name="star" *ngFor="let num of [1,2,3,4,5]"
+                    [style.color]="review.rating >=num ? '#ffbf00':'grey'"></ion-icon>
+                </ion-card-content>
+                <ion-card-header>
+                  <ion-card-title class="track-name">{{review.trackName}}</ion-card-title>
+                  <ion-card-subtitle class="artist-name">{{review.artistName}}</ion-card-subtitle>
+                </ion-card-header>
+              </div>
+              <div class="book-wrap" *ngIf="category.name=='책'">
+                <img [src]=review.image />
+                <ion-icon name="star" *ngFor="let num of [1,2,3,4,5]"
+                  [style.color]="review.rating >=num ? '#ffbf00':'grey'"></ion-icon>
+                <ion-card-header>
+                  <ion-card-subtitle>{{review.author}}</ion-card-subtitle>
+                  <ion-card-title>{{review.title}}</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  <p class="preview">{{review.description}}</p>
+                </ion-card-content>
+              </div>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
 </ion-content>
