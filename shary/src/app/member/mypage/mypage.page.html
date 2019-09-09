@@ -1,52 +1,51 @@
-<ion-header >
+<ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-back-button defaultHref="/"></ion-back-button>
-        </ion-buttons>
-    <ion-title >Mypage</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Mypage</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
 
   <ion-avatar style="margin: 10pt auto;">
-    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+    <img [src]='imageService.profile'>
   </ion-avatar>
 
-
-  <ion-item>
-    <ion-label position="fixed">닉네임</ion-label>
-    <ion-input type="text" name="nickname" [(ngModel)]="nickname"></ion-input>
-    <ion-icon  name="checkmark" [style.color]="exist ? 'red': 'black'" ></ion-icon>
-  </ion-item>
-  <ion-item>
-    <ion-label position="fixed" >아이디</ion-label>
-    <ion-input type="text" value="sgjh4040" readonly></ion-input>
-    
-  </ion-item>
-  <ion-item button>
-      <ion-icon name="person"></ion-icon>
-      <ion-label>
-        <h3>프로필 수정</h3>
-      </ion-label>
-      <ion-icon slot="end"></ion-icon>
+  <ion-list *ngIf="user">
+    <ion-item>
+      <ion-label position="fixed">닉네임</ion-label>
+      <ion-input type="text" name="nickname" [(ngModel)]="nickname" readonly>{{user.nickname}}</ion-input>
+      <!-- <ion-icon  name="checkmark" [style.color]="exist ? 'red': 'black'" ></ion-icon> -->
     </ion-item>
-
-  <ion-item button>
-    <ion-icon name="key" ></ion-icon>
+    <ion-item>
+      <ion-label position="fixed">아이디</ion-label>
+      <ion-input type="text" readonly>{{user.email}}</ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-item button (click)='uploadprofile()'>
+    <ion-icon name="person"></ion-icon>
     <ion-label>
-      <h3>어플 비밀번호</h3>
+      <h3>프로필 사진 변경</h3>
+    </ion-label>
+    <ion-icon slot="end"></ion-icon>
+  </ion-item>
+
+  <ion-item button (click)="updateNickname()">
+    <ion-icon name="key"></ion-icon>
+    <ion-label>
+      <h3>닉네임 변경</h3>
     </ion-label>
     <ion-icon slot="end"></ion-icon>
   </ion-item>
 
   <ion-item button>
-      <ion-icon name="sad" ></ion-icon>
-      <ion-label>
-        <h3>탈 퇴</h3>
-      </ion-label>
-      <ion-icon slot="end" name="ios-arrow"> </ion-icon>
-    </ion-item>
+    <ion-icon name="sad"></ion-icon>
+    <ion-label>
+      <h3>탈 퇴</h3>
+    </ion-label>
+    <ion-icon slot="end" name="ios-arrow"> </ion-icon>
+  </ion-item>
 
 </ion-content>
-

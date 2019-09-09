@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TvService } from 'src/app/services/tv.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ReviewService } from 'src/app/services/review.service';
 
 @Component({
   selector: 'app-tv-list',
@@ -12,7 +13,7 @@ export class TvListPage implements OnInit {
   reviewbookId: string;
   reviewbookTitle: string = null;
   reviews: any;
-  constructor(private tvService: TvService, private activatedRoute:ActivatedRoute,private router:Router,private route:ActivatedRoute) {
+  constructor(private tvService: TvService, private activatedRoute:ActivatedRoute,private router:Router,private route:ActivatedRoute,private reviewService: ReviewService) {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.reviewbookTitle = this.router.getCurrentNavigation().extras.state.title;
@@ -24,17 +25,15 @@ export class TvListPage implements OnInit {
   ngOnInit() {
     this.reviewbookId = this.activatedRoute.snapshot.paramMap.get('id');
     console.log('tv 리뷰북 id: ',this.reviewbookId);
-    this.getReviews();
   }
   ionViewWillEnter(){
     console.log("ionViewWillEnter");
-    this.getReviews();
+    this.getReviewList();
   }
 
-  getReviews(){
-    this.tvService.getBookReviewList(this.reviewbookId)
-    .subscribe(data => {
-      console.log('리뷰 리스트 Service 요청할 때 id : ', this.reviewbookId);
+  getReviewList(){
+    this.reviewService.getReviewList('tv', this.reviewbookId).subscribe(data => {
+      console.log('*** reviewService.getReviewList 요청할 때 reviewbookId : ', this.reviewbookId);
       console.log('받아온 Reviews data', data);
       this.reviews = data;
     })

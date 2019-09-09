@@ -26,8 +26,15 @@ exports.getTvData = (req, res) => {
 
 }
 exports.writeReview = (req, res) => {
-    console.log(req.body);
+    console.log('episodes',req.body.episodes);
     let newReview = Tv(req.body);
+    let episodes= [];
+    for(let episode of req.body.episodes){
+        if(episode.content !=""){
+            episodes.push(episode.content);
+        }
+    };
+    newReview.episodes= episodes;
     let writer = req.user._id;
     newReview.writer = writer;
 
@@ -37,7 +44,6 @@ exports.writeReview = (req, res) => {
                 'msg': err
             });
         }
-        console.log(result);
         return res.status(201).json({
             'msg': '등록되었습니다'
         });
@@ -46,10 +52,7 @@ exports.writeReview = (req, res) => {
 
 // 티비 리뷰리스트 가져오기
 exports.getBookReviewList = (req, res) => {
-    
-    console.log(req);
         console.log('요청한 리뷰리스트 id', req.params._id);
-        // let reviewbook_id = req.params.id;
         // 책 리뷰북 가져오기
         let reviewbook_id = req.params.id;
             Tv.find({reviewbook: reviewbook_id}, function (err, reviews) {
@@ -93,6 +96,13 @@ exports.editReview = (req, res) => {
     console.log('req.params.id:',req.params.id);
     let writer = req.user._id;
     req.body.writer=writer;
+    let episodes= [];
+    for(let episode of req.body.episodes){
+        if(episode.content !=""){
+            episodes.push(episode.content);
+        }
+    };
+    req.body.episodes=episodes;
 
     Tv.findByIdAndUpdate(req.params.id, {
         $set: req.body

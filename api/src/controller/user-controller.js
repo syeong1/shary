@@ -1,6 +1,8 @@
-var User = require('../models/user');
-var jwt = require('jsonwebtoken');
-var config = require('../config/config');
+const User = require('../models/user');
+const jwt = require('jsonwebtoken');
+const config = require('../config/config');
+const path = require('path');
+const fs = require('fs');
 
 
 function createToken(user) {
@@ -192,4 +194,50 @@ exports.deleteLike = (req, res) => {
             data: result
         })
     })
+}
+
+
+exports.getMyProfile = (req, res) => {
+
+    User.findOne({
+        _id: req.user._id
+    }, function (err, user) {
+        if (err) {
+            return res.status(500).json({
+                error: err
+            });
+        }
+        if (!user) {
+            return res.status(404).json({
+                error: 'user not found'
+            });
+        }
+        if (user) {
+            let filterUser = {
+                email: user.email,
+                nickname: user.nickname
+            }
+            return res.status(200).json(filterUser);
+        }
+    });
+}
+
+exports.getProfile = (req, res) => {
+    console.log("getProfile");
+    let user_id = req.params.id;
+    User.findById(user_id, { profileImg: 1 }, (err, user) => {
+
+        if (err) {
+            return res.status(400).send({ 'msg': err });
+        }
+        if (user.profileImg == null || user.profileImg == '') {
+            return;
+        }
+        res.setHeader('Content-Type', 'image/jpeg');
+        fs.createReadStream(path.join('uploads', user.profileImg.filename)).on('error', (err) => res.status(400).send({ 'msg': err })).pipe(res)
+
+
+
+    })
+
 }
