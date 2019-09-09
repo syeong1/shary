@@ -21,8 +21,10 @@
 <ion-content>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button>
-      <ion-icon name="heart" *ngIf="likeState" (click)="cancelLike()" mode="md" [style.color]="'#D33131'"></ion-icon>
-      <ion-icon name="heart" *ngIf="!likeState" (click)="addLike()" mode="md" [style.color]="'#fff'"></ion-icon>
+      <ion-icon name="heart" class="btn-like" *ngIf="likeState" (click)="cancelLike()" mode="md"
+        [style.color]="'#D33131'"></ion-icon>
+      <ion-icon name="heart" class="btn-like" *ngIf="!likeState" (click)="addLike()" mode="md" [style.color]="'#fff'">
+      </ion-icon>
     </ion-fab-button>
   </ion-fab>
 
