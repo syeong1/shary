@@ -19,8 +19,19 @@
 </ion-header>
 
 <ion-content>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="heart" *ngIf="likeState" (click)="cancelLike()" mode="md" [style.color]="'#D33131'"></ion-icon>
+      <ion-icon name="heart" *ngIf="!likeState" (click)="addLike()" mode="md" [style.color]="'#fff'"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
   <ion-grid *ngIf="data">
-    <!-- <ion-input hidden value="{{rating}}" formControlName="review_score"></ion-input> -->
+    <ion-item lines="none" class="rating-wrap">
+      <ion-icon size="large" name="star" *ngFor="let num of [1,2,3,4,5]"
+        [style.color]="data.rating >=num ? '#ffbf00':'#e0e0e0'">
+      </ion-icon>
+    </ion-item>
     <ion-row>
       <ion-col size='4'>
         <div class="image-wrap">
@@ -89,5 +100,4 @@
     </ion-row>
     <ion-label>사진</ion-label>
   </ion-grid>
-
 </ion-content>

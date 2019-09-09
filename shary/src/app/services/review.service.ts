@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, tap, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 import { environment } from '../../environments/environment';
@@ -83,6 +84,56 @@ export class ReviewService {
           throw new Error(e);
         })
       );
+  }
+
+  // 리뷰 검색
+  getSearchReview(category: string, term: string) {
+    return this.http.get(`${this.url}/api/search/review/${category}/${term}`).pipe(
+      catchError(e => {
+        let status = e.status;
+        if (status === 404) {
+          console.log('리뷰가 없습니다.');
+          return of([]);
+        }
+        throw new Error(e);
+      })
+    )
+  }
+
+
+  // 좋아요 확인
+  getLike(reviewId: string) {
+    return this.http.get(`${this.url}/api/like/${reviewId}`).pipe(
+      catchError(e => {
+        throw new Error(e);
+      })
+    );
+  }
+
+  // 좋아요 추가
+  addLike(reviewId: string) {
+    return this.http.post(`${this.url}/api/like`, { ['like']: reviewId }).pipe(
+      tap(res => {
+        this.presentToast('좋아요!');
+      }),
+      catchError(e => {
+        this.showAlert(e.error.msg, '오류');
+        throw new Error(e);
+      })
+    );
+  }
+
+  // 좋아요 취소
+  cancelLike(reviewId: string) {
+    return this.http.delete(`${this.url}/api/like/${reviewId}`).pipe(
+      tap(res => {
+        this.presentToast('좋아요 취소!');
+      }),
+      catchError(e => {
+        this.showAlert(e.error.msg, '오류');
+        throw new Error(e);
+      })
+    );
   }
 
   // Toast 창

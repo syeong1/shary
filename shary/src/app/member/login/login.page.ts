@@ -20,6 +20,13 @@ export class LoginPage implements OnInit {
     });
   }
 
+  kakao(){
+    console.log('kakao 실행')
+    this.authService.kakao().subscribe(state => {
+      console.log(state);
+    });
+  }
+
   onSubmit() {
     this.authService.login(this.loginForm.value).subscribe(state => {
       if (state !== null) {

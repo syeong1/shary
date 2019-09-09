@@ -15,9 +15,10 @@ var foodRouter = require('./routes/food');
 var movieRouter = require('./routes/movie');
 var musicRouter = require('./routes/music');
 var mapRouter = require('./routes/map');
-var searchRouter = require('./routes/search');
+var openApiRouter = require('./routes/openApi');
 var kakaoRouter = require('./routes/auth');
 var tvRouter = require('./routes/tv');
+var searchRouter = require('./routes/search');
 
 
 
@@ -46,16 +47,18 @@ app.use('/api/review/book', bookRouter);
 app.use('/api/review/food', foodRouter);
 app.use('/api/review/movie', movieRouter);
 app.use('/api/review/music', musicRouter);
-app.use('/api/review/tv',tvRouter);
+app.use('/api/review/tv', tvRouter);
 app.use('/api/review', reviewRouter);
 app.use('/api/reviewbook', reviewbookRouter);
 app.use('/api/map', mapRouter);
-app.use('/api/search', searchRouter);
+app.use('/api/search/review', searchRouter);
+app.use('/api/search', openApiRouter);
 app.use('/api/auth', kakaoRouter);
 
 mongoose.connect(config.db, {
   useNewUrlParser: true,
-  useCreateIndex: true
+  useCreateIndex: true,
+  useFindAndModify: false
 });
 
 const connection = mongoose.connection;

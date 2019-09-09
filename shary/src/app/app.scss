@@ -25,6 +25,21 @@ ion-toolbar {
     --border-width: 0 0 0;
 }
 
+.rating-wrap {
+    position: relative;
+    margin: 0 auto 16px;
+    width: fit-content;
+
+    rating {
+        margin: 0 auto;
+    }
+
+    .btn-search {
+        position: fixed;
+        right: 15px;
+    }
+}
+
 ion-fab-button {
     --background-activated: #b8986f;
     --background-hover: #d8b485;

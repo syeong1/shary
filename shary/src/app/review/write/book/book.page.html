@@ -11,8 +11,9 @@
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-item lines="none">
-      <ion-icon name="search" slot="end" (click)="openSearchBookModal()"></ion-icon>
+    <ion-item lines="none" class="rating-wrap">
+      <rating [(rating)]="rating"></rating>
+      <ion-icon class="btn-search" name="search" (click)="openSearchBookModal()"></ion-icon>
     </ion-item>
   </ion-toolbar>
 </ion-header>
@@ -21,7 +22,7 @@
 
   <form [formGroup]="reviewForm">
     <ion-grid>
-      <!-- <ion-input hidden value="{{rating}}" formControlName="review_score"></ion-input> -->
+      <ion-input hidden value="{{rating}}" formControlName="rating"></ion-input>
       <ion-row>
         <ion-col size='4'>
           <div class="image-wrap">

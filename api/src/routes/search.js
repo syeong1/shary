@@ -3,10 +3,12 @@ var express = require('express'),
 var passport = require('passport');
 var searchController = require('../controller/search-controller');
 
-// 네이버 검색 Open API 책
-routes.get('/book/:title', searchController.getBookData);
+// 카테고리별리뷰 검색
+routes.get('/book/:term', searchController.getSearchBookReview);
+routes.get('/food/:term', searchController.getSearchFoodReview);
+routes.get('/movie/:term', searchController.getSearchMovieReview);
+routes.get('/music/:term', searchController.getSearchMusicReview);
+routes.get('/tv/:term', searchController.getSearchTvReview);
 
-// itunes 노래 검색
-routes.get('/music/:title', searchController.getMusicData);
 
 module.exports = routes;
