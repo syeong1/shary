@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './../../services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { ImageService } from 'src/app/services/image.service';
+import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 // import { environment } from 'src/environments/environment';
 
 
@@ -14,16 +16,23 @@ export class MypagePage implements OnInit {
 
 
   user: any;
+  profileForm: FormGroup;
+  editMode: boolean = false;
   
 
-  constructor(private userService: UserService,private imageService: ImageService,private authService:AuthService) { }
+  constructor(private userService: UserService,private imageService: ImageService,private authService:AuthService,
+    private router: Router) { }
 
   ngOnInit() {
+    this.profileForm = new FormGroup({
+      nickname: new FormControl('')
+    })
     this.getUserProfile();
     this.imageService.images=[];
-    this.imageService.profile='http://172.16.26.207:5000/api/images/'+this.authService.user.id;
+    this.imageService.profile='http://localhost/api/images/'+this.authService.user.id;
 
   }
+
 
   getUserProfile(){
     this.userService.getProfile().subscribe(data => {
@@ -36,9 +45,16 @@ export class MypagePage implements OnInit {
     });
   }
 
-  updateNickname(data) {
-    // if()
-    // this.userService.updateNickname()
+  editNickname() {
+    this.editMode = true;
+  }
+
+  saveNickname() {
+    this.userService.updateNickname(this.profileForm.value).subscribe(result => {
+      console.log('결과', result);
+      this.editMode = false;
+      this.router.navigate(['']);
+    });
   }
 
 }
