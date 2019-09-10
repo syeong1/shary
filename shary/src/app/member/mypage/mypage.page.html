@@ -14,11 +14,22 @@
   </ion-avatar>
 
   <ion-list *ngIf="user">
+    <div *ngIf="editMode">
+    <form [formGroup]="profileForm">
     <ion-item>
       <ion-label position="fixed">닉네임</ion-label>
-      <ion-input type="text" name="nickname" [(ngModel)]="nickname" readonly>{{user.nickname}}</ion-input>
-      <!-- <ion-icon  name="checkmark" [style.color]="exist ? 'red': 'black'" ></ion-icon> -->
+      <ion-input type="text" formControlName="nickname"></ion-input>
+      <ion-icon name="save" (click)="saveNickname()" ></ion-icon>
     </ion-item>
+    </form>
+    </div>
+    <div *ngIf="!editMode">
+        <ion-item>
+          <ion-label position="fixed">닉네임</ion-label>
+          <ion-input type="text" readonly>{{user?.nickname}}</ion-input>
+          <ion-icon name="create" (click)="editNickname()" ></ion-icon>
+        </ion-item>
+        </div>
     <ion-item>
       <ion-label position="fixed">아이디</ion-label>
       <ion-input type="text" readonly>{{user.email}}</ion-input>
@@ -31,15 +42,6 @@
     </ion-label>
     <ion-icon slot="end"></ion-icon>
   </ion-item>
-
-  <ion-item button (click)="updateNickname()">
-    <ion-icon name="key"></ion-icon>
-    <ion-label>
-      <h3>닉네임 변경</h3>
-    </ion-label>
-    <ion-icon slot="end"></ion-icon>
-  </ion-item>
-
   <ion-item button>
     <ion-icon name="sad"></ion-icon>
     <ion-label>
