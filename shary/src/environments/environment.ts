@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   //철현
-  url: 'http://localhost:5000'
+  // url: 'http://localhost:5000'
+  url: 'http://172.30.1.22:5000'
   //
   // url: 'http://172.30.1.34:5000'
    //할리스
