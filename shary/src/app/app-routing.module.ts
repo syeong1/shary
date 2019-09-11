@@ -22,7 +22,6 @@ const routes: Routes = [
     path: 'reviewbook/list/:category', loadChildren: './reviewbook/list/list.module#ListPageModule',
     canActivate: [AuthGuardService]
   },
-
   // 새 리뷰 작성 페이지
   { path: 'book/write/:reviewbook_id', loadChildren: './review/write/book/book.module#BookPageModule' },
   { path: 'food/write/:reviewbook_id', loadChildren: './review/write/food/food.module#FoodPageModule' },
@@ -56,8 +55,6 @@ const routes: Routes = [
   { path: 'tv-api', loadChildren: './search/tv-api/tv-api.module#TvApiPageModule' },
   { path: 'review/movie', loadChildren: './search/review/movie/movie.module#MoviePageModule' },
   { path: 'share-photo', loadChildren: './review/share-photo/share-photo.module#SharePhotoPageModule' },
-
-
 
 ];
 @NgModule({
