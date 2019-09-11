@@ -88,33 +88,19 @@ exports.loginUser = (req, res) => {
 
 
 exports.updateUser = (req, res) => {
-    if (!req.body.email || !req.body.password) {
-        return res.status(400).json({
-            'msg': 'You need to send email and password'
-        });
-    }
-
-    User.findOne({
-        email: req.body.email
-    }, (err, user) => {
+    console.log(req.body);
+    User.findByIdAndUpdate(req.user._id, {
+        $set: req.body
+    }, function (err, user) {
         if (err) {
-            return res.status(400).json({
-                'msg': err
-            });
+            console.log(err);
         }
-        if (user) {
-            let user = User(req.body);
-            user.save((err, user) => {
-                if (err) {
-                    return res.status(400).json({
-                        'msg': err
-                    });
-                }
-                return res.status(201).json(user);
-            });
-        }
+        return res.status(201).json({
+            'msg': '닉네임변경 성공',
+            'result': user
+        });
     });
-};
+}
 
 exports.getLike = (req, res) => {
     console.log('#### 좋아요 확인할 리뷰 id : ', req.params.id);
