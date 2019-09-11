@@ -116,12 +116,12 @@ exports.getLike = (req, res) => {
         }
         if (!result) {
             return res.json({
-                like: 'false'
+                like: false
             });
         }
         if (result) {
             return res.status(200).json({
-                like: 'true'
+                like: true
             });
         }
     });

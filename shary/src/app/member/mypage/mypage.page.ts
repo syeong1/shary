@@ -14,13 +14,11 @@ import { Router } from '@angular/router';
 })
 export class MypagePage implements OnInit {
 
-
   user: any;
   profileForm: FormGroup;
-  editMode: boolean = false;
-  
 
-  constructor(private userService: UserService,private imageService: ImageService,private authService:AuthService,
+
+  constructor(private userService: UserService, private imageService: ImageService, private authService: AuthService,
     private router: Router) { }
 
   ngOnInit() {
@@ -28,33 +26,27 @@ export class MypagePage implements OnInit {
       nickname: new FormControl('')
     })
     this.getUserProfile();
-    this.imageService.images=[];
-    this.imageService.profile='http://localhost/api/images/'+this.authService.user.id;
+    this.imageService.images = [];
+    this.imageService.profile = 'http://localhost/api/images/' + this.authService.user.id;
 
   }
 
+  onSubmit() {
+    this.userService.updateNickname(this.profileForm.value).subscribe(result => {
+      console.log('결과', result);
+    });
+  }
 
-  getUserProfile(){
+  getUserProfile() {
     this.userService.getProfile().subscribe(data => {
       console.log('mypage data : ', data);
       this.user = data;
     })
   }
-  uploadprofile(){
-    this.imageService.selectProfile().then(()=>{
+  uploadprofile() {
+    this.imageService.selectProfile().then(() => {
     });
   }
 
-  editNickname() {
-    this.editMode = true;
-  }
-
-  saveNickname() {
-    this.userService.updateNickname(this.profileForm.value).subscribe(result => {
-      console.log('결과', result);
-      this.editMode = false;
-      this.router.navigate(['']);
-    });
-  }
 
 }

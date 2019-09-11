@@ -13,6 +13,7 @@ export class BookDetailPage implements OnInit {
   reviewId: string;
   data = null;
   likeState: boolean = false;
+
   constructor(private reviewService: ReviewService, private activatedRoute: ActivatedRoute, private router: Router, public alertController: AlertController) { }
 
   ngOnInit() {
@@ -30,7 +31,6 @@ export class BookDetailPage implements OnInit {
       console.log('*** reviewService.getReviewDetail 요청 때 reviewid : ', this.reviewId);
       console.log('받아온 Review data', data);
       this.data = data;
-
     })
   }
 
@@ -85,7 +85,6 @@ export class BookDetailPage implements OnInit {
     this.reviewService.cancelLike(this.reviewId).subscribe(data => {
       console.log('좋아요 취소 결과', data);
       this.likeState = false;
-
     })
   }
 }
