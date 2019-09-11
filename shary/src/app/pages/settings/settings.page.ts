@@ -21,9 +21,7 @@ export class SettingsPage implements OnInit {
     this.loginState = this.authService.isAuthenticated();
   }
 
-
   logout() {
-
     let alert = this.alertController.create({
       header: '',
       message: '로그아웃하시겠습니까',

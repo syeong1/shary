@@ -18,32 +18,28 @@ export class SearchPage implements OnInit {
   categories = [
     {
       index: 0,
-      name: '전체',
-      category: 'all'
-    },
-    {
-      index: 1,
       name: '책',
       category: 'book'
     },
     {
-      index: 2,
+      index: 1,
       name: '영화',
       category: 'movie'
 
     },
     {
-      index: 3,
+      index: 2,
       name: 'TV프로그램',
       category: 'tv'
 
     },
     {
-      index: 4,
+      index: 3,
       name: '맛집',
       category: 'food'
-    }, {
-      index: 5,
+    }, 
+    {
+      index: 4,
       name: '음악',
       category: 'music'
     }

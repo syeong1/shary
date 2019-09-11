@@ -1,20 +1,18 @@
-<ion-header translucent>
-  <ion-toolbar>
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
     <ion-title>설정</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen>
-  <ion-list>
-    <ion-button expand="full" *ngIf="!loginState" class="btn" [routerLink]="['/login']">로그인</ion-button>
-    <ion-item button *ngIf="loginState" [routerLink]="['/mypage']">
+<ion-content>
+  <ion-button expand="full" *ngIf="!loginState" class="btn" [routerLink]="['/login']">로그인</ion-button>
+  <div *ngIf="loginState">
+    <ion-item button [routerLink]="['/mypage']" detail>
+      <ion-icon name="person" mode="md"></ion-icon>
       <ion-label>마이페이지</ion-label>
     </ion-item>
-    <ion-item button [routerLink]="['/app-password']">
-      <ion-label>앱 비밀번호 설정</ion-label>
+    <ion-item (click)="logout()">
+      <ion-text color="primary">로그아웃</ion-text>
     </ion-item>
-    <ion-item button (click)="logout()" *ngIf="loginState">
-      <ion-label>로그아웃</ion-label>
-    </ion-item>
-  </ion-list>
+  </div>
 </ion-content>
