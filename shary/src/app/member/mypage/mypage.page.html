@@ -1,38 +1,33 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
+      <ion-back-button text="" mode="md"></ion-back-button>
     </ion-buttons>
-    <ion-title>Mypage</ion-title>
+    <ion-title>마이페이지</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onSubmit()" [disabled]="!profileForm.valid">
+        <ion-icon name="md-checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content>
+  
   <ion-avatar style="margin: 10pt auto;">
     <img [src]='imageService.profile'>
   </ion-avatar>
 
   <ion-list *ngIf="user">
-    <div *ngIf="editMode">
     <form [formGroup]="profileForm">
-    <ion-item>
-      <ion-label position="fixed">닉네임</ion-label>
-      <ion-input type="text" formControlName="nickname"></ion-input>
-      <ion-icon name="save" (click)="saveNickname()" ></ion-icon>
-    </ion-item>
+      <ion-item>
+        <ion-label position="fixed">닉네임</ion-label>
+        <ion-input type="text" value="{{user?.nickname}}" formControlName="nickname"></ion-input>
+      </ion-item>
     </form>
-    </div>
-    <div *ngIf="!editMode">
-        <ion-item>
-          <ion-label position="fixed">닉네임</ion-label>
-          <ion-input type="text" readonly>{{user?.nickname}}</ion-input>
-          <ion-icon name="create" (click)="editNickname()" ></ion-icon>
-        </ion-item>
-        </div>
     <ion-item>
       <ion-label position="fixed">아이디</ion-label>
-      <ion-input type="text" readonly>{{user.email}}</ion-input>
+      <ion-input type="text"  text-right readonly>{{user.email}}</ion-input>
     </ion-item>
   </ion-list>
   <ion-item button (click)='uploadprofile()'>
@@ -49,5 +44,4 @@
     </ion-label>
     <ion-icon slot="end" name="ios-arrow"> </ion-icon>
   </ion-item>
-
 </ion-content>
