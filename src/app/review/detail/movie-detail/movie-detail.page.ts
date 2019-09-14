@@ -16,6 +16,7 @@ export class MovieDetailPage implements OnInit {
   
   reviewId: string;
   review= null;
+  likeState: boolean = false;
 
   constructor(private alertController: AlertController,private activatedRoute: ActivatedRoute,private movieService: MovieService,private reviewService: ReviewService,private router: Router,private socialSharing: SocialSharing) { }
 
@@ -24,6 +25,7 @@ export class MovieDetailPage implements OnInit {
   }
   ionViewWillEnter() {
     this.getReviewDetail();
+    this.getLike();
   }
   getReviewDetail() {
     this.reviewService.getReviewDetail('movie', this.reviewId).subscribe(data => {
@@ -64,6 +66,25 @@ export class MovieDetailPage implements OnInit {
     });
 
     await alert.present();
+  }
+  getLike() {
+    this.reviewService.getLike(this.reviewId).subscribe(result => {
+      console.log('좋아요 상태', result);
+      this.likeState = result['like'];
+    })
+  }
+
+  addLike() {
+    this.reviewService.addLike(this.reviewId).subscribe(data => {
+      console.log('좋아요 누른 결과', data);
+      this.likeState = true;
+    })
+  }
+  cancelLike() {
+    this.reviewService.cancelLike(this.reviewId).subscribe(data => {
+      console.log('좋아요 취소 결과', data);
+      this.likeState = false;
+    })
   }
 
   async shareReview(){

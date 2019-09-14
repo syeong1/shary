@@ -45,7 +45,7 @@
             <ion-input placeholder="제목" value="{{movie.title}}" formControlName="title"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input placeholder="감독"value="{{movie.director?.name}}"formControlName="director"></ion-input>
+            <ion-input placeholder="감독"value="{{movie.director}}"formControlName="director"></ion-input>
           </ion-item>
           <ion-item>
               <ion-datetime class="pub" [doneText]="'저장'" [cancelText]="'취소'" [pickerOptions]="dateOptions"
@@ -83,13 +83,13 @@
             <ion-label  position="fixed">명대사</ion-label>
           </ion-item>
           <ion-item class="textarea">
-            <ion-textarea rows="2" cols="20" placeholder="..." formControlName="famouseLine"></ion-textarea>
+            <ion-textarea rows="2" cols="20" placeholder="..."value="{{movie.famousLine}}" formControlName="famousLine"></ion-textarea>
           </ion-item>
           <ion-item class="textarea">
             <ion-label position="fixed">감상평</ion-label>
           </ion-item>
           <ion-item class="textarea">
-            <ion-textarea rows="4" cols="20" placeholder="..." formControlName="review">
+            <ion-textarea rows="4" cols="20" placeholder="..."value="{{movie.review}}" formControlName="review">
             </ion-textarea>
           </ion-item>
           <ion-item>

@@ -2,10 +2,7 @@ const express = require('express'),
     routes = express.Router();
 const passport = require('passport');
 const movieController = require('../controller/movie-controller');
-//Themoviedb Api search movie
-routes.get('/search/movie/:title', movieController.getMovieData);
-//Themoviedb Api searh Credits
-routes.get('/movie/:id', movieController.getCredits);
+
 
 // 영화 리뷰리스트 가져오기
 routes.get('/:id', passport.authenticate('jwt', {

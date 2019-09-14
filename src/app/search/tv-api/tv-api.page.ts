@@ -20,7 +20,7 @@ export class TvApiPage implements OnInit {
   ngOnInit() {
   }
   searchChanged() {
-    this.results = this.tvService.getTvData(this.searchTerm)
+    this.results = this.tvService.getTvData(this.searchTerm);
   };
   backtoWritepage(tv) {
     this.selectTv = tv;

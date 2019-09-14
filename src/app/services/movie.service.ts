@@ -50,7 +50,7 @@ export class MovieService {
   // }
   //director 검색
   searchDirector(id:any):Observable<any>{
-    return this.http.get(`${this.url}/api/movie/${id}`)
+    return this.http.get(`${this.url}/api/search/movie/${id}/credits`)
     .pipe(
       map(results=>{
         let a = results['crew'];

@@ -35,7 +35,7 @@ export class MoviePage implements OnInit {
       watchDate: new FormControl(''),
       posterPath: new FormControl(''),
       rating: new FormControl(''),
-      famouseLine: new FormControl(''),
+      famousLine: new FormControl(''),
       review: new FormControl(''),
       tags: new FormControl(''),
 
@@ -101,7 +101,7 @@ export class MoviePage implements OnInit {
           
 
           this.movieService.searchDirector(this.movie['id']).subscribe(res => {
-            this.movie['director'] = res[0];
+            this.movie['director'] = res[0]['name'];
           });
         }
 
