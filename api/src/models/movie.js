@@ -8,7 +8,7 @@ var MovieReviewSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    reviewbook: {
+    reviewlist: {
         type: Schema.Types.ObjectId,
         ref: 'Reviewbook'
     },

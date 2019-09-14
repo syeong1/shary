@@ -14,7 +14,7 @@ exports.getBookReviewList = (req, res) => {
     // let reviewbook_id = req.params.id;
     // 책 리뷰북 가져오기
     let reviewbook_id = req.params.id;
-    Movie.find({ reviewbook: reviewbook_id }, (err, reviews) => {
+    Movie.find({ reviewlist: reviewbook_id }, (err, reviews) => {
         console.log(reviews);
         if (err) {
             return res.status(500).json({
@@ -88,7 +88,23 @@ exports.editReview = (req, res) => {
         });
     });
 }
-
+//리뷰 수정
+exports.editReview =async (req, res) => {
+    try{
+        const writer = req.user._id;
+        req.body.writer=writer;
+        const movie  =await Movie.findByIdAndUpdate(req.params.id,{$set:req.body});
+        let reviewlist = await Reviewbook.findById(movie.reviewlist);
+        reviewlist.lastDate = Date.now();
+        await reviewlist.save();
+        return res.status(201).json({
+            'msg': '리뷰 업데이트 성공',
+            'result': movie
+        });
+    }catch(err){
+        console.log(err);
+    }
+};
 
 // 리뷰 삭제
 exports.deleteReview = (req, res) => {
