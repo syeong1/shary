@@ -15,7 +15,7 @@
   </ion-toolbar>
   <div>
     <ion-item lines="none" class="wrap">
-      <!-- <rating [(rating)]="rating" ></rating> -->
+      <rating [(rating)]="rating" ></rating>
       <ion-icon name="search" (click)="openSearchTvModal()"></ion-icon>
     </ion-item>
   </div>
@@ -26,7 +26,7 @@
 
   <form [formGroup]="reviewForm">
     <ion-grid>
-      <!-- <ion-input hidden value="{{rating}}" formControlName="rating"></ion-input> -->
+      <ion-input hidden value="{{rating}}" formControlName="rating"></ion-input>
       <ion-row *ngIf="tv">
         <ion-col size='4'>
           <div class="image-wrap">

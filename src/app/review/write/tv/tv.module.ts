@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { TvPage } from './tv.page';
+import { ComponentsModule } from 'src/app/components/component.module';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    ComponentsModule,
     IonicModule,
     RouterModule.forChild(routes)
   ],

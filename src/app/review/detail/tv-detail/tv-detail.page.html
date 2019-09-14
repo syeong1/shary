@@ -19,12 +19,24 @@
 </ion-header>
 
 <ion-content>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="heart" class="btn-like" *ngIf="likeState" (click)="cancelLike()" mode="md"
+        [style.color]="'#D33131'"></ion-icon>
+      <ion-icon name="heart" class="btn-like" *ngIf="!likeState" (click)="addLike()" mode="md" [style.color]="'#fff'">
+      </ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   <ion-grid *ngIf="review">
-    <!-- <ion-input hidden value="{{rating}}" formControlName="review_score"></ion-input> -->
+    <ion-item lines="none" class="rating-wrap">
+      <ion-icon size="large" name="star" *ngFor="let num of [1,2,3,4,5]"
+        [style.color]="review.rating >=num ? '#ffbf00':'#e0e0e0'">
+      </ion-icon>
+    </ion-item>
     <ion-row>
       <ion-col size='4'>
         <div class="image-wrap">
-          <img src="https://image.tmdb.org/t/p/w500{{review.posterPath}}" *ngIf="review?.image; else defaultImage">
+          <img src="https://image.tmdb.org/t/p/w500{{review.posterPath}}" *ngIf="review?.posterPath; else defaultImage">
         </div>
         <ng-template #defaultImage>
           <div class="default-image">
@@ -74,20 +86,20 @@
         </ion-item>
 
         <ion-item class="textarea">
-          <ion-label position="fixed"id="episode">인상깊은 에피소드</ion-label>
+          <ion-label position="fixed" id="episode">인상깊은 에피소드</ion-label>
         </ion-item>
 
         <div *ngFor="let episode of review.episodes">
-            <ion-item class="textarea">
-                <ion-label text-wrap>{{episode}}</ion-label>
-              </ion-item>
+          <ion-item class="textarea">
+            <ion-label text-wrap>{{episode}}</ion-label>
+          </ion-item>
         </div>
 
 
         <ion-item>
           <ion-label position="stacked">태그</ion-label>
           <p>
-            <ion-chip  *ngFor="let tag of review.tags">
+            <ion-chip *ngFor="let tag of review.tags">
               <ion-label>{{tag}}</ion-label>
             </ion-chip>
           </p>

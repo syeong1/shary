@@ -7,9 +7,9 @@
     <ion-buttons slot="end">
       <ion-icon class="info-stats" name="information-circle-outline" size="large"></ion-icon>
     </ion-buttons>
-</ion-toolbar>
+  </ion-toolbar>
   <div>
-  <ion-searchbar></ion-searchbar>
+    <ion-searchbar></ion-searchbar>
   </div>
 </ion-header>
 
@@ -23,15 +23,17 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col size='6' *ngFor="let review of reviews"(click)="godetailreview(review._id)">
-        <ion-card >
+      <ion-col size='6' *ngFor="let review of reviews" (click)="godetailreview(review._id)">
+        <ion-card>
           <img src="https://image.tmdb.org/t/p/w500{{review.posterPath}}" />
           <ion-card-header>
             <ion-card-subtitle>{{review.releaseDate|date:'y-MM'}}</ion-card-subtitle>
             <ion-card-title>{{review.title}}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <p class="stars">★★★★★</p>
+            <ion-icon name="star" *ngFor="let num of [1,2,3,4,5]"
+              [style.color]="review.rating >=num ? '#ffbf00':'grey'">
+            </ion-icon>
             <p class="preview"> {{review.overview}}</p>
           </ion-card-content>
         </ion-card>
