@@ -87,4 +87,9 @@ export class BookDetailPage implements OnInit {
       this.likeState = false;
     })
   }
+
+  SearchTag(item) {
+    console.log('검색할 태그', item); 
+    this.router.navigate(['main-tabs/search/tag', item]);
+  }
 }

@@ -81,26 +81,24 @@
           <ion-label position="fixed">금액</ion-label>
           <ion-label text-wrap> {{data.price}} 원</ion-label>
         </ion-item>
-        <ion-item class="textarea">
+        <ion-item>
           <ion-label position="fixed">인상 깊은 구절</ion-label>
         </ion-item>
         <ion-item class="textarea">
           <ion-label text-wrap> {{data.impressivePassage}}</ion-label>
         </ion-item>
-        <ion-item class="textarea">
+        <ion-item>
           <ion-label position="fixed">감상평</ion-label>
         </ion-item>
         <ion-item class="textarea">
           <ion-label text-wrap> {{data.review}}</ion-label>
         </ion-item>
         <ion-item>
-          <ion-label position="stacked">태그</ion-label>
-          <ion-label text-wrap> {{data.tags}}</ion-label>
+          <ion-label position="fixed">태그</ion-label>
         </ion-item>
-        <ion-list-header>Icons</ion-list-header>
-        <p>
-          <ion-chip outline color="primary">
-            <ion-label>tag</ion-label>
+        <p *ngIf="data.tags">
+          <ion-chip *ngFor="let item of data.tags" outline color="primary" (click)="SearchTag(item)">
+            <ion-label>{{item}}</ion-label>
           </ion-chip>
         </p>
         <p class="tag-notice"> 태그는 쉼표(,) 를 통해 구분되며 쉼표의 앞뒤에 있는 빈칸은 무시됩니다.</p>
