@@ -90,7 +90,7 @@ exports.getCredits = (req, res) => {
 //Tv api 검색 내용
 exports.getTvData = (req, res) => {
 
-    var options = {
+    const options = {
         method: 'GET',
         url: 'https://api.themoviedb.org/3/search/tv',
         qs:
@@ -108,3 +108,4 @@ exports.getTvData = (req, res) => {
     });
 
 }
+

@@ -130,9 +130,9 @@ export class TvPage implements OnInit {
           this.tv = data['data'];
           this.tv['posterPath'] = this.tv['poster_path'];
           this.tv['title'] = this.tv['name'];
-          this.tv['genre_ids'] = this.tv['genre_ids'][0];
+          this.tv['releaseDate'] = this.tv['first_air_date'];
+          this.tv['genre'] = this.tv['genre_ids'][0];
         }
-
 
 
       })

@@ -47,6 +47,8 @@ export class TvService {
       })
     );
   }
+  
+  
   // 티비 리뷰 리스트 가져오기
   getBookReviewList(reviewbook_id: string) {
     return this.http.get(`${this.url}/api/review/tv/${reviewbook_id}`).pipe(

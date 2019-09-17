@@ -16,7 +16,9 @@ routes.get('/movie/:title', searchController.getMovieData);
 routes.get('/movie/:id/credits', searchController.getCredits);
 
 //TheMovieDB TV 검색 API
-routes.get('/tv/:title',searchController.getTvData);
+routes.get('/tv/:id',searchController.getTvData);
+
+
 
 
 module.exports = routes;

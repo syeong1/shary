@@ -59,8 +59,8 @@
         <ion-col size='12'>
           <ion-item>
             <ion-label>장르</ion-label>
-            <ion-select interface="popover" formControlName="genre" value="{{tv.genre_ids}}">
-              <ion-select-option *ngFor='let genre of tvService.genres' value="{{tv.id}}">{{genre.name}}
+            <ion-select interface="popover" formControlName="genre" value="{{tv.genre}}">
+              <ion-select-option *ngFor='let genre of tvService.genres' value="{{genre.id}}">{{genre.name}}
               </ion-select-option>
 
             </ion-select>
