@@ -29,7 +29,7 @@
   </ion-fab>
 
   <ion-grid *ngIf="data">
-    <ion-item lines="none" class="rating-wrap">
+    <ion-item lines="none" class="rating-view-wrap">
       <ion-icon size="large" name="star" *ngFor="let num of [1,2,3,4,5]"
         [style.color]="data.rating >=num ? '#ffbf00':'#e0e0e0'">
       </ion-icon>

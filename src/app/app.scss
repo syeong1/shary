@@ -35,7 +35,6 @@ ion-toolbar {
 .rating-wrap {
     position: relative;
     margin: 0 auto 16px;
-    width: fit-content;
 
     rating {
         margin: 0 auto;
@@ -47,6 +46,11 @@ ion-toolbar {
     }
 }
 
+.rating-view-wrap {
+    position: relative;
+    margin: 0 auto 16px;
+    width: fit-content;
+}
 
 .btn-like {
     padding: 10px;
