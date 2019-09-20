@@ -5,7 +5,8 @@
     </ion-buttons>
     <ion-title>{{category_kr}} 리뷰북 리스트</ion-title>
     <ion-buttons slot="end">
-      <ion-button>편집</ion-button>
+      <ion-button *ngIf="!editState" (click)="editList(editState)">편집</ion-button>
+      <ion-button *ngIf="editState" (click)="editList(editState)">완료</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -16,24 +17,33 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
   <div *ngFor="let reviewbook of reviewbooks">
-    <ion-card (click)="goToReviewbookPage(reviewbook)">
-      <div class="card-top-wrap">
-        <ion-item>
-          <ion-avatar>
-            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-          </ion-avatar>
-          <ion-card-title>{{reviewbook.title}}</ion-card-title>
-        </ion-item>
-      </div>
-      <div class="card-bottom-wrap">
-        <span class="last-date">마지막 리뷰 {{reviewbook.lastDate | date:'yyyy.MM.dd'}}</span>
-        <ion-chip color="danger">
-          <ion-label class="review-cnt">{{reviewbook.count}}개</ion-label>
-        </ion-chip>
-      </div>
-    </ion-card>
-    <ion-button color="danger" (click)="deleteReviewbook(reviewbook._id)">리뷰북 삭제(테스트)</ion-button>
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="1" *ngIf="editState" align-self-center class="btn-revmove-wrap">
+          <ion-button class="btn-remove" color="none" (click)="deleteReviewbook(reviewbook._id)">
+            <ion-icon name="remove-circle" mode="md" color="danger" size="large"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col full>
+          <ion-card (click)="goToReviewbookPage(reviewbook)">
+            <div class="card-top-wrap">
+              <ion-item>
+                <ion-avatar>
+                  <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+                </ion-avatar>
+                <ion-card-title>{{reviewbook.title}}</ion-card-title>
+              </ion-item>
+            </div>
+            <div class="card-bottom-wrap">
+              <span class="last-date">마지막 리뷰 {{reviewbook.lastDate | date:'yyyy.MM.dd'}}</span>
+              <ion-chip color="danger">
+                <ion-label class="review-cnt">{{reviewbook.count}}개</ion-label>
+              </ion-chip>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 </ion-content>
