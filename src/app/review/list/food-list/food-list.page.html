@@ -4,9 +4,13 @@
       <ion-back-button text="" mode="md"></ion-back-button>
     </ion-buttons>
     <ion-title>{{reviewbookTitle}}</ion-title>
+    <!--filter-->
     <ion-buttons slot="end">
-      <ion-icon class="info-stats" name="information-circle-outline" size="large"></ion-icon>
+      <ion-icon (click)="presentActionSheet()" class="filter" name="options" mode="ios" size="large"></ion-icon>
+      <ion-icon class="sorting" *ngIf="sorting" (click)="changeSort()" name="arrow-dropdown"></ion-icon>
+      <ion-icon class="sorting" *ngIf="!sorting" (click)="changeSort()" name="arrow-dropup"></ion-icon>
     </ion-buttons>
+    <!--filter-->
   </ion-toolbar>
   <ion-toolbar>
     <ion-searchbar mode="ios"></ion-searchbar>
@@ -39,4 +43,5 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
 </ion-content>
