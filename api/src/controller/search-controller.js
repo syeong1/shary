@@ -4,21 +4,89 @@ var Movie = require('../models/movie');
 var Music = require('../models/music');
 var Tv = require('../models/tv');
 
-// 책 카테고리 리뷰 검색 (타이틀, 저자)
-exports.getSearchBookReview = (req, res) => {
-    console.log('### 카테고리 : ', '책');
+function searchConditions(category, term) {
+    let conditions;
+    switch (category) {
+        case 'book':
+            conditions = {
+                $or: [{
+                    "title": {
+                        $regex: '.*' + term + '.*'
+                    }
+                }, {
+                    "author": {
+                        $regex: '.*' + term + '.*'
+                    }
+                }]
+            }
+            break;
+        case 'music':
+            conditions = {
+                $or: [{
+                    "trackName": {
+                        $regex: '.*' + term + '.*'
+                    }
+                }, {
+                    "artistName": {
+                        $regex: '.*' + term + '.*'
+                    }
+                }]
+            }
+            break;
+        case 'food':
+            conditions = {
+                "name": {
+                    $regex: '.*' + term + '.*'
+                }
+
+            }
+            break;
+        case 'movie', 'tv':
+            conditions = {
+                "title": {
+                    $regex: '.*' + req.params.term + '.*'
+                }
+            }
+            break;
+    }
+    return conditions;
+}
+
+function searchQuery(category, conditions) {
+    let query;
+    switch (category) {
+        case 'book':
+            query = Book.find(conditions);
+            break;
+        case 'music':
+            query = Music.find(conditions);
+            break;
+        case 'food':
+            query = Food.find(conditions);
+            break;
+        case 'movie':
+            query = Movie.find(conditions);
+            break;
+        case 'tv':
+            query = Tv.find(conditions);
+            break;
+    }
+    return query;
+}
+
+
+/**
+ *  `검색페이지에서 리뷰 검색`
+ */
+
+exports.getSearchReview = (req, res) => {
+    console.log('### 카테고리 : ', req.params.category);
     console.log('### 검색어 : ', req.params.term);
-    Book.find({
-        $or: [{
-            "title": {
-                $regex: '.*' + req.params.term + '.*'
-            }
-        }, {
-            "author": {
-                $regex: '.*' + req.params.term + '.*'
-            }
-        }]
-    }, function (err, reviews) {
+
+    let conditions = searchConditions(req.params.category, req.params.term);
+    let query = searchQuery(req.params.category, conditions);
+
+    query.exec(function (err, reviews) {
         console.log(reviews);
         if (err) {
             return res.status(500).json({
@@ -36,101 +104,21 @@ exports.getSearchBookReview = (req, res) => {
     });
 }
 
-// 맛집 카테고리 리뷰 검색 (타이틀)
-exports.getSearchFoodReview = (req, res) => {
-    console.log('### 카테고리 : ', '맛집');
-    console.log('### 검색어 : ', req.params.term);
-    Food.find({
-        name: {
-            $regex: '.*' + req.params.term + '.*'
-        }
-    }, function (err, reviews) {
-        console.log(reviews);
-        if (err) {
-            return res.status(500).json({
-                error: err
-            });
-        }
-        if (!reviews) {
-            return res.status(404).json({
-                error: 'reviews not found'
-            });
-        }
-        if (reviews) {
-            return res.status(200).json(reviews);
-        }
-    });
-}
 
+/**
+ *  `검색페이지에서 태그로 검색`
+ */
 
+exports.getSearchTag = (req, res) => {
+    console.log('### 카테고리 : ', req.params.category);
+    console.log('### 검색할 태그 : ', req.params.term);
 
-// 영화 카테고리 리뷰 검색 (타이틀)
-exports.getSearchMovieReview = (req, res) => {
-    console.log('### 카테고리 : ', '영화');
-    console.log('### 검색어 : ', req.params.term);
-    Movie.find({
-        title: {
-            $regex: '.*' + req.params.term + '.*'
-        }
-    }, function (err, reviews) {
-        console.log(reviews);
-        if (err) {
-            return res.status(500).json({
-                error: err
-            });
-        }
-        if (!reviews) {
-            return res.status(404).json({
-                error: 'reviews not found'
-            });
-        }
-        if (reviews) {
-            return res.status(200).json(reviews);
-        }
-    });
-}
+    let conditions = {
+        "tags": req.params.term
+    };
+    let query = searchQuery(req.params.category, conditions);
 
-// 음악 카테고리 리뷰 검색 (타이틀, 가수이름)
-exports.getSearchMusicReview = (req, res) => {
-    console.log('### 카테고리 : ', '음악');
-    console.log('### 검색어 : ', req.params.term);
-    Music.find({
-        $or: [{
-            "trackName": {
-                $regex: '.*' + req.params.term + '.*'
-            }
-        }, {
-            "artistName": {
-                $regex: '.*' + req.params.term + '.*'
-            }
-        }]
-    }, function (err, reviews) {
-        console.log(reviews);
-        if (err) {
-            return res.status(500).json({
-                error: err
-            });
-        }
-        if (!reviews) {
-            return res.status(404).json({
-                error: 'reviews not found'
-            });
-        }
-        if (reviews) {
-            return res.status(200).json(reviews);
-        }
-    });
-}
-
-// TV 카테고리 리뷰 검색 (타이틀)
-exports.getSearchTvReview = (req, res) => {
-    console.log('### 카테고리 : ', '티비');
-    console.log('### 검색어 : ', req.params.term);
-    Tv.find({
-        title: {
-            $regex: '.*' + req.params.term + '.*'
-        }
-    }, function (err, reviews) {
+    query.exec(function (err, reviews) {
         console.log(reviews);
         if (err) {
             return res.status(500).json({
@@ -142,7 +130,45 @@ exports.getSearchTvReview = (req, res) => {
 
         } else {
             return res.status(404).json({
-                'msg': '리뷰북이 없습니다.'
+                msg: '리뷰가 없습니다.'
+            });
+        }
+    });
+}
+
+
+/**
+ *  `리뷰북에서 검색`
+ */
+
+exports.getSearchInReviewbook = (req, res) => {
+    console.log('### 카테고리 : ', req.params.category);
+    console.log('### 리뷰북 아이디 : ', req.params.id);
+    console.log('### 검색어 : ', req.params.term);
+
+    let conditions = {
+        $and: [{
+                reviewbook: req.params.id
+            },
+            searchConditions(req.params.category, req.params.term)
+        ]
+    };
+
+    let query = searchQuery(req.params.category, conditions);
+
+    query.exec(function (err, reviews) {
+        console.log(reviews);
+        if (err) {
+            return res.status(500).json({
+                error: err
+            });
+        }
+        if (reviews.length) {
+            return res.status(200).json(reviews);
+
+        } else {
+            return res.status(404).json({
+                msg: '리뷰가 없습니다.'
             });
         }
     });

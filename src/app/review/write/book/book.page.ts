@@ -55,7 +55,7 @@ export class BookPage implements OnInit {
 
     // reviewbook Formcontrol value 설정
     this.reviewForm.controls['reviewbook'].setValue(this.reviewbookId, { onlyself: true });
-
+    
     // 새 리뷰 작성 시
     if (this.reviewId === null) {
       this.reviewService.writeReview('book', this.reviewForm.value).subscribe(res => {

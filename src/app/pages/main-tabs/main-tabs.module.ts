@@ -31,6 +31,15 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'search/tag/:tagTerm',
+        children: [
+          {
+            path: '',
+            loadChildren: '../search/search.module#SearchPageModule'
+          }
+        ]
+      },
+      {
         path: 'settings',
         children: [
           {

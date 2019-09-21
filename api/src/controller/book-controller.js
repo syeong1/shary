@@ -4,8 +4,9 @@ var Book = require('../models/book');
 exports.writeReview = (req, res) => {
 
     let newReview = Book(req.body);
-    let writer = req.user._id;
-    newReview.writer = writer;
+
+    newReview.writer = req.user._id;
+    newReview.tags = req.body.tags.split(',');
 
     newReview.save((err, book) => {
         if (err) {
@@ -28,6 +29,8 @@ exports.editReview = (req, res) => {
     console.log('수정할 review_id : ', req.params.id);
     console.log('수정할 정보: ', req.body);
     console.log("=================================================")
+    req.body.tags = req.body.tags.split(',');
+
     Book.findByIdAndUpdate(req.params.id, {
         $set: req.body
     }, function (err, book) {

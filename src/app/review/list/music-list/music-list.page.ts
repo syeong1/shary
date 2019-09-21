@@ -13,6 +13,7 @@ export class MusicListPage implements OnInit {
   reviewbookTitle: string = null;
   reviews: any;
   searchTerm: string = '';
+  msg: string = "";
 
 
   constructor(private reviewService: ReviewService,
@@ -24,7 +25,7 @@ export class MusicListPage implements OnInit {
       }
     })
   }
-  
+
   ngOnInit() {
     this.reviewbookId = this.route.snapshot.paramMap.get('id');
     console.log('책 리뷰북 id : ', this.reviewbookId);
@@ -48,5 +49,27 @@ export class MusicListPage implements OnInit {
 
   openReivewDetailPage(review) {
     this.router.navigate(['music/detail', review._id]);
+  }
+
+
+  searchReview() {
+    console.log('현재 리뷰북 id', this.reviewbookId);
+    console.log('검색어', this.searchTerm);
+    if (this.searchTerm == "") {
+      this.getReviewList();
+    }
+    else {
+      this.reviewService.getSearchInReviewbook('music', this.reviewbookId, this.searchTerm).subscribe(data => {
+        console.log('받아온 Reviews data', data);
+        if (data['length'] === 0) {
+          this.msg = "검색된 리뷰가 없습니다.";
+          this.reviews = "";
+        }
+        else {
+          this.msg = ""
+        }
+        this.reviews = data;
+      })
+    }
   }
 }
