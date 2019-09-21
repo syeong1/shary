@@ -27,7 +27,7 @@ export class MypagePage implements OnInit {
     })
     this.getUserProfile();
     this.imageService.images = [];
-    this.imageService.profile = 'http://localhost/api/images/' + this.authService.user.id;
+    this.imageService.profile = 'http://172.30.1.43/api/images/' + this.authService.user.id;
 
   }
 

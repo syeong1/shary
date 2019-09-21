@@ -19,6 +19,7 @@ export class FoodDetailPage implements OnInit, AfterViewInit {
 
   reviewId: string;
   data = null;
+  eatDate;
 
   constructor(private activatedRoute: ActivatedRoute, private reviewService: ReviewService,
     private router: Router, private alertController: AlertController) {  }
@@ -42,8 +43,15 @@ export class FoodDetailPage implements OnInit, AfterViewInit {
       console.log('*** reviewService.getReviewDetail 요청 때 reviewid : ', this.reviewId);
       console.log('받아온 Review data', data);
       this.data = data;
+      // JSON.stringify(data['eatDate']).s;
       let stringData = JSON.stringify(data);
       let jsonData = JSON.parse(stringData);
+      if(jsonData.eatDate === null){
+        this.eatDate = '등록되어 있지 않음';
+      }else{
+        this.eatDate = (String)(jsonData.eatDate).substring(0,10); 
+      }
+      
       console.log('jsonData', jsonData);
       this.MapInit(jsonData.country, jsonData.x, jsonData.y); 
     })
@@ -79,6 +87,7 @@ export class FoodDetailPage implements OnInit, AfterViewInit {
   }
 
   editReview() {
+    console.log('edit페이지로 넘어갈 reviewid', this.reviewId);
     this.router.navigate(['food/edit', this.reviewId]);
   }
 
