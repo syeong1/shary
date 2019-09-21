@@ -1,7 +1,7 @@
 <ion-header mode="ios">
   <ion-toolbar mode="ios">
     <ion-buttons slot="start">
-      <ion-back-button text="" mode="md"></ion-back-button>
+      <ion-back-button defaultHref="/" text="" mode="md"></ion-back-button>
     </ion-buttons>
     <ion-title>{{data?.name}}</ion-title>
     <ion-buttons slot="end">
@@ -20,6 +20,13 @@
 
 <ion-content padding>
     <ion-grid>
+      <!--star rating-->
+        <ion-item lines="none" class="rating-wrap">
+          <ion-icon size="large" name="star" *ngFor="let num of [1,2,3,4,5]"
+            [style.color]="data?.rating >=num ? '#ffbf00':'#e0e0e0'">
+          </ion-icon>
+        </ion-item> 
+        <!-------------->
       <ion-row>
         <ion-col size='4'>
             <div class="image-wrap">
@@ -34,47 +41,86 @@
         </ion-col>
         <ion-col size='8'>
           <ion-item>
-            <ion-label class="stacked" position="stacked"> 음식점명 </ion-label>
-            <ion-label> {{data?.name}} </ion-label>
+            <ion-label class="data-label" position="stacked"> 음식점명 </ion-label>
+          </ion-item>
+          <ion-item> 
+            <ion-label> {{data?.name}} </ion-label> 
           </ion-item>
           <ion-item>
-            <ion-label class="stacked" position="stacked"> 전화번호 </ion-label>
-            <ion-label> {{data?.phoneNumber}} </ion-label>
+            <ion-label style="margin-top: 5px"class="data-label" position="stacked"> 전화번호 </ion-label>
+          </ion-item>
+          <ion-item> 
+            <ion-label> {{data?.phoneNumber}} </ion-label>  
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size='4'>
+          <ion-item>
+            <ion-label position="stacked"> 종류 </ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col size='8'>
+          <ion-item> 
+            <ion-label> {{data?.typeOfFood}} </ion-label>
           </ion-item>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col size='12'>
           <ion-item>
-            <ion-label position="stacked"> 종류 </ion-label>
-            <ion-label> {{data?.typeOfFood}} </ion-label>
+            <ion-label class="data-label" position="stacked"> 위치 </ion-label>
           </ion-item>
-          <ion-item>
-            <ion-label class="stacked" position="stacked"> 위치 </ion-label>
-            <ion-label text-wrap> {{data?.roadAddress}} </ion-label>
-          </ion-item>
-          
+        </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-col size='12'>
+          <ion-item> 
+              <ion-label text-wrap> {{data?.roadAddress}} </ion-label>
+          </ion-item> 
+        </ion-col>
+      </ion-row>
+        <ion-row>
+        <ion-col size='12'>
           <div #map id="map" style="width: 100%; height: 30vh"></div>
           <!-- <div id="naverMap" style="width: 100%; height: 30vh"></div> -->
+        </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size='4'>
+            <ion-item> 
+              <ion-label class="data-label" position="stacked">식사일</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size='8'>
+            <ion-item>
+              <ion-label> {{eatDate}} </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size='12'>
+            <ion-item> 
+              <ion-label class="stacked" position="stacked"> 평가 </ion-label>  
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size='12'>
+              <ion-item class="textarea">
+                  <ion-textarea rows="6" cols="20" class="book-description" placeholder="평가.." value="{{data?.evaluation}}" readonly
+                    ></ion-textarea>
+                </ion-item>
+          </ion-col>
+        </ion-row>
 
-
-          <ion-item>
-            <ion-label>식사일</ion-label>
-            <ion-label text-wrap> {{data?.eatDate}} </ion-label>
-          </ion-item>
-
-          <ion-item> 
-            <ion-label class="stacked" position="stacked"> 평가 </ion-label>  
-            <ion-label text-wrap> {{data?.evaluation}} </ion-label>
-          </ion-item>
+          
 
           <ion-item> 
             <ion-label class="stacked" position="stacked"> 태그 </ion-label>  
             <!-- <ion-label> {{data.tag}} </ion-label> -->
           </ion-item>
-
-        </ion-col>
-      </ion-row>
+      
       <ion-label position="stacked">사진</ion-label>
     </ion-grid>
 </ion-content>

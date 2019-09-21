@@ -31,7 +31,9 @@
             <ion-card-title>{{review.phoneNumber}}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <p class="stars">★★★★★</p>
+            <ion-icon name="star" *ngFor="let num of [1,2,3,4,5]"
+              [style.color]="review.rating >=num ? '#ffbf00':'grey'">
+            </ion-icon>
             <p class="preview">{{review.evaluation}}</p>
           </ion-card-content>
         </ion-card>

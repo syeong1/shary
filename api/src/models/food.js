@@ -34,7 +34,11 @@ var FoodReviewSchema = new Schema({
         ref: 'User'
     }],
     x: String,
-    y: String
+    y: String,
+    rating: {
+        type: Number,
+        default: 0
+    }
 });
 
 
