@@ -175,4 +175,10 @@ export class FoodDetailPage implements OnInit, AfterViewInit {
   
       })
     }
+
+
+    SearchTag(item) {
+      console.log('검색할 태그', item); 
+      this.router.navigate(['main-tabs/search/tag', item]);
+    }
 }

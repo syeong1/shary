@@ -23,7 +23,7 @@ var FoodReviewSchema = new Schema({
     typeOfFood: String,
     evaluation: String,
     foodPicture: [Image.schema],
-    tag: [{
+    tags: [{
         type: String,
         trim: true
     }],
