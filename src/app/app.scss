@@ -25,6 +25,13 @@ ion-toolbar {
     --border-width: 0 0 0;
 }
 
+.filter {
+    width: 26px;
+    height: 26px;
+    margin-right: 12px;
+    vertical-align: middle;
+}
+
 .rating-wrap {
     position: relative;
     margin: 0 auto 16px;

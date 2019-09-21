@@ -3,9 +3,9 @@
     <ion-title>검색</ion-title>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-select placeholder="리뷰" interface="popover" slot="start">
-      <ion-select-option value="review" selected>리뷰</ion-select-option>
-      <ion-select-option value="tag">태그</ion-select-option>
+    <ion-select [(ngModel)]="selectedType" interface="popover" slot="start"
+      placeholder="type">
+      <ion-select-option *ngFor="let item of type" [value]="item.id">{{item.text}}</ion-select-option>
     </ion-select>
     <ion-searchbar [(ngModel)]="searchTerm" (ionBlur)="searchReview($event)" (keyup.enter)="searchReview($event)"
       mode="ios" placeholder="검색">

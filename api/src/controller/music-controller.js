@@ -4,8 +4,10 @@ var Music = require('../models/music');
 exports.writeReview = (req, res) => {
 
     let newReview = Music(req.body);
-    let writer = req.user._id;
-    newReview.writer = writer;
+    
+    newReview.writer = req.user._id;
+    newReview.tags = req.body.tags.split(',');
+
 
     newReview.save((err, music) => {
         if (err) {

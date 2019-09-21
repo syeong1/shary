@@ -16,23 +16,24 @@ var BookReviewSchema = new Schema({
     author: String,
     publisher: String,
     pubdate: Date,
-    description:String,
+    description: String,
     image: String,
     price: String,
     readingStartDate: Date,
     readingEndDate: Date,
-    impressivePassage:String,
-    review:String,
-    tags: String,
+    impressivePassage: String,
+    review: String,
+    tags: [{
+        type: String
+    }],
     images: [Image.schema],
-    rating: Number,     // 별점
-    viewCnt: Number,   // 조회수
-    like: Number,      // 좋아요 
-    liker: {           // 좋아요 누른 사람
+    rating: Number, // 별점
+    viewCnt: Number, // 조회수
+    like: Number, // 좋아요 
+    liker: { // 좋아요 누른 사람
         type: Schema.Types.ObjectId,
         ref: 'User'
     }
 });
-
 
 module.exports = mongoose.model('BookReview', BookReviewSchema);

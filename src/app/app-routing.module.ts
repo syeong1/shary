@@ -11,12 +11,6 @@ const routes: Routes = [
     path: 'mypage', loadChildren: './member/mypage/mypage.module#MypagePageModule',
     canActivate: [AuthGuardService]
   },
-  {
-    path: 'settings', loadChildren: './pages/settings/settings.module#SettingsPageModule'
-  },
-  { path: 'home', loadChildren: './pages/home/home.module#HomePageModule' },
-  { path: 'search', loadChildren: './pages/search/search.module#SearchPageModule' },
-
   // 리뷰북리스트 
   {
     path: 'reviewbook/list/:category', loadChildren: './reviewbook/list/list.module#ListPageModule',
