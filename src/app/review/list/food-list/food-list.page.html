@@ -23,12 +23,11 @@
 
   <ion-grid *ngIf="reviews">
     <ion-row>
-      <ion-col size="4" *ngFor="let review of reviews">
+      <ion-col size="6" *ngFor="let review of reviews">
         <ion-card (click)="openReivewDetailPage(review)">
           <img [src]=review.image />
           <ion-card-header>
-            <ion-card-subtitle>{{review.name}}</ion-card-subtitle>
-            <ion-card-title>{{review.phoneNumber}}</ion-card-title>
+            <ion-card-title>{{review.name}}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
             <ion-icon name="star" *ngFor="let num of [1,2,3,4,5]"

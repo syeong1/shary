@@ -21,6 +21,8 @@ export class FoodDetailPage implements OnInit, AfterViewInit {
   data = null;
   eatDate;
 
+  likeState: boolean = false;
+
   constructor(private activatedRoute: ActivatedRoute, private reviewService: ReviewService,
     private router: Router, private alertController: AlertController) {  }
 
@@ -35,7 +37,8 @@ export class FoodDetailPage implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-     
+    this.getReviewDetail();
+    this.getLike();
   }
 
   getReviewDetail() {
@@ -150,5 +153,26 @@ export class FoodDetailPage implements OnInit, AfterViewInit {
 
       // this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
+    }
+
+    getLike() {
+      this.reviewService.getLike(this.reviewId).subscribe(result => {
+        console.log('좋아요 상태', result);
+        this.likeState = result['like'];
+      })
+    }
+  
+    addLike() {
+      this.reviewService.addLike(this.reviewId).subscribe(data => {
+        console.log('좋아요 누른 결과', data);
+        this.likeState = true;
+      })
+    }
+    cancelLike() {
+      this.reviewService.cancelLike(this.reviewId).subscribe(data => {
+        console.log('좋아요 취소 결과', data);
+        this.likeState = false;
+  
+      })
     }
 }
