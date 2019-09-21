@@ -1,5 +1,5 @@
 var Book = require('../models/book');
-
+const Reviewbook = require('../models/reviewbook')
 // 새 리뷰 작성
 exports.writeReview = (req, res) => {
 
@@ -9,6 +9,26 @@ exports.writeReview = (req, res) => {
     newReview.tags = req.body.tags.split(',');
 
     newReview.save((err, book) => {
+        Reviewbook.findOneAndUpdate({
+            "_id": req.body.reviewbook
+        }, {
+            "$addToSet": {
+                "reviews": book._id
+            },
+            $inc: {
+                count: 1
+            }
+        }, {
+            new: true,
+            safe: true,
+            upsert: true
+        }, function (err, result) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('reviewbook에 추가 완료', result);
+            }
+        });
         if (err) {
             console.log(err);
             return res.status(400).json({
@@ -19,7 +39,7 @@ exports.writeReview = (req, res) => {
         return res.status(201).json({
             'msg': '등록되었습니다'
         });
-    });
+    })
 }
 
 // 리뷰 수정
