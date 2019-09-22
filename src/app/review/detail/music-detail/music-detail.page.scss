@@ -27,17 +27,6 @@ ion-item {
 }
 
 
-ion-item.textarea {
-    --inner-padding-end: 0px;
-    --border-style: none;
-}
-
-ion-textarea {
-    margin: 3px 0px 10px 0px;
-    padding: 10px 0px 5px 10px;
-    border: 1px solid rgba(0, 0, 0, 0.13);
-}
-
 .img-bottom-wrap {
     ion-item>ion-label {
         font-size: 13px;

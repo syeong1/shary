@@ -32,6 +32,18 @@ ion-toolbar {
     vertical-align: middle;
 }
 
+ion-item.textarea-title {
+    --inner-padding-end: 0px;
+    --border-style: none;
+}
+
+ion-textarea.textarea-content {
+    margin: 3px 0px 10px 0px;
+    padding: 10px 0px 5px 10px;
+    border: 1px solid rgba(0, 0, 0, 0.13);
+}
+
+
 .rating-wrap {
     position: relative;
     margin: 0 auto 16px;

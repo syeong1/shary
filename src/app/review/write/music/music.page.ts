@@ -14,6 +14,7 @@ export class MusicPage implements OnInit {
 
   reviewForm: FormGroup;
   music: Object;
+  nowDate: String = new Date().toISOString();
   reviewbookId: string = null;
   reviewId: string = null;
   titleText: string = '새 리뷰 작성';
@@ -22,7 +23,6 @@ export class MusicPage implements OnInit {
 
   ngOnInit() {
     this.reviewForm = new FormGroup({
-      writer: new FormControl(''),
       reviewbook: new FormControl(''),
       trackName: new FormControl('', [Validators.required]),
       artistName: new FormControl(''),

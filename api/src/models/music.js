@@ -22,7 +22,9 @@ var MusicReviewSchema = new Schema({
     listeningDate: Date,
     image: String,
     review: String,
-    tags: String,
+    tags: [{
+        type: String
+    }],
     rating: Number,      // 별점
     viewCnt: Number,     // 조회수
     like: Number,        // 좋아요 

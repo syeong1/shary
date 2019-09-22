@@ -60,7 +60,8 @@
           <ion-item>
             <ion-label>감상일</ion-label>
             <ion-datetime [doneText]="'저장'" [cancelText]="'취소'" [pickerOptions]="dateOptions" displayFormat="YYYY-MM-DD"
-              placeholder="YYYY-MM-DD" formControlName="listeningDate"></ion-datetime>
+              value="{{music?.listeningDate||nowDate}}" placeholder="YYYY-MM-DD" formControlName="listeningDate">
+            </ion-datetime>
           </ion-item>
           <ion-item>
             <ion-label class="stacked" position="stacked">감상평</ion-label>
