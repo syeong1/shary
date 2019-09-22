@@ -1,13 +1,12 @@
-var Music = require('../models/music');
+const Music = require('../models/music');
+const rbConrtroller = require('../controller/reviewbook-controller');
 
 // 새 리뷰 작성
 exports.writeReview = (req, res) => {
 
-    let newReview = Music(req.body);
-    
+    let newReview = Music(req.body);  
     newReview.writer = req.user._id;
     newReview.tags = req.body.tags.split(',');
-
 
     newReview.save((err, music) => {
         if (err) {
@@ -17,6 +16,7 @@ exports.writeReview = (req, res) => {
             });
         }
         console.log(music);
+        rbConrtroller.updateReviewbookInfo(req.body.reviewbook, music._id, 'write');
         return res.status(201).json({
             'msg': '등록되었습니다'
         });
@@ -26,11 +26,11 @@ exports.writeReview = (req, res) => {
 
 // 리뷰 수정
 exports.editReview = (req, res) => {
-
-    console.log("@@@ editReview @@@");
     console.log('수정할 review_id : ', req.params.id);
     console.log('수정할 정보: ', req.body);
     console.log("=================================================")
+    req.body.tags = req.body.tags.split(',');
+    
     Music.findByIdAndUpdate(req.params.id, {
         $set: req.body
     }, function (err, book) {
@@ -56,6 +56,21 @@ exports.deleteReview = (req, res) => {
         };
         console.log('삭제완료 book:', music);
         return res.json(music);
+    })
+}
+
+// 리뷰 삭제
+exports.deleteReview = (req, res) => {
+    let review_id = req.params.id;
+    Music.findByIdAndDelete(review_id, (err, music) => {
+        if (err) {
+            return res.status(400).json({
+                'msg': err
+            });
+        };
+        rbConrtroller.updateReviewbookInfo(music.reviewbook, music._id, 'delete');
+        console.log('삭제완료 book:', book);
+        return res.json(book);
     })
 }
 
