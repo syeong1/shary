@@ -12,6 +12,7 @@ export class MusicDetailPage implements OnInit {
 
   reviewId: string;
   data = null;
+  likeState: boolean = false;
 
   constructor(private reviewService: ReviewService, private activatedRoute: ActivatedRoute, private router: Router, public alertController: AlertController) { }
 
@@ -22,6 +23,7 @@ export class MusicDetailPage implements OnInit {
 
   ionViewWillEnter() {
     this.getReviewDetail();
+    this.getLike();
   }
 
   getReviewDetail() {
@@ -63,5 +65,30 @@ export class MusicDetailPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  getLike() {
+    this.reviewService.getLike(this.reviewId).subscribe(result => {
+      console.log('좋아요 상태', result);
+      this.likeState = result['like'];
+    })
+  }
+
+  addLike() {
+    this.reviewService.addLike(this.reviewId).subscribe(data => {
+      console.log('좋아요 누른 결과', data);
+      this.likeState = true;
+    })
+  }
+  cancelLike() {
+    this.reviewService.cancelLike(this.reviewId).subscribe(data => {
+      console.log('좋아요 취소 결과', data);
+      this.likeState = false;
+    })
+  }
+
+  searchTag(item) {
+    console.log('검색할 태그', item);
+    this.router.navigate(['main-tabs/search/tag', item]);
   }
 }
