@@ -80,11 +80,11 @@
           <ion-item class="textarea-title">
             <ion-textarea class="textarea-content"> {{data.review}}</ion-textarea>
           </ion-item>
-          <ion-item lines="none">
-            <ion-label position="fixed">태그</ion-label>
-          </ion-item>
-          <div *ngIf="data.tags">
-            <ion-chip *ngFor="let item of data.tags" outline color="primary" (click)="SearchTag(item)">
+          <div *ngIf="data.tags[0]!==''">
+            <ion-item lines="none">
+              <ion-label position="fixed">태그</ion-label>
+            </ion-item>
+            <ion-chip *ngFor="let item of data.tags" outline color="primary" (click)="searchTag(item)">
               <ion-label>{{item}}</ion-label>
             </ion-chip>
           </div>
