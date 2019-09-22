@@ -57,7 +57,7 @@ exports.deleteReview = (req, res) => {
         };
         rbController.updateReviewbookInfo(music.reviewbook, music._id, 'delete');
         console.log('삭제완료 music:', music);
-        return res.json(book);
+        return res.json(music);
     })
 }
 
