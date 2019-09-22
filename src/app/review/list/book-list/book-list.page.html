@@ -34,7 +34,9 @@
             <ion-card-title>{{review.title}}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <p class="stars">★★★★★</p>
+            <ion-icon class="list-star-icon" name="star" *ngFor="let num of [1,2,3,4,5]"
+              [style.color]="review.rating >=num ? '#ffbf00':'#e0e0e0'">
+            </ion-icon>
             <p class="preview">{{review.description}}</p>
           </ion-card-content>
         </ion-card>
