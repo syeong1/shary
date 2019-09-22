@@ -1,53 +1,10 @@
-var Book = require('../models/book');
-const Reviewbook = require('../models/reviewbook')
-
-// 리뷰 수정 시 리뷰북에 반영
-function updateReviewbook(reviewbookId, bookId, action) {
-    let conditions;
-    let msg;
-    if (action == "write") {
-        conditions = {
-            $addToSet: {
-                reviews: bookId
-            },
-            $inc: {
-                count: 1
-            },
-            createAt: Date.now()
-        }
-        msg = "추가 완료"
-    } else if (action == "delete") {
-        conditions = {
-            $pull: {
-                reviews: bookId
-            },
-            $inc: {
-                count: -1
-            }
-        }
-        msg = "삭제 완료"
-    }
-
-    Reviewbook.findOneAndUpdate({
-        "_id": reviewbookId
-    }, conditions, {
-        new: true,
-        safe: true,
-        upsert: true
-    }, function (err, result) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log('reviewbook' + msg, result);
-        }
-    });
-}
+const Book = require('../models/book');
+const rbConrtroller = require('../controller/reviewbook-controller');
 
 // 새 리뷰 작성
 exports.writeReview = (req, res) => {
 
     let newReview = Book(req.body);
-
     newReview.writer = req.user._id;
     newReview.tags = req.body.tags.split(',');
 
@@ -58,7 +15,7 @@ exports.writeReview = (req, res) => {
                 'msg': err
             });
         }
-        updateReviewbook(req.body.reviewbook, book._id, 'write');
+        rbConrtroller.updateReviewbookInfo(req.body.reviewbook, book._id, 'write');
         return res.status(201).json({
             'msg': '등록되었습니다'
         });
@@ -95,7 +52,7 @@ exports.deleteReview = (req, res) => {
                 'msg': err
             });
         };
-        updateReviewbook(book.reviewbook, book._id, 'delete');
+        rbConrtroller.updateReviewbookInfo(book.reviewbook, book._id, 'delete');
         console.log('삭제완료 book:', book);
         return res.json(book);
     })
