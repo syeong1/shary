@@ -6,6 +6,7 @@ exports.writeReview = (req, res) => {
     let newReview = Food(req.body);
     let writer = req.user._id;
     newReview.writer = writer;
+    newReview.tags = req.body.tags.split(',');
 
     newReview.save((err, food) => {
         if (err) {

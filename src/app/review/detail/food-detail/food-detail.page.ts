@@ -19,6 +19,9 @@ export class FoodDetailPage implements OnInit, AfterViewInit {
 
   reviewId: string;
   data = null;
+  eatDate;
+
+  likeState: boolean = false;
 
   constructor(private activatedRoute: ActivatedRoute, private reviewService: ReviewService,
     private router: Router, private alertController: AlertController) {  }
@@ -34,7 +37,8 @@ export class FoodDetailPage implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-     
+    this.getReviewDetail();
+    this.getLike();
   }
 
   getReviewDetail() {
@@ -42,8 +46,15 @@ export class FoodDetailPage implements OnInit, AfterViewInit {
       console.log('*** reviewService.getReviewDetail 요청 때 reviewid : ', this.reviewId);
       console.log('받아온 Review data', data);
       this.data = data;
+      // JSON.stringify(data['eatDate']).s;
       let stringData = JSON.stringify(data);
       let jsonData = JSON.parse(stringData);
+      if(jsonData.eatDate === null){
+        this.eatDate = '등록되어 있지 않음';
+      }else{
+        this.eatDate = (String)(jsonData.eatDate).substring(0,10); 
+      }
+      
       console.log('jsonData', jsonData);
       this.MapInit(jsonData.country, jsonData.x, jsonData.y); 
     })
@@ -79,6 +90,7 @@ export class FoodDetailPage implements OnInit, AfterViewInit {
   }
 
   editReview() {
+    console.log('edit페이지로 넘어갈 reviewid', this.reviewId);
     this.router.navigate(['food/edit', this.reviewId]);
   }
 
@@ -141,5 +153,32 @@ export class FoodDetailPage implements OnInit, AfterViewInit {
 
       // this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
+    }
+
+    getLike() {
+      this.reviewService.getLike(this.reviewId).subscribe(result => {
+        console.log('좋아요 상태', result);
+        this.likeState = result['like'];
+      })
+    }
+  
+    addLike() {
+      this.reviewService.addLike(this.reviewId).subscribe(data => {
+        console.log('좋아요 누른 결과', data);
+        this.likeState = true;
+      })
+    }
+    cancelLike() {
+      this.reviewService.cancelLike(this.reviewId).subscribe(data => {
+        console.log('좋아요 취소 결과', data);
+        this.likeState = false;
+  
+      })
+    }
+
+
+    SearchTag(item) {
+      console.log('검색할 태그', item); 
+      this.router.navigate(['main-tabs/search/tag', item]);
     }
 }
