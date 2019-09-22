@@ -10,9 +10,9 @@ var ReviewbookSchema = new Schema({
         type: String,
         required: true
     },
-    lastDate: {
+    lastDate: { // 마지막 리뷰 작성 날짜
         type: Date,
-        default: Date.now
+        default: Date.now()
     },
     count: {
         type: Number,

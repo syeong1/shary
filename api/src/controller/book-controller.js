@@ -1,5 +1,48 @@
 var Book = require('../models/book');
 const Reviewbook = require('../models/reviewbook')
+
+// 리뷰 수정 시 리뷰북에 반영
+function updateReviewbook(reviewbookId, bookId, action) {
+    let conditions;
+    let msg;
+    if (action == "write") {
+        conditions = {
+            $addToSet: {
+                reviews: bookId
+            },
+            $inc: {
+                count: 1
+            },
+            createAt: Date.now()
+        }
+        msg = "추가 완료"
+    } else if (action == "delete") {
+        conditions = {
+            $pull: {
+                reviews: bookId
+            },
+            $inc: {
+                count: -1
+            }
+        }
+        msg = "삭제 완료"
+    }
+
+    Reviewbook.findOneAndUpdate({
+        "_id": reviewbookId
+    }, conditions, {
+        new: true,
+        safe: true,
+        upsert: true
+    }, function (err, result) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('reviewbook' + msg, result);
+        }
+    });
+}
+
 // 새 리뷰 작성
 exports.writeReview = (req, res) => {
 
@@ -9,33 +52,13 @@ exports.writeReview = (req, res) => {
     newReview.tags = req.body.tags.split(',');
 
     newReview.save((err, book) => {
-        Reviewbook.findOneAndUpdate({
-            "_id": req.body.reviewbook
-        }, {
-            "$addToSet": {
-                "reviews": book._id
-            },
-            $inc: {
-                count: 1
-            }
-        }, {
-            new: true,
-            safe: true,
-            upsert: true
-        }, function (err, result) {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log('reviewbook에 추가 완료', result);
-            }
-        });
         if (err) {
             console.log(err);
             return res.status(400).json({
                 'msg': err
             });
         }
-        console.log(book);
+        updateReviewbook(req.body.reviewbook, book._id, 'write');
         return res.status(201).json({
             'msg': '등록되었습니다'
         });
@@ -44,8 +67,6 @@ exports.writeReview = (req, res) => {
 
 // 리뷰 수정
 exports.editReview = (req, res) => {
-
-    console.log("@@@ editReview @@@");
     console.log('수정할 review_id : ', req.params.id);
     console.log('수정할 정보: ', req.body);
     console.log("=================================================")
@@ -74,6 +95,7 @@ exports.deleteReview = (req, res) => {
                 'msg': err
             });
         };
+        updateReviewbook(book.reviewbook, book._id, 'delete');
         console.log('삭제완료 book:', book);
         return res.json(book);
     })
