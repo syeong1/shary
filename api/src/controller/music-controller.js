@@ -21,7 +21,6 @@ exports.writeReview = (req, res) => {
     });
 }
 
-
 // 리뷰 수정
 exports.editReview = (req, res) => {
     console.log('수정할 review_id : ', req.params.id);
@@ -41,21 +40,6 @@ exports.editReview = (req, res) => {
             'result': book
         });
     });
-}
-
-
-// 리뷰 삭제
-exports.deleteReview = (req, res) => {
-    let review_id = req.params.id;
-    Music.findByIdAndDelete(review_id, (err, music) => {
-        if (err) {
-            return res.status(400).json({
-                'msg': err
-            });
-        };
-        console.log('삭제완료 book:', music);
-        return res.json(music);
-    })
 }
 
 // 리뷰 삭제
