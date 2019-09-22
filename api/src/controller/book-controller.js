@@ -3,11 +3,11 @@ const rbController = require('../controller/reviewbook-controller');
 
 // 새 리뷰 작성
 exports.writeReview = (req, res) => {
-
     let newReview = Book(req.body);
     newReview.writer = req.user._id;
-    newReview.tags = req.body.tags.split(',');
-
+    if (req.body.tags !== undefined) {
+        req.body.tags = req.body.tags.split(',');
+    }
     newReview.save((err, book) => {
         if (err) {
             console.log(err);
@@ -15,6 +15,7 @@ exports.writeReview = (req, res) => {
                 'msg': err
             });
         }
+        console.log(book);
         rbController.updateReviewbookInfo(req.body.reviewbook, book._id, 'write');
         return res.status(201).json({
             'msg': '등록되었습니다'
@@ -27,8 +28,7 @@ exports.editReview = (req, res) => {
     console.log('수정할 review_id : ', req.params.id);
     console.log('수정할 정보: ', req.body);
     console.log("=================================================")
-    req.body.tags = req.body.tags.split(',');
-
+    req.body.tags = req.body.tags.toString().split(',');
     Book.findByIdAndUpdate(req.params.id, {
         $set: req.body
     }, function (err, book) {
@@ -41,7 +41,6 @@ exports.editReview = (req, res) => {
         });
     });
 }
-
 
 // 리뷰 삭제
 exports.deleteReview = (req, res) => {

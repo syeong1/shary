@@ -22,24 +22,24 @@
 
   <form [formGroup]="reviewForm">
     <ion-grid>
-      <ion-input hidden value="{{rating}}" formControlName="rating"></ion-input>
+      <ion-input hidden [value]="rating" formControlName="rating"></ion-input>
       <ion-row>
         <ion-col size='4'>
           <div class="image-wrap">
             <img [src]="music?.artworkUrl100" *ngIf="music?.artworkUrl100">
           </div>
-          <ion-input hidden value="{{music?.artworkUrl100}}" formControlName="artworkUrl100"></ion-input>
+          <ion-input hidden [value]="music?.artworkUrl100" formControlName="artworkUrl100"></ion-input>
         </ion-col>
         <ion-col size='8'>
           <ion-item>
-            <ion-input placeholder="제목" value="{{music?.trackName}}" formControlName="trackName"></ion-input>
+            <ion-input placeholder="제목" [value]="music?.trackName" formControlName="trackName"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input placeholder="아티스트" class="artist" value="{{music?.artistName}}" formControlName="artistName">
+            <ion-input placeholder="아티스트" class="artist" [value]="music?.artistName" formControlName="artistName">
             </ion-input>
           </ion-item>
           <ion-item>
-            <ion-input placeholder="앨범" class="collection" value="{{music?.collectionName}}"
+            <ion-input placeholder="앨범" class="collection" [value]="music?.collectionName"
               formControlName="collectionName">
             </ion-input>
           </ion-item>
@@ -49,7 +49,7 @@
         <ion-col size='12'>
           <ion-item>
             <ion-label>장르</ion-label>
-            <ion-input value="{{music?.primaryGenreName}}" formControlName="primaryGenreName" text-right></ion-input>
+            <ion-input [value]="music?.primaryGenreName" formControlName="primaryGenreName" text-right></ion-input>
           </ion-item>
           <ion-item>
             <ion-label>음원 발매일</ion-label>
@@ -65,7 +65,7 @@
           </ion-item>
           <ion-item>
             <ion-label class="stacked" position="stacked">감상평</ion-label>
-            <ion-textarea rows="4" cols="20" type="text"[value]="music?.review" formControlName="review">
+            <ion-textarea rows="4" cols="20" type="text" [value]="music?.review" formControlName="review">
             </ion-textarea>
           </ion-item>
           <ion-item>

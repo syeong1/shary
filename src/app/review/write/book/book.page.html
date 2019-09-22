@@ -19,10 +19,9 @@
 </ion-header>
 
 <ion-content>
-
   <form [formGroup]="reviewForm">
     <ion-grid>
-      <ion-input hidden value="{{rating}}" formControlName="rating"></ion-input>
+      <ion-input hidden [value]="rating" formControlName="rating"></ion-input>
       <ion-row>
         <ion-col size='4'>
           <div class="image-wrap">
@@ -34,22 +33,22 @@
               <p>Image</p>
             </div>
           </ng-template>
-          <ion-input hidden value="{{book?.image}}" formControlName="image"></ion-input>
+          <ion-input hidden [value]="book?.image" formControlName="image"></ion-input>
         </ion-col>
         <ion-col size='8'>
           <ion-item>
-            <ion-input placeholder="제목" value="{{book?.title}}" formControlName="title"></ion-input>
+            <ion-input placeholder="제목" [value]="book?.title" formControlName="title"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input placeholder="저자" class="author" value="{{book?.author}}" formControlName="author"></ion-input>
+            <ion-input placeholder="저자" class="author" [value]="book?.author" formControlName="author"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input placeholder="출판사" class="pub" value="{{book?.publisher}}" formControlName="publisher">
+            <ion-input placeholder="출판사" class="pub" [value]="book?.publisher" formControlName="publisher">
             </ion-input>
           </ion-item>
           <ion-item>
             <ion-datetime class="pub" [doneText]="'저장'" [cancelText]="'취소'" [pickerOptions]="dateOptions"
-              displayFormat="YYYY-MM-DD" placeholder="출판일" value="{{book?.pubdate | date : 'yyyy-MM-dd'}}"
+              displayFormat="YYYY-MM-DD" placeholder="출판일" [value]="book?.pubdate | date : 'yyyy-MM-dd'"
               formControlName="pubdate">
             </ion-datetime>
           </ion-item>
@@ -61,30 +60,30 @@
             <ion-label position="fixed">줄거리</ion-label>
           </ion-item>
           <ion-item class="textarea">
-            <ion-textarea rows="6" cols="20" class="book-description" placeholder="줄거리..." value="{{book?.description}}"
+            <ion-textarea rows="6" cols="20" class="book-description" placeholder="줄거리..." [value]="book?.description"
               formControlName="description"></ion-textarea>
           </ion-item>
           <ion-item>
             <ion-label>독서 시작일</ion-label>
             <ion-datetime [doneText]="'저장'" [cancelText]="'취소'" [pickerOptions]="dateOptions" displayFormat="YYYY-MM-DD"
-              placeholder="YYYY-MM-DD" value="{{nowDate}}" formControlName="readingStartDate">
+              placeholder="YYYY-MM-DD" [value]="book?.readingStartDate" formControlName="readingStartDate">
             </ion-datetime>
           </ion-item>
           <ion-item>
             <ion-label>독서 종료일</ion-label>
             <ion-datetime [doneText]="'저장'" [cancelText]="'취소'" [pickerOptions]="dateOptions" displayFormat="YYYY-MM-DD"
-              placeholder="YYYY-MM-DD" value="{{nowDate}}" formControlName="readingEndDate"></ion-datetime>
+              placeholder="YYYY-MM-DD" [value]="book?.readingEndDate" formControlName="readingEndDate"></ion-datetime>
           </ion-item>
           <ion-item>
             <ion-label position="fixed">금액</ion-label>
-            <ion-input type="text" value="{{book?.price}}" formControlName="price" text-right></ion-input>
+            <ion-input type="text" [value]="book?.price" formControlName="price" text-right></ion-input>
             <span>원</span>
           </ion-item>
           <ion-item class="textarea">
             <ion-label position="fixed">인상 깊은 구절</ion-label>
           </ion-item>
           <ion-item class="textarea">
-            <ion-textarea rows="2" cols="20" placeholder="..." value="{{book?.impressivePassage}}"
+            <ion-textarea rows="2" cols="20" placeholder="..." [value]="book?.impressivePassage"
               formControlName="impressivePassage">
             </ion-textarea>
           </ion-item>
@@ -92,12 +91,12 @@
             <ion-label position="fixed">감상평</ion-label>
           </ion-item>
           <ion-item class="textarea">
-            <ion-textarea rows="4" cols="20" placeholder="..." value="{{book?.review}}" formControlName="review">
+            <ion-textarea rows="4" cols="20" placeholder="..." [value]="book?.review" formControlName="review">
             </ion-textarea>
           </ion-item>
           <ion-item>
             <ion-label position="stacked">태그</ion-label>
-            <ion-input type="text" formControlName="tags"></ion-input>
+            <ion-input type="text" formControlName="tags" [value]="book?.tags"></ion-input>
           </ion-item>
           <p class="tag-notice"> 태그는 쉼표(,) 를 통해 구분되며 쉼표의 앞뒤에 있는 빈칸은 무시됩니다.</p>
         </ion-col>

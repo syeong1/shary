@@ -67,7 +67,6 @@ export class BookDetailPage implements OnInit {
     await alert.present();
   }
 
-
   getLike() {
     this.reviewService.getLike(this.reviewId).subscribe(result => {
       console.log('좋아요 상태', result);
@@ -88,7 +87,7 @@ export class BookDetailPage implements OnInit {
     })
   }
 
-  SearchTag(item) {
+  searchTag(item) {
     console.log('검색할 태그', item); 
     this.router.navigate(['main-tabs/search/tag', item]);
   }

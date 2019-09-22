@@ -5,7 +5,9 @@ const rbController = require('../controller/reviewbook-controller');
 exports.writeReview = (req, res) => {
     let newReview = Music(req.body);
     newReview.writer = req.user._id;
-    req.body.tags = req.body.tags.split(',');
+    if (req.body.tags !== undefined) {
+        req.body.tags = req.body.tags.split(',');
+    }
     newReview.save((err, music) => {
         if (err) {
             console.log(err);
@@ -26,18 +28,20 @@ exports.editReview = (req, res) => {
     console.log('수정할 review_id : ', req.params.id);
     console.log('수정할 정보: ', req.body);
     console.log("=================================================")
-    if (typeof req.body.tags == String) {
-        req.body.tags = req.body.tags.split(',');
-    }
+    req.body.tags = req.body.tags.toString().split(',');
     Music.findByIdAndUpdate(req.params.id, {
         $set: req.body
-    }, function (err, book) {
+    }, {
+        new: true,
+        safe: true,
+        upsert: true
+    }, function (err, edit) {
         if (err) {
             console.log(err);
         }
         return res.status(201).json({
             'msg': '리뷰 업데이트 성공',
-            'result': book
+            'result': edit
         });
     });
 }
