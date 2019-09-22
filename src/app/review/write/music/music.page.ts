@@ -14,7 +14,6 @@ export class MusicPage implements OnInit {
 
   reviewForm: FormGroup;
   music: Object;
-  nowDate: String = new Date().toISOString();
   reviewbookId: string = null;
   reviewId: string = null;
   titleText: string = '새 리뷰 작성';

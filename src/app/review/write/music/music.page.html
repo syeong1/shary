@@ -54,13 +54,13 @@
           <ion-item>
             <ion-label>음원 발매일</ion-label>
             <ion-datetime [doneText]="'저장'" [cancelText]="'취소'" [pickerOptions]="dateOptions" displayFormat="YYYY-MM-DD"
-              value="{{music?.releaseDate}}" placeholder="YYYY-MM-DD" formControlName="releaseDate">
+              [value]="music?.releaseDate" placeholder="YYYY-MM-DD" formControlName="releaseDate">
             </ion-datetime>
           </ion-item>
           <ion-item>
             <ion-label>감상일</ion-label>
             <ion-datetime [doneText]="'저장'" [cancelText]="'취소'" [pickerOptions]="dateOptions" displayFormat="YYYY-MM-DD"
-              value="{{music?.listeningDate||nowDate}}" placeholder="YYYY-MM-DD" formControlName="listeningDate">
+              [value]="music?.listeningDate" placeholder="YYYY-MM-DD" formControlName="listeningDate">
             </ion-datetime>
           </ion-item>
           <ion-item>

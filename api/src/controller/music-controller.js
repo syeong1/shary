@@ -3,11 +3,11 @@ const rbController = require('../controller/reviewbook-controller');
 
 // 새 리뷰 작성
 exports.writeReview = (req, res) => {
-
     let newReview = Music(req.body);  
     newReview.writer = req.user._id;
-    newReview.tags = req.body.tags.split(',');
-
+    if (req.body.tags !== "") {
+        newReview.tags = req.body.tags.split(',');
+    }
     newReview.save((err, music) => {
         if (err) {
             console.log(err);
