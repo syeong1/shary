@@ -1,5 +1,5 @@
 const Music = require('../models/music');
-const rbConrtroller = require('../controller/reviewbook-controller');
+const rbController = require('../controller/reviewbook-controller');
 
 // 새 리뷰 작성
 exports.writeReview = (req, res) => {
@@ -16,7 +16,7 @@ exports.writeReview = (req, res) => {
             });
         }
         console.log(music);
-        rbConrtroller.updateReviewbookInfo(req.body.reviewbook, music._id, 'write');
+        rbController.updateReviewbookInfo(req.body.reviewbook, music._id, 'write');
         return res.status(201).json({
             'msg': '등록되었습니다'
         });
@@ -68,7 +68,7 @@ exports.deleteReview = (req, res) => {
                 'msg': err
             });
         };
-        rbConrtroller.updateReviewbookInfo(music.reviewbook, music._id, 'delete');
+        rbController.updateReviewbookInfo(music.reviewbook, music._id, 'delete');
         console.log('삭제완료 book:', book);
         return res.json(book);
     })
