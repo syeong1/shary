@@ -3,11 +3,9 @@ const rbController = require('../controller/reviewbook-controller');
 
 // 새 리뷰 작성
 exports.writeReview = (req, res) => {
-    let newReview = Music(req.body);  
+    let newReview = Music(req.body);
     newReview.writer = req.user._id;
-    if (req.body.tags !== "") {
-        newReview.tags = req.body.tags.split(',');
-    }
+    req.body.tags = req.body.tags.split(',');
     newReview.save((err, music) => {
         if (err) {
             console.log(err);
@@ -29,8 +27,9 @@ exports.editReview = (req, res) => {
     console.log('수정할 review_id : ', req.params.id);
     console.log('수정할 정보: ', req.body);
     console.log("=================================================")
-    req.body.tags = req.body.tags.split(',');
-    
+    if (typeof req.body.tags == String) {
+        req.body.tags = req.body.tags.split(',');
+    }
     Music.findByIdAndUpdate(req.params.id, {
         $set: req.body
     }, function (err, book) {
