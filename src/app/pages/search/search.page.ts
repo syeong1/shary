@@ -139,4 +139,9 @@ export class SearchPage implements OnInit {
     console.log('Segment changed', ev);
     console.log('Selected Page Index', ev.detail);
   }
+
+  changeType(ev: any) {
+    if (ev.detail.value == 1) this.searchReview();
+    else this.searchReviewByTag();
+  }
 }

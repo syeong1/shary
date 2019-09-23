@@ -3,7 +3,7 @@
     <ion-title>검색</ion-title>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-select [(ngModel)]="selectedType" interface="popover" slot="start"
+    <ion-select (ionChange)="changeType($event)" [(ngModel)]="selectedType" interface="popover" slot="start"
       placeholder="type">
       <ion-select-option *ngFor="let item of type" [value]="item.id">{{item.text}}</ion-select-option>
     </ion-select>
