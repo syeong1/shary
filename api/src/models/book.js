@@ -37,6 +37,10 @@ var BookReviewSchema = new Schema({
     createdAt: { // 리뷰생성일자
         type: Date,
         default: Date.now()
+    },
+    editedAt:{ // 수정한 날짜
+        type: Date,
+        default: Date.now()
     }
 });
 

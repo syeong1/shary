@@ -12,9 +12,13 @@ exports.updateReviewbookInfo = function (reviewbookId, reviewId, action) {
             $inc: {
                 count: 1
             },
-            createAt: Date.now()
+            lastDate: Date.now()
         }
         msg = "추가 완료"
+    } else if (action == "edit") {
+        conditions = {
+            lastDate: Date.now()
+        }
     } else if (action == "delete") {
         conditions = {
             $pull: {
