@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ReviewService } from 'src/app/services/review.service';
 import { AlertController } from '@ionic/angular';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
   selector: 'app-music-detail',
@@ -14,7 +15,7 @@ export class MusicDetailPage implements OnInit {
   data = null;
   likeState: boolean = false;
 
-  constructor(private reviewService: ReviewService, private activatedRoute: ActivatedRoute, private router: Router, public alertController: AlertController) { }
+  constructor(private reviewService: ReviewService, private activatedRoute: ActivatedRoute, private router: Router, public alertController: AlertController, private socialSharing: SocialSharing) { }
 
   ngOnInit() {
     this.reviewId = this.activatedRoute.snapshot.paramMap.get('id');
@@ -90,5 +91,45 @@ export class MusicDetailPage implements OnInit {
   searchTag(item) {
     console.log('검색할 태그', item);
     this.router.navigate(['main-tabs/search/tag', item]);
+  }
+
+  async shareReview() {
+    const alert = await this.alertController.create({
+      header: '공유하기',
+      message: '스포일러 주의! 공유내용에 감상평을 포함할까요?',
+      buttons: [
+        {
+          text: '포함하기',
+          handler: () => {
+            this.socialShare(`♬ ${this.data.trackName} - ${this.data.artistName} ♪ \r\n\r\n ★ ${this.data.rating}.0\r\n\r\n\r\n :: 감상평 :: \r\n${this.data.review}`, `${this.data.artworkUrl100}`);
+          }
+        },
+        {
+          text: '포함하지 않기',
+          handler: () => {
+            this.socialShare(`♬ ${this.data.trackName} - ${this.data.artistName} ♪ \r\n\r\n ★ ${this.data.rating}.0`, `${this.data.description}`);
+            console.log('포함하지 않기')
+          }
+        },
+        {
+          text: '취소',
+          role: 'cancel',
+          cssClass: 'danger',
+          handler: () => {
+            console.log('Confirm Cancel: 취소');
+          }
+        }
+
+      ]
+    });
+    await alert.present();
+  }
+
+  socialShare(message, image) {
+    this.socialSharing.share(message, null, [image]).then((res) => {
+      console.log('res', res);
+    }).catch(e => {
+      console.log('e', e);
+    })
   }
 }

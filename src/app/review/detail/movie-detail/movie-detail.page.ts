@@ -97,7 +97,7 @@ export class MovieDetailPage implements OnInit {
           }
         },
         {
-          text: '포함하지않기',
+          text: '포함하지 않기',
           handler: () => {
             console.log('포함하지 않기')
           }
