@@ -16,6 +16,8 @@ export class FoodListPage implements OnInit {
   reviewbookId: string;
   reviewbookTitle: string = null;
   reviews: any;
+  searchTerm: string = "";
+  msg: string = "";
   filter: string = '등록일순';
   sorting: boolean = true;
 
@@ -38,7 +40,27 @@ export class FoodListPage implements OnInit {
   ionViewWillEnter() {
     this.getReviewList();
   }
-
+  
+  searchReview() {
+    console.log('현재 리뷰북 id', this.reviewbookId);
+    console.log('검색어', this.searchTerm);
+    if (this.searchTerm == "") {
+      this.getReviewList();
+    }
+    else {
+      this.reviewService.getSearchInReviewbook('book', this.reviewbookId, this.searchTerm).subscribe(data => {
+        console.log('받아온 Reviews data', data);
+        if (data['length'] === 0) {
+          this.msg = "검색된 리뷰가 없습니다.";
+          this.reviews = "";
+        }
+        else {
+          this.msg = ""
+        }
+        this.reviews = data;
+      })
+    }
+  }
   changeSort() {
     this.sorting = !this.sorting;
     this.getReviewList();
@@ -120,11 +142,11 @@ export class FoodListPage implements OnInit {
   }
 
   openWritePage() {
-    this.router.navigate(['/food/write', this.reviewbookId]);
+    this.router.navigate(['food/write', this.reviewbookId]);
   }
 
-  openReivewDetailPage(review) {
-    this.router.navigate(['food/detail', review._id]);
+  openReivewDetailPage(reviewId) {
+    this.router.navigate(['food/detail', reviewId]);
   }
 
   /**

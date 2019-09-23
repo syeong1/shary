@@ -54,13 +54,12 @@ export class BookListPage implements OnInit {
   }
 
   openWritePage() {
-    this.router.navigate(['/book/write', this.reviewbookId]);
+    this.router.navigate(['book/write', this.reviewbookId]);
   }
 
-  openReivewDetailPage(review) {
-    this.router.navigate(['book/detail', review._id]);
+  openReivewDetailPage(reviewId) {
+    this.router.navigate(['book/detail', reviewId]);
   }
-
 
   searchReview() {
     console.log('현재 리뷰북 id', this.reviewbookId);

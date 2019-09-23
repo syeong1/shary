@@ -39,7 +39,7 @@ export class MusicListPage implements OnInit {
   }
 
   getReviewList() {
-    this.reviewService.getReviewList('music', this.reviewbookId).subscribe(data => {
+    this.reviewService.getReviewList('music', this.reviewbookId).subscribe((data: any[]) => {
       if (this.filter === '등록일순') {
         this.reviews = this.orderByCreatedAt(this.sorting, data);
       } else if (this.filter === '수정순') {
@@ -53,11 +53,11 @@ export class MusicListPage implements OnInit {
   }
 
   openWritePage() {
-    this.router.navigate(['/music/write', this.reviewbookId]);
+    this.router.navigate(['music/write', this.reviewbookId]);
   }
 
-  openReivewDetailPage(review) {
-    this.router.navigate(['music/detail', review._id]);
+  openReivewDetailPage(reviewId) {
+    this.router.navigate(['music/detail', reviewId]);
   }
 
 

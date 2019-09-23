@@ -86,7 +86,7 @@ export class ReviewService {
       );
   }
 
-  // 리뷰 전체 검색
+  // 리뷰 전체 검색 (타이틀, 저자, 아티스트이름)
   getSearchReview(category: string, term: string) {
     return this.http.get(`${this.url}/api/search/review/${category}/${term}`).pipe(
       catchError(e => {

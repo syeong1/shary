@@ -108,7 +108,6 @@ exports.getSearchReview = (req, res) => {
 /**
  *  `검색페이지에서 태그로 검색`
  */
-
 exports.getSearchTag = (req, res) => {
     console.log('### 카테고리 : ', req.params.category);
     console.log('### 검색할 태그 : ', req.params.term);

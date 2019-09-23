@@ -29,8 +29,11 @@
 
   <ion-grid *ngIf="reviews">
     <ion-row>
+      <div *ngIf="!reviews|| reviews==''" class="msg-wrap">
+        {{msg}}
+      </div>
       <ion-col size="6" *ngFor="let review of reviews">
-        <ion-card (click)="openReivewDetailPage(review)">
+        <ion-card (click)="openReivewDetailPage(review._id)">
           <img [src]=review.image />
           <ion-card-header>
             <ion-card-title>{{review.name}}</ion-card-title>

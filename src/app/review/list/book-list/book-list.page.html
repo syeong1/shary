@@ -33,7 +33,7 @@
         {{msg}}
       </div>
       <ion-col size="4" *ngFor="let review of reviews">
-        <ion-card (click)="openReivewDetailPage(review)">
+        <ion-card (click)="openReivewDetailPage(review._id)">
           <img [src]=review.image />
           <ion-card-content>
             <ion-icon class="list-star-icon" name="star" *ngFor="let num of [1,2,3,4,5]"

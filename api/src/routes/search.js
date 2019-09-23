@@ -12,5 +12,4 @@ routes.get('/tag/:category/:term', searchController.getSearchTag);
 // 리뷰뷱 안에서 검색
 routes.get('/:category/:id/:term', searchController.getSearchInReviewbook);
 
-
 module.exports = routes;

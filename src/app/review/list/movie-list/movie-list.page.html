@@ -1,16 +1,23 @@
-<ion-header translucent>
-  <ion-toolbar>
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/reviewbook/list"></ion-back-button>
+      <ion-back-button text="" mode="md"></ion-back-button>
     </ion-buttons>
-    <ion-title>리뷰 리스트</ion-title>
+    <ion-title>{{reviewbookTitle}}</ion-title>
+    <!--filter-->
     <ion-buttons slot="end">
-      <ion-icon class="info-stats" name="information-circle-outline" size="large"></ion-icon>
+      <ion-icon class="sorting" *ngIf="sorting" (click)="changeSort()" name="arrow-dropup" mode="md" size="large">
+      </ion-icon>
+      <ion-icon class="sorting" *ngIf="!sorting" (click)="changeSort()" name="arrow-dropdown" mode="md" size="large">
+      </ion-icon>
+      <ion-icon (click)="presentActionSheet()" class="filter" name="funnel" mode="md" size="large"></ion-icon>
     </ion-buttons>
-</ion-toolbar>
-  <div>
-  <ion-searchbar></ion-searchbar>
-  </div>
+    <!--filter-->
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchReview($event)" mode="ios" placeholder="검색">
+    </ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 
@@ -23,15 +30,18 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col size='6' *ngFor="let review of reviews"(click)="godetailreview(review._id)">
-        <ion-card >
+      <div *ngIf="!reviews|| reviews==''" class="msg-wrap">
+        {{msg}}
+      </div>
+      <ion-col size='6' *ngFor="let review of reviews" (click)="openReivewDetailPage(review._id)">
+        <ion-card>
           <img src="https://image.tmdb.org/t/p/w500{{review.posterPath}}" />
           <ion-card-header>
             <ion-card-subtitle> {{review.releaseDate|date:'y-MM'}}</ion-card-subtitle>
             <ion-card-title>{{review.title}}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-              <ion-icon name="star" *ngFor="let num of [1,2,3,4,5]"
+            <ion-icon name="star" *ngFor="let num of [1,2,3,4,5]"
               [style.color]="review.rating >=num ? '#ffbf00':'grey'">
             </ion-icon>
             <p class="preview"> {{review.overview}}</p>
