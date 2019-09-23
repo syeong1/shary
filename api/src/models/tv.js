@@ -24,13 +24,23 @@ var TvReviewSchema = new Schema({
     state: String,
     review: String,
     episodes:[],
-    tags: {type:[],'default': ''},
+    tags: [{
+        type: String
+    }],
     images: [Image.schema],
     viewCnt: Number,   // 조회수
     like: Number,      // 좋아요 
     liker: {           // 좋아요 누른 사람
         type: Schema.Types.ObjectId,
         ref: 'User'
+    },
+    createdAt: { // 리뷰생성일자
+        type: Date,
+        default: Date.now()
+    },
+    editedAt:{ // 수정한 날짜
+        type: Date,
+        default: Date.now()
     }
 });
 

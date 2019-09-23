@@ -28,7 +28,7 @@
     </ion-fab-button>
   </ion-fab>
   <ion-grid *ngIf="review">
-    <ion-item lines="none" class="rating-wrap">
+    <ion-item lines="none" class="rating-view-wrap">
       <ion-icon size="large" name="star" *ngFor="let num of [1,2,3,4,5]"
         [style.color]="review.rating >=num ? '#ffbf00':'#e0e0e0'">
       </ion-icon>
@@ -89,7 +89,7 @@
         <ion-item>
           <ion-label position="stacked">태그</ion-label>
           <p>
-            <ion-chip color={{colors[i%6]}} *ngFor="let tag of tags;let i=index;">
+            <ion-chip outline color="primary" *ngFor="let tag of review.tags"(click)="searchTag(tag)">
               <ion-label>{{tag}}</ion-label>
             </ion-chip>
           </p>

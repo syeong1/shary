@@ -1,49 +1,31 @@
-var Tv = require('../models/tv');
-var config = require('../config/config')
-var request = require("request");
-
-exports.getTvData = (req, res) => {
-
-    console.log(req.params.title)
+const Tv = require('../models/tv');
+const rbController = require('../controller/reviewbook-controller');
 
 
-    var options = {
-        method: 'GET',
-        url: 'https://api.themoviedb.org/3/search/tv',
-        qs:
-        {
-            language: 'ko-kr',
-            api_key: config.apikey,
-            query: req.params.title
-        }
-    };
 
-    request(options, function (error, response, body) {
-        if (error) throw new Error(error);
-        console.log(body);
-        return res.status(200).send(body);
-    });
-
-}
 exports.writeReview = (req, res) => {
-    console.log('episodes',req.body.episodes);
-    let newReview = Tv(req.body);
     let episodes= [];
     for(let episode of req.body.episodes){
         if(episode.content !=""){
             episodes.push(episode.content);
         }
     };
-    newReview.episodes= episodes;
-    let writer = req.user._id;
-    newReview.writer = writer;
+    if (req.body.tags !== undefined) {
+        req.body.tags = req.body.tags.split(',')
+    }
+    req.body.episodes = episodes;
 
-    newReview.save((err, result) => {
+    const writer = req.user._id;
+    req.body.writer = writer;
+
+    let newReview = Tv(req.body);
+    newReview.save((err, tv) => {
         if (err) {
             return res.status(400).json({
                 'msg': err
             });
         }
+        rbController.updateReviewbookInfo(req.body.reviewbook, tv._id, 'write');
         return res.status(201).json({
             'msg': '등록되었습니다'
         });
@@ -92,9 +74,8 @@ exports.getdetailReview = (req, res) => {
 }
 //리뷰 수정
 exports.editReview = (req, res) => {
-    console.log(req.body);
-    console.log('req.params.id:',req.params.id);
-    let writer = req.user._id;
+    req.body.tags = req.body.tags.toString().split(',');
+    const writer = req.user._id;
     req.body.writer=writer;
     let episodes= [];
     for(let episode of req.body.episodes){
@@ -106,13 +87,14 @@ exports.editReview = (req, res) => {
 
     Tv.findByIdAndUpdate(req.params.id, {
         $set: req.body
-    }, function (err, movie) {
+    }, function (err, tv) {
         if (err) {
             console.log(err);
         }
+        rbController.updateReviewbookInfo(req.body.reviewbook, tv._id, 'edit');
         return res.status(201).json({
             'msg': '리뷰 업데이트 성공',
-            'result': movie
+            'result': tv
         });
     });
 }
@@ -127,6 +109,7 @@ exports.deleteReview = (req, res) => {
                 'msg': err
             });
         };
+        rbController.updateReviewbookInfo(req.body.reviewbook, tv._id, 'delete');
         console.log('삭제완료 movie:', movie);
         return res.json(movie);
     })

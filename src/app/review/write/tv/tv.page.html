@@ -15,7 +15,7 @@
   </ion-toolbar>
   <div>
     <ion-item lines="none" class="wrap">
-      <rating [(rating)]="rating" ></rating>
+      <rating [(rating)]="rating"></rating>
       <ion-icon name="search" (click)="openSearchTvModal()"></ion-icon>
     </ion-item>
   </div>
@@ -92,25 +92,27 @@
             </ion-textarea>
           </ion-item>
           <ion-item class="textarea">
-            <ion-label position="fixed">인상깊은 에피소드</ion-label>
+            <ion-label position="fixed"style="flex:100%">인상깊은 에피소드</ion-label>
           </ion-item>
-          <ion-grid formArrayName="episodes" >
-            <ion-row [formGroupName]="i" *ngFor="let tech of reviewForm.controls.episodes.controls; let i = index"
-              style="border: 1px solid black">
-              <ion-input formControlName="content"></ion-input>
-              <span *ngIf="i > 0" (click)="removeInputField(i)">
-                <ion-icon name="close" style="font-size: 40px"></ion-icon>
+          <ion-item>
+            <ion-grid formArrayName="episodes">
+              <ion-row [formGroupName]="i" *ngFor="let tech of reviewForm.controls.episodes.controls; let i = index"
+                style="border: 1px solid black">
+                <ion-input formControlName="content"></ion-input>
+                <span *ngIf="i > 0" (click)="removeInputField(i)">
+                  <ion-icon name="close" style="font-size: 40px"></ion-icon>
+                </span>
+              </ion-row>
+              <span ion-button float-left icon-left clear (click)="addNewInputField()">
+                <ion-icon name="add"></ion-icon>
               </span>
-            </ion-row>
-            <span ion-button float-left icon-left clear (click)="addNewInputField()">
-              <ion-icon name="add"></ion-icon>
-            </span>
-          </ion-grid>
+            </ion-grid>
+          </ion-item>
 
 
           <ion-item>
             <ion-label position="stacked">태그</ion-label>
-            <ion-input type="text" formControlName="tags"></ion-input>
+            <ion-input type="text" formControlName="tags"value="{{tv.tags}}"></ion-input>
           </ion-item>
           <ion-item>
             <p class="tag-notice">태그는 쉼표(,) 를 통해 구분되며 쉼표의 앞뒤에 있는 빈칸은 무시됩니다.</p>

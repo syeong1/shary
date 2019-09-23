@@ -121,5 +121,9 @@ export class TvDetailPage implements OnInit {
       console.log('e',e);
     })
   }
+  searchTag(item) {
+    console.log('검색할 태그', item); 
+    this.router.navigate(['main-tabs/search/tag', item]);
+  }
 
 }

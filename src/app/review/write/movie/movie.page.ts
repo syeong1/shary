@@ -26,7 +26,7 @@ export class MoviePage implements OnInit {
   ngOnInit() {
     this.reviewForm = new FormGroup({
       writer: new FormControl(''),
-      reviewlist: new FormControl(''),
+      reviewbook: new FormControl(''),
       title: new FormControl('', [Validators.required]),
       releaseDate: new FormControl(''),
       director: new FormControl(''),
@@ -53,7 +53,7 @@ export class MoviePage implements OnInit {
   }
   onSubmit() {
     // reviewbook Formcontrol value 설정
-    this.reviewForm.controls['reviewlist'].setValue(this.reviewbookId, { onlyself: true });
+    this.reviewForm.controls['reviewbook'].setValue(this.reviewbookId, { onlyself: true });
 
     // 새 리뷰 작성 시
     if (this.reviewId === null) {
