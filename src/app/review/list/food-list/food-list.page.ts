@@ -40,7 +40,7 @@ export class FoodListPage implements OnInit {
   ionViewWillEnter() {
     this.getReviewList();
   }
-  
+
   searchReview() {
     console.log('현재 리뷰북 id', this.reviewbookId);
     console.log('검색어', this.searchTerm);
@@ -48,7 +48,7 @@ export class FoodListPage implements OnInit {
       this.getReviewList();
     }
     else {
-      this.reviewService.getSearchInReviewbook('book', this.reviewbookId, this.searchTerm).subscribe(data => {
+      this.reviewService.getSearchInReviewbook('food', this.reviewbookId, this.searchTerm).subscribe(data => {
         console.log('받아온 Reviews data', data);
         if (data['length'] === 0) {
           this.msg = "검색된 리뷰가 없습니다.";

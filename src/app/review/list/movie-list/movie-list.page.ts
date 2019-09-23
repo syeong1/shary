@@ -36,18 +36,22 @@ export class MovieListPage implements OnInit {
 
   }
   ionViewWillEnter() {
-    console.log("ionViewWillEnter");
     this.getReviewList();
   }
+
   getReviewList() {
-    this.reviewService.getReviewList('movie', this.reviewbookId).subscribe(data => {
-      console.log('*** reviewService.getReviewList 요청할 때 reviewbookId : ', this.reviewbookId);
-      console.log('받아온 Reviews data', data);
-      this.reviews = data;
+    this.reviewService.getReviewList('movie', this.reviewbookId).subscribe((data: any[]) => {
+      if (this.filter === '등록일순') {
+        this.reviews = this.orderByCreatedAt(this.sorting, data);
+      } else if (this.filter === '수정순') {
+        this.reviews = this.orderByEditedAt(this.sorting, data);
+      } else if (this.filter === '별점순') {
+        this.reviews = this.orderByRating(this.sorting, data);
+      } else if (this.filter === '이름순') {
+        this.reviews = this.orderByName(this.sorting, data);
+      }
     })
   }
-
-
 
   openWritePage() {
     this.router.navigate(['movie/write', this.reviewbookId]);

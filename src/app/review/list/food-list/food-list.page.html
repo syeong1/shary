@@ -15,10 +15,10 @@
     <!--filter-->
   </ion-toolbar>
   <ion-toolbar>
-    <ion-searchbar mode="ios"></ion-searchbar>
+    <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchReview($event)" mode="ios" placeholder="검색">
+    </ion-searchbar>
   </ion-toolbar>
 </ion-header>
-
 
 <ion-content>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
