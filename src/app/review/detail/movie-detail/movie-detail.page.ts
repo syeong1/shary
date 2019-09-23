@@ -13,12 +13,12 @@ const colors = ["primary", "secondary", "tertiary", "success", "warning", "dange
   styleUrls: ['./movie-detail.page.scss'],
 })
 export class MovieDetailPage implements OnInit {
-  
+
   reviewId: string;
-  review= null;
+  review = null;
   likeState: boolean = false;
 
-  constructor(private alertController: AlertController,private activatedRoute: ActivatedRoute,private movieService: MovieService,private reviewService: ReviewService,private router: Router,private socialSharing: SocialSharing) { }
+  constructor(private alertController: AlertController, private activatedRoute: ActivatedRoute, private movieService: MovieService, private reviewService: ReviewService, private router: Router, private socialSharing: SocialSharing) { }
 
   ngOnInit() {
     this.reviewId = this.activatedRoute.snapshot.paramMap.get('id');
@@ -38,9 +38,7 @@ export class MovieDetailPage implements OnInit {
     this.router.navigate(['movie/edit', this.reviewId]);
   }
 
-
-
-  async deleteReview(){
+  async deleteReview() {
     const alert = await this.alertController.create({
       header: '리뷰 삭제',
       message: '삭제하시겠습니까?',
@@ -87,20 +85,20 @@ export class MovieDetailPage implements OnInit {
     })
   }
 
-  async shareReview(){
+  async shareReview() {
     const alert = await this.alertController.create({
-      header:'공유하기',
+      header: '공유하기',
       message: '스포일러 주의! 공유내용에 감상평을 포함할까요?',
-      buttons:[
+      buttons: [
         {
-          text:'포함하기',
-          handler: () =>{
+          text: '포함하기',
+          handler: () => {
             this.socialShare(`${this.review.title}\r\n\r\n\r\n${this.review.overview}`, `https://image.tmdb.org/t/p/w500${this.review.poster_path}`);
           }
         },
         {
-          text:'포함하지않기',
-          handler: () =>{
+          text: '포함하지않기',
+          handler: () => {
             console.log('포함하지 않기')
           }
         },
@@ -118,15 +116,15 @@ export class MovieDetailPage implements OnInit {
     await alert.present();
   }
 
-  socialShare(message,image){
-    this.socialSharing.share(message,null,[image]).then((res)=>{
-      console.log('res',res);
-    }).catch(e=>{
-      console.log('e',e);
+  socialShare(message, image) {
+    this.socialSharing.share(message, null, [image]).then((res) => {
+      console.log('res', res);
+    }).catch(e => {
+      console.log('e', e);
     })
   }
   searchTag(item) {
-    console.log('검색할 태그', item); 
+    console.log('검색할 태그', item);
     this.router.navigate(['main-tabs/search/tag', item]);
   }
 
