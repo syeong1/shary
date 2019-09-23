@@ -15,7 +15,7 @@ export class MapService {
   
   /**
    * 'Search Place' API를 통해 데이터 가져오기
-   * pipe(map())을 통해 Observable형태로 결과 데이터를 받는다.
+   * pipe(pluck())을 통해 Observable형태로 결과 데이터를 받는다.
    * @param {string} from name
    * @returns Observable with results
    */

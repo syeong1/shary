@@ -1,27 +1,43 @@
 ion-input,
 ion-textarea,
+ion-datetime,
 span {
     font-size: 14px;
 }
 
+span {
+    padding-right: 3px;
+}
+
 ion-item {
     --min-height: 30px;
+    --padding-start: 5px;
+    --padding-end: 5px;
 }
 
-
-ion-label.stacked {
-    font-size: 14px !important;
-    padding-bottom: 10px;
+ion-item.textarea {
+    --inner-padding-end: 0px;
+    --border-style: none;
 }
 
-ion-item>ion-label,
-ion-datetime {
+ion-textarea {
+    margin: 3px 0px 10px 0px;
+    padding: 5px 0px 5px 10px;
+    border: 1px solid rgba(0, 0, 0, 0.13);
+}
+
+ion-item>ion-label {
     font-size: 14px;
+    margin: 13px 3px;
+    font-weight: 550;
+    --color: rgb(65, 65, 65);
 }
 
 ion-datetime {
     padding-left: 0px;
+    padding-right: 3px;
 }
+
 
 div.image-wrap {
     height: 145px;
@@ -30,11 +46,28 @@ div.image-wrap {
     display: contents;
 
     img {
-        padding-left: 16px;
-        padding-top: 10px;
-        width: 100%;
+        padding-left: 8px;
+        padding-top: 5px;
+        width: 120px;
         height: 145px;
-        margin-right: 10px;
+    }
+}
+
+.default-image {
+    border: 1px solid #eee;
+    display: block;
+    padding-top: 25px;
+    margin-top: 5px;
+    margin-left: 8px;
+    height: 100%;
+
+    p {
+        width: 100%;
+        vertical-align: middle;
+        text-align: center;
+        font-size: 16px;
+        height: 20px;
+        color: #666;
     }
 }
 
@@ -47,7 +80,7 @@ div.image-wrap {
     font-size: 12px;
 }
 
-.book-description {
+.food-description {
     font-size: 13px;
 }
 
@@ -56,54 +89,3 @@ div.image-wrap {
     color: #555;
     padding-left: 16px;
 }
-
-.default-image {
-    border: 1px solid #eee;
-    display: block;
-    padding-top:25px;
-    height: 100%;
-
-    p {
-        width: 100%;
-        vertical-align: middle;
-        text-align: center;
-        font-size: 16px;
-        height:20px;
-        color: #666;
-    }
-}
-
-
-#map_canvas {
-  width: 90%;
-  height: 80%;
-  border: 1px solid red;
-}
- 
- 
-#address {
-  padding: 10px;
-  font-size: 18px;
-  font-weight: bold;
-}
- 
-#map {
-  width: 100%;
-  height: 70vh;
-}
- 
-.map-wrapper {
-  position: relative;
- 
-  #map_center {
-    position: absolute;
-    z-index: 99;
-    height: 40px;
-    width: 40px;
-    top: 50%;
-    left: 50%;
-    margin-left: -21px;
-    margin-top: -41px;
-  }
-}
- 

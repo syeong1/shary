@@ -5,14 +5,14 @@
     </ion-buttons>
     <ion-title>{{reviewbookTitle}}</ion-title>
     <ion-buttons slot="end">
-      <ion-icon class="info-stats" name="information-circle-outline" size="large"></ion-icon>
+      <ion-icon class="filter" name="options" mode="ios" size="large"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-searchbar mode="ios"></ion-searchbar>
+    <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchReview($event)" mode="ios" placeholder="검색">
+    </ion-searchbar>
   </ion-toolbar>
 </ion-header>
-
 
 <ion-content>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
@@ -23,17 +23,21 @@
 
   <ion-grid *ngIf="reviews">
     <ion-row>
+      <div *ngIf="!reviews|| reviews==''" class="msg-wrap">
+        {{msg}}
+      </div>
       <ion-col size="4" *ngFor="let review of reviews">
         <ion-card (click)="openReivewDetailPage(review)">
           <img [src]=review.image />
-          <ion-card-header>
-            <ion-card-subtitle>{{review.author}}</ion-card-subtitle>
-            <ion-card-title>{{review.title}}</ion-card-title>
-          </ion-card-header>
           <ion-card-content>
-            <p class="stars">★★★★★</p>
-            <p class="preview">{{review.description}}</p>
+            <ion-icon class="list-star-icon" name="star" *ngFor="let num of [1,2,3,4,5]"
+              [style.color]="review.rating >=num ? '#ffbf00':'#e0e0e0'">
+            </ion-icon>
           </ion-card-content>
+          <ion-card-header>
+            <ion-card-title>{{review.title}}</ion-card-title>
+            <ion-card-subtitle>{{review.author}}</ion-card-subtitle>
+          </ion-card-header>
         </ion-card>
       </ion-col>
     </ion-row>

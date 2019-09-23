@@ -25,10 +25,40 @@ ion-toolbar {
     --border-width: 0 0 0;
 }
 
+.filter {
+    width: 26px;
+    height: 26px;
+    margin-right: 12px;
+    vertical-align: middle;
+}
+
+ion-item.textarea-wrap {
+    --inner-padding-end: 0px;
+    --border-style: none;
+
+    ion-textarea {
+        margin: 3px 0px 10px 0px;
+        padding: 10px 0px 5px 10px;
+        border: 1px solid rgba(0, 0, 0, 0.13);
+    }
+}
+
+.msg-wrap {
+    width: 100%;
+    height: 100%;
+    padding: 50% 10%;
+    text-align: center;
+    clear: both;
+    position: absolute;
+}
+
+.list-star-icon {
+    font-size: 13px;
+}
+
 .rating-wrap {
     position: relative;
     margin: 0 auto 16px;
-    width: fit-content;
 
     rating {
         margin: 0 auto;
@@ -40,6 +70,11 @@ ion-toolbar {
     }
 }
 
+.rating-view-wrap {
+    position: relative;
+    margin: 0 auto 16px;
+    width: fit-content;
+}
 
 .btn-like {
     padding: 10px;

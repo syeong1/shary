@@ -1,4 +1,50 @@
-var Reviewbook = require('../models/reviewbook');
+const Reviewbook = require('../models/reviewbook');
+
+// 리뷰 수정 시 리뷰북에 반영
+exports.updateReviewbookInfo = function (reviewbookId, reviewId, action) {
+    let conditions;
+    let msg;
+    if (action == "write") {
+        conditions = {
+            $addToSet: {
+                reviews: reviewId
+            },
+            $inc: {
+                count: 1
+            },
+            lastDate: Date.now()
+        }
+        msg = "추가 완료"
+    } else if (action == "edit") {
+        conditions = {
+            lastDate: Date.now()
+        }
+    } else if (action == "delete") {
+        conditions = {
+            $pull: {
+                reviews: reviewId
+            },
+            $inc: {
+                count: -1
+            }
+        }
+        msg = "삭제 완료"
+    }
+
+    Reviewbook.findOneAndUpdate({
+        "_id": reviewbookId
+    }, conditions, {
+        new: true,
+        safe: true,
+        upsert: true
+    }, function (err, result) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('reviewbook' + msg, result);
+        }
+    });
+}
 
 /**
  * 테스트용 리뷰북 생성 메소드

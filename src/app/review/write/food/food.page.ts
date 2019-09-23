@@ -6,6 +6,7 @@ import { GeolocationOptions, Geoposition, Geolocation } from '@ionic-native/geol
 import { FoodApiPage } from '../../../search/food-api/food-api.page';
 import { FoodService } from 'src/app/services/food.service';
 import { ReviewService } from 'src/app/services/review.service';
+import { ImageService } from 'src/app/services/image.service';
 // import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 
 declare const naver;
@@ -41,8 +42,8 @@ export class FoodPage implements OnInit {
 
 
   constructor(private modalController: ModalController,private router: Router, private geolocation: Geolocation,
-    private foodService: FoodService, private activatedRoute: ActivatedRoute, private plt: Platform, private reviewService: ReviewService) {
-
+    private foodService: FoodService, private activatedRoute: ActivatedRoute, private plt: Platform, private reviewService: ReviewService
+    , private imageService: ImageService) {
      }
 
   ngOnInit() {
@@ -57,6 +58,7 @@ export class FoodPage implements OnInit {
       tags: new FormControl(''),
       reviewbook: new FormControl(''),
       country: new FormControl(''),
+      rating: new FormControl(''),
       x: new FormControl(''),
       y: new FormControl('')
     })
@@ -70,9 +72,12 @@ export class FoodPage implements OnInit {
     
      // 새 리뷰 작성 시 필요한 reviewbook_id
      console.log('food write page로 넘어온 reviewbook_id : ' + this.reviewbookId);
+     
+     console.log('edit페이지로 넘어온 reviewId', this.reviewId);
 
      // 리뷰 수정 시 detail 로딩 및 title 설정
      if (this.reviewId !== null) {
+       console.log(this.reviewId);
        this.loadDetail();
        this.titleText = "리뷰 수정";
      }
@@ -167,7 +172,7 @@ export class FoodPage implements OnInit {
       this.reviewService.getReviewDetail('food', this.reviewId).subscribe(data => {
         console.log('reviewService 요청할 때 reivew_id : ', this.reviewId);
         console.log('받아온 Review data', data);
-        this.food = data;
+        this.searchResult = data;
         this.reviewbookId = data['reviewbook'];
         console.log("!!! loadDetail !!!");
         console.log(this.reviewbookId);
@@ -191,6 +196,8 @@ export class FoodPage implements OnInit {
       this.reviewForm.controls['y'].setValue(this.searchResult.y, {onlyself: true});
       this.marker.setPosition(this.searchPlace);
       this.map.setCenter(this.searchPlace);
+      this.searchResult['eatDate'] = this.searchResult['eatDate'].replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3');
+      
       
     })
     return await modal.present(); 
@@ -251,4 +258,8 @@ export class FoodPage implements OnInit {
     this.reviewForm.controls['country'].setValue(ev.detail.value, {onlyself: true});
     this.loadMap();
   }
+
+  // uploadImg() {
+  //   this.imageService.
+  // }
 }

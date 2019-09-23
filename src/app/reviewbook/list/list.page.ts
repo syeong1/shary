@@ -16,6 +16,7 @@ export class ListPage implements OnInit {
   category: string;
   category_kr: string;
   reviewbooks;
+  editState = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private reviewbookService: ReviewbookService, private modalController: ModalController, public alertController: AlertController) {
     this.route.queryParams.subscribe(params => {
@@ -31,7 +32,10 @@ export class ListPage implements OnInit {
   ngOnInit() {
   }
 
-
+  editList(state) {
+    if (state == false) this.editState = true;
+    else this.editState = false;
+  }
   // 리뷰북 전체 리스트 가져오기
   getReviewbooks() {
     this.reviewbookService.getReviewbookList(this.category).subscribe(data => {

@@ -131,10 +131,10 @@ exports.getLike = (req, res) => {
 exports.addLike = (req, res) => {
     console.log('좋아요 누른 리뷰', req.body.like);
     User.findOneAndUpdate({
-        "_id": req.user._id
+        _id: req.user._id
     }, {
-        "$addToSet": {
-            "like": req.body.like
+        $addToSet: {
+            like: req.body.like
         }
     }, {
         new: true,
@@ -161,10 +161,10 @@ exports.addLike = (req, res) => {
 exports.deleteLike = (req, res) => {
     console.log('좋아요 취소할 리뷰', req.params.id);
     User.findOneAndUpdate({
-        "_id": req.user._id
+        _id: req.user._id
     }, {
-        "$pull": {
-            "like": req.params.id
+        $pull: {
+            like: req.params.id
         }
     }, (err, result) => {
         if (err) {
@@ -211,16 +211,22 @@ exports.getMyProfile = (req, res) => {
 exports.getProfile = (req, res) => {
     console.log("getProfile");
     let user_id = req.params.id;
-    User.findById(user_id, { profileImg: 1 }, (err, user) => {
+    User.findById(user_id, {
+        profileImg: 1
+    }, (err, user) => {
 
         if (err) {
-            return res.status(400).send({ 'msg': err });
+            return res.status(400).send({
+                'msg': err
+            });
         }
         if (user.profileImg == null || user.profileImg == '') {
             return;
         }
         res.setHeader('Content-Type', 'image/jpeg');
-        fs.createReadStream(path.join('uploads', user.profileImg.filename)).on('error', (err) => res.status(400).send({ 'msg': err })).pipe(res)
+        fs.createReadStream(path.join('uploads', user.profileImg.filename)).on('error', (err) => res.status(400).send({
+            'msg': err
+        })).pipe(res)
 
 
 

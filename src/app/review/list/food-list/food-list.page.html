@@ -4,9 +4,13 @@
       <ion-back-button text="" mode="md"></ion-back-button>
     </ion-buttons>
     <ion-title>{{reviewbookTitle}}</ion-title>
+    <!--filter-->
     <ion-buttons slot="end">
-      <ion-icon class="info-stats" name="information-circle-outline" size="large"></ion-icon>
+      <ion-icon (click)="presentActionSheet()" class="filter" name="options" mode="ios" size="large"></ion-icon>
+      <ion-icon class="sorting" *ngIf="sorting" (click)="changeSort()" name="arrow-dropdown"></ion-icon>
+      <ion-icon class="sorting" *ngIf="!sorting" (click)="changeSort()" name="arrow-dropup"></ion-icon>
     </ion-buttons>
+    <!--filter-->
   </ion-toolbar>
   <ion-toolbar>
     <ion-searchbar mode="ios"></ion-searchbar>
@@ -23,19 +27,21 @@
 
   <ion-grid *ngIf="reviews">
     <ion-row>
-      <ion-col size="4" *ngFor="let review of reviews">
+      <ion-col size="6" *ngFor="let review of reviews">
         <ion-card (click)="openReivewDetailPage(review)">
           <img [src]=review.image />
           <ion-card-header>
-            <ion-card-subtitle>{{review.name}}</ion-card-subtitle>
-            <ion-card-title>{{review.phoneNumber}}</ion-card-title>
+            <ion-card-title>{{review.name}}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <p class="stars">★★★★★</p>
+            <ion-icon name="star" *ngFor="let num of [1,2,3,4,5]"
+              [style.color]="review.rating >=num ? '#ffbf00':'grey'">
+            </ion-icon>
             <p class="preview">{{review.evaluation}}</p>
           </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
+
 </ion-content>

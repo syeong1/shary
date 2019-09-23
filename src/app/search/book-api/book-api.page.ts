@@ -25,7 +25,6 @@ export class BookApiPage implements OnInit {
       results => {
         this.results = results;
         console.log('subsrcibe', results);
-
       }
     );
   }

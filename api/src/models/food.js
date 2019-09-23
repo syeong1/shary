@@ -23,7 +23,7 @@ var FoodReviewSchema = new Schema({
     typeOfFood: String,
     evaluation: String,
     foodPicture: [Image.schema],
-    tag: [{
+    tags: [{
         type: String,
         trim: true
     }],
@@ -34,8 +34,17 @@ var FoodReviewSchema = new Schema({
         ref: 'User'
     }],
     x: String,
-    y: String
+    y: String,
+    rating: {
+        type: Number,
+        default: 0
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now()
+    }
 });
+
 
 
 module.exports = mongoose.model('FoodReview', FoodReviewSchema);

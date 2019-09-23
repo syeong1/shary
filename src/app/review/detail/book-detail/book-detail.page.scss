@@ -4,7 +4,6 @@ ion-title {
     text-align: left;
 }
 
-
 ion-input,
 ion-textarea,
 ion-datetime,
@@ -20,17 +19,6 @@ ion-item {
     --min-height: 30px;
     --padding-start: 5px;
     --padding-end: 5px;
-}
-
-ion-item.textarea {
-    --inner-padding-end: 0px;
-    --border-style: none;
-}
-
-ion-textarea {
-    margin: 3px 0px 10px 0px;
-    padding: 5px 0px 5px 10px;
-    border: 1px solid rgba(0, 0, 0, 0.13);
 }
 
 ion-item>ion-label {

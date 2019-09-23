@@ -1,12 +1,13 @@
-var Book = require('../models/book');
+const Book = require('../models/book');
+const rbController = require('../controller/reviewbook-controller');
 
 // 새 리뷰 작성
 exports.writeReview = (req, res) => {
-
     let newReview = Book(req.body);
-    let writer = req.user._id;
-    newReview.writer = writer;
-
+    newReview.writer = req.user._id;
+    if (req.body.tags !== undefined) {
+        req.body.tags = req.body.tags.split(',');
+    }
     newReview.save((err, book) => {
         if (err) {
             console.log(err);
@@ -15,32 +16,37 @@ exports.writeReview = (req, res) => {
             });
         }
         console.log(book);
+        rbController.updateReviewbookInfo(req.body.reviewbook, book._id, 'write');
         return res.status(201).json({
             'msg': '등록되었습니다'
         });
-    });
+    })
 }
 
 // 리뷰 수정
 exports.editReview = (req, res) => {
-
-    console.log("@@@ editReview @@@");
     console.log('수정할 review_id : ', req.params.id);
     console.log('수정할 정보: ', req.body);
     console.log("=================================================")
+    req.body.tags = req.body.tags.toString().split(',');
     Book.findByIdAndUpdate(req.params.id, {
-        $set: req.body
+        $set: req.body,
+        editedAt: Date.now()
+    }, {
+        new: true,
+        safe: true,
+        upsert: true
     }, function (err, book) {
         if (err) {
             console.log(err);
         }
+        rbController.updateReviewbookInfo(req.body.reviewbook, book._id, 'edit');
         return res.status(201).json({
             'msg': '리뷰 업데이트 성공',
             'result': book
         });
     });
 }
-
 
 // 리뷰 삭제
 exports.deleteReview = (req, res) => {
@@ -51,6 +57,7 @@ exports.deleteReview = (req, res) => {
                 'msg': err
             });
         };
+        rbController.updateReviewbookInfo(book.reviewbook, book._id, 'delete');
         console.log('삭제완료 book:', book);
         return res.json(book);
     })
@@ -58,9 +65,7 @@ exports.deleteReview = (req, res) => {
 
 // 리뷰 리스트 가져오기
 exports.getReviewList = (req, res) => {
-
     console.log('### 요청한 리뷰리스트 id : ', req.params.id);
-
     let reviewbook_id = req.params.id;
 
     Book.find({
@@ -88,7 +93,6 @@ exports.getReviewList = (req, res) => {
 
 // 리뷰 디테일 가져오기
 exports.getReviewDetail = (req, res) => {
-
     console.log('#### 요청한 리뷰 id : ', req.params.id);
     let review_id = req.params.id;
 

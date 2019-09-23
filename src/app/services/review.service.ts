@@ -86,7 +86,7 @@ export class ReviewService {
       );
   }
 
-  // 리뷰 검색
+  // 리뷰 전체 검색
   getSearchReview(category: string, term: string) {
     return this.http.get(`${this.url}/api/search/review/${category}/${term}`).pipe(
       catchError(e => {
@@ -99,6 +99,51 @@ export class ReviewService {
       })
     )
   }
+
+  // 태그로 리뷰 검색
+  getSearchReviewByTag(category: string, term: string) {
+    console.log('getSearchReviewByTag 실행');
+    return this.http.get(`${this.url}/api/search/review/tag/${category}/${term}`).pipe(
+      catchError(e => {
+        let status = e.status;
+        if (status === 404) {
+          console.log('리뷰가 없습니다.');
+          return of([]);
+        }
+        throw new Error(e);
+      })
+    )
+  }
+
+
+  // 리뷰북 안에서 리뷰 검색
+  getSearchInReviewbook(category: string, reviewbookId: string, term: string) {
+    return this.http.get(`${this.url}/api/search/review/${category}/${reviewbookId}/${term}`).pipe(
+      catchError(e => {
+        let status = e.status;
+        if (status === 404) {
+          console.log('리뷰가 없습니다.');
+          return of([]);
+        }
+        throw new Error(e);
+      })
+    )
+  }
+
+  getSearchTag(category: string, tag: string) {
+    return this.http.get(`${this.url}/api/search/review/${category}/tag/${tag}`).pipe(
+      catchError(e => {
+        let status = e.status;
+        if (status === 404) {
+          console.log('리뷰가 없습니다.');
+          return of([]);
+        }
+        throw new Error(e);
+      })
+    )
+  }
+
+
 
 
   // 좋아요 확인
