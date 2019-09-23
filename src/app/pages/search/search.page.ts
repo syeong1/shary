@@ -58,7 +58,6 @@ export class SearchPage implements OnInit {
       text: '태그'
     }
   ];
-
   selectedType;
 
   constructor(private reviewService: ReviewService, private router: Router, private activatedRoute: ActivatedRoute) {
@@ -117,7 +116,8 @@ export class SearchPage implements OnInit {
   }
 
   openReivewDetailPage(review) {
-    this.router.navigate(['music/detail', review._id]);
+    let category = this.categories[this.page].category
+    this.router.navigate([category, 'detail', review._id]);
   }
 
   selectedTab(item) {
