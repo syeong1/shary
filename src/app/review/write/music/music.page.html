@@ -63,9 +63,11 @@
               [value]="music?.listeningDate" placeholder="YYYY-MM-DD" formControlName="listeningDate">
             </ion-datetime>
           </ion-item>
-          <ion-item>
-            <ion-label class="stacked" position="stacked">감상평</ion-label>
-            <ion-textarea rows="4" cols="20" type="text" [value]="music?.review" formControlName="review">
+          <ion-item lines="none">
+              <ion-label position="fixed">감상평</ion-label>
+            </ion-item>
+          <ion-item class="textarea-wrap">
+            <ion-textarea rows="4" cols="20" placeholder="..." [value]="music?.review" formControlName="review">
             </ion-textarea>
           </ion-item>
           <ion-item>

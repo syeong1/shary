@@ -16,6 +16,12 @@ ion-label.stacked {
     padding-bottom: 10px;
 }
 
+ion-item {
+    --min-height: 30px;
+    --padding-start: 5px;
+    --padding-end: 5px;
+    --inner-padding-start: 2px;
+}
 
 ion-item>ion-label,
 ion-datetime {
