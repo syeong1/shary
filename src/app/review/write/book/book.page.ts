@@ -51,9 +51,6 @@ export class BookPage implements OnInit {
     }
   }
 
-  rating(ev){
-    console.log(ev);
-  }
   onSubmit() {
 
     // reviewbook Formcontrol value 설정
