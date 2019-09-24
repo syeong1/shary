@@ -100,7 +100,7 @@ export class BookDetailPage implements OnInit {
         {
           text: '포함하기',
           handler: () => {
-            this.socialShare(`< ${this.data.title} > \r\n\r\n ★ ${this.data.rating}.0\r\n\r\n\r\n :: 줄거리 ::\r\n ${this.data.description}\r\n\r\n\r\n:: 줄거리 ::\r\n ${this.data.review}`, `${this.data.image}`);
+            this.socialShare(`< ${this.data.title} > \r\n\r\n ★ ${this.data.rating}.0\r\n\r\n\r\n :: 줄거리 ::\r\n ${this.data.description}\r\n\r\n\r\n:: 감상평 ::\r\n ${this.data.review}`, `${this.data.image}`);
           }
         },
         {
