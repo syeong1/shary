@@ -6,13 +6,13 @@
     <ion-title>{{reviewbookTitle}}</ion-title>
     <!--filter-->
     <ion-buttons slot="end">
-        <ion-icon class="sorting" *ngIf="sorting" (click)="changeSort()" name="arrow-dropup" mode="md" size="large">
-        </ion-icon>
-        <ion-icon class="sorting" *ngIf="!sorting" (click)="changeSort()" name="arrow-dropdown" mode="md" size="large">
-        </ion-icon>
-        <ion-icon (click)="presentActionSheet()" class="filter" name="funnel" mode="md" size="large"></ion-icon>
-      </ion-buttons>
-      <!--filter-->
+      <ion-icon class="sorting" *ngIf="sorting" (click)="changeSort()" name="arrow-dropup" mode="md" size="large">
+      </ion-icon>
+      <ion-icon class="sorting" *ngIf="!sorting" (click)="changeSort()" name="arrow-dropdown" mode="md" size="large">
+      </ion-icon>
+      <ion-icon (click)="presentActionSheet()" class="filter" name="funnel" mode="md" size="large"></ion-icon>
+    </ion-buttons>
+    <!--filter-->
   </ion-toolbar>
   <ion-toolbar>
     <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchReview($event)" mode="ios" placeholder="검색">
@@ -34,7 +34,13 @@
       </div>
       <ion-col size="4" *ngFor="let review of reviews">
         <ion-card (click)="openReivewDetailPage(review._id)">
-          <img [src]=review.image />
+          <img [src]="review.image" *ngIf="review?.image; else defaultImage" />
+          <ng-template #defaultImage>
+            <div class="default-image">
+              <p>No</p>
+              <p>Image</p>
+            </div>
+          </ng-template>
           <ion-card-content>
             <ion-icon class="list-star-icon" name="star" *ngFor="let num of [1,2,3,4,5]"
               [style.color]="review.rating >=num ? '#ffbf00':'#e0e0e0'">

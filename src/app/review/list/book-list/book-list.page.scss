@@ -13,9 +13,15 @@ ion-col {
     align-content: center;
 }
 
-img {
+img,
+.default-image {
     width: 100px;
     height: 130px;
+}
+
+.default-image {
+    border: none;
+    margin: 0;
 }
 
 ion-card {

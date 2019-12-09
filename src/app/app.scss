@@ -108,3 +108,21 @@ ion-button.btn {
     --color-focused: #fff;
     --color-hover: #fff;
 }
+
+.default-image {
+    border: 1px solid #eee;
+    display: block;
+    padding-top: 25px;
+    margin-top: 5px;
+    margin-left: 8px;
+    height: 100%;
+
+    p {
+        width: 100%;
+        vertical-align: middle;
+        text-align: center;
+        font-size: 16px;
+        height: 20px;
+        color: #666;
+    }
+}
