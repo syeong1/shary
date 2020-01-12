@@ -36,9 +36,10 @@ export class BookListPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.getReviewList();
+    this.reviews = null;
+    this.getReviewList()
   }
-
+  
   getReviewList() {
     this.reviewService.getReviewList('book', this.reviewbookId).subscribe((data: any[]) => {
       if (this.filter === '등록일순') {
