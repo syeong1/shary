@@ -1,26 +1,30 @@
-ion-buttons.btn-back{
-    height:48px; 
+ion-buttons.btn-back {
+    height: 48px;
 }
 
-ion-avatar{
-    margin: 35px auto;
+.select-icon {
+    margin: 30px auto 40px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+
 }
 
+ion-select,
+ion-input {
+    font-size: 14px;
+}
 
 ion-item {
     --min-height: 30px;
     --padding-start: 5px;
     --padding-end: 5px;
-}
-
-ion-item.icon-list {
-    --inner-padding-end: 0px;
-    --border-style: none;
+    --padding-bottom: 3px;
 }
 
 ion-item>ion-label {
     font-size: 14px;
     margin: 13px 3px;
-    font-weight: 550;
-    --color: rgb(65, 65, 65);
+    font-weight: 540;
+    --color: rgb(47, 47, 47);
 }

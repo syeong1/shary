@@ -24,7 +24,7 @@ export class ListPage implements OnInit {
         this.category = this.router.getCurrentNavigation().extras.state.category;
         this.category_kr = this.router.getCurrentNavigation().extras.state.text;
         console.log('extras.state.category : ' + this.category);
-        this.getReviewbooks();
+        this.getAllReviewbookList();
       }
     })
   }
@@ -32,13 +32,18 @@ export class ListPage implements OnInit {
   ngOnInit() {
   }
 
+  ionViewWillEnter() {
+    this.getAllReviewbookList();
+  }
+
   editList(state) {
     if (state == false) this.editState = true;
     else this.editState = false;
   }
+
   // 리뷰북 전체 리스트 가져오기
-  getReviewbooks() {
-    this.reviewbookService.getReviewbookList(this.category).subscribe(data => {
+  getAllReviewbookList() {
+    this.reviewbookService.getAllReviewbookList(this.category).subscribe(data => {
       console.log('*** reviewbookService.getReviewBookList 요청할 때 category : ', this.category);
       console.log('받아온 리뷰북리스트 data', data);
       this.reviewbooks = data;
@@ -46,6 +51,7 @@ export class ListPage implements OnInit {
   }
 
 
+  // 클릭한 리뷰북으로 이동
   goToReviewbookPage(reviewbook) {
     let navigationExtras: NavigationExtras = {
       state: {
@@ -54,8 +60,6 @@ export class ListPage implements OnInit {
     };
     this.router.navigate([reviewbook.category, 'list', reviewbook._id], navigationExtras);
   }
-
-
 
   // 리뷰북 삭제
   async deleteReviewbook(id) {
@@ -76,7 +80,7 @@ export class ListPage implements OnInit {
             this.reviewbookService.deleteReviewBook(id).subscribe(data => {
               console.log('*** reviewbookService.deleteReviewBook 요청할 때 id : ', id);
               console.log('삭제된 리뷰북', data);
-              this.getReviewbooks();
+              this.getAllReviewbookList();
             })
           }
         }
@@ -86,19 +90,33 @@ export class ListPage implements OnInit {
   }
 
   // 리뷰북 생성 모달 
-  async openCreatePageModal() {
-    const modal = await this.modalController.create({
+  async openCreateReviewbookModal() {
+    let modal = await this.modalController.create({
       component: CreatePage,
       componentProps: { category: this.category }
     })
 
     // 모달창 닫힐 때 리뷰북리스트 다시 가져옴
     modal.onDidDismiss().then(() => {
-      this.getReviewbooks();
+      this.getAllReviewbookList();
     });
 
     return await modal.present();
   };
 
 
+  // 리뷰북 수정 모달 
+  async openEditReviewbookModal(reviewbook) {
+    let modal = await this.modalController.create({
+      component: CreatePage,
+      componentProps: { category: this.category, title: reviewbook.title, id: reviewbook._id, num: reviewbook.color }
+    })
+
+    // 모달창 닫힐 때 리뷰북리스트 다시 가져옴
+    modal.onDidDismiss().then(() => {
+      this.getAllReviewbookList();
+    });
+
+    return await modal.present();
+  };
 }

@@ -2,27 +2,32 @@
     --padding-start: 3px;
 }
 
+
 ion-col {
     --ion-grid-column-padding: 0px;
 }
 
-ion-card-title {
-    margin-left: 20px;
-    font-size: 20px;
+ion-card {
+    margin: 9px 14px 0px;
+    padding: 18px 25px;
+    box-shadow: none;
 }
 
-ion-chip {
-    padding: 3px 10px;
-    font-size: 12px;
+ion-grid{
+    margin-top: 10px;
 }
 
-.card-top-wrap {
-    height: 56px;
+.reviewbook-title {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 530;
 }
 
 .card-bottom-wrap {
     float: right;
-    margin: 5px 13px;
+    color: #eeeeee;
 }
 
 .last-date {
@@ -31,6 +36,8 @@ ion-chip {
 }
 
 .review-cnt {
+    padding-left: 3px;
     letter-spacing: 0.7px;
-    font-size:11px;
+    font-size: 11px;
+    color: #eeeeee;
 }

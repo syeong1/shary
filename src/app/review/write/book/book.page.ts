@@ -14,10 +14,12 @@ export class BookPage implements OnInit {
 
   reviewForm: FormGroup;
   book: Object;
-  nowDate: String = new Date().toISOString();
   reviewbookId: string = null;
   reviewId: string = null;
   titleText: string = '새 리뷰 작성';
+  readingStartDate: string = new Date().toISOString();
+  readingEndDate: string = new Date().toISOString();
+  rating: Number;
 
   constructor(private modalController: ModalController, private reviewService: ReviewService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
@@ -38,6 +40,7 @@ export class BookPage implements OnInit {
       tags: new FormControl(''),
       rating: new FormControl('')
     })
+
     this.reviewbookId = this.activatedRoute.snapshot.paramMap.get('reviewbook_id');
     this.reviewId = this.activatedRoute.snapshot.paramMap.get('review_id');
 
@@ -55,7 +58,7 @@ export class BookPage implements OnInit {
 
     // reviewbook Formcontrol value 설정
     this.reviewForm.controls['reviewbook'].setValue(this.reviewbookId, { onlyself: true });
-    
+
     // 새 리뷰 작성 시
     if (this.reviewId === null) {
       this.reviewService.writeReview('book', this.reviewForm.value).subscribe(res => {
@@ -84,6 +87,9 @@ export class BookPage implements OnInit {
       console.log('받아온 Review data', data);
       this.book = data;
       this.reviewbookId = data['reviewbook'];
+      this.readingStartDate = data['readingStartDate'];  //ion-date에 날짜 데이터 대입
+      this.readingEndDate = data['readingEndDate']; //ion-date에 날짜 데이터 대입
+      this.rating = data['rating']; // 별점 가져오기
       console.log("!!! loadDetail !!!");
       console.log(this.reviewbookId);
     })

@@ -5,9 +5,16 @@
 // file can hold Sass mixins, functions, and placeholder classes to be imported 
 // and used throughout the application.
 
+
 :root {
     --ion-color-primary: #c6a477;
     --border-color: #c6a477;
+}
+
+.reviewbook-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
 }
 
 .header-translucent-ios ion-toolbar {
@@ -125,4 +132,187 @@ ion-button.btn {
         height: 20px;
         color: #666;
     }
+}
+
+.tag {
+    padding-bottom: 65px;
+}
+
+
+.color-0 {
+    background-color: #C6A477;
+}
+
+.color-1 {
+    background-color: #ecd59f;
+}
+
+.color-2 {
+    background-color: #d3e7ee;
+}
+
+.color-3 {
+    background-color: #abd1dc;
+}
+
+.color-4 {
+    background-color: #7097a8;
+}
+
+.color-5 {
+    background-color: #fbb0a9;
+}
+
+.color-6 {
+    background-color: #e38b75;
+}
+
+.color-7 {
+    background-color: #d7897e;
+}
+
+.color-8 {
+    background-color: #c55f4e;
+}
+
+.color-9 {
+    background-color: #63474d;
+}
+
+.color-10 {
+    background-color: #aa767c;
+}
+
+.color-11 {
+    background-color: #d6a184;
+}
+
+.color-12 {
+    background-color: #ffa686;
+}
+
+.color-13 {
+    background-color: #fec196;
+}
+
+.color-14 {
+    background-color: #003049;
+}
+
+.color-15 {
+    background-color: #d62828;
+}
+
+.color-16 {
+    background-color: #f77f00;
+}
+
+.color-17 {
+    background-color: #fcbf49;
+}
+
+.color-18 {
+    background-color: #eae2b7;
+}
+
+.color-19 {
+    background-color: #bcc5af;
+}
+
+.color-20 {
+    background-color: #81a590;
+}
+
+.color-21 {
+    background-color: #d8d7d7;
+}
+
+.color-22 {
+    background-color: #ffc3b1;
+}
+
+.color-23 {
+    background-color: #ff3366;
+}
+
+.color-24 {
+    background-color: #f67280;
+}
+
+.color-25 {
+    background-color: #f3d7ca;
+}
+
+.color-26 {
+    background-color: #e6a4b4;
+}
+
+.color-27 {
+    background-color: #c86b85;
+}
+
+.color-28 {
+    background-color: #c8f4de;
+}
+
+.color-29 {
+
+    background-color: #a4e5d9;
+}
+
+.color-30 {
+
+    background-color: #66c6ba;
+}
+
+.color-31 {
+    background-color: #649dad;
+}
+
+.color-32 {
+    background-color: #427996;
+}
+
+.color-33 {
+    background-color: #be8abf;
+}
+
+.color-34 {
+    background-color: #ea9abb;
+}
+
+.color-35 {
+    background-color: #4a266a;
+}
+
+.color-36 {
+    background-color: #7f4a88;
+}
+
+.color-37 {
+    background-color: #3282b8;
+}
+
+.color-38 {
+    background-color: #46b3e6;
+}
+
+.color-39 {
+    background-color: #005792;
+}
+
+.color-40 {
+    background-color: #ed8d8d;
+}
+
+.color-41 {
+    background-color: #8d6262;
+}
+
+.color-42 {
+    background-color: #4d4545;
+}
+
+.color-43 {
+    background-color: #393232;
 }

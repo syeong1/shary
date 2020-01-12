@@ -79,7 +79,7 @@
         </ion-item>
         <ion-item>
           <ion-label position="fixed">금액</ion-label>
-          <ion-label> {{data.price| number:'2.'}} 원</ion-label>
+          <span class="price"> {{data.price| number:'2.'}} 원</span>
         </ion-item>
         <ion-item lines="none">
           <ion-label position="fixed">인상 깊은 구절</ion-label>
@@ -93,7 +93,7 @@
         <ion-item class="textarea-wrap">
           <ion-textarea readonly> {{data.review}}</ion-textarea>
         </ion-item>
-        <div *ngIf="data.tags[0]!==''">
+        <div class="tag" *ngIf="data.tags[0]!==''">
           <ion-item lines="none">
             <ion-label position="fixed">태그</ion-label>
           </ion-item>
@@ -103,6 +103,5 @@
         </div>
       </ion-col>
     </ion-row>
-    <ion-label>사진</ion-label>
   </ion-grid>
 </ion-content>

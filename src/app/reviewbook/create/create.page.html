@@ -5,7 +5,8 @@
         <ion-icon name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>새로운 리뷰북 추가</ion-title>
+    <ion-title *ngIf="!id">새로운 리뷰북 추가</ion-title>
+    <ion-title *ngIf="id">리뷰북 수정</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="onSubmit()" [disabled]="!reviewbookForm.valid">
         <ion-icon name="md-checkmark"></ion-icon>
@@ -13,18 +14,15 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <ion-content fullscreen>
   <form [formGroup]="reviewbookForm">
     <ion-grid>
       <ion-row>
         <ion-col>
-          <ion-avatar large>
-            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-          </ion-avatar>
+          <div class="select-icon color-{{num}}"></div>
           <ion-item>
             <ion-label position="fixed">이름</ion-label>
-            <ion-input type="text" formControlName="title" text-right></ion-input>
+            <ion-input [(ngModel)]="title" type="text" formControlName="title" text-right></ion-input>
           </ion-item>
           <ion-item>
             <ion-label>카테고리</ion-label>
@@ -36,10 +34,16 @@
               <ion-select-option value="tv">tv</ion-select-option>
             </ion-select>
           </ion-item>
-
-          <ion-item class="icon-list">
-            <ion-label position="fixed">아이콘 리스트</ion-label>
+          <ion-item lines="none">
+            <ion-label position="fixed">색상</ion-label>
           </ion-item>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="2" *ngFor="let num of numbers(44); let i= index">
+                <div class="reviewbook-icon color-{{i}}" (click)=changeColor(i)></div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
         </ion-col>
       </ion-row>
     </ion-grid>
