@@ -96,10 +96,10 @@
             <ion-textarea autoGrow rows="4" cols="20" placeholder="..." [value]="book?.review" formControlName="review">
             </ion-textarea>
           </ion-item>
-          <div class="tag">
+          <div class="tag-wrap">
             <ion-item>
               <ion-label class="tag-label" position="stacked">태그</ion-label>
-              <ion-input type="text" formControlName="tags" [value]="book?.tags"></ion-input>
+              <ion-input class="tags" type="text" formControlName="tags" [value]="book?.tags"></ion-input>
             </ion-item>
             <p class="tag-notice"> 태그는 쉼표(,) 를 통해 구분되며 쉼표의 앞뒤에 있는 빈칸은 무시됩니다.</p>
           </div>

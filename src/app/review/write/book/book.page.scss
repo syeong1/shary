@@ -23,20 +23,24 @@ ion-datetime {
     color: #333;
 }
 
+
+ion-input.tags{
+    --padding-start:5px;
+}
+
+ion-item>ion-label {
+    font-size: 13px;
+    margin: 13px 3px;
+    font-weight: 500;
+    --color: #222;
+}
+
+
 ion-item.textarea-wrap>ion-label,
 ion-item>ion-label.tag-label {
     font-size: 15px;
     margin: 21px 3px 7px;
 }
-
-
-ion-item>ion-label{
-    font-size: 14px;
-    margin: 13px 3px;
-    font-weight: 550;
-    --color: rgb(65, 65, 65);
-}
-
 
 div.image-wrap {
     height: 145px;

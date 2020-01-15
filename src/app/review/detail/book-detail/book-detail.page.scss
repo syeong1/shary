@@ -21,19 +21,20 @@ ion-item {
     --padding-end: 5px;
 }
 
-ion-item>ion-label:first-child {
+ion-datetime {
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+ion-item>ion-label {
     font-size: 13px;
     margin: 13px 3px;
     font-weight: 500;
     --color: #222;
 }
 
-ion-datetime {
-    padding-left: 3px;
-    padding-right: 3px;
-}
-
-ion-item.textarea-wrap>ion-label,ion-item>ion-label.tag-label {
+ion-item.textarea-wrap>ion-label,
+ion-item>ion-label.tag-label {
     font-size: 15px;
     margin: 21px 3px 7px;
 }
