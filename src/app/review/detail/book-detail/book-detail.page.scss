@@ -6,7 +6,7 @@ ion-title {
 
 ion-textarea,
 ion-datetime,
-span {
+span{
     font-size: 13px;
     color: #333;
 }
@@ -26,7 +26,7 @@ ion-datetime {
     padding-right: 3px;
 }
 
-ion-item>ion-label {
+ion-row.info-bottom ion-label {
     font-size: 13px;
     margin: 13px 3px;
     font-weight: 500;
