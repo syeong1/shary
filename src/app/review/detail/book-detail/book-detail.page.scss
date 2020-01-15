@@ -33,7 +33,7 @@ ion-datetime {
     padding-right: 3px;
 }
 
-ion-item.textarea-wrap>ion-label {
+ion-item.textarea-wrap>ion-label,ion-item>ion-label.tag-label {
     font-size: 15px;
     margin: 21px 3px 7px;
 }

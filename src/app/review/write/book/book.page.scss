@@ -22,13 +22,15 @@ ion-datetime {
     --placeholder-color: rgb(117, 117, 117);
     color: #333;
 }
-ion-item.textarea-wrap>ion-label {
+
+ion-item.textarea-wrap>ion-label,
+ion-item>ion-label.tag-label {
     font-size: 15px;
     margin: 21px 3px 7px;
 }
 
 
-ion-item>ion-label:first-child {
+ion-item>ion-label{
     font-size: 14px;
     margin: 13px 3px;
     font-weight: 550;
@@ -87,11 +89,6 @@ ion-item>ion-datetime.pubdate {
     font-size: 12px;
     font-weight: 400;
 }
-
-.book-description {
-    font-size: 13px;
-}
-
 
 .price {
     text-align: end;
