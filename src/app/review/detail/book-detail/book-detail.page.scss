@@ -4,11 +4,11 @@ ion-title {
     text-align: left;
 }
 
-ion-input,
 ion-textarea,
 ion-datetime,
 span {
-    font-size: 14px;
+    font-size: 13px;
+    color: #333;
 }
 
 span {
@@ -21,18 +21,22 @@ ion-item {
     --padding-end: 5px;
 }
 
-ion-item>ion-label {
-    font-size: 14px;
+ion-item>ion-label:first-child {
+    font-size: 13px;
     margin: 13px 3px;
-    font-weight: 550;
-    --color: rgb(65, 65, 65);
+    font-weight: 500;
+    --color: #222;
 }
 
 ion-datetime {
-    padding-left: 0px;
+    padding-left: 3px;
     padding-right: 3px;
 }
 
+ion-item.textarea-wrap>ion-label {
+    font-size: 15px;
+    margin: 21px 3px 7px;
+}
 
 div.image-wrap {
     height: 145px;
@@ -66,23 +70,24 @@ div.image-wrap {
     }
 }
 
-.author {
-    font-size: 13px;
-    color: #333;
+ion-item>ion-label.book-title {
+    font-size: 14px;
+    font-weight: 500;
 }
 
-.pub {
+ion-item>ion-label.author {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+ion-item>ion-label.pub {
     font-size: 12px;
+    font-weight: 400;
 }
 
-.book-description {
-    font-size: 13px;
-}
-
-.tag-notice {
-    font-size: 11px;
-    color: #555;
-    padding-left: 16px;
+ion-item>ion-datetime.pubdate {
+    font-size: 12px;
+    font-weight: 400;
 }
 
 .price {

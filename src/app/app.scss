@@ -39,14 +39,16 @@ ion-toolbar {
     vertical-align: middle;
 }
 
+ion-textarea {
+    padding: 0px 5px 20px;
+}
+
 ion-item.textarea-wrap {
     --inner-padding-end: 0px;
-    --border-style: none;
 
-    ion-textarea {
-        margin: 3px 0px 10px 0px;
-        padding: 10px 0px 5px 10px;
-        border: 1px solid rgba(0, 0, 0, 0.13);
+    ion-textare {
+        padding: 4px;
+        margin-bottom: 7px;
     }
 }
 
@@ -135,10 +137,18 @@ ion-button.btn {
 }
 
 .tag {
-    padding-bottom: 65px;
+    padding-bottom: 75px;
 }
 
 
+.tag-notice {
+    font-size: 11px;
+    color: #555;
+    padding-left: 8px;
+}
+
+
+// 리뷰북 색상
 .color-0 {
     background-color: #C6A477;
 }

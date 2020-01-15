@@ -22,7 +22,7 @@ export class BookListPage implements OnInit {
 
   constructor(private reviewService: ReviewService,
     private route: ActivatedRoute, private router: Router, private actionSheetController: ActionSheetController) {
-    this.route.queryParams.subscribe(params => {
+      this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.reviewbookTitle = this.router.getCurrentNavigation().extras.state.title;
         console.log('extras.state.title : ' + this.reviewbookTitle);
@@ -37,7 +37,7 @@ export class BookListPage implements OnInit {
 
   ionViewWillEnter() {
     this.reviews = null;
-    this.getReviewList()
+    this.getReviewList();
   }
   
   getReviewList() {

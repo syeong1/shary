@@ -1,8 +1,8 @@
-ion-input,
 ion-textarea,
-ion-datetime,
-span {
-    font-size: 14px;
+span,
+ion-input {
+    font-size: 13px;
+    color: #333;
 }
 
 span {
@@ -15,27 +15,24 @@ ion-item {
     --padding-end: 5px;
 }
 
-ion-item.textarea {
-    --inner-padding-end: 0px;
-    --border-style: none;
+ion-datetime {
+    padding-left: 1px;
+    padding-right: 3px;
+    font-size: 13px;
+    --placeholder-color: rgb(117, 117, 117);
+    color: #333;
+}
+ion-item.textarea-wrap>ion-label {
+    font-size: 15px;
+    margin: 21px 3px 7px;
 }
 
-ion-textarea {
-    margin: 3px 0px 10px 0px;
-    padding: 5px 0px 5px 10px;
-    border: 1px solid rgba(0, 0, 0, 0.13);
-}
 
-ion-item>ion-label {
+ion-item>ion-label:first-child {
     font-size: 14px;
     margin: 13px 3px;
     font-weight: 550;
     --color: rgb(65, 65, 65);
-}
-
-ion-datetime {
-    padding-left: 0px;
-    padding-right: 3px;
 }
 
 
@@ -71,22 +68,32 @@ div.image-wrap {
     }
 }
 
-.author {
-    font-size: 13px;
-    color: #333;
+ion-item>ion-input.book-title {
+    font-size: 14px;
+    font-weight: 500;
 }
 
-.pub {
+ion-item>ion-input.author {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+ion-item>ion-input.pub {
     font-size: 12px;
+    font-weight: 400;
+}
+
+ion-item>ion-datetime.pubdate {
+    font-size: 12px;
+    font-weight: 400;
 }
 
 .book-description {
     font-size: 13px;
 }
 
-.tag-notice {
-    font-size: 11px;
-    color: #555;
-    padding-left: 16px;
-    padding-bottom: 45px;
+
+.price {
+    text-align: end;
+    width: 100%;
 }
