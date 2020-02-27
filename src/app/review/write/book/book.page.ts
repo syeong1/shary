@@ -87,8 +87,8 @@ export class BookPage implements OnInit {
       console.log('받아온 Review data', data);
       this.book = data;
       this.reviewbookId = data['reviewbook'];
-      this.readingStartDate = data['readingStartDate'];  //ion-date에 날짜 데이터 대입
-      this.readingEndDate = data['readingEndDate']; //ion-date에 날짜 데이터 대입
+      this.readingStartDate = data['readingStartDate'];  //ion-date에 독서시작일 데이터 대입
+      this.readingEndDate = data['readingEndDate']; //ion-date에 독서완료일 데이터 대입
       this.rating = data['rating']; // 별점 가져오기
       console.log("!!! loadDetail !!!");
       console.log(this.reviewbookId);
