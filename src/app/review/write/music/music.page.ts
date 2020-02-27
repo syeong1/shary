@@ -17,6 +17,8 @@ export class MusicPage implements OnInit {
   reviewbookId: string = null;
   reviewId: string = null;
   titleText: string = '새 리뷰 작성';
+  listeningDate: string = new Date().toISOString();
+  rating: Number;
 
   constructor(private modalController: ModalController, private reviewService: ReviewService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
@@ -81,6 +83,8 @@ export class MusicPage implements OnInit {
       console.log('받아온 Review data', data);
       this.music = data;
       this.reviewbookId = data['reviewbook'];
+      this.listeningDate = data['listeningDate'];  //ion-date에 감상일 데이터 대입
+      this.rating = data['rating']; // 별점 가져오기
       console.log("!!! loadDetail !!!");
       console.log(this.reviewbookId);
     })
