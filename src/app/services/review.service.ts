@@ -144,8 +144,6 @@ export class ReviewService {
   }
 
 
-
-
   // 좋아요 확인
   getLike(reviewId: string) {
     return this.http.get(`${this.url}/api/like/${reviewId}`).pipe(
@@ -168,6 +166,8 @@ export class ReviewService {
     );
   }
 
+  
+
   // 좋아요 취소
   cancelLike(reviewId: string) {
     return this.http.delete(`${this.url}/api/like/${reviewId}`).pipe(
@@ -185,7 +185,7 @@ export class ReviewService {
   async presentToast(msg) {
     const toast = await this.toastController.create({
       message: msg,
-      duration: 2000
+      duration: 1000
     });
     toast.present();
   }
