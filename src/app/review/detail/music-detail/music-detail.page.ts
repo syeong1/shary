@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ReviewService } from 'src/app/services/review.service';
+import { UserService } from 'src/app/services/user.service';
 import { AlertController } from '@ionic/angular';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
@@ -14,12 +15,18 @@ export class MusicDetailPage implements OnInit {
   reviewId: string;
   data = null;
   likeState: boolean = false;
+  likeCnt: number;
+  writer: boolean = true;
+  user: string;
 
-  constructor(private reviewService: ReviewService, private activatedRoute: ActivatedRoute, private router: Router, public alertController: AlertController, private socialSharing: SocialSharing) { }
+  constructor(private userService: UserService, private reviewService: ReviewService, private activatedRoute: ActivatedRoute, private router: Router, public alertController: AlertController, private socialSharing: SocialSharing) {
+  }
 
   ngOnInit() {
     this.reviewId = this.activatedRoute.snapshot.paramMap.get('id');
     console.log('음악 리뷰북 id : ', this.reviewId);
+    this.getUserInfo();
+    this.getReviewDetail();
   }
 
   ionViewWillEnter() {
@@ -27,11 +34,21 @@ export class MusicDetailPage implements OnInit {
     this.getLike();
   }
 
+  getUserInfo() {
+    this.userService.getProfile().subscribe(user => {
+      this.user = user['id'];
+    });
+  }
   getReviewDetail() {
     this.reviewService.getReviewDetail('music', this.reviewId).subscribe(data => {
       console.log('*** reviewService.getReviewDetail 요청 때 reviewid : ', this.reviewId);
       console.log('받아온 Review data', data);
+      console.log("### this.user", this.user);
+      console.log("data[writer]", data['writer']);
       this.data = data;
+      this.likeCnt = data['likeCnt'];
+    // 현재 로그인한 유저와 글쓴이가 다를 경우 writer false로 변경
+    if (this.user != data['writer']) this.writer = false;
     })
   }
 
@@ -79,18 +96,22 @@ export class MusicDetailPage implements OnInit {
     this.reviewService.addLike(this.reviewId).subscribe(data => {
       console.log('좋아요 누른 결과', data);
       this.likeState = true;
+      this.likeCnt += 1;
     })
   }
   cancelLike() {
     this.reviewService.cancelLike(this.reviewId).subscribe(data => {
       console.log('좋아요 취소 결과', data);
       this.likeState = false;
+      this.likeCnt -= 1;
     })
   }
 
+
+  // 태그 검색
   searchTag(item) {
     console.log('검색할 태그', item);
-    this.router.navigate(['main-tabs/search/tag', item]);
+    this.router.navigate(['main-tabs/search/tag',item]);
   }
 
   async shareReview() {

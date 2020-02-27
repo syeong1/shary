@@ -39,6 +39,13 @@ ion-toolbar {
     vertical-align: middle;
 }
 
+ion-item {
+    --min-height: 30px;
+    --padding-start: 5px;
+    --padding-end: 5px;
+    --inner-padding-start: 2px;
+}
+
 ion-textarea {
     padding: 0px 5px 20px;
 }
@@ -89,8 +96,24 @@ ion-item.textarea-wrap {
     width: fit-content;
 }
 
+
+// 좋아요 버튼
 .btn-like {
-    padding: 10px;
+    padding: 5px 3px;
+    font-size: 43px;
+}
+
+
+// 좋아요 숫자
+.like-count { 
+    font-size: 9px;
+    font-weight: bold;
+    clear: both;
+    display: block;
+    position: absolute;
+    bottom: 23px;
+    z-index: 99;
+    text-align: center;
 }
 
 ion-fab-button {

@@ -18,28 +18,25 @@ span {
     color: #111;
 }
 
-ion-item {
-    --min-height: 30px;
-    --padding-start: 5px;
-    --padding-end: 5px;
-    --inner-padding-start: 2px;
-
-}
-
-
-.img-bottom-wrap {
-    ion-item>ion-label {
-        font-size: 13px;
-        margin: 13px 3px;
-        --color: rgb(65, 65, 65);
-    }
-}
 
 ion-datetime {
     padding-left: 0px;
     padding-right: 3px;
 }
 
+
+ion-row.info-bottom ion-label {
+    font-size: 13px;
+    margin: 13px 3px;
+    font-weight: 500;
+    --color: #222;
+}
+
+ion-item.textarea-wrap>ion-label,
+ion-item>ion-label.tag-label {
+    font-size: 15px;
+    margin: 21px 3px 7px;
+}
 
 div.image-wrap {
     height: 145px;

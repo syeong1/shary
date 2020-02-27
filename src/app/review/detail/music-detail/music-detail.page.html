@@ -4,14 +4,14 @@
       <ion-back-button text="" mode="md"></ion-back-button>
     </ion-buttons>
     <ion-title>{{data?.trackName}}</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="deleteReview()">
+    <ion-buttons slot="end" *ngIf="data">
+      <ion-button *ngIf="writer" (click)="deleteReview()">
         <ion-icon name="md-trash"></ion-icon>
       </ion-button>
       <ion-button (click)="shareReview()">
         <ion-icon name="md-share"></ion-icon>
       </ion-button>
-      <ion-button (click)="editReview()">
+      <ion-button *ngIf="writer" (click)="editReview()">
         <ion-icon name="md-create"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -19,15 +19,17 @@
 </ion-header>
 
 <ion-content>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <!-- 좋아요 버튼 시작 -->
+  <ion-fab *ngIf="data" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button>
+      <div class="like-count" [style.color]="likeState ? '#ffffff' : '#000000'">{{likeCnt}}</div>
       <ion-icon name="heart" class="btn-like" *ngIf="likeState" (click)="cancelLike()" mode="md"
         [style.color]="'#D33131'"></ion-icon>
       <ion-icon name="heart" class="btn-like" *ngIf="!likeState" (click)="addLike()" mode="md" [style.color]="'#fff'">
       </ion-icon>
     </ion-fab-button>
   </ion-fab>
-
+  <!-- 좋아요 버튼 끝-->
   <ion-grid *ngIf="data">
     <ion-item lines="none" class="rating-view-wrap">
       <ion-icon size="large" name="star" *ngFor="let num of [1,2,3,4,5]"
@@ -48,44 +50,43 @@
       </ion-col>
       <ion-col size='8' class="img-left-warp">
         <ion-item>
-          <ion-label class="track-name"> {{data.trackName}}</ion-label>
+          <ion-label class="track-name">{{data.trackName}}</ion-label>
         </ion-item>
         <ion-item>
-          <ion-label class="artist-name"> {{data.artistName}}</ion-label>
+          <ion-label class="artist-name">{{data.artistName}}</ion-label>
         </ion-item>
         <ion-item>
-          <ion-label class="collection-name"> {{data.collectionName}}</ion-label>
+          <ion-label class="collection-name">{{data.collectionName}}</ion-label>
         </ion-item>
-
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row class="info-bottom">
       <ion-col>
-        <div class="img-bottom-wrap">
-          <ion-item>
-            <ion-label>장르</ion-label>
-            <span>{{data.primaryGenreName}}</span>
-          </ion-item>
-          <ion-item>
-            <ion-label>발매일</ion-label>
-            <ion-datetime displayFormat="YYYY-MM-DD" value="{{data.releaseDate}}" readonly> </ion-datetime>
-          </ion-item>
-          <ion-item>
-            <ion-label>감상일</ion-label>
-            <ion-datetime displayFormat="YYYY-MM-DD" value="{{data.listeningDate}}" readonly> </ion-datetime>
-          </ion-item>
+        <ion-item>
+          <ion-label>장르</ion-label>
+          <span>{{data.primaryGenreName}}</span>
+        </ion-item>
+        <ion-item>
+          <ion-label>발매일</ion-label>
+          <ion-datetime displayFormat="YYYY-MM-DD" value="{{data.releaseDate}}" readonly> </ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label>감상일</ion-label>
+          <ion-datetime displayFormat="YYYY-MM-DD" value="{{data.listeningDate}}" readonly> </ion-datetime>
+        </ion-item>
+        <ion-item class="textarea-wrap" lines="none">
+          <ion-label position="fixed">감상평</ion-label>
+        </ion-item>
+        <ion-item class="textarea-wrap">
+          <ion-textarea autoGrow readonly value="{{data.review}}"></ion-textarea>
+        </ion-item>
+        <div class="tag-wrap" *ngIf="data.tags[0]!==''">
           <ion-item lines="none">
-            <ion-label position="fixed">감상평</ion-label>
+            <ion-label class="tag-label" position="fixed">태그</ion-label>
           </ion-item>
-          <ion-item class="textarea-wrap">
-            <ion-textarea> {{data.review}}</ion-textarea>
-          </ion-item>
-          <div *ngIf="data.tags[0]!==''">
-            <ion-item lines="none">
-              <ion-label position="fixed">태그</ion-label>
-            </ion-item>
-            <ion-chip *ngFor="let item of data.tags" outline color="primary" (click)="searchTag(item)">
-              <ion-label>{{item}}</ion-label>
+          <div class="tags">
+            <ion-chip *ngFor="let item of data.tags" color="danger" (click)="searchTag(item)">
+              <ion-label color="danger">{{item}}</ion-label>
             </ion-chip>
           </div>
         </div>
