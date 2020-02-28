@@ -25,7 +25,11 @@
 
 ion-toolbar {
     --ion-color-primary: #333;
-
+    padding-left: 4px;
+    padding-right: 4px;
+    ion-icon{
+        font-size: 23px;
+    }
 }
 
 .header-ios ion-toolbar:last-child {
@@ -99,21 +103,22 @@ ion-item.textarea-wrap {
 
 // 좋아요 버튼
 .btn-like {
-    padding: 5px 3px;
-    font-size: 43px;
+    padding: 0px 5px;
+    // font-size: 25px;
 }
 
 
 // 좋아요 숫자
-.like-count { 
-    font-size: 9px;
-    font-weight: bold;
-    clear: both;
-    display: block;
-    position: absolute;
-    bottom: 23px;
-    z-index: 99;
-    text-align: center;
+.like-count {
+    font-size: 16px;
+    color: #444;
+    text-align: left;
+    padding: 0px;
+    margin: 0px;
+    justify-self: center;
+    padding: 0px;
+    margin: 0px;
+    line-height: 20px;
 }
 
 ion-fab-button {

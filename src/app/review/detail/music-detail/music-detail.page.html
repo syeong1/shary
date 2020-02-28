@@ -8,9 +8,6 @@
       <ion-button *ngIf="writer" (click)="deleteReview()">
         <ion-icon name="md-trash"></ion-icon>
       </ion-button>
-      <ion-button (click)="shareReview()">
-        <ion-icon name="md-share"></ion-icon>
-      </ion-button>
       <ion-button *ngIf="writer" (click)="editReview()">
         <ion-icon name="md-create"></ion-icon>
       </ion-button>
@@ -19,17 +16,6 @@
 </ion-header>
 
 <ion-content>
-  <!-- 좋아요 버튼 시작 -->
-  <ion-fab *ngIf="data" vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button>
-      <div class="like-count" [style.color]="likeState ? '#ffffff' : '#000000'">{{likeCnt}}</div>
-      <ion-icon name="heart" class="btn-like" *ngIf="likeState" (click)="cancelLike()" mode="md"
-        [style.color]="'#D33131'"></ion-icon>
-      <ion-icon name="heart" class="btn-like" *ngIf="!likeState" (click)="addLike()" mode="md" [style.color]="'#fff'">
-      </ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-  <!-- 좋아요 버튼 끝-->
   <ion-grid *ngIf="data">
     <ion-item lines="none" class="rating-view-wrap">
       <ion-icon size="large" name="star" *ngFor="let num of [1,2,3,4,5]"
@@ -94,3 +80,24 @@
     </ion-row>
   </ion-grid>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon name="heart" class="btn-like" *ngIf="likeState" (click)="cancelLike()" mode="md"
+        [style.color]="'#D33131'"></ion-icon>
+      <ion-icon name="heart" class="btn-like" *ngIf="!likeState" (click)="addLike()" mode="md"
+        [style.color]="'#e0e0e0'">
+      </ion-icon>
+      <p class="like-count">{{likeCnt}}</p>
+      <ion-button>
+        <ion-icon name="ios-more"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end" *ngIf="data">
+      <ion-button (click)="shareReview()">
+        <ion-icon name="md-share"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
