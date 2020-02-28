@@ -23,8 +23,7 @@ import { TvApiPageModule } from './search/tv-api/tv-api.module';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { Camera } from '@ionic-native/Camera/ngx';
 import { File } from '@ionic-native/File/ngx';
-
-
+import { LikerPageModule } from './review/detail/liker/liker.module';
 
 
 export function jwtOptionsFactory(storage) {
@@ -32,15 +31,17 @@ export function jwtOptionsFactory(storage) {
     tokenGetter: () => {
       return storage.get('access_token');
     },
-    whitelistedDomains: ['localhost:5000']
+    // whitelistedDomains: ['172.30.1.17:5000']
+    whitelistedDomains: ['172.20.10.3:5000']
   }
 }
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,
     MovieApiPageModule, MusicApiPageModule, BookApiPageModule, FoodApiPageModule,
-    TvApiPageModule, CreatePageModule,
+    TvApiPageModule, CreatePageModule, LikerPageModule,
     IonicStorageModule.forRoot(),
     JwtModule.forRoot({
       jwtOptionsProvider: {

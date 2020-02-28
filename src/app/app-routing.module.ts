@@ -49,6 +49,7 @@ const routes: Routes = [
   { path: 'tv-api', loadChildren: './search/tv-api/tv-api.module#TvApiPageModule' },
   { path: 'review/movie', loadChildren: './search/review/movie/movie.module#MoviePageModule' },
   { path: 'share-photo', loadChildren: './review/share-photo/share-photo.module#SharePhotoPageModule' },
+  { path: 'liker', loadChildren: './review/detail/liker/liker.module#LikerPageModule' },
 
 ];
 @NgModule({
