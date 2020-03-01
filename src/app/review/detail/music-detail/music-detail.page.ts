@@ -26,17 +26,17 @@ export class MusicDetailPage implements OnInit {
   ngOnInit() {
     this.reviewId = this.activatedRoute.snapshot.paramMap.get('id');
     console.log('음악 리뷰북 id : ', this.reviewId);
-    this.getUserInfo();
-    this.getReviewDetail();
   }
 
   ionViewWillEnter() {
     this.getReviewDetail();
+    this.getUserInfo();
     this.getLike();
   }
 
   getUserInfo() {
     this.userService.getProfile().subscribe(user => {
+      console.log("getUserInfo()", user['id']);
       this.user = user['id'];
     });
   }
@@ -100,7 +100,7 @@ export class MusicDetailPage implements OnInit {
       this.likeCnt += 1;
     })
   }
-  
+
   cancelLike() {
     this.reviewService.cancelLike(this.reviewId).subscribe(data => {
       console.log('좋아요 취소 결과', data);
