@@ -113,7 +113,7 @@ export class MusicDetailPage implements OnInit {
   async openLikerModal() {
     let modal = await this.modalController.create({
       component: LikerPage,
-      // componentProps: { category: this.category }
+      componentProps: { reviewId: this.reviewId }
     })
 
 
