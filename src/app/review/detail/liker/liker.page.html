@@ -1,9 +1,18 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>liker</ion-title>
+    <ion-title>좋아요 누른 사람</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-list *ngIf="data">
+    <ion-item *ngFor="let nickname of data.liker">
+      <ion-avatar slot="start">
+        <img src="assets/img/tv.png">
+      </ion-avatar>
+      <ion-label>
+        {{nickname}}
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
