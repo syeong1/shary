@@ -1,14 +1,18 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start" class="btn-back">
+      <ion-button (click)="back()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>좋아요 누른 사람</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <ion-list *ngIf="data">
     <ion-item *ngFor="let nickname of data.liker">
       <ion-avatar slot="start">
-        <img src="assets/img/tv.png">
+        <img src="assets/img/home/tv.png">
       </ion-avatar>
       <ion-label>
         {{nickname}}
